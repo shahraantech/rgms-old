@@ -29,7 +29,7 @@
                 <div class="page-header my-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h3 class="page-title bold-heading">My Sales</h3>
+                            <h3 class="page-title bold-heading">{{$data['type']}} Sales List</h3>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a></li>
                                 <li class="breadcrumb-item active">My Sales</li>
@@ -60,7 +60,7 @@
                                     <tr>
                                         <td>{{$c}}</td>
                                         <td><a href="{{url('meet-detail').'/'.encrypt($row->leads->id)}}">{{$row->leads['id']}}</a></td>
-                                        <td>{{$row->leads['name']}}</td>
+                                        <td><a href="{{url('client_detail').'/'.$row->leads['id']}}"> {{$row->leads['name']}}</a></td>
                                         <td>{{$row->leads['contact']}}</td>
                                         <td>{{$row->leads->cityname->city_name}}</td>
 

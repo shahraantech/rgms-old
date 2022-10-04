@@ -3,7 +3,7 @@
     <div class="page-wrapper">
         <!-- Page Content -->
         <div class="content container-fluid">
-            <!-- Page Header -->
+
             <div class="page-header">
                 <div class="row">
                     <div class="col-sm-12">
@@ -80,39 +80,34 @@
                     </div>
                 </div>
             </div>
+
             <div class="tab-content">
 
                 <!-- Profile Info Tab -->
                 <div id="emp_profile" class="pro-overview tab-pane fade show active">
                     <h4>Leads Information </h4>
+
                     <div class="row">
                         @isset($data['approached_leads'])
                             @foreach ($data['approached_leads'] as $leads)
                                 <div class="col-md-4 d-flex">
                                     <div class="card profile-box flex-fill">
                                         <div class="card-body">
-
                                             <span class="card-title">
-                                                @php
-                                                   $res=App\Models\QaFeedBack::where('approach_id',$leads->id)->first();
+                                                     @php
+                                                         $res=App\Models\QaFeedBack::where('approach_id',$leads->id)->first();
 
-                                                    @endphp
+                                                     @endphp
                                                 @if(!$res)
-                                                @if(Auth::user()->role=='call-center')
-                                                    <div class="pro-edit float-right">
+                                                    @if(Auth::user()->role=='call-center')
+                                                        <div class="pro-edit float-right">
                                                <small>
                                                       <a href="#" data="{{$leads->id}}" data-toggle="modal" data-target="#add_leave" title="Give Feedback" class="btnFeedBack"><i class="fa fa-plus"></i></a>
                                                </small></div>
-                                                @endif
+                                                    @endif
                                                 @endif
                                                 <small
-                                                    class="text-secondary">{{ $leads->created_at }}</small>
-
-                                            </span>
-
-
-                                            <a href="#">{{ empty($data['employee']->email) ? '' : $data['employee']->email }}</a>
-                                        </div>
+                                                    class="text-secondary">{{ $leads->created_at }}</small></span>
                                             <ul class="personal-info">
                                                 <li>
                                                     <div class="title">Approached By.</div>
@@ -140,7 +135,7 @@
                                                     @endphp
                                                 </li>
                                                 <li>
-                                                    <div class="title">Followup Date/Time</div>
+                                                    <div class="title">Next Followup</div>
                                                     <div class="text">
                                                         {{ date('d-M-Y', strtotime($leads->followup_date)) }}
                                                         {{ $leads->follow_time }}
@@ -148,7 +143,7 @@
                                                 </li>
 
                                                 <li>
-                                                    <div class="title" style="    font-weight: bold;" title="comments"><i class="la la-comments-o" aria-hidden="true"></i></div>
+                                                    <div class="title" style="font-weight: bold;"><i class="la la-comments-o" aria-hidden="true"></i></div>
                                                     <div class="text">{{ $leads->comments }}</div>
                                                 </li>
                                                 @if(!empty($leads->audio))
@@ -162,7 +157,8 @@
                                                     </li>
                                                 @endif
 
-                                                    <div class="title" style="    font-weight: bold;" title="Call Rec"><i class="la la-phone"></i></div>
+
+                                                <div class="title" style="    font-weight: bold;"><i class="la la-phone"></i></div>
 
                                                 @if(!empty($leads->audio_call_rec))
                                                     <li>
@@ -173,9 +169,6 @@
                                                             </audio>
                                                         </div>
                                                     </li>
-
-                                                    @elseif (empty($leads->audio_call_rec) || $leads->audio_call_rec==null)
-                                                    <div class="title"></div>
 
                                                 @endif
                                             </ul>
@@ -188,9 +181,8 @@
                 </div>
                 <!-- /Profile Info Tab -->
             </div>
+        </div>
     </div>
-
-
 
     <div id="add_leave" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -284,6 +276,4 @@
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-
 @endsection

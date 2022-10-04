@@ -63,19 +63,6 @@
                                                 $overAllRatings = $rate->rating;
                                                 $count_rows = 1;
 
-                                                //                                            $r=App\Models\Rating:: all();
-                                                //                                            if($r){
-                                                //                                                $count_rows = $r->count();
-                                                //                                                $count_row=$count_rows;
-                                                //                                                $sum=0;
-                                                //                                                foreach($r as $r){
-                                                //                                                    $rate= $r->rating;
-                                                //                                                    $sum=$sum+$rate;
-                                                //
-                                                //                                                }
-                                                //                                                $overAllRatings=($sum/$count_row);
-                                                //
-                                                //                                            }
 
                                                 ?>
 

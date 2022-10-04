@@ -160,7 +160,6 @@ class CallCenterLeadsController extends Controller
 
     public function leadsList(Request $request)
     {
-
         $qry = LeadsMarketing::query();
         $qry = $qry->with('cityname', 'platformname');
         if ($request->isMethod('post')) {
@@ -1523,5 +1522,12 @@ class CallCenterLeadsController extends Controller
         }
         $res = json_encode($output);
         return $res;
+    }
+
+    //callsQaReport
+    public function callsQaReport(Request $request)
+    {
+         $data['qa']=QaFeedBack::with('agent','leads')->get();
+        return view('call-center.reports.qa-report')->with(compact('data'));
     }
 }
