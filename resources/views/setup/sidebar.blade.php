@@ -382,6 +382,7 @@
                         </li>
                 @endif
                 @if (Auth::user()->role == 'call-center')
+
                     <li> <a href="{{ url('/') }}"> <span>Dashboard</span></a> </li>
 
                     <li class="submenu">
@@ -471,7 +472,9 @@
                             <li> <a href="{{ url('walkin-customer') }}"> <span>Customer Form</span></a> </li>
                             <li> <a href="{{ url('meetings') }}"> <span>Meetings List</span></a> </li>
                             <li> <a href="{{ url('my-meetings') }}"> <span>My Meetings</span></a> </li>
+                            <li> <a href="{{ url('sales-list') }}"> <span>Sales List</span></a> </li>
                             <li> <a href="{{ url('my-sales') }}"> <span>My Sales</span></a> </li>
+
                         </ul>
                     </li>
                         <li class="submenu">
@@ -498,9 +501,10 @@
                             <li><a href="{{ url('leads-response') }}">Leads Response Report</a></li>
                             <li><a href="{{ url('csr-no-of-leads') }}">CSR NO Of Leads</a></li>
                             <li><a href="{{ url('manager-no-of-leads') }}">Manager NO Of Leads</a></li>
-                            <li><a href="{{ url('leads-analysis') }}">Leads Analysis</a></li>
+{{--                            <li><a href="{{ url('leads-analysis') }}">Leads Analysis</a></li>--}}
                             <li><a href="{{ url('sales-report') }}">Sales Report</a></li>
                             <li><a href="{{ url('dead-lead-report') }}">Dead Lead Report</a></li>
+                            <li><a href="{{ url('calls-qa-report') }}">Calls QA Report</a></li>
                         </ul>
                     </li>
                     <li class="submenu">
@@ -536,10 +540,17 @@
                     </li>
                 @endif
 
-
                 @if (Auth::user()->role == 'super-admin')
                     @include('setup.super-admin-sidebar')
                 @endif
+
+                    <li class="submenu">
+                        <a href="#"><i class="la la-calendar"></i> <span>Calender</span> <span
+                                class="menu-arrow"></span></a>
+                        <ul>
+                            <li> <a href="{{ url('calender') }}"> <span>Daily Planner</span></a> </li>
+                        </ul>
+                    </li>
             </ul>
         </div>
     </div>
