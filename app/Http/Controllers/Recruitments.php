@@ -67,6 +67,17 @@ class Recruitments extends Controller
                 ->select('designations.desig_name', 'departments.departments', 'recruitments.*')
                 ->get();
         }
+
+        $data['shareButtons'] = \Share::page(
+            'https://www.itsolutionstuff.com',
+        )
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->telegram()
+            ->whatsapp()
+            ->reddit();
+
         $data['dept'] = Department::orderBy('id', 'desc')->get();
         $data['title'] = Designation::orderBy('id', 'desc')->get();
         return view('hr.recruitment.new-hiring')->with(compact('data'));

@@ -18,8 +18,10 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\CallCenter\RoleController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CallCenter\CallCenterLeadsController;
-use App\Http\Controllers\CalendarController;
 
+use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\CalendarController;
 
 
 

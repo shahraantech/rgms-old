@@ -158,6 +158,10 @@ class ComposerStaticInit4b8084c7674050a0396bce2a476fa881
             'Laravel\\Sanctum\\' => 16,
             'Laravel\\Sail\\' => 13,
         ),
+        'J' => 
+        array (
+            'Jorenvh\\Share\\' => 14,
+        ),
         'I' => 
         array (
             'Illuminate\\Support\\' => 19,
@@ -499,6 +503,10 @@ class ComposerStaticInit4b8084c7674050a0396bce2a476fa881
         array (
             0 => __DIR__ . '/..' . '/laravel/sail/src',
         ),
+        'Jorenvh\\Share\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src',
+        ),
         'Illuminate\\Support\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Macroable',
@@ -662,6 +670,7 @@ class ComposerStaticInit4b8084c7674050a0396bce2a476fa881
     public static $classMap = array (
         'App\\Console\\Commands\\DemoCron' => __DIR__ . '/../..' . '/app/Console/Commands/DemoCron.php',
         'App\\Console\\Commands\\HourlyUpdate' => __DIR__ . '/../..' . '/app/Console/Commands/HourlyUpdate.php',
+        'App\\Console\\Commands\\LeadCron' => __DIR__ . '/../..' . '/app/Console/Commands/LeadCron.php',
         'App\\Console\\Commands\\UpdateProbPeriodCron' => __DIR__ . '/../..' . '/app/Console/Commands/UpdateProbPeriodCron.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Events\\AccountVerifyEvent' => __DIR__ . '/../..' . '/app/Events/AccountVerifyEvent.php',
@@ -761,7 +770,9 @@ class ComposerStaticInit4b8084c7674050a0396bce2a476fa881
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Imports\\CustomerSurvryImport' => __DIR__ . '/../..' . '/app/Imports/CustomerSurvryImport.php',
+        'App\\Imports\\EmailImport' => __DIR__ . '/../..' . '/app/Imports/EmailImport.php',
         'App\\Imports\\LeadsMarketingImport' => __DIR__ . '/../..' . '/app/Imports/LeadsMarketingImport.php',
+        'App\\Imports\\TestImport' => __DIR__ . '/../..' . '/app/Imports/TestImport.php',
         'App\\Jobs\\ProbabtionPeriodUpdateJob' => __DIR__ . '/../..' . '/app/Jobs/ProbabtionPeriodUpdateJob.php',
         'App\\Jobs\\SendEmailJob' => __DIR__ . '/../..' . '/app/Jobs/SendEmailJob.php',
         'App\\Jobs\\SendEmailToAllEmployee' => __DIR__ . '/../..' . '/app/Jobs/SendEmailToAllEmployee.php',
@@ -780,8 +791,9 @@ class ComposerStaticInit4b8084c7674050a0396bce2a476fa881
         'App\\Mail\\SendEmailTest' => __DIR__ . '/../..' . '/app/Mail/SendEmailTest.php',
         'App\\Mail\\SendEmailToAllEmployeeMail' => __DIR__ . '/../..' . '/app/Mail/SendEmailToAllEmployeeMail.php',
         'App\\Mail\\SendMail' => __DIR__ . '/../..' . '/app/Mail/SendMail.php',
-        'App\\Mail\\SendMailToAllLeads' => __DIR__ . '/../..' . '/app/Mail/SendMailToAllLeads.php',
         'App\\Mail\\SendTrainingMail' => __DIR__ . '/../..' . '/app/Mail/SendTrainingMail.php',
+        'App\\Mail\\ShahraanTech' => __DIR__ . '/../..' . '/app/Mail/ShahraanTech.php',
+        'App\\Mail\\ShahraanTechMail' => __DIR__ . '/../..' . '/app/Mail/ShahraanTechMail.php',
         'App\\Models\\Account' => __DIR__ . '/../..' . '/app/Models/Account.php',
         'App\\Models\\AccountHead' => __DIR__ . '/../..' . '/app/Models/AccountHead.php',
         'App\\Models\\AccountSummary' => __DIR__ . '/../..' . '/app/Models/AccountSummary.php',
@@ -796,6 +808,7 @@ class ComposerStaticInit4b8084c7674050a0396bce2a476fa881
         'App\\Models\\Attendance' => __DIR__ . '/../..' . '/app/Models/Attendance.php',
         'App\\Models\\Bank' => __DIR__ . '/../..' . '/app/Models/Bank.php',
         'App\\Models\\BankBranch' => __DIR__ . '/../..' . '/app/Models/BankBranch.php',
+        'App\\Models\\BankCheque' => __DIR__ . '/../..' . '/app/Models/BankCheque.php',
         'App\\Models\\BankSummry' => __DIR__ . '/../..' . '/app/Models/BankSummry.php',
         'App\\Models\\BuildingCost' => __DIR__ . '/../..' . '/app/Models/BuildingCost.php',
         'App\\Models\\Buildings' => __DIR__ . '/../..' . '/app/Models/Buildings.php',
@@ -807,6 +820,7 @@ class ComposerStaticInit4b8084c7674050a0396bce2a476fa881
         'App\\Models\\City' => __DIR__ . '/../..' . '/app/Models/City.php',
         'App\\Models\\Client' => __DIR__ . '/../..' . '/app/Models/Client.php',
         'App\\Models\\CoaMapping' => __DIR__ . '/../..' . '/app/Models/CoaMapping.php',
+        'App\\Models\\Commission' => __DIR__ . '/../..' . '/app/Models/Commission.php',
         'App\\Models\\Company' => __DIR__ . '/../..' . '/app/Models/Company.php',
         'App\\Models\\CompanyBranch' => __DIR__ . '/../..' . '/app/Models/CompanyBranch.php',
         'App\\Models\\CompanyLeave' => __DIR__ . '/../..' . '/app/Models/CompanyLeave.php',
@@ -816,6 +830,7 @@ class ComposerStaticInit4b8084c7674050a0396bce2a476fa881
         'App\\Models\\Department' => __DIR__ . '/../..' . '/app/Models/Department.php',
         'App\\Models\\Designation' => __DIR__ . '/../..' . '/app/Models/Designation.php',
         'App\\Models\\DetailAcType' => __DIR__ . '/../..' . '/app/Models/DetailAcType.php',
+        'App\\Models\\EmailCompagin' => __DIR__ . '/../..' . '/app/Models/EmailCompagin.php',
         'App\\Models\\EmpWeekOff' => __DIR__ . '/../..' . '/app/Models/EmpWeekOff.php',
         'App\\Models\\Emp_qualification' => __DIR__ . '/../..' . '/app/Models/Emp_qualification.php',
         'App\\Models\\Employee' => __DIR__ . '/../..' . '/app/Models/Employee.php',
@@ -824,6 +839,7 @@ class ComposerStaticInit4b8084c7674050a0396bce2a476fa881
         'App\\Models\\ExpenseHead' => __DIR__ . '/../..' . '/app/Models/ExpenseHead.php',
         'App\\Models\\Expense_head' => __DIR__ . '/../..' . '/app/Models/Expense_head.php',
         'App\\Models\\Experience' => __DIR__ . '/../..' . '/app/Models/Experience.php',
+        'App\\Models\\Freelancer' => __DIR__ . '/../..' . '/app/Models/Freelancer.php',
         'App\\Models\\Grade' => __DIR__ . '/../..' . '/app/Models/Grade.php',
         'App\\Models\\HelpDesk' => __DIR__ . '/../..' . '/app/Models/HelpDesk.php',
         'App\\Models\\Interviews' => __DIR__ . '/../..' . '/app/Models/Interviews.php',
@@ -858,6 +874,7 @@ class ComposerStaticInit4b8084c7674050a0396bce2a476fa881
         'App\\Models\\Property_variation' => __DIR__ . '/../..' . '/app/Models/Property_variation.php',
         'App\\Models\\Property_variation_value' => __DIR__ . '/../..' . '/app/Models/Property_variation_value.php',
         'App\\Models\\Purchase' => __DIR__ . '/../..' . '/app/Models/Purchase.php',
+        'App\\Models\\QaFeedBack' => __DIR__ . '/../..' . '/app/Models/QaFeedBack.php',
         'App\\Models\\Quatation' => __DIR__ . '/../..' . '/app/Models/Quatation.php',
         'App\\Models\\Rating' => __DIR__ . '/../..' . '/app/Models/Rating.php',
         'App\\Models\\Recruitment' => __DIR__ . '/../..' . '/app/Models/Recruitment.php',
@@ -873,6 +890,7 @@ class ComposerStaticInit4b8084c7674050a0396bce2a476fa881
         'App\\Models\\Specification_value' => __DIR__ . '/../..' . '/app/Models/Specification_value.php',
         'App\\Models\\SubAcType' => __DIR__ . '/../..' . '/app/Models/SubAcType.php',
         'App\\Models\\SubModule' => __DIR__ . '/../..' . '/app/Models/SubModule.php',
+        'App\\Models\\SubTask' => __DIR__ . '/../..' . '/app/Models/SubTask.php',
         'App\\Models\\Tanveer' => __DIR__ . '/../..' . '/app/Models/Tanveer.php',
         'App\\Models\\Target' => __DIR__ . '/../..' . '/app/Models/Target.php',
         'App\\Models\\Target_Achievement' => __DIR__ . '/../..' . '/app/Models/Target_Achievement.php',
@@ -19858,6 +19876,9 @@ class ComposerStaticInit4b8084c7674050a0396bce2a476fa881
         'Illuminate\\View\\ViewFinderInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
+        'Jorenvh\\Share\\Providers\\ShareServiceProvider' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Providers/ShareServiceProvider.php',
+        'Jorenvh\\Share\\Share' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Share.php',
+        'Jorenvh\\Share\\ShareFacade' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/ShareFacade.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Laravel\\Sail\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/InstallCommand.php',
         'Laravel\\Sail\\Console\\PublishCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/PublishCommand.php',

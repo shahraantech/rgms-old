@@ -217,9 +217,10 @@
                             '<div class="dropdown dropdown-action">' +
                             '<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>' +
                             '<div class="dropdown-menu dropdown-menu-right">' +
-                            '<a class="dropdown-item" href="https://www.facebook.com/sharer.php?u=https://crm.alphabuzzco.com/job/list" target="_blank" title="share to facebook"><img src="{{asset("public/assets/img/logo/socail-icon/fb.png")}}" /></a>' +
-                            '<a class="dropdown-item" href="https://www.twitter.com/share?text=text&url=https://crm.alphabuzzco.com/job/list" title="share to Twitter" target="_blank"><img src="{{asset("public/assets/img/logo/socail-icon/twitter.png")}}" /></a>' +
-                            '<a class="dropdown-item " href="https://api.whatsapp.com/send?phone=&text=<?php urlencode('Testing') ?> https://crm.alphabuzzco.comjob/list" target="_blank" title="share to Whatsapp"><img src="{{asset("public/assets/img/logo/socail-icon/whatsapp.png")}}" /> </a>' +
+                            // '<a class="dropdown-item" href="https://www.facebook.com/sharer.php?u=https://crm.alphabuzzco.com/job/list" target="_blank" title="share to facebook"><img src="{{asset("public/assets/img/logo/socail-icon/fb.png")}}" /></a>' +
+                            // '<a class="dropdown-item" href="https://www.twitter.com/share?text=text&url=https://crm.alphabuzzco.com/job/list" title="share to Twitter" target="_blank"><img src="{{asset("public/assets/img/logo/socail-icon/twitter.png")}}" /></a>' +
+                            // '<a class="dropdown-item " href="https://api.whatsapp.com/send?phone=&text=<?php urlencode('Testing') ?> https://crm.alphabuzzco.comjob/list" target="_blank" title="share to Whatsapp"><img src="{{asset("public/assets/img/logo/socail-icon/whatsapp.png")}}" /> </a>' +
+                            '<div  target="_blank">{!! Share::page(url("https://rgms.shahraantech.com"))->facebook()->twitter()->whatsapp()->linkedin() !!}</div>' +
                             '</div>' +
                             '</div>' +
                             '</td>' +

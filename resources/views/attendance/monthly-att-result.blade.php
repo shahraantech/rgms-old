@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <table class="table-responsive" id="tbl_exporttable_to_xls">
+        <table class="" id="tbl_exporttable_to_xls">
 
             <tr>
                 <strong>

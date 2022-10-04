@@ -28,91 +28,98 @@
 
 
             @if ($data['employee'])
-            <div class="row gutters-sm mt-3">
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex flex-column align-items-center text-center">
-                                <img src="{{ asset('storage/app/public/uploads/staff-images/') . '/' . $data['employee']->image }}"
-                                alt="" class="img-fluid rounded-circle" style="width: 55%;">
-                                <div class="mt-3">
-                                    <h3>{{ empty($data['employee']->name) ? '' : $data['employee']->name }}</h3>
-                                    <h6 class="text-muted">{{ empty($data['employee']->desig_name) ? '' : $data['employee']->desig_name }}</h6>
-                                    <p class="">Employee ID: {{ empty($data['employee']->id) ? '' : $data['employee']->id }}</p>
-                                    <p class="text-secondary mb-1">Date of Join: {{ empty($data['employee']->doj) ? '' : $data['employee']->doj }}</p>
+                <div class="row gutters-sm mt-3">
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex flex-column align-items-center text-center">
+                                    <img src="{{ asset('storage/app/public/uploads/staff-images/') . '/' . $data['employee']->image }}"
+                                        alt="" class="img-fluid rounded-circle" style="width: 55%;">
+                                    <div class="mt-3">
+                                        <h3>{{ empty($data['employee']->name) ? '' : $data['employee']->name }}</h3>
+                                        <h6 class="text-muted">
+                                            {{ empty($data['employee']->desig_name) ? '' : $data['employee']->desig_name }}
+                                        </h6>
+                                        <p class="">Employee ID:
+                                            {{ empty($data['employee']->id) ? '' : $data['employee']->id }}</p>
+                                        <p class="text-secondary mb-1">Date of Join:
+                                            {{ empty($data['employee']->doj) ? '' : $data['employee']->doj }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card mb-3" id="vendorTable">
-                        <div class="card-body">
-                            <div class="row">
+                    <div class="col-md-8">
+                        <div class="card mb-3" id="vendorTable">
+                            <div class="card-body">
+                                <div class="row">
 
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Email</h6>
-                                </div>
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
+                                    </div>
 
-                                <div class="col-sm-9 text-secondary">
-                                    @if ($data['employee'])
-                                        <div class="pro-edit float-right"><a class="edit-"
-                                                href="{{ url('edit-employee') . '/' . encrypt($data['employee']->id) }}"><i
-                                                    class="fa fa-edit"></i></a></div>
-                                    @endif
-                                    <a href="#">{{ empty($data['employee']->email) ? '' : $data['employee']->email }}</a>
+                                    <div class="col-sm-9 text-secondary">
+                                        @if ($data['employee'])
+                                            <div class="pro-edit float-right"><a class="edit-"
+                                                    href="{{ url('edit-employee') . '/' . encrypt($data['employee']->id) }}"><i
+                                                        class="fa fa-edit"></i></a></div>
+                                        @endif
+                                        <a
+                                            href="#">{{ empty($data['employee']->email) ? '' : $data['employee']->email }}</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Phone</h6>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Phone</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <a
+                                            href="#">{{ empty($data['employee']->phone) ? '' : $data['employee']->phone }}</a>
+                                    </div>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <a href="#">{{ empty($data['employee']->phone) ? '' : $data['employee']->phone }}</a>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Birthday</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <a
+                                            href="#">{{ empty($data['employee']->dob) ? '' : $data['employee']->dob }}</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Birthday</h6>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">CNIC</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        {{ empty($data['employee']->cnic) ? '' : $data['employee']->cnic }}
+                                    </div>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <a href="#">{{ empty($data['employee']->dob) ? '' : $data['employee']->dob }}</a>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Nationality</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        {{ empty($data['employee']->nationality) ? '' : $data['employee']->nationality }}
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">CNIC</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    {{ empty($data['employee']->cnic) ? '' : $data['employee']->cnic }}
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Nationality</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    {{ empty($data['employee']->nationality) ? '' : $data['employee']->nationality }}
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Gross Salary</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    {{ empty($data['employee']->gross_salary) ? '' : $data['employee']->gross_salary }}
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Gross Salary</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        {{ empty($data['employee']->gross_salary) ? '' : $data['employee']->gross_salary }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
             @endif
 
             <div class="tab-content">
@@ -131,8 +138,8 @@
                                         <div class="col-md-3">
                                             <div class="form-group mt-3">
 
-                                                <input type="password" name="current_password" class="form-control"
-                                                    required placeholder="Current Password">
+                                                <input type="password" name="current_password" class="form-control" required
+                                                    placeholder="Current Password">
 
                                             </div>
                                         </div>
@@ -148,8 +155,8 @@
                                         <div class="col-md-3">
                                             <div class="form-group mt-3">
 
-                                                <input type="password" name="confirm_password" class="form-control"
-                                                    required placeholder="Confirm Password">
+                                                <input type="password" name="confirm_password" class="form-control" required
+                                                    placeholder="Confirm Password">
 
                                             </div>
                                         </div>
@@ -205,10 +212,10 @@
                     <div class="card profile-box flex-fill">
                         <div class="card-body">
                             <h3 class="card-title">Education Informations
-                                @if(Auth::user()->role=='admin')
-                                <a href="#" class="edit-icon"
-                                 data-toggle="modal" data-target="#education_info"><i class="fa fa-plus"></i>
-                                </a>
+                                @if (Auth::user()->role == 'admin')
+                                    <a href="#" class="edit-icon" data-toggle="modal"
+                                        data-target="#education_info"><i class="fa fa-plus"></i>
+                                    </a>
                                 @endif
                             </h3>
                             <div class="experience-box">
@@ -247,10 +254,10 @@
                     <div class="card profile-box flex-fill">
                         <div class="card-body">
                             <h3 class="card-title">Experience
-                                @if(Auth::user()->role=='admin')
-                                <a href="#" class="edit-icon" data-toggle="modal"
-                                    data-target="#experience_info"><i class="fa fa-plus"></i></a>
-                            @endif
+                                @if (Auth::user()->role == 'admin')
+                                    <a href="#" class="edit-icon" data-toggle="modal"
+                                        data-target="#experience_info"><i class="fa fa-plus"></i></a>
+                                @endif
                             </h3>
                             <div class="experience-box">
                                 <ul class="experience-list">
@@ -266,15 +273,14 @@
                                                         <a href="#/"
                                                             class="name">{{ empty($exp->position) ? '' : $exp->position }}</a>
                                                         <?php
-
+                                                        
                                                         $diff = abs(strtotime($exp->start_date) - strtotime($exp->end_date));
-
+                                                        
                                                         $years = floor($diff / (365 * 60 * 60 * 24));
                                                         $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
                                                         $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
                                                         ?>
-                                                        <span
-                                                            class="time">{{ $years . '-' . $months . '-' . $days }}
+                                                        <span class="time">{{ $years . '-' . $months . '-' . $days }}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -293,10 +299,10 @@
                     <div class="card profile-box flex-fill">
                         <div class="card-body">
                             <h3 class="card-title">Certifications
-                                @if(Auth::user()->role=='admin')
-                                <a href="#" class="edit-icon"
-                                    data-toggle="modal" data-target="#certification_info"><i class="fa fa-plus"></i></a>
-                                    @endif
+                                @if (Auth::user()->role == 'admin')
+                                    <a href="#" class="edit-icon" data-toggle="modal"
+                                        data-target="#certification_info"><i class="fa fa-plus"></i></a>
+                                @endif
                             </h3>
                             @isset($data['certifications'])
                                 <ul class="personal-info">
@@ -342,8 +348,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('store-education') }}" method="POST">
-                    <input type="hidden" name="emp_id" value="{{ ($data['employee'])?$data['employee']->id:'' }}">
+                <form action="{{ url('store-education') }}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="emp_id" value="{{ $data['employee'] ? $data['employee']->id : '' }}">
                     @csrf
                     <div class="modal-body">
                         <div class="row">
@@ -364,7 +370,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">From</label>
-                                    <input type="date" class="form-control" name="from" placeholder="From" required>
+                                    <input type="date" class="form-control" name="from" placeholder="From"
+                                        required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -376,8 +383,16 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Devision/CGPA</label>
-                                    <input type="text" class="form-control" placeholder="Devision/CGPA" name="cgpa"
-                                        required>
+                                    <input type="text" class="form-control" placeholder="Devision/CGPA"
+                                        name="cgpa" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">Attachment</label>
+                                    <input type="file" class="form-control" placeholder="Attachment"
+                                        name="attachment" required>
                                 </div>
                             </div>
 
@@ -404,9 +419,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('store-experience') }}" method="POST">
-                    {{ ($data['employee'])?$data['employee']->id:'' }}
+                <form action="{{ url('store-experience') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="emp_id" value="{{ $data['employee'] ? $data['employee']->id : '' }}">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -419,7 +434,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Skills</label>
-                                    <input class="form-control" type="text" name="skill" placeholder="Skills" required>
+                                    <input class="form-control" type="text" name="skill" placeholder="Skills"
+                                        required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -432,8 +448,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Start Date</label>
-                                    <input class="form-control" type="date" name="start_date" placeholder="Start Date"
-                                        required>
+                                    <input class="form-control" type="date" name="start_date"
+                                        placeholder="Start Date" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -453,8 +469,15 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Relevant Experience</label>
-                                    <input class="form-control" type="text" name="relevent_exp" placeholder="Experience"
-                                        required>
+                                    <input class="form-control" type="text" name="relevent_exp"
+                                        placeholder="Experience" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">Attachment</label>
+                                    <input class="form-control" type="file" name="attachment"
+                                        placeholder="Attachment" required>
                                 </div>
                             </div>
 
@@ -482,27 +505,37 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('store-certification') }}" method="POST">
-                    <input type="hidden" name="emp_id" value="{{ ($data['employee'])?$data['employee']->id:'' }}">
+                <form action="{{ url('store-certification') }}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="emp_id" value="{{ $data['employee'] ? $data['employee']->id : '' }}">
                     @csrf
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Course Title</label>
-                                    <input type="text" class="form-control" placeholder="Course Title" name="course_title" required>
+                                    <input type="text" class="form-control" placeholder="Course Title"
+                                        name="course_title" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Organization</label>
-                                    <input type="text" class="form-control" name="exp_organization" placeholder="organization" required>
+                                    <input type="text" class="form-control" name="exp_organization"
+                                        placeholder="organization" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Duration Period</label>
-                                    <input type="text" class="form-control" name="period" placeholder="Duration Period" required>
+                                    <input type="text" class="form-control" name="period"
+                                        placeholder="Duration Period" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">Attachment</label>
+                                    <input class="form-control" type="file" name="attachment"
+                                        placeholder="Attachment" required>
                                 </div>
                             </div>
 
