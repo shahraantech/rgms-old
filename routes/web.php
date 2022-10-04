@@ -18,9 +18,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\CallCenter\RoleController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CallCenter\CallCenterLeadsController;
-
-
-
+use Illuminate\Support\Facades\Auth;
 
 //Project Routes
 //
