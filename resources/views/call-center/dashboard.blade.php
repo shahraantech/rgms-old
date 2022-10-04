@@ -616,6 +616,8 @@
                 });
 
             }
+
+
             $('select[name=platform_id]').change(function() {
                 var platform_id=$('select[name=platform_id]').val();
                 var date_range=$('input[name=date_range]').val();
@@ -630,6 +632,7 @@
                 LeadsAnalysisPieChart(0,date_range);
                 LeadsAnalysisBarChart(0,date_range);
             });
+
             $(document).ready(function () {
                 $('.counter').each(function () {
                     $(this).prop('counter', 0).animate({

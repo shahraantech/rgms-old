@@ -382,6 +382,7 @@
                         </li>
                 @endif
                 @if (Auth::user()->role == 'call-center')
+
                     <li> <a href="{{ url('/') }}"> <span>Dashboard</span></a> </li>
 
                     <li class="submenu">
@@ -539,10 +540,17 @@
                     </li>
                 @endif
 
-
                 @if (Auth::user()->role == 'super-admin')
                     @include('setup.super-admin-sidebar')
                 @endif
+
+                    <li class="submenu">
+                        <a href="#"><i class="la la-calendar"></i> <span>Calender</span> <span
+                                class="menu-arrow"></span></a>
+                        <ul>
+                            <li> <a href="{{ url('calender') }}"> <span>Daily Planner</span></a> </li>
+                        </ul>
+                    </li>
             </ul>
         </div>
     </div>
