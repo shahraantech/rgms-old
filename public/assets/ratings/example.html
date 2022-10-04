@@ -1,0 +1,26 @@
+﻿
+    <script type="text/javascript" src="jquery.js"></script>
+    
+    <script type="text/javascript" src="rating.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="rating.css" />
+    
+    
+    <script type="text/javascript">
+        $(function ()
+        {
+            $('.rating').rating();
+
+            $('.ratingEvent').rating({ rateEnd: function (v) { $('#result').text(v); } });
+        });
+    </script>
+
+
+  
+
+    <input type="text" class="ratingEvent rating5" value="1" />
+    <div><b id="result">1</b> start(s)</div>
+
+  
+
+

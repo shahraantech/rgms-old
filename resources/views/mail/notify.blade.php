@@ -1,0 +1,1 @@
+<h1>{!! $details['message'] !!}</h1>
