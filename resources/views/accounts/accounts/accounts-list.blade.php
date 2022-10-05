@@ -81,12 +81,14 @@
                                                aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a href="{{ url('account-history/' . $account->id . '/company-account') }}"
-                                                   class="dropdown-item"><i class="fa fa-pencil m-r-5n "></i> History</a>
+                                                   class="dropdown-item" title="History"><i class="la la-history"></i></a>
+                                                @if(\Illuminate\Support\Facades\Auth::user()->role=='accounts')
                                                 <a href="#" class="dropdown-item btn_edit_account "
-                                                   data="{{ $account->id }}"><i class="fa fa-pencil m-r-5n "></i> Edit</a>
-                                                <a href="#" class="dropdown-item btn_delete_account "
-                                                   data="{{ $account->id }}"><i class="fa fa-trash-o m-r-5 "></i>
-                                                    Delete</a>
+                                                   data="{{ $account->id }}" title="Edit"><i class="la la-pencil"></i></a>
+                                                <a href="#" class="dropdown-item btn_delete_account"
+                                                   data="{{ $account->id }}" title="Delete"><i class="la la-trash"></i>
+                                                    </a>
+                                                    @endif
 
                                             </div>
                                         </div>
@@ -177,18 +179,12 @@
         </div>
         <!--Edit Training Modal -->
 
-
-
-
-
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <!-- CDN for Sweet Alert -->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <script type='text/javascript'>
             $(document).ready(function() {
-
-
 
                 //Edit Data with ajax call
                 $('#accountTable').on('click', '.btn_edit_account', function(e) {
@@ -234,8 +230,6 @@
 
                 });
 
-
-
                 // script for delete data
                 $('#accountTable').on('click', '.btn_delete_account', function(e) {
                     e.preventDefault();
@@ -278,14 +272,10 @@
                     })
 
                 });
-
                 //updates accounts
                 $('.btn-update').on('click', function() {
                     var formData = $('#editAccounts').serialize();
-
-
                     $.ajax({
-
                         type: 'ajax',
                         method: 'get',
                         url: '{{ url('update-accounts') }}',
@@ -310,8 +300,6 @@
                     });
 
                 });
-
-
             });
         </script>
 @endsection

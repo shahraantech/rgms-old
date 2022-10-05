@@ -132,11 +132,9 @@ return response()->json(['errors' => 'Account not updated successfully'], 200);
     public function deleteAccount(Request $request)
     {
         $account = Account::find($request->id);
-        $account->is_deleted = 1;
-
         if ($account->delete()) {
+            $res=Ledger::where('ac_type','company-account')->where('account_id',$request->id)->delete();
             return response()->json(['success' => 'Account deleted successfully'], 200);
-
         }else
         {
             return response()->json(['errors' => 'Account not deleted'], 200);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Accounts;
 use App\Http\Controllers\Controller;
 use App\Models\CoaMapping;
 use App\Models\Employee;
+use App\Models\Ledger;
 use App\Models\Vendor;
 use App\Models\Client;
 use Illuminate\Http\Request;
@@ -126,7 +127,9 @@ class VendorsController extends Controller
             if (File::exists($path)) {
                 File::delete($path);
             }
-            $vendor->delete();
+            if($vendor->delete()){
+                $res=Ledger::where('ac_type','vendors')->where('account_id',$request->id)->delete();
+            }
             return response()->json([
                 'status' => 200,
                 'message' => 'vendor deleted successfully',

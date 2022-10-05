@@ -144,11 +144,11 @@
                                     <th>LeadID</th>
                                     <th>Name</th>
                                     <th>Contact</th>
-                                    <th>City</th>
+{{--                                    <th>City</th>--}}
                                     <th>Allocate</th>
                                     <th>Source</th>
                                     <th>Temp</th>
-                                    <th>Type</th>
+{{--                                    <th>Type</th>--}}
                                     <th>Query</th>
 
                                 </tr>
@@ -169,7 +169,7 @@
                                             </td>
                                             <td>{{ $market->name }}</td>
                                             <td>{{ $market->contact }}</td>
-                                            <td>{{ $market->cityname->city_name }}</td>
+{{--                                            <td>{{ $market->cityname->city_name }}</td>--}}
                                             <td>
                                                 @php
                                                     $name='';
@@ -194,19 +194,20 @@
                                             <td>
                                                 {{ $market->platformname->platform ? $market->platformname->platform : '' }}
                                             </td>
-                                            <td>
-                                                @php
-                                                 ($market->lead_type=='Inbound')? $className='success': $className='primary';
-                                                $lead = App\Models\ApprochedLeads::with('temp')
-                                                ->where('lead_id', $market->id)
-                                                ->first();
-                                                if ($lead) {
-                                                echo '<span class="badge bg-inverse-warning">' . $lead->temp['temp'] . '</span>';
-                                                } else {
-                                                echo '<span class="badge bg-inverse-danger">Open</span>';
-                                                }
-                                                @endphp
-                                            </td>
+{{--                                            --}}
+{{--                                            <td>--}}
+{{--                                                @php--}}
+{{--                                                 ($market->lead_type=='Inbound')? $className='success': $className='primary';--}}
+{{--                                                $lead = App\Models\ApprochedLeads::with('temp')--}}
+{{--                                                ->where('lead_id', $market->id)--}}
+{{--                                                ->first();--}}
+{{--                                                if ($lead) {--}}
+{{--                                                echo '<span class="badge bg-inverse-warning">' . $lead->temp['temp'] . '</span>';--}}
+{{--                                                } else {--}}
+{{--                                                echo '<span class="badge bg-inverse-danger">Open</span>';--}}
+{{--                                                }--}}
+{{--                                                @endphp--}}
+{{--                                            </td>--}}
 
                                             <td><span class="badge bg-inverse-{{$className}}">{{$market->lead_type}}</span></td>
                                             <td>{{ substr($market->interest,10)}}</td>
