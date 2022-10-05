@@ -140,9 +140,9 @@
 
                     </ul>
                 </li>
-                li><a href="{{ url('/checkout-report') }}">Emp Time Cost Report</a></li>
+                <li><a href="{{ url('/checkout-report') }}">Emp Time Cost Report</a></li>
                 <li><a href="{{ url('/dept-wise-salary-report') }}">Dept Salary Report</a></li>
-                <li><a href="{{ url('/login-history') }}">Emp Login History</a></li>
+                <li><a href="{{ url('/login-history') }}">Login History</a></li>
 
 
 
@@ -154,37 +154,41 @@
     <a href="#"><i class="fas fa-phone"></i> <span>Call Center</span> <span class="menu-arrow"></span></a>
     <ul>
         <li> <a href="{{url('/')}}"> <span>Dashboard</span></a>  </li>
+
         <li class="submenu">
-            <a href="#"><i class="la la-user"></i> <span> Social Media </span> <span class="menu-arrow"></span></a>
+            <a href="#"><i class="la la-user"></i> <span> Social Media </span> <span
+                    class="menu-arrow"></span></a>
             <ul>
                 <li class="submenu">
                     <a href="#"> <span>Posts</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li> <a href="{{url('posts')}}"> <span>Posts</span></a>  </li>
+                        <li> <a href="{{ url('posts') }}"> <span>Posts</span></a> </li>
                     </ul>
                 </li>
                 <li class="submenu">
                     <a href="#"> <span>Campaigns</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li> <a href="#"> <span>Social Media Campaign</span></a>  </li>
-                        <li> <a href="sms"> <span>SMS Campaign</span></a>  </li>
-                        <li> <a href="email"> <span>Email Campaign</span></a>  </li>
+                        <li> <a href="#"> <span>Social Media Campaign</span></a> </li>
+                        <li> <a href="sms"> <span>SMS Campaign</span></a> </li>
+                        <li> <a href="email"> <span>Email Campaign</span></a> </li>
+                        <li> <a href="{{ url('email-attachment') }}"> <span>Random Email Campaign</span></a> </li>
                     </ul>
                 </li>
                 <li class="submenu">
                     <a href="#"> <span>Response</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li> <a href="#"> <span>Posts Response</span></a>  </li>
+                        <li> <a href="#"> <span>Posts Response</span></a> </li>
                     </ul>
                 </li>
 
                 <li class="submenu">
-                    <a href="#"><i class="la la-user"></i> <span>Chat</span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="la la-user"></i> <span>Chat</span> <span
+                            class="menu-arrow"></span></a>
                     <ul>
                         <li class="submenu">
                             <a href="#"> <span>Chat</span> <span class="menu-arrow"></span></a>
                             <ul>
-                                <li> <a href="{{url('chat')}}"> <span>Chat</span></a>  </li>
+                                <li> <a href="{{ url('chat') }}"> <span>Chat</span></a> </li>
                             </ul>
                         </li>
                     </ul>
@@ -192,83 +196,116 @@
             </ul>
         </li>
         <li class="submenu">
-            <a href="#"><i class="la la-user"></i> <span>Projects & Targets</span> <span class="menu-arrow"></span></a>
+            <a href="#"><i class="la la-user"></i> <span>Projects & Targets</span> <span
+                    class="menu-arrow"></span></a>
             <ul>
                 <li class="submenu">
-                    <a href="#"> <span>Targets Management</span> <span class="menu-arrow"></span></a>
+                    <a href="#"> <span>Targets Management</span> <span
+                            class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="{{url('/targets')}}">Create Targets</a></li>
+                        <li><a href="{{ url('/targets') }}">Create Targets</a></li>
                     </ul>
                 </li>
                 <li class="submenu">
                     <a href="#"> <span>Team Management</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="{{url('/team')}}">Team Management</a></li>
+                        <li><a href="{{ url('/team') }}">Team Management</a></li>
                     </ul>
                 </li>
-                {{--                            --}}
-                {{--                            <li class="submenu">--}}
-                {{--                                <a href="#"><span>Project Management</span> <span class="menu-arrow"></span></a>--}}
-                {{--                                <ul style="display: none;">--}}
-                {{--                                    <li><a href="{{url('/projects')}}">Projects</a></li>--}}
-                {{--                                    <li><a href="{{url('/tasks')}}">Tasks Management</a></li>--}}
-                {{--                                </ul>--}}
-                {{--                            </li>--}}
+                {{--  --}}
+                {{-- <li class="submenu"> --}}
+                {{-- <a href="#"><span>Project Management</span> <span class="menu-arrow"></span></a> --}}
+                {{-- <ul style="display: none;"> --}}
+                {{-- <li><a href="{{url('/projects')}}">Projects</a></li> --}}
+                {{-- <li><a href="{{url('/tasks')}}">Tasks Management</a></li> --}}
+                {{-- </ul> --}}
+                {{-- </li> --}}
             </ul>
         </li>
         <li class="submenu">
-            <a href="#"><i class="la la-user"></i> <span>Leads Management</span> <span class="menu-arrow"></span></a>
+            <a href="#"><i class="la la-user"></i> <span>Leads Management</span> <span
+                    class="menu-arrow"></span></a>
             <ul>
-                {{--
-                <li> <a href="{{url('leads')}}"> <span>Create Leads</span></a>  </li>
-                --}}
-                <li> <a href="{{url('leads-list')}}"> <span>Leads List</span></a>  </li>
-                <li> <a href="{{url('my-leads')}}"> <span>My Leads</span></a>  </li>
-                <li> <a href="{{url('allocated-leads')}}"> <span>CSR Leads</span></a>  </li>
-                <li> <a href="{{url('manager-allocated-leads')}}"> <span>Manager Leads</span></a>  </li>
-                <li> <a href="{{url('open-leads')}}"> <span>Open Leads</span></a>  </li>
-                {{--
-                <li> <a href="{{url('manager-leads')}}"> <span>Manager Leads</span></a>  </li>
-                --}}
+                {{-- <li> <a href="{{url('leads')}}"> <span>Create Leads</span></a>  </li> --}}
+                <li> <a href="{{ url('leads-list') }}"> <span>Leads List</span></a> </li>
+                <li> <a href="{{ url('my-leads') }}"> <span>My Leads</span></a> </li>
+                <li> <a href="{{ url('allocated-leads') }}"> <span>CSR Leads</span></a> </li>
+                <li> <a href="{{ url('manager-allocated-leads') }}"> <span>Manager Leads</span></a> </li>
+                <li> <a href="{{ url('open-leads') }}"> <span>Open Leads</span></a> </li>
+                {{-- <li> <a href="{{url('manager-leads')}}"> <span>Manager Leads</span></a>  </li> --}}
             </ul>
         </li>
         <li class="submenu">
-            <a href="#"><i class="la la-user"></i> <span>Sales Management</span> <span class="menu-arrow"></span></a>
+            <a href="#"><i class="la la-user"></i> <span>Meetings & Sales</span> <span
+                    class="menu-arrow"></span></a>
             <ul>
-                <li> <a href="{{url('meetings')}}"> <span>Meetings List</span></a>  </li>
-                <li> <a href="{{url('my-meetings')}}"> <span>My Meetings</span></a>  </li>
+                <li> <a href="{{ url('walkin-customer') }}"> <span>Customer Form</span></a> </li>
+                <li> <a href="{{ url('meetings') }}"> <span>Meetings List</span></a> </li>
+                <li> <a href="{{ url('my-meetings') }}"> <span>My Meetings</span></a> </li>
+                <li> <a href="{{ url('sales-list') }}"> <span>Sales List</span></a> </li>
+                <li> <a href="{{ url('my-sales') }}"> <span>My Sales</span></a> </li>
+
             </ul>
         </li>
         <li class="submenu">
-            <a href="#"><i class="la la-files-o"></i> <span>Attendance</span> <span class="menu-arrow"></span></a>
+            <a href="#"><i class="la la-user"></i> <span>Customer Survey</span> <span
+                    class="menu-arrow"></span></a>
+            <ul>
+                <li> <a href="{{ url('create-survey') }}"> <span>Create Survey</span></a> </li>
+
+
+            </ul>
+        </li>
+        <li class="submenu">
+            <a href="#"><i class="la la-files-o"></i> <span>Attendance</span> <span
+                    class="menu-arrow"></span></a>
             <ul style="display: none;">
-                <li><a href="{{url('/emp-attendance')}}">Attendance</a></li>
+                <li><a href="{{ url('/emp-attendance') }}">Attendance</a></li>
             </ul>
         </li>
         <li class="submenu">
-            <a href="#"><i class="la la-edit"></i> <span>Reports</span> <span class="menu-arrow"></span></a>
+            <a href="#"><i class="la la-edit"></i> <span>Reports</span> <span
+                    class="menu-arrow"></span></a>
             <ul style="display: none;">
 
-                <li><a href="{{url('/leads-response')}}">Leads Response Report</a></li>
-                <li><a href="{{url('/csr-no-of-leads')}}">CSR NO of Leads</a></li>
-                <li><a href="{{url('/manager-no-of-leads')}}">Manager NO of Leads</a></li>
+                <li><a href="{{ url('leads-response') }}">Leads Response Report</a></li>
+                <li><a href="{{ url('csr-no-of-leads') }}">CSR NO Of Leads</a></li>
+                <li><a href="{{ url('manager-no-of-leads') }}">Manager NO Of Leads</a></li>
+                {{--                            <li><a href="{{ url('leads-analysis') }}">Leads Analysis</a></li>--}}
+                <li><a href="{{ url('sales-report') }}">Sales Report</a></li>
+                <li><a href="{{ url('dead-lead-report') }}">Dead Lead Report</a></li>
+                <li><a href="{{ url('calls-qa-report') }}">Calls QA Report</a></li>
             </ul>
         </li>
         <li class="submenu">
-            <a href="#"><i class="la la-home"></i><span>Property Management</span> <span class="menu-arrow"></span></a>
+            <a href="#"><i class="la la-home"></i><span>Property Management</span> <span
+                    class="menu-arrow"></span></a>
             <ul style="display: none;">
-                <li><a href="{{url('/property-type')}}">Property Type</a></li>
-                <li><a href="{{url('/create-property')}}">Create Property</a></li>
-                <li><a href="{{url('/property-variation')}}">Property Variation</a></li>
-                <li><a href="{{url('/get-seller')}}">Seller</a></li>
-                <li><a href="{{url('/get-buyer')}}">Buyer</a></li>
+                <li><a href="{{ url('/property-type') }}">Property Type</a></li>
+                <li><a href="{{ url('/create-property') }}">Create Property</a></li>
+                <li><a href="{{ url('/property-variation') }}">Property Variation</a></li>
+                <li><a href="{{ url('/property-projects') }}">Property Projects</a></li>
+                <li><a href="{{ url('/get-seller') }}">Seller</a></li>
+                <li><a href="{{ url('/get-buyer') }}">Buyer</a></li>
             </ul>
         </li>
         <li class="submenu">
-            <a href="#"><i class="fa fa-gear"></i> <span>Settings</span> <span class="menu-arrow"></span></a>
+            <a href="#"><i class="fa fa-user"></i> <span>House Keeping</span> <span
+                    class="menu-arrow"></span></a>
             <ul style="display: none;">
-                <li><a href="{{url('/leads-settings')}}">Leads Settings</a></li>
-                <li><a href="{{url('/leads-source-settings')}}">Leads Source Settings</a></li>
+                <li><a href="{{ url('/leads-settings') }}">Leads Settings</a></li>
+                <li><a href="{{ url('/leads-source-settings') }}">Leads Source Settings</a></li>
+
+                <li class="submenu">
+                    <a href="#"> <span>General Settings</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul>
+                        <li> <a href="{{ url('temp') }}"> <span>Temperatures</span></a> </li>
+                        <li> <a href="{{ url('city') }}"> <span>Cities</span></a> </li>
+                        <li> <a href="{{ url('platforms') }}"> <span>Social Platforms</span></a> </li>
+                        <li><a href="{{ url('/society') }}">Societies </a></li>
+                    </ul>
+                </li>
             </ul>
         </li>
     </ul>

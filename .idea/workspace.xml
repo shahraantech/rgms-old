@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61ad51f6-c89c-418f-938f-7b568a8d5486" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/rgms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rgms.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Accounts/AccountsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Accounts/AccountsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/accounts/accounts/accounts-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/accounts/accounts/accounts-list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/accounts/bank/bank-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/accounts/bank/bank-list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/setup/super-admin-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/setup/super-admin-sidebar.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,6 +164,7 @@
       <path value="$PROJECT_DIR$/vendor/facade/flare-client-php" />
       <path value="$PROJECT_DIR$/vendor/facade/ignition-contracts" />
       <path value="$PROJECT_DIR$/vendor/codebyray/laravel-review-rateable" />
+      <path value="$PROJECT_DIR$/vendor/jorenvanhocht/laravel-share" />
     </include_path>
   </component>
   <component name="ProjectId" id="2EkPI9tPhxx80l4Y0q34H6LauiF" />
@@ -211,7 +216,8 @@
       <workItem from="1664429210127" duration="28163000" />
       <workItem from="1664515612993" duration="25943000" />
       <workItem from="1664775819046" duration="25102000" />
-      <workItem from="1664860549495" duration="1851000" />
+      <workItem from="1664860549495" duration="16808000" />
+      <workItem from="1664946833230" duration="1819000" />
     </task>
     <servers />
   </component>
@@ -288,7 +294,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php</url>
-          <line>456</line>
+          <line>455</line>
           <properties>
             <option name="className" value="\App\Http\Controllers\CallCenter\CallCenterLeadsController" />
             <option name="methodName" value="deleteLeads" />

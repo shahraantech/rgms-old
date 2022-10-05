@@ -9,6 +9,7 @@ use App\Models\Employee;
 use App\Models\Emp_qualification;
 use App\Models\Experience;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends Controller
 {
@@ -87,6 +88,7 @@ class ProfileController extends Controller
 
     public function storeEducation(Request $request)
     {
+        // dd($request->all());
         //qualification Information
         $qua = new Emp_qualification;
         $qua->emp_id = $request->emp_id;
@@ -95,9 +97,18 @@ class ProfileController extends Controller
         $qua->from = $request->from;
         $qua->to = $request->to;
         $qua->cgpa = $request->cgpa;
-        if ($qua->save()) {
-            return redirect()->back()->withSuccess(['success', 'Record save successfully']);
+
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('storage/app/public/uploads/education/', $filename);
+            $qua->attachment = $filename;
         }
+
+        $qua->save();
+
+        return redirect()->back()->withSuccess(['success', 'Record save successfully']);
     }
 
     public function storeExperience(Request $request)
@@ -112,6 +123,15 @@ class ProfileController extends Controller
         $exp->end_date = $request->end_date;
         $exp->annual_duration = $request->annual_duartion;
         $exp->exp = $request->relevent_exp;
+
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('storage/app/public/uploads/experience/', $filename);
+            $exp->attachment = $filename;
+        }
+
         if ($exp->save()) {
             return Redirect::back()->withSuccess(['success', 'Record save successfully']);
         }
@@ -125,6 +145,15 @@ class ProfileController extends Controller
         $cer->course_title = $request->course_title;
         $cer->orgnazations = $request->exp_organization;
         $cer->duration_period = $request->period;
+
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('storage/app/public/uploads/certification/', $filename);
+            $cer->attachment = $filename;
+        }
+
         $cer->save();
         if ($cer->save()) {
             return Redirect::back()->withSuccess(['success', 'Record save successfully']);

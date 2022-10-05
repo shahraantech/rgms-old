@@ -19,6 +19,9 @@ use App\Http\Controllers\CallCenter\RoleController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CallCenter\CallCenterLeadsController;
 
+use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\CalendarController;
 
 
 
@@ -108,28 +111,11 @@ Route::any('roles', [RoleController::class, 'index']);
 Route::get('roles-list', [RoleController::class, 'rolesList']);
 Route::any('role-permissions', [RoleController::class, 'rolePermissions']);
 Route::any('test-permissions', [RoleController::class, 'testPermissions']);
+Route::any('calender', [CalendarController::class, 'index']);
 
 
 
 
 Route::get('verify-account/{id}',[UserController::class, 'verifyAccount']);
-
-
 Route::any('/test',[TestController::class, 'test']);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

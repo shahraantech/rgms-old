@@ -52,7 +52,7 @@
                             <th>Date</th>
                             <th>Action</th>
                         </tr>
-                        <tbody>
+                        <tbody id="accountTable">
                         @php $c=0; @endphp
                         @isset($data['branches'])
                             @foreach($data['branches'] as $row)
@@ -75,6 +75,9 @@
                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a href="{{url('account-history/'.$row->id.'/bank')}}" class="dropdown-item"><i class="fa fa-pencil m-r-5n "></i> History</a>
+                                                <a href="#" class="dropdown-item btn_delete_account "
+                                                   data="{{ $row->id }}"><i class="la la-trash"></i>
+                                                    </a>
                                             </div>
                                         </div>
                                     </td>
@@ -89,6 +92,49 @@
         </div>
         <script>
             $(document).ready(function() {
+
+                // script for delete data
+                $('#accountTable').on('click', '.btn_delete_account', function(e) {
+                    e.preventDefault();
+
+                    var id = $(this).attr('data');
+
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to Delete this Data!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                type: "GET",
+                                data: {
+                                    id: id
+                                },
+                                url: '{{ url('delete-account') }}',
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                dataType: "json",
+                                success: function(response) {
+
+                                    if (response.success) {
+                                        toastr.success(response.success);
+                                        window.location.reload();
+                                    } else {
+                                        toastr.error(response.errors);
+                                    }
+
+
+                                }
+                            });
+                        }
+                    })
+
+                });
 
                 //Datatables
                 $('#datatable').DataTable();

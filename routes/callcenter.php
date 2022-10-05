@@ -82,6 +82,7 @@ Route::any('saveMeetings', [CallCenterLeadsController::class, 'saveMeetings']);
     Route::any('get-sale-report', [CallCenterLeadsController::class, 'getSalesReport']);
     Route::any('dead-lead-report', [CallCenterLeadsController::class, 'deadLeadReport']);
     Route::any('get-dead-lead-report', [CallCenterLeadsController::class, 'getDeadLeadReport']);
+    Route::any('calls-qa-report', [CallCenterLeadsController::class, 'callsQaReport']);
 
     Route::get('create-record', [CallCenterLeadsController::class, 'createRecord']);
     Route::post('store-record', [CallCenterLeadsController::class, 'storeRecord']);
@@ -112,6 +113,7 @@ Route::any('saveMeetings', [CallCenterLeadsController::class, 'saveMeetings']);
 Route::any('meetings', [DealController::class, 'index']);
 Route::any('my-meetings', [DealController::class, 'myMeetings']);
 Route::any('my-sales', [DealController::class, 'mySales']);
+Route::any('sales-list', [DealController::class, 'salesLists']);
 Route::any('manager-meetings', [DealController::class, 'managerMeetings']);
 Route::any('pushed-meetings', [DealController::class, 'pushedMeetings']);
 

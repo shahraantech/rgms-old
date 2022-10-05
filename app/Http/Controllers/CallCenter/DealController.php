@@ -63,6 +63,7 @@ class DealController extends Controller
 
     public function mySales(){
 
+        $data['type']="All";
         $data['temp']=Temprature::all();
         $data['myDeal']=AssignedMeetings::with('leads','leads.cityname')
             ->where('source_id',$this->userId)
@@ -71,6 +72,16 @@ class DealController extends Controller
         return view('call-center.sales.my-sales')->with(compact('data'));
     }
 
+    //salesLists
+    public function salesLists(){
+
+        $data['type']="All";
+        $data['temp']=Temprature::all();
+        $data['myDeal']=AssignedMeetings::with('leads','leads.cityname')
+            ->where('status',1)
+            ->orderBy('id','DESC')->get();
+        return view('call-center.sales.my-sales')->with(compact('data'));
+    }
     //managerMeetings
 
     public function managerMeetings(){
