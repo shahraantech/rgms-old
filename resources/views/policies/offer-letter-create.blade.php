@@ -16,7 +16,7 @@
 
         #background {
             position: absolute;
-            opacity: 0.5;
+            opacity: 0.6;
             z-index: 99;
             color: white;
             width: 20%;
