@@ -140,9 +140,9 @@
 
                     </ul>
                 </li>
-                li><a href="{{ url('/checkout-report') }}">Emp Time Cost Report</a></li>
+                <li><a href="{{ url('/checkout-report') }}">Emp Time Cost Report</a></li>
                 <li><a href="{{ url('/dept-wise-salary-report') }}">Dept Salary Report</a></li>
-                <li><a href="{{ url('/login-history') }}">Emp Login History</a></li>
+                <li><a href="{{ url('/login-history') }}">Login History</a></li>
 
 
 
