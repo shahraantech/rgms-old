@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Event\InterviewScheduled;
-use App\Models\Lead;
-use App\Models\LeadsMarketing;
-use GuzzleHttp\Psr7\Request;
 use Mail;
 use Spatie\GoogleCalendar\Event;
 use Carbon\Carbon;
+use DB;
 
 
 class TestController extends Controller
@@ -54,7 +52,18 @@ class TestController extends Controller
         $event->endDateTime = Carbon::now()->addHour();
         $event->save();
     }
-    public function test(){
-        return view('test');
+
+    public function alterTableName(){
+        $tables = DB::select('SHOW TABLES');
+
+        foreach ($tables as $table) {
+            foreach ($table as $key => $value)
+                echo $value .'</br>';
+            $tableName=$value;
+            $resuts = DB::select("ALTER TABLE $tableName ADD COLUMN IF NOT EXISTS mh INT NULL DEFAULT NULL AFTER id;");
+
+
+        }
+
     }
 }

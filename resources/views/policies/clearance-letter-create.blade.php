@@ -6,7 +6,7 @@
         <!-- Page Content -->
         <div class="content container-fluid">
 
-            <div class="card" id="tablePrint">
+            <div class="card" id="tablePrint" contenteditable="true">
                 <div class="card-body">
                     <button class="btn btn-white btn-sm no-print float-right" id="printBtn"><i class="fa fa-print fa-lg mr-1" aria-hidden="true"></i>Print</button>
                     <table class="table border-0 mb-5">

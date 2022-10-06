@@ -9,6 +9,7 @@ use App\Models\BankName;
 use App\Models\BankSummry;
 use App\Models\CoaMapping;
 use App\Models\Employee;
+use App\Models\Ledger;
 use App\Models\Level_1;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -55,7 +56,7 @@ class BankController extends Controller
                 $trans_id=saveTransaction(0,'bank open balance',NULL,NULL,$location_id,$request->balance,'Open balance', $request->date,'cr');
                 // save ledger for credits for client
                 saveLedger($trans_id->id,$data['lHeadId'],$bank->id,'bank','dr',$request->balance,$bank->balance,$data['coa_level']);
-                return response()->json(['success' => 'Bank trail balannce created successfully'], 200);
+                return response()->json(['success' => 'Bank created successfully'], 200);
             }
         }
 
@@ -85,20 +86,10 @@ class BankController extends Controller
         }
     }
 
-    public function deleteBank(Request $request)
-    {
-        $bank = Bank::find($request->id);
-        if ($bank->delete()) {
-            return response()->json(['success' => 'bank deleted successfully'], 200);
-        }
-    }
-
-
     //bankTransaction
 
     public function bankTransaction(Request $request)
     {
-
         if ($request->isMethod('post') && $request->ajax()) {
             $amount = $request->amount;
             $trans_type = $request->trans_type;
@@ -123,6 +114,19 @@ class BankController extends Controller
         return view('accounts.bank.bank-list')->with(compact('data'));
     }
 
+
+    public function deleteBank(Request $request)
+    {
+        $bank_id=$request->id;
+        $account = BankBranch::find($bank_id);
+        if ($account->delete()) {
+            $res=Ledger::where('ac_type','bank')->where('account_id',$bank_id)->delete();
+            return response()->json(['success' => 'Record deleted successfully'], 200);
+        }else
+        {
+            return response()->json(['errors' => 'Record not deleted'], 200);
+        }
+    }
 
     //getBankBranches
 

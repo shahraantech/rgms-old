@@ -4,7 +4,7 @@
     <div class="page-wrapper">
         <!-- Page Content -->
         <div class="content container-fluid">
-                   <div class="page-header">
+            <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
                         <h3 class="page-title">Edit Employee</h3>
@@ -21,7 +21,7 @@
             <!-- /Page Header -->
             <div class="row">
                 <div class="col-lg-12">
-                    <form method="post" action="{{ url('update-employee') }}" class="needs-validation" novalidate>
+                    <form method="post" action="{{ url('update-employee') }}" class="needs-validation" novalidate enctype="multipart/form-data">
                         @csrf
                         @isset($data['employeeData'])
                             @foreach ($data['employeeData'] as $employeeData)
@@ -127,8 +127,8 @@
                                             </div>
                                             <div class="form-group col-sm-4">
                                                 <label>Phone <span class="text-danger">*</span></label>
-                                                <input class="form-control" type="number" name="phone" placeholder="Phone"
-                                                    required value="{{ $employeeData->phone }}">
+                                                <input class="form-control" type="number" name="phone"
+                                                    placeholder="Phone" required value="{{ $employeeData->phone }}">
                                             </div>
                                             <div class="form-group col-sm-4">
                                                 <label>DOB <span class="text-danger">*</span></label>
@@ -281,11 +281,27 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-xl-6">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-3 col-form-label">Attachment</label>
+                                                    <div class="col-lg-6">
+                                                        <input type="file" class="form-control" name="attachment_edu">
+                                                        
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img src="{{ asset('storage/app/public/uploads/education/' . $qua->attachment) }}"
+                                                            width="50" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+
                                     </div>
                                 @endforeach
                             @endisset
                         </div>
+
+
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title mb-0">Professional Certifications</h4>
@@ -294,7 +310,7 @@
                                 @isset($data['certification'])
                                     @foreach ($data['certification'] as $cer)
                                         <div class="row">
-                                            <div class="col-xl-4">
+                                            <div class="col-xl-3">
                                                 <div class="form-group row">
                                                     <div class="col-lg-9">
                                                         <input type="text" class="form-control" placeholder="Course Title"
@@ -302,7 +318,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-4">
+                                            <div class="col-xl-3">
                                                 <div class="form-group row">
                                                     <div class="col-lg-9">
                                                         <input type="text" class="form-control" name="exp_organization"
@@ -311,7 +327,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-4">
+                                            <div class="col-xl-3">
                                                 <div class="form-group row">
                                                     <div class="col-lg-9">
                                                         <input type="text" class="form-control" name="period"
@@ -320,11 +336,24 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-xl-3">
+                                                <div class="form-group row">
+                                                    <div class="col-lg-8">
+                                                        <input type="file" class="form-control" name="attachment_cer">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <img src="{{ asset('storage/app/public/uploads/certification/' . $cer->attachment ?? '') }}"
+                                                            width="50" height="50px" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     @endforeach
                                 @endisset
                             </div>
                         </div>
+
+
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title mb-0">Employment Experience</h4>
@@ -362,36 +391,34 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="form-group col-sm-6">
+                                            <div class="form-group col-sm-3">
                                                 <label>Annual Duration <span class="text-danger">*</span></label>
                                                 <input class="form-control" type="number" name="annual_duartion"
                                                     placeholder="Annual Duration In Years" required
                                                     value="{{ $exp->annual_duration }}">
                                             </div>
-                                            <div class="form-group col-sm-6">
+                                            <div class="form-group col-sm-3">
                                                 <label>Relevant Experience <span class="text-danger">*</span></label>
                                                 <input class="form-control" type="text" name="relevent_exp"
                                                     placeholder="End Date" required value="{{ $exp->exp }}">
+                                            </div>
+                                            <div class="form-group col-sm-3">
+                                                <label>Attachment <span class="text-danger">*</span></label>
+                                                <input type="file" class="form-control" name="attachment_exp">
+                                            </div>
+                                            <div class="form-group col-sm-3">
+                                                <img src="{{ asset('storage/app/public/uploads/experience/' . $exp->attachment) }}"
+                                                    class="mt-4" width="50" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="row mt-4">
+                                            <div class="text-center w-100">
+                                                <button class="btn add-btn" type="submit">Save Changes</button>
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
                             @endisset
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-xl-4">
-                                    </div>
-                                    <div class="col-xl-4">
-                                        <div class="col-auto float-right ml-auto">
-                                            <button class="btn add-btn" type="submit">Update</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4">
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -402,57 +429,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type='text/javascript'>
         $(document).ready(function() {
-
-
-
-            // $('#deptId').change(function(){
-            //     var dept_id=$('select[name=dept_name]').val();
-
-            //     $.ajax({
-
-            //         type: 'ajax',
-
-            //         method: 'get',
-
-            //         url: '{{ url('/getDesignations') }}',
-
-            //         data: {dept_id: dept_id},
-
-            //         async: false,
-
-            //         dataType: 'json',
-
-            //         success: function(data) {
-
-            //             var html = '';
-
-            //             var i;
-            //             if(data.length > 0) {
-
-            //                 for (i = 0; i < data.length; i++) {
-
-            //                     html += '<option value="' + data[i].id + '">' + data[i].desig_name + '</option>';
-
-            //                 }
-            //             }else{
-            //                 var html = '<option value="">Choose Designation</option>';
-            //                 toastr.error('data not found');
-            //             }
-
-
-            //             $('#showDesig').html(html);
-
-            //         },
-
-            //         error: function() {
-
-            //             alert('Could not get Data from Database');
-
-            //         }
-
-            //     });
-            // });
-
 
 
             //company_id

@@ -4212,6 +4212,63 @@
             "install-path": "../paragonie/sodium_compat"
         },
         {
+            "name": "paypal/rest-api-sdk-php",
+            "version": "1.14.0",
+            "version_normalized": "1.14.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paypal/PayPal-PHP-SDK.git",
+                "reference": "72e2f2466975bf128a31e02b15110180f059fc04"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/72e2f2466975bf128a31e02b15110180f059fc04",
+                "reference": "72e2f2466975bf128a31e02b15110180f059fc04",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.3.0",
+                "psr/log": "^1.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35"
+            },
+            "time": "2019-01-04T20:04:25+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "PayPal": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "PayPal",
+                    "homepage": "https://github.com/paypal/rest-api-sdk-php/contributors"
+                }
+            ],
+            "description": "PayPal's PHP SDK for REST APIs",
+            "homepage": "http://paypal.github.io/PayPal-PHP-SDK/",
+            "keywords": [
+                "payments",
+                "paypal",
+                "rest",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/paypal/PayPal-PHP-SDK/issues",
+                "source": "https://github.com/paypal/PayPal-PHP-SDK/tree/master"
+            },
+            "abandoned": true,
+            "install-path": "../paypal/rest-api-sdk-php"
+        },
+        {
             "name": "phar-io/manifest",
             "version": "2.0.3",
             "version_normalized": "2.0.3.0",
@@ -7278,6 +7335,138 @@
                 }
             ],
             "install-path": "../spatie/laravel-permission"
+        },
+        {
+            "name": "srmklive/paypal",
+            "version": "3.0.16",
+            "version_normalized": "3.0.16.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/srmklive/laravel-paypal.git",
+                "reference": "7138c3b6665d270c40e0df603b8f0c07fc583ca3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/srmklive/laravel-paypal/zipball/7138c3b6665d270c40e0df603b8f0c07fc583ca3",
+                "reference": "7138c3b6665d270c40e0df603b8f0c07fc583ca3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "guzzlehttp/guzzle": "~7.0",
+                "illuminate/support": "~6.0|~7.0|~8.0|~9.0",
+                "nesbot/carbon": "~2.0",
+                "php": ">=7.2|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0|^9.0",
+                "symfony/var-dumper": "~5.0"
+            },
+            "time": "2022-08-01T08:42:16+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Srmklive\\PayPal\\Providers\\PayPalServiceProvider"
+                    ],
+                    "aliases": {
+                        "PayPal": "Srmklive\\PayPal\\Facades\\PayPal"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Srmklive\\PayPal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raza Mehdi",
+                    "email": "srmk@outlook.com"
+                }
+            ],
+            "description": "Laravel plugin For Processing Payments Through Paypal Express Checkout. Can Be Used Independently With Other Applications.",
+            "keywords": [
+                "http",
+                "laravel paypal",
+                "paypal",
+                "rest",
+                "web service"
+            ],
+            "support": {
+                "issues": "https://github.com/srmklive/laravel-paypal/issues",
+                "source": "https://github.com/srmklive/laravel-paypal/tree/3.0.16"
+            },
+            "install-path": "../srmklive/paypal"
+        },
+        {
+            "name": "stripe/stripe-php",
+            "version": "v9.6.0",
+            "version_normalized": "9.6.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stripe/stripe-php.git",
+                "reference": "7c43066015d03ad9c4458db683ecfe019ce225da"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/7c43066015d03ad9c4458db683ecfe019ce225da",
+                "reference": "7c43066015d03ad9c4458db683ecfe019ce225da",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "3.5.0",
+                "php-coveralls/php-coveralls": "^2.5",
+                "phpstan/phpstan": "^1.2",
+                "phpunit/phpunit": "^5.7 || ^9.0",
+                "squizlabs/php_codesniffer": "^3.3"
+            },
+            "time": "2022-09-15T19:45:46+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Stripe\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stripe and contributors",
+                    "homepage": "https://github.com/stripe/stripe-php/contributors"
+                }
+            ],
+            "description": "Stripe PHP Library",
+            "homepage": "https://stripe.com/",
+            "keywords": [
+                "api",
+                "payment processing",
+                "stripe"
+            ],
+            "support": {
+                "issues": "https://github.com/stripe/stripe-php/issues",
+                "source": "https://github.com/stripe/stripe-php/tree/v9.6.0"
+            },
+            "install-path": "../stripe/stripe-php"
         },
         {
             "name": "swiftmailer/swiftmailer",

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Accounts;
 use App\Http\Controllers\Controller;
 use App\Models\CoaMapping;
 use App\Models\Employee;
+use App\Models\Ledger;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use Illuminate\Support\Facades\File;
@@ -110,17 +111,20 @@ class ClientsController extends Controller
 
     public function deleteClient(Request $request)
     {
-        $client = Client::find($request->id);
+        $client_id=$request->id;
+        $client = Client::find($client_id);
         if ($client) {
             $path = 'storage/app/public/uploads/accounts/clients/' . $client->image;
             if (File::exists($path)) {
                 File::delete($path);
             }
-            $client->delete();
-            return response()->json([
-                'status' => 200,
-                'message' => 'client deleted successfully',
-            ]);
+            if ($client->delete()) {
+                $res=Ledger::where('ac_type','clients')->where('account_id',$client_id)->delete();
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Record deleted successfully',
+                ]);
+            }
         }
     }
 

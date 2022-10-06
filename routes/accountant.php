@@ -138,6 +138,7 @@ Route::group(['middleware' => ['auth', 'can:isAccountant']], function () {
     Route::any('bank-transaction', [BankController::class, 'bankTransaction']);
     Route::any('bank-summary', [BankController::class, 'bankSummary']);
     Route::any('manage-bank', [BankController::class, 'manageBank']);
+    Route::any('delete-bank', [BankController::class, 'deleteBank']);
 
     Route::any('get-account-balance', [AccountsController::class, 'getAccountBalance']);
     Route::any('edit-voucher/{type}/{id}', [PaymentsController::class, 'editVoucher']);
@@ -146,7 +147,6 @@ Route::group(['middleware' => ['auth', 'can:isAccountant']], function () {
     Route::get('get-bank', [BankController::class, 'getBank']);
     Route::get('edit-bank', [BankController::class, 'editBank']);
     Route::get('udpate-bank', [BankController::class, 'udpateBank']);
-    Route::get('delete-bank/{id}', [BankController::class, 'deleteBank']);
     Route::get('getBankBranches', [BankController::class, 'getBankBranches']);
 
 

@@ -69,14 +69,14 @@ class Recruitments extends Controller
         }
 
         $data['shareButtons'] = \Share::page(
-            'https://www.itsolutionstuff.com',
+            'https://rgms.shahraantech.com/job/list',
         )
-            ->facebook()
-            ->twitter()
-            ->linkedin()
-            ->telegram()
-            ->whatsapp()
-            ->reddit();
+        ->facebook()
+        ->twitter()
+        ->reddit()
+        ->linkedin()
+        ->whatsapp()
+        ->telegram();
 
         $data['dept'] = Department::orderBy('id', 'desc')->get();
         $data['title'] = Designation::orderBy('id', 'desc')->get();
