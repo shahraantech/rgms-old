@@ -7,12 +7,11 @@ use App\Models\Department;
 use Google\Service\Directory\Users;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-
-
     //index
     public function index(Request $request)
     {
@@ -42,13 +41,6 @@ class UserController extends Controller
         return view('users.index', compact('data'));
     }
 
-    //register
-
-    public function signup(Request $request)
-    {
-     $request->all();
-     Company::saveCompany($request);
-    }
     //udpate user role
     public  function changeRole(Request $request)
     {
@@ -94,6 +86,4 @@ class UserController extends Controller
             return response()->json(['success'=>'Status updated successfully'],200);
         }
     }
-
-
 }

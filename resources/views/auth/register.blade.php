@@ -32,6 +32,10 @@
                         <div class="row">
                             <div class="form-group col-6">
 
+                                <input type="hidden" name="lat" id="latitude">
+                                <input type="hidden" name="long" id="longitude">
+                                <input type="hidden" name="address" id="address">
+
                                 <input  type="text" class="form-control mt-3 mb-3" name="name"
                                        required autofocus placeholder="Enter Your Name">
                                 <div class="invalid-feedback">
@@ -95,7 +99,48 @@
 <div class="footer m-auto mt-3">
     Copyright &copy; 2022 &mdash; Shahraan Tech Pvt Ltd
 </div>
-<script src="js/bootstrap.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="{{ asset('public/assets/auth/login-page/js/my-login.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+<script>
+
+    $('.btn-login').on('click', function() {
+        $(".btn-login").prop("disabled", true);
+        $(".btn-login").html("Please wait...");
+        $('#LoginForm').submit();
+    });
+</script>
+<script type="text/javascript">
+    navigator.geolocation.getCurrentPosition(function(position) {
+        $("#show_location").html("Latitude: " + position.coords.latitude + " </br>Longitude:" + position.coords
+            .longitude);
+
+        document.getElementById('latitude').value = position.coords.latitude;
+        document.getElementById('longitude').value = position.coords.longitude;
+
+        fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude + "," +
+            position.coords.longitude + "&key=AIzaSyAY904LGu2DEpfjOloBWBtPof8Zx8e6gyQ&sensor=true")
+            .then(response => response.json()
+                .then(data => {
+                    var address = data.results[0]['formatted_address'];
+                    var myString = address.substring(address.indexOf(' ') + 1);
+
+                    document.getElementById('address').value = myString;
+
+                    var address1 = data.results[0].address_components[1].long_name;
+                    var address2 = data.results[0].address_components[2].long_name;
+                    var address3 = data.results[0].address_components[3].long_name;
+
+                    $("#show_Address").html("Address:" + myString);
+                })
+            );
+    });
+</script>
 </body>
 
 </html>
