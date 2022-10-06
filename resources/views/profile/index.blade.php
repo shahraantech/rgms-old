@@ -1,7 +1,9 @@
 @extends('setup.master')
 @section('content')
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
     <div class="page-wrapper">
@@ -249,19 +251,25 @@
                                                                     {{ empty($edu->cgpa) ? '' : $edu->cgpa }}</p>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6 text-center">
-                                                            <div class="project-info-box">
-                                                                <p class="text-secondary"><b>Attachment</b></p>
-                                                                <a
-                                                                    href="{{ asset('storage/app/public/uploads/education/' . $edu->attachment ?? '') }}">
-                                                                    <img src="{{ asset('storage/app/public/uploads/education/' . $edu->attachment ?? '') }}"
-                                                                        width="50%" class="img-fluid" alt=""
-                                                                        style="border-radius: 5px;"><br>
-                                                                </a>
-                                                                <a href="{{ asset('storage/app/public/uploads/education/' . $edu->attachment ?? '') }}"
-                                                                    class="btn btn-primary btn-sm mt-3" download><i class="fa fa-cloud-download" aria-hidden="true"></i></a>
+
+                                                        @if ($edu->attachment != '')
+                                                            <div class="col-md-6 text-center">
+                                                                <div class="project-info-box">
+                                                                    <p class="text-secondary"><b>Attachment</b></p>
+                                                                    <a
+                                                                        href="{{ asset('storage/app/public/uploads/education/' . $edu->attachment ?? '') }}">
+                                                                        <img src="{{ asset('storage/app/public/uploads/education/' . $edu->attachment ?? '') }}"
+                                                                            width="50%" class="img-fluid" alt=""
+                                                                            style="border-radius: 5px;"><br>
+                                                                    </a>
+                                                                    <a href="{{ asset('storage/app/public/uploads/education/' . $edu->attachment ?? '') }}"
+                                                                        class="btn btn-primary btn-sm mt-3" download><i
+                                                                            class="fa fa-cloud-download"
+                                                                            aria-hidden="true"></i></a>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        @endif
+
                                                     </div>
                                                 </div>
 
@@ -319,19 +327,25 @@
 
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6 text-center">
-                                                            <div class="project-info-box">
-                                                                <p class="text-secondary"><b>Attachment</b></p>
-                                                                <a
-                                                                    href="{{ asset('storage/app/public/uploads/experience/' . $exp->attachment ?? '') }}">
-                                                                    <img src="{{ asset('storage/app/public/uploads/experience/' . $exp->attachment ?? '') }}"
-                                                                        width="50%" class="img-fluid" alt=""
-                                                                        style="border-radius: 5px;"><br>
-                                                                </a>
-                                                                <a href="{{ asset('storage/app/public/uploads/experience/' . $exp->attachment ?? '') }}"
-                                                                    class="btn btn-primary btn-sm mt-3" download><i class="fa fa-cloud-download" aria-hidden="true"></i></a>
+
+                                                        @if ($exp->attachment != '')
+                                                            <div class="col-md-6 text-center">
+                                                                <div class="project-info-box">
+                                                                    <p class="text-secondary"><b>Attachment</b></p>
+                                                                    <a
+                                                                        href="{{ asset('storage/app/public/uploads/experience/' . $exp->attachment ?? '') }}">
+                                                                        <img src="{{ asset('storage/app/public/uploads/experience/' . $exp->attachment ?? '') }}"
+                                                                            width="50%" class="img-fluid" alt=""
+                                                                            style="border-radius: 5px;"><br>
+                                                                    </a>
+                                                                    <a href="{{ asset('storage/app/public/uploads/experience/' . $exp->attachment ?? '') }}"
+                                                                        class="btn btn-primary btn-sm mt-3" download><i
+                                                                            class="fa fa-cloud-download"
+                                                                            aria-hidden="true"></i></a>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        @endif
+
                                                     </div>
                                                 </div>
                                             </li>
@@ -356,33 +370,37 @@
                                 @endif
                             </h3>
                             @isset($data['certifications'])
+                                <div class="experience-content">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="project-info-box">
+                                                <p class="text-secondary"><b>Course Title:</b>
+                                                    {{ empty($data['certifications']->course_title) ? '' : $data['certifications']->course_title }}
+                                                </p>
+                                                <p class="text-secondary"><b>Duration Period:</b>
+                                                    {{ empty($data['certifications']->duration_period) ? '' : $data['certifications']->duration_period }}
+                                                </p>
+                                            </div>
+                                        </div>
 
-                            <div class="experience-content">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="project-info-box">
-                                            <p class="text-secondary"><b>Course Title:</b>
-                                                {{ empty($data['certifications']->course_title) ? '' : $data['certifications']->course_title }}</p>
-                                            <p class="text-secondary"><b>Duration Period:</b>
-                                                {{ empty($data['certifications']->duration_period) ? '' : $data['certifications']->duration_period }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 text-center">
-                                        <div class="project-info-box">
-                                            <p class="text-secondary"><b>Attachment</b></p>
-                                            <a
-                                                href="{{ asset('storage/app/public/uploads/certification/' . $data['certifications']->attachment ?? '') }}">
-                                                <img src="{{ asset('storage/app/public/uploads/certification/' . $data['certifications']->attachment ?? '') }}"
-                                                    width="30%" class="img-fluid" alt=""
-                                                    style="border-radius: 5px;"><br>
-                                            </a>
-                                            <a href="{{ asset('storage/app/public/uploads/certification/' . $data['certifications']->attachment ?? '') }}"
-                                                class="btn btn-primary btn-sm mt-3" download><i class="fa fa-cloud-download" aria-hidden="true"></i></a>
-                                        </div>
+                                        @if ($data['certifications']->attachment != '')
+                                            <div class="col-md-6 text-center">
+                                                <div class="project-info-box">
+                                                    <p class="text-secondary"><b>Attachment</b></p>
+                                                    <a
+                                                        href="{{ asset('storage/app/public/uploads/certification/' . $data['certifications']->attachment ?? '') }}">
+                                                        <img src="{{ asset('storage/app/public/uploads/certification/' . $data['certifications']->attachment ?? '') }}"
+                                                            width="30%" class="img-fluid" alt=""
+                                                            style="border-radius: 5px;"><br>
+                                                    </a>
+                                                    <a href="{{ asset('storage/app/public/uploads/certification/' . $data['certifications']->attachment ?? '') }}"
+                                                        class="btn btn-primary btn-sm mt-3" download><i
+                                                            class="fa fa-cloud-download" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
-                            </div>
                             @endisset
                         </div>
                     </div>
