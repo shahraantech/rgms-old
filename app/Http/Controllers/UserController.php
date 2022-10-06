@@ -41,6 +41,14 @@ class UserController extends Controller
         $data['department'] = Department::all();
         return view('users.index', compact('data'));
     }
+
+    //register
+
+    public function signup(Request $request)
+    {
+     $request->all();
+     Company::saveCompany($request);
+    }
     //udpate user role
     public  function changeRole(Request $request)
     {
@@ -87,5 +95,5 @@ class UserController extends Controller
         }
     }
 
-   
+
 }

@@ -2,33 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61ad51f6-c89c-418f-938f-7b568a8d5486" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/CallRecordingController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LeadsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LeadsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TestController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Imports/LeadsMarketingImport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Imports/LeadsMarketingImport.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/auth/css/app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/auth/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/auth/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/auth/js/components/ExampleComponent.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/auth/lang/en/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/auth/lang/en/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/auth/lang/en/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/auth/lang/en/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/auth/login-page/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/auth/login-page/css/my-login.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/auth/login-page/css/my-login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/auth/login-page/hrm.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/auth/sass/_variables.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/auth/sass/app.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Company.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Company.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/auth/login-page/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/auth/login-page/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/call-center/leads/leads-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/call-center/leads/leads-list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/policies/offer-letter-create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/policies/offer-letter-create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/setup/super-admin-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/setup/super-admin-sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/callcenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/callcenter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,7 +222,7 @@
       <workItem from="1664860549495" duration="16808000" />
       <workItem from="1664946833230" duration="23414000" />
       <workItem from="1664977280603" duration="2474000" />
-      <workItem from="1665034229094" duration="12719000" />
+      <workItem from="1665034229094" duration="18004000" />
     </task>
     <servers />
   </component>

@@ -11,21 +11,21 @@ body{
 
 }
 #contant{
-	margin-top: 8rem !important;
+	margin-top: 9rem !important;
 }
 #contant h1{
 	font-weight: 600; 
-	font-size: 9rem;
+	font-size: 5rem;
 	color: #0069D9;
 	font-family: 'Montserrat', sans-serif;
 }
 #contant h2{ 
-	font-size: 1.6rem;
+	font-size: 1rem;
 	font-weight: 500;
 	font-family: 'Montserrat', sans-serif;
 }
 #contant p{ 
-	font-size: 4.5rem;
+	font-size: 2.5rem;
 	font-weight: 500;
 	margin: 0 !important;
 	font-family: 'Montserrat', sans-serif;
@@ -74,13 +74,13 @@ body{
     }
 	#contant h1{
 		font-weight: 600;
-        font-size: 8rem;
+        font-size: 4rem;
 	}
 	#contant h2{ 
-		font-size: 1.4rem;
+		font-size: .8rem;
 	}
 	#contant p{ 
-		font-size: 3.3rem;
+		font-size: 2rem;
 	}
 	
 }
@@ -94,14 +94,14 @@ body{
     }
 	#contant h1{
 		font-weight: 600; 
-		font-size: 4rem;
+		font-size: 3.3rem;
 	}
 	#contant h2{ 
-		font-size: .8rem;
+		font-size: .6rem;
 		padding-left: 0;
 	}
 	#contant p{ 
-		font-size: 1.8rem;
+		font-size: 1.3rem;
 		margin: 0 !important;
 	}
 	
@@ -112,22 +112,18 @@ body{
 	}
 	#contant h1{
 		font-weight: 600; 
-		font-size: 3rem;
+		font-size: 3.4rem;
 	}
 	#contant h2{ 
-		font-size: .8rem;
+		font-size: .6rem;
 	}
 	#contant p{ 
-		font-size: 1.8rem;
+		font-size: 1.3rem;
 	}
 	
 }
 
 @media screen and (max-width: 425px) {
-	/* .my-login-page .card-wrapper {
-		width: 90%;
-		margin: 0 auto;
-	} */
     #contant{
         text-align: center;
     }
@@ -136,11 +132,11 @@ body{
 		font-size: 3rem;
 	}
 	#contant h2{ 
-		font-size: .8rem;
+		font-size: .6rem;
 		padding-left: 0;
 	}
 	#contant p{ 
-		font-size: 2rem;
+		font-size: 1rem;
 	}
 	#login{
 		margin: 0px;
@@ -148,21 +144,14 @@ body{
 }
 
 @media screen and (max-width: 320px) {
-	/* .my-login-page .card.fat {
-		padding: 0;
-	}
-
-	.my-login-page .card.fat .card-body {
-		padding: 15px;
-	} */
 	#contant h1{ 
-		font-size: 1.3rem;
+		font-size: 2rem;
 	}
 	#contant h2{ 
-		font-size: .6rem;
+		font-size: .5rem;
 	}
 	#contant p{ 
-		font-size: 1.3rem;
+		font-size: 1rem;
 		/* margin: 0 !important; */
 	}
 }
