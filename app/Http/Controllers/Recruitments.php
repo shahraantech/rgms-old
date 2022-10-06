@@ -16,7 +16,6 @@ use App\Models\Recruitment;
 use App\Models\Applicant;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
-use Share;
 use Toastr;
 
 class Recruitments extends Controller
@@ -69,15 +68,15 @@ class Recruitments extends Controller
                 ->get();
         }
 
-        $data['shareButtons'] = Share::page(
-            'https://www.itsolutionstuff.com',
+        $data['shareButtons'] = \Share::page(
+            'https://rgms.shahraantech.com/job/list',
         )
-            ->facebook()
-            ->twitter()
-            ->linkedin()
-            ->telegram()
-            ->whatsapp()
-            ->reddit();
+        ->facebook()
+        ->twitter()
+        ->reddit()
+        ->linkedin()
+        ->whatsapp()
+        ->telegram();
 
         $data['dept'] = Department::orderBy('id', 'desc')->get();
         $data['title'] = Designation::orderBy('id', 'desc')->get();

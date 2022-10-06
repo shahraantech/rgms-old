@@ -709,6 +709,7 @@ class ComposerStaticInit4b8084c7674050a0396bce2a476fa881
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\BankController' => __DIR__ . '/../..' . '/app/Http/Controllers/BankController.php',
         'App\\Http\\Controllers\\COAController' => __DIR__ . '/../..' . '/app/Http/Controllers/COAController.php',
+        'App\\Http\\Controllers\\CalendarController' => __DIR__ . '/../..' . '/app/Http/Controllers/CalendarController.php',
         'App\\Http\\Controllers\\CallCenter\\CallCenterLeadsController' => __DIR__ . '/../..' . '/app/Http/Controllers/CallCenter/CallCenterLeadsController.php',
         'App\\Http\\Controllers\\CallCenter\\ChatController' => __DIR__ . '/../..' . '/app/Http/Controllers/CallCenter/ChatController.php',
         'App\\Http\\Controllers\\CallCenter\\CityController' => __DIR__ . '/../..' . '/app/Http/Controllers/CallCenter/CityController.php',

@@ -47,6 +47,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
     'App\\Http\\Controllers\\BankController' => $baseDir . '/app/Http/Controllers/BankController.php',
     'App\\Http\\Controllers\\COAController' => $baseDir . '/app/Http/Controllers/COAController.php',
+    'App\\Http\\Controllers\\CalendarController' => $baseDir . '/app/Http/Controllers/CalendarController.php',
     'App\\Http\\Controllers\\CallCenter\\CallCenterLeadsController' => $baseDir . '/app/Http/Controllers/CallCenter/CallCenterLeadsController.php',
     'App\\Http\\Controllers\\CallCenter\\ChatController' => $baseDir . '/app/Http/Controllers/CallCenter/ChatController.php',
     'App\\Http\\Controllers\\CallCenter\\CityController' => $baseDir . '/app/Http/Controllers/CallCenter/CityController.php',
