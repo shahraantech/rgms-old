@@ -7,39 +7,27 @@
     <!-- Page Content -->
     <div class="content container-fluid">
 
-{{--        <div class="page-header">--}}
-{{--            <div class="row align-items-center">--}}
-
-{{--                <div class="col-auto float-right ml-auto">--}}
-{{--                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_department"><i class="fa fa-plus"></i> Add Designation</a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-
-
-        <div class="page-menu">
-            <div class="row">
-                <div class="col-sm-10 col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <!-- <h4 class="card-title">Solid justified</h4> -->
-                            <ul class="nav nav-tabs nav-tabs-solid nav-justified">
-                                <li class="nav-item" style="display: flex">
-                                    <a href="{{url('departments')}}" class="nav-link" onMouseOver="this.style.color='#8053CB'" onMouseOut="this.style.color='green'" href="{{url('att-dashboard')}}">Departments</a>
-                                    <a href="{{url('designation')}}"  class="nav-link" onMouseOver="this.style.color='#8053CB'" onMouseOut="this.style.color='green'" href="{{url('att-dashboard')}}">Designation</a>
-                                    <a class="nav-link"  style="display: inline-block;
-                              text-align: right;
-                              width: 100%;" href="#" class="btn add-btn" onMouseOver="this.style.color='#8053CB'" onMouseOut="this.style.color='green'" data-toggle="modal" data-target="#add_department">Add Designation</a>
-
-
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Designation</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Designation</li>
                             </ul>
+                        </div>
+                        <div class="col-auto float-right ml-auto">
+                            <a href="{{ url('/designation') }}" class="btn add-btn" title="Add Designation"
+                                data-toggle="modal" data-target="#add_department"><i class="fa fa-plus"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        <!-- /Page Header -->
 
         <div class="card">
             <div class="card-body">

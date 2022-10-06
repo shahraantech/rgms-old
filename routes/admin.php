@@ -79,6 +79,9 @@ Route::group(['middleware' => ['auth', 'can:isAdmin']], function () {
 
 
     Route::any('/employees', [EmployeeController::class, 'index']);
+
+    Route::get('update-employee-status', [EmployeeController::class, 'updateEmployeeStatus']);
+
     Route::any('/employees-list', [EmployeeController::class, 'employeeList']);
     Route::get('/new-employee', [EmployeeController::class, 'newEmployee']);
     Route::post('/new-employee', [EmployeeController::class, 'saveNewEmployee']);

@@ -166,6 +166,7 @@ class LeaveController extends Controller
             $data = $qry->get();
             return response()->json($data);
         }
+        
         $data['totalRequest'] = Leave::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
         $data['approvedRequest'] = Leave::where('leave_status', 'APPROVED')->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
         $data['pendingRequest'] = Leave::where('leave_status', 'PENDING')->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();

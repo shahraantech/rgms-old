@@ -12,48 +12,25 @@
         <div class="content container-fluid">
             <!-- Page Header -->
             <div class="page-header">
-                <div class="col-auto float-right ml-auto">
-                </div>
-            </div>
-            <!-- /Page Header -->
-
-
-
-            <div class="page-menu">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-body">
-
-                        <ul class="nav nav-tabs nav-tabs-solid">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="{{url('departments')}}">Departments</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link active"  href="{{url('designation')}}">Designation</a>
-                            </li>
-
-                            <li class="nav-item">
-
-
-                                <a class="nav-link"  style="" href="#" class="btn add-btn" data-toggle="modal" data-target="#add_department">Add Department</a>
-                            </li>
-
-
-
-
-
-                        </ul>
-
-
-
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h3 class="page-title">Departments</h3>
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">Departments</li>
+                                </ul>
+                            </div>
+                            <div class="col-auto float-right ml-auto">
+                                <a href="{{ url('/departments') }}" class="btn add-btn" title="Add Designation"
+                                    data-toggle="modal" data-target="#add_department"><i class="fa fa-plus"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <!-- /Page Header -->
 
 
             <div class="card">
@@ -63,13 +40,13 @@
                             <div>
                                 <table class="table table-striped mb-0" id="datatable">
                                     <thead>
-                                    <tr>
-                                        <th style="width: 30px;">#</th>
-                                        <th>Company Name</th>
-                                        <th>Department Name</th>
-                                        <th>Created At</th>
-                                        <th class="text-right">Action</th>
-                                    </tr>
+                                        <tr>
+                                            <th style="width: 30px;">#</th>
+                                            <th>Company Name</th>
+                                            <th>Department Name</th>
+                                            <th>Created At</th>
+                                            <th class="text-right">Action</th>
+                                        </tr>
                                     </thead>
                                     <tbody id="deptTable">
                                     </tbody>
@@ -87,20 +64,22 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Add Department</h5>
-                        <button type="button" class="close btnSkip" data-dismiss="modal" aria-label="Close" id="modalDismiss">
+                        <button type="button" class="close btnSkip" data-dismiss="modal" aria-label="Close"
+                            id="modalDismiss">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" action="{{url('save-department')}}" id="deptForm" class="needs-validation" novalidate>
+                        <form method="post" action="{{ url('save-department') }}" id="deptForm" class="needs-validation"
+                            novalidate>
                             @csrf
                             <div class="form-group">
                                 <label>Companies <span class="text-danger">*</span></label>
                                 <select class="select" name="company_id" required>
                                     <option value="">Choose Company</option>
                                     @isset($data)
-                                        @foreach($data['companies'] as $company)
-                                            <option value="{{$company->id}}">{{$company->name}}</option>
+                                        @foreach ($data['companies'] as $company)
+                                            <option value="{{ $company->id }}">{{ $company->name }}</option>
                                         @endforeach
                                     @endisset
                                 </select>
@@ -116,7 +95,8 @@
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn btn-save-dept135" type="submit" id="saveform">Save</button>
+                                <button class="btn btn-primary submit-btn btn-save-dept135" type="submit"
+                                    id="saveform">Save</button>
                             </div>
                         </form>
                     </div>
@@ -171,10 +151,12 @@
                         <div class="modal-btn delete-action">
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="javascript:void(0);" class="btn btn-primary continue-btn btnDeleteNow">Delete</a>
+                                    <a href="javascript:void(0);"
+                                        class="btn btn-primary continue-btn btnDeleteNow">Delete</a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn btnSkip">Cancel</a>
+                                    <a href="javascript:void(0);" data-dismiss="modal"
+                                        class="btn btn-primary cancel-btn btnSkip">Cancel</a>
                                 </div>
                             </div>
                         </div>
@@ -184,7 +166,7 @@
         </div>
         <!-- /Delete Department Modal -->
     </div>
-    <script type="text/javascript" src="{{asset('public/assets/js/custom-js/validations.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('public/assets/js/custom-js/validations.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <script>
@@ -195,7 +177,7 @@
 
                 $.ajax({
 
-                    url: '{{url("/get-department")}}',
+                    url: '{{ url('/get-department') }}',
                     type: 'get',
                     async: false,
                     dataType: 'json',
@@ -220,8 +202,10 @@
                                 '<div class="dropdown dropdown-action">' +
                                 '<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>' +
                                 '<div class="dropdown-menu dropdown-menu-right">' +
-                                '<a class="dropdown-item btnEditDept" href="#" data-toggle="modal" data-target="#edit_department" data="' + data[i].id + '"><i class="fa fa-pencil m-r-5n "></i> Edit</a>' +
-                                '<a class="dropdown-item btnDelete" href="#" data-toggle="modal" data-target="#delete_department" data="' + data[i].id + '"><i class="fa fa-trash-o m-r-5 "></i> Delete</a>' +
+                                '<a class="dropdown-item btnEditDept" href="#" data-toggle="modal" data-target="#edit_department" data="' +
+                                data[i].id + '"><i class="fa fa-pencil m-r-5n "></i> Edit</a>' +
+                                '<a class="dropdown-item btnDelete" href="#" data-toggle="modal" data-target="#delete_department" data="' +
+                                data[i].id + '"><i class="fa fa-trash-o m-r-5 "></i> Delete</a>' +
                                 '</div>' +
                                 '</div>' +
                                 '</td>' +
@@ -246,7 +230,7 @@
                 $.ajax({
                     type: 'ajax',
                     method: 'post',
-                    url: '{{url("save-department")}}',
+                    url: '{{ url('save-department') }}',
                     data: formData,
                     async: false,
                     dataType: 'json',
@@ -284,7 +268,7 @@
                 var id = $(this).attr('data');
                 $('.btnDeleteNow').unbind().click(function() {
                     $.ajax({
-                        url: '{{url("/delete-department")}}',
+                        url: '{{ url('/delete-department') }}',
                         type: 'get',
                         async: false,
                         dataType: 'json',
@@ -317,7 +301,7 @@
 
                 $.ajax({
 
-                    url: '{{url("/edit-department")}}',
+                    url: '{{ url('/edit-department') }}',
                     type: 'get',
                     async: false,
                     dataType: 'json',
@@ -332,7 +316,9 @@
                         $.each(data.company, function(key, comp) {
 
                             $('select[name="company_id"]')
-                                .append(`<option value="${comp.id}" ${comp.id == data.dept.company_id ? 'selected' : ''}>${comp.name}</option>`)
+                                .append(
+                                    `<option value="${comp.id}" ${comp.id == data.dept.company_id ? 'selected' : ''}>${comp.name}</option>`
+                                    )
                         });
                         $('input[name=edit_dept_name]').val(data.dept.departments);
 
@@ -350,7 +336,7 @@
 
                     $.ajax({
 
-                        url: '{{url("/update-department")}}',
+                        url: '{{ url('/update-department') }}',
                         type: 'get',
                         async: false,
                         dataType: 'json',
