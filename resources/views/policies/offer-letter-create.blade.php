@@ -56,7 +56,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" id="tablePrint" style="font-size: 16px;">
-                        
+
                         <div class="card-body">
                             <img src="{{ asset('public/assets/img/A-team.png') }}" id="background" class="img-fluid"
                             alt="">

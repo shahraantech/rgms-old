@@ -268,7 +268,7 @@
                     class="menu-arrow"></span></a>
             <ul style="display: none;">
 
-                <li><a href="{{ url('leads-response') }}">Leads Response Report</a></li>
+                <li><a href="{{ url('leads-response') }}">Leads Response </a></li>
                 <li><a href="{{ url('csr-no-of-leads') }}">CSR NO Of Leads</a></li>
                 <li><a href="{{ url('manager-no-of-leads') }}">Manager NO Of Leads</a></li>
                 {{--                            <li><a href="{{ url('leads-analysis') }}">Leads Analysis</a></li>--}}

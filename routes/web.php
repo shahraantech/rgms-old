@@ -22,6 +22,8 @@ use App\Http\Controllers\CallCenter\CallCenterLeadsController;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\PayPalController;
 
 
 
@@ -92,31 +94,40 @@ Route::group(['middleware' =>['auth']], function () {
 
     Route::any('getLeadsInfo', [CallCenterLeadsController::class, 'getLeadsInfo']);
 
+    //deleteable
+    Route::get('stripe', [StripePaymentController::class, 'stripe']);
+    Route::post('stripe', [StripePaymentController::class, 'stripePost'])->name('stripe.post');
+
+    Route::get('/paypal', function () {
+
+        return view('paypal');
+
+    });
+
+//paypal-call
+
+    Route::post('paypal', [PaypalController::class,'paypal']);
+    Route::post('paypal-call', [PaypalController::class,'index'])->name('paypal_call');
+    Route::any('paypal-return', [PaypalController::class,'paypalReturn'])->name('paypal_return');
+    Route::any('paypal-cancel', [PaypalController::class,'paypalCancel'])->name('paypal_cancel');
+
 });
 
-
-
-
-
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class, 'logout']);
-
 Route::get('/job/list', [JobsController::class, 'jobList']);
 Route::get('/job/view/{id}', [JobsController::class, 'jobView']);
-
 Route::post('/apply-job', [JobsController::class, 'applyJob']);
-Route::get('//check-job-applied', [JobsController::class, 'checkJobApplied']);
+Route::get('/check-job-applied', [JobsController::class, 'checkJobApplied']);
 Route::get('/ajax-autocomplete-search', [HelperController::class, 'ajaxEmpAutoSearch'])->middleware('auth');
 //Project Routes End Here
-
 Route::any('roles', [RoleController::class, 'index']);
 Route::get('roles-list', [RoleController::class, 'rolesList']);
 Route::any('role-permissions', [RoleController::class, 'rolePermissions']);
 Route::any('test-permissions', [RoleController::class, 'testPermissions']);
 Route::any('calender', [CalendarController::class, 'index']);
-
-
-
-
 Route::get('verify-account/{id}',[UserController::class, 'verifyAccount']);
-Route::any('/test',[TestController::class, 'test']);
+
+
+Route::get('alterTableName',[TestController::class, 'alterTableName']);
+
 

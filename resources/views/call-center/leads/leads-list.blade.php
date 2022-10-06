@@ -226,7 +226,7 @@
                                 </tbody>
                             </table>
                         @else
-                            <div class="alert alert-danger">Record Not FOund</div>
+                            <div class="alert alert-danger">Record not found!</div>
                         @endif
                     </div>
                 </div>
@@ -238,7 +238,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Lead</h5>
+                        <h5 class="modal-title">Create New Lead</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"
                                 id="modalDismiss">
                             <span aria-hidden="true">&times;</span>
@@ -269,7 +269,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Contact <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="number" name="contact" placeholder="Contact"
+                                        <input class="form-control" type="number" name="contact" placeholder="92-333-4636416"
                                                required>
                                         <div class="invalid-feedback">
                                             Please enter contact.
