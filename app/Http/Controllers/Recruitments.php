@@ -16,6 +16,7 @@ use App\Models\Recruitment;
 use App\Models\Applicant;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Share;
 use Toastr;
 
 class Recruitments extends Controller
@@ -68,7 +69,7 @@ class Recruitments extends Controller
                 ->get();
         }
 
-        $data['shareButtons'] = \Share::page(
+        $data['shareButtons'] = Share::page(
             'https://www.itsolutionstuff.com',
         )
             ->facebook()
