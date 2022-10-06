@@ -46,6 +46,7 @@ Route::group(['middleware' =>['auth']], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
     Route::get('/edit-employee/{id}', [EmployeeController::class, 'editEmployee']);
+    
     Route::post('/update-employee', [EmployeeController::class, 'updateEmployee']);
 
 
