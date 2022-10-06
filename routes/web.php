@@ -111,8 +111,9 @@ Route::any('roles', [RoleController::class, 'index']);
 Route::get('roles-list', [RoleController::class, 'rolesList']);
 Route::any('role-permissions', [RoleController::class, 'rolePermissions']);
 Route::any('test-permissions', [RoleController::class, 'testPermissions']);
-Route::any('calender', [CalendarController::class, 'index']);
+Route::get('calender', [CalendarController::class, 'index']);
 
+Route::post('full-calender/action', [CalendarController::class, 'action']);
 
 
 
