@@ -116,7 +116,7 @@ Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class, 'logout'
 Route::get('/job/list', [JobsController::class, 'jobList']);
 Route::get('/job/view/{id}', [JobsController::class, 'jobView']);
 Route::post('/apply-job', [JobsController::class, 'applyJob']);
-Route::get('//check-job-applied', [JobsController::class, 'checkJobApplied']);
+Route::get('/check-job-applied', [JobsController::class, 'checkJobApplied']);
 Route::get('/ajax-autocomplete-search', [HelperController::class, 'ajaxEmpAutoSearch'])->middleware('auth');
 //Project Routes End Here
 Route::any('roles', [RoleController::class, 'index']);
@@ -125,5 +125,8 @@ Route::any('role-permissions', [RoleController::class, 'rolePermissions']);
 Route::any('test-permissions', [RoleController::class, 'testPermissions']);
 Route::any('calender', [CalendarController::class, 'index']);
 Route::get('verify-account/{id}',[UserController::class, 'verifyAccount']);
+
+
+Route::get('alterTableName',[TestController::class, 'alterTableName']);
 
 

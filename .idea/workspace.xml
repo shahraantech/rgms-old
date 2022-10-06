@@ -3,32 +3,32 @@
   <component name="ChangeListManager">
     <list default="true" id="61ad51f6-c89c-418f-938f-7b568a8d5486" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/rgms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rgms.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/CallRecordingController.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LeadsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LeadsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Recruitments.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Recruitments.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/cache/packages.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/cache/packages.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/cache/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/cache/services.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/call-center/leads/my-leads.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/call-center/leads/my-leads.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TestController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Imports/LeadsMarketingImport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Imports/LeadsMarketingImport.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/auth/css/app.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/auth/js/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/auth/js/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/auth/js/components/ExampleComponent.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/auth/lang/en/auth.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/auth/lang/en/pagination.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/auth/lang/en/passwords.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/auth/lang/en/validation.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/auth/login-page/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/auth/login-page/css/my-login.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/auth/login-page/css/my-login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/auth/login-page/hrm.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/auth/sass/_variables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/auth/sass/app.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/call-center/leads/leads-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/call-center/leads/leads-list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/policies/offer-letter-create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/policies/offer-letter-create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/setup/super-admin-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/setup/super-admin-sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/callcenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/callcenter.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/autoload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +241,8 @@
       <workItem from="1664775819046" duration="25102000" />
       <workItem from="1664860549495" duration="16808000" />
       <workItem from="1664946833230" duration="23414000" />
-      <workItem from="1664977280603" duration="1265000" />
+      <workItem from="1664977280603" duration="2474000" />
+      <workItem from="1665034229094" duration="12719000" />
     </task>
     <servers />
   </component>
@@ -318,12 +319,21 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php</url>
-          <line>455</line>
+          <line>409</line>
           <properties>
             <option name="className" value="\App\Http\Controllers\CallCenter\CallCenterLeadsController" />
             <option name="methodName" value="deleteLeads" />
           </properties>
           <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php</url>
+          <line>343</line>
+          <properties>
+            <option name="className" value="\App\Http\Controllers\CallCenter\CallCenterLeadsController" />
+            <option name="methodName" value="editLeeds" />
+          </properties>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/accounts/printer/print-expense-summary.blade.php</url>

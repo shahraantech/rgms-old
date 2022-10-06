@@ -63,7 +63,7 @@ Route::any('saveMeetings', [CallCenterLeadsController::class, 'saveMeetings']);
     Route::any('editLeadsInfo', [CallCenterLeadsController::class, 'editLeadsInfo']);
     Route::any('update-leads-status', [CallCenterLeadsController::class, 'updateLeadsStatus']);
 
-    Route::any('save-leads-status', [CallCenterLeadsController::class, 'saveLeadsStatus']);
+    Route::any('save-leads-status', [CallCenterLeadsController::class, 'saveLeadRemarks']);
     Route::any('lead-detail/{id}', [CallCenterLeadsController::class, 'leadDetail']);
     Route::any('qa-feedback', [CallCenterLeadsController::class, 'qaFeedback']);
     Route::any('meet-detail/{id}', [CallCenterLeadsController::class, 'meetdDetail']);

@@ -297,7 +297,6 @@ class LeadsController extends Controller
             $file->move('storage/app/public/uploads/leedRecording/', $filename);
             $app->audio = $filename;
         }
-
         $app->lead_id = $lead_id;
         $app->agent_id = $emp_id;
         $app->temp_id = $temp_id;
@@ -307,6 +306,7 @@ class LeadsController extends Controller
         $app->followup_date = ($follow_date) ? $follow_date : '';
         $app->follow_time = ($time) ? $time : '';
         $app->lead_type = ($lead_type) ? 1 : 0;
+        $app->guard = 'app';
 
         if ($app->save()) {
             if($appLeadFind==1) {

@@ -36,6 +36,7 @@ class LeadsMarketingImport implements ToModel, WithHeadingRow
                 $leads->lead_type = $row['lead_type'];
                 $leads->interest = $row['interest'];
                 $leads->user_id = Auth::user()->id;
+                $leads->upload_via ='excel';
                 $leads->save();
 
                 $resLead = LeadSetting::first();
