@@ -80,10 +80,17 @@ class ApprochedLeads extends Model
     public static function getEmpOverDueLeads($agent_id,$purpose)
     {
         $qry= ApprochedLeads::Query();
-        $qry=$qry->whereDate('followup_date', '<', Carbon::today());
-        $qry=$qry->where('agent_id',$agent_id);
-        $qry=$qry->where('status', 0);
-        $qry=$qry->where('lead_type', 0)->with('leads','leads.cityname');
+        $qry =$qry->join('assigned_leads', 'assigned_leads.lead_id','=','approched_leads.lead_id');
+        $qry=$qry->whereDate('approched_leads.followup_date', '<', Carbon::today());
+        $qry=$qry->where('assigned_leads.agent_id',$agent_id);
+        $qry=$qry->where('approched_leads.status', 0);
+        $qry=$qry->where(
+        function($query) {
+            return $query
+                ->where('approched_leads.temp_id','!=',9)
+                ->where('approched_leads.temp_id','!=',10);
+        });
+        $qry=$qry->where('approched_leads.lead_type', 0)->with('leads','leads.cityname');
         ($purpose=='counting')? $qry=$qry->count():$qry=$qry->paginate(20);
         return $qry;
     }

@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\CompanyBranch;
+use App\Models\Loged_history;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -77,7 +79,6 @@ class RegisterController extends Controller
     //signup
     public function signup(\Illuminate\Http\Request $request)
     {
-
         $request->all();
         $com=Company::saveCompany($request);
         $comBranch=CompanyBranch::saveCompanyBranch($com->id,$request);
@@ -85,8 +86,13 @@ class RegisterController extends Controller
         $user= User::create([
             'name' =>$request->name,
             'email' =>$request->email,
-            'password' => Hash::make($request->email),
+            'password' => Hash::make($request->password),
+            'role' => 'super-admin',
+            'mh' => $com->id,
         ]);
-        return redirect('/');
+
+        auth()->attempt(array('email' => $request->email, 'password' =>$request->password));
+            Loged_history::createLogedInHistory('web', $request->lat, $request->long, Auth::user()->id, $request->address);
+            return redirect('/');
     }
 }

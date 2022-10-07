@@ -23,28 +23,22 @@ class UserController extends Controller
             $qry->when($request->company_id, function($query, $company_id) {
                 return $query->where('employees.company_id', $company_id);
             });
-
             $qry->when($request->desg_id, function($query, $desg_id) {
                 return $query->where('employees.desg_id', $desg_id);
             });
-
             $qry->when($request->name, function($query, $name) {
                 return $query->where('employees.name', $name);
             });
-
             $data = $qry->get();
             return response()->json($data);
-
         }
         $data['company'] = Company::all();
         $data['department'] = Department::all();
         return view('users.index', compact('data'));
     }
-
     //udpate user role
     public  function changeRole(Request $request)
     {
-
         $user = User::find($request->id);
         $user->role = $request->value;
         if ($user->save()) {

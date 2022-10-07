@@ -1,17 +1,14 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>RGMS</title>
-
     <link rel="stylesheet" href="{{ asset('public/assets/auth/login-page/css/register.css')}}">
     <link rel="stylesheet" href="{{ asset('public/assets/auth/login-page/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{ asset('public/assets/auth/login-page/css/animate.css')}}">
-
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/assets/img/logo/favicon.png') }}">
 </head>
-
 <body class="my-login-page">
 <div class="container">
     <div class="row justify-content-center">
@@ -85,7 +82,8 @@
                             </div>
                         </div>
                         <div class="form-group mt-3 mb-3">
-                            <button type="submit" class="btn btn-primary form-control">
+                            <button type="submit" class="btn btn-primary form-control" style="background: linear-gradient(to right bottom, #2eaafa, #0a8be5, #006dce, #0e4eb4, #1f2f98);
+	border: 1px solid #2EAAFA;">
                                 Register
                             </button>
                         </div>

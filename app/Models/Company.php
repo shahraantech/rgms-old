@@ -23,7 +23,7 @@ class Company extends Model
         $com=new Company();
         $com->name=$request->company_name;
         $com->working_days=26;
-        $com->allow_holidays=26;
+        $com->allow_holidays=1;
         $com->lat=$request->lat;
         $com->lang=$request->long;
         $com->address=$request->address;

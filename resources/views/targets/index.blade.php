@@ -53,8 +53,6 @@
                                         <th>Action </th>
                                     </tr>
                                     </thead>
-
-
                                     <tbody>
                                     @php $c=0; @endphp
                                     @isset($data['targets'])
