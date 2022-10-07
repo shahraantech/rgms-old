@@ -93,7 +93,7 @@ Route::group(['middleware' => ['auth', 'can:isAdmin']], function () {
     Route::post('/save-desig', [DesignationController::class, 'saveDesig']);
     Route::get('/delete-designation', [DesignationController::class, 'deleteDesignation']);
     Route::get('/edit-designation', [DesignationController::class, 'editDesignation']);
-    Route::get('/update-desig', [DesignationController::class, 'updateDesignation']);
+    Route::post('/update-desig', [DesignationController::class, 'updateDesignation']);
 
 
     Route::get('/policies', [OnboardingController::class, 'index']);
@@ -169,7 +169,7 @@ Route::group(['middleware' => ['auth', 'can:isAdmin']], function () {
 
     Route::get('/trainers', [TrainerController::class, 'index']);
     Route::get('/trainersList', [TrainerController::class, 'trainersList']);
-    Route::post('/trainers', [TrainerController::class, 'saveTrainers']);
+    Route::post('/save-trainers', [TrainerController::class, 'saveTrainers']);
     Route::get('/edit-trainers', [TrainerController::class, 'editTrainers']);
     Route::post('/update-trainers', [TrainerController::class, 'updateTrainers']);
     Route::get('/delete-trainers/{id}', [TrainerController::class, 'deleteTrainers']);

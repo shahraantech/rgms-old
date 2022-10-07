@@ -181,7 +181,7 @@
                             </div>
                         </div>
                         <div class="submit-section">
-                            <button class="btn btn-primary submit-btn" type="submit">Save</button>
+                            <button class="btn btn-primary submit-btn cv_bank_btn" type="submit">Save</button>
                         </div>
                     </form>
                 </div>
@@ -332,6 +332,12 @@
 
         //Datatables
         $('#datatable').DataTable();
+
+        $('.cv_bank_btn').on('click', function() {
+        $(".cv_bank_btn").prop("disabled", true);
+        $(".cv_bank_btn").html("Please wait...");
+        $('#applyJobForm1').submit();
+    });
 
     });
 </script>

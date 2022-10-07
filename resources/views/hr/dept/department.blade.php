@@ -89,13 +89,14 @@
                             </div>
                             <div class="form-group">
                                 <label>Department Name <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" name="dept_name" required>
+                                <input class="form-control" type="text" name="dept_name" placeholder="Department Name"
+                                    required>
                                 <div class="invalid-feedback">
                                     Please enter department name.
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn btn-save-dept135" type="submit"
+                                <button class="btn btn-primary submit-btn btn-save-dept135 btn_department" type="submit"
                                     id="saveform">Save</button>
                             </div>
                         </form>
@@ -131,7 +132,8 @@
                                 <input class="form-control" type="text" name="edit_dept_name">
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn" id="btnUpdate" type="button">Update</button>
+                                <button class="btn btn-primary submit-btn update_department" id="btnUpdate"
+                                    type="button">Save Changes</button>
                             </div>
                         </form>
                     </div>
@@ -224,41 +226,46 @@
                 });
             }
 
-            $('#deptForm').unbind().on('submit', function(e) {
+            $('#deptForm').on('submit', function(e) {
                 e.preventDefault();
-                var formData = $('#deptForm').serialize();
+
+                let formData = new FormData($('#deptForm')[0]);
+
                 $.ajax({
-                    type: 'ajax',
-                    method: 'post',
+                    type: "POST",
                     url: '{{ url('save-department') }}',
                     data: formData,
-                    async: false,
-                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('.btn_department').text('Saving...');
+                        $(".btn_department").prop("disabled", true);
+                    },
                     success: function(data) {
-
-                        // if(data.errors) {
-                        //     toastr.error(data.errors['dept_name']);
-                        // }
 
                         if (data.success) {
                             getDept();
                             $('#deptForm')[0].reset();
                             $('#modalDismiss').click();
                             toastr.success(data.success);
+                            $('.btn_department').text('Save');
+                            $(".btn_department").prop("disabled", false);
                         }
                         if (data.errors) {
                             toastr.error(data.errors);
+                            $('.btn_department').text('Save');
+                            $(".btn_department").prop("disabled", false);
                         }
-
-
-
                     },
 
                     error: function() {
                         toastr.error('something went wrong');
-
+                        $('.btn_department').text('Save');
+                        $(".btn_department").prop("disabled", false);
                     }
-
                 });
 
 
@@ -292,9 +299,6 @@
                 });
             });
 
-
-
-
             $('#deptTable').on('click', '.btnEditDept', function() {
 
                 var dept_id = $(this).attr('data');
@@ -318,7 +322,7 @@
                             $('select[name="company_id"]')
                                 .append(
                                     `<option value="${comp.id}" ${comp.id == data.dept.company_id ? 'selected' : ''}>${comp.name}</option>`
-                                    )
+                                )
                         });
                         $('input[name=edit_dept_name]').val(data.dept.departments);
 
@@ -329,40 +333,57 @@
 
                 });
 
-                $('#btnUpdate').unbind().click(function() {
-
-                    var formData = $('#editDeptForm').serialize();
+            });
 
 
-                    $.ajax({
 
-                        url: '{{ url('/update-department') }}',
-                        type: 'get',
-                        async: false,
-                        dataType: 'json',
-                        data: formData,
-                        success: function(data) {
+            $('.update_department').on('click', function(e) {
+                e.preventDefault();
 
-                            if (data.errors) {
-                                toastr.error(data.errors);
-                            }
 
-                            if (data.success) {
-                                getDept();
-                                $('#btnDissmissEdit').click();
-                                //$('#editDeptForm')[0].reset();
+                let EditFormData = new FormData($('#editDeptForm')[0]);
 
-                                toastr.success('Save changes successfully');
-                            }
+                $.ajax({
 
-                        },
-                        error: function() {
-                            toastr.error('Something went wrong');
+                    type: "POST",
+                    url: '{{ url('/update-department') }}',
+                    data: EditFormData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    beforeSend: function() {
+                        $('.update_department').text('Saving...');
+                        $(".update_department").prop("disabled", true);
+                    },
+                    success: function(data) {
+
+                        if (data.errors) {
+                            toastr.error(data.errors);
+                            $('.update_department').text('Save Changes');
+                            $(".update_department").prop("disabled", false);
                         }
 
-                    });
+                        if (data.success) {
+                            getDept();
+                            $('#btnDissmissEdit').click();
+                            $('#editDeptForm')[0].reset();
+                            toastr.success('Save changes successfully');
+                            $('.update_department').text('Save Changes');
+                            $(".update_department").prop("disabled", false);
+                        }
+
+                    },
+                    error: function() {
+                        toastr.error('Something went wrong');
+                        $('.update_department').text('Save Changes');
+                        $(".update_department").prop("disabled", false);
+                    }
 
                 });
+
             });
 
             //Datatables

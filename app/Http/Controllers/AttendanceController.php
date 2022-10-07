@@ -431,7 +431,6 @@ class AttendanceController extends Controller
     {
         $employee = Employee::get();
         $current_date = date('Y-m-d');
-        // dd(date('Y-d-m'));
         foreach ($employee as $val) {
             $attt = Attendance::where('emp_id', $val->id)
                 ->where('date', $current_date)->first();
@@ -439,7 +438,7 @@ class AttendanceController extends Controller
             if (isset($attt)) {
                 // $today=new Attendance();
 
-                reponse('Attendance Already ');
+                echo 'Attendance Already';
             } else {
                 $att = new Attendance();
                 $att->emp_id = $val->id;
@@ -451,6 +450,7 @@ class AttendanceController extends Controller
                 $att->marked_by = 'admin';
                 $att->guard = 'web';
                 $att->save();
+                echo 'Success';
             }
         }
     }
@@ -458,8 +458,7 @@ class AttendanceController extends Controller
     public function checkoutReport(Request $request)
     {
         $qry = Attendance::orderBy('date', 'ASC');
-        if($request->isMethod('post'))
-        {
+        if ($request->isMethod('post')) {
             $qry->when($request->emp_id, function ($query, $emp_id) {
                 return $query->where('emp_id', '=', $emp_id);
             });
