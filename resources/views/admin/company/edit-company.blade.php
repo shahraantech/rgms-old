@@ -101,7 +101,7 @@
 
                             <div class="col-md-12">
                                 <div class="submit-section">
-                                    <button class="btn btn-primary" type="submit">Update Now</button>
+                                    <button class="btn btn-primary company_update" type="submit">Save Changes</button>
                                 </div>
                             </div>
 
@@ -169,5 +169,13 @@
             $("#long_area").removeClass("d-none");
         });
     }
+
+
+    $('.company_update').on('click', function() {
+        $(".company_update").prop("disabled", true);
+        $(".company_update").html("Please wait...");
+        $('#addCompanyForm').submit();
+    });
+
 </script>
 @endsection

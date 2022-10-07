@@ -53,7 +53,6 @@ Route::group(['middleware' =>['auth']], function () {
     Route::post('/update-employee', [EmployeeController::class, 'updateEmployee']);
 
 
-
     Route::get('get-vendors-name', [VendorsController::class, 'getVendorsName']);
     Route::get('get-clients-name', [VendorsController::class, 'getClientsName']);
     Route::get('get-buildings', [BuilderController::class, 'getBuildings']);

@@ -74,7 +74,7 @@
 
 
                                 <div class="submit-section">
-                                    <button class="btn btn-primary submit-btn" type="submit" id="btnSubmit">Update</button>
+                                    <button class="btn btn-primary submit-btn btn_update_polieces" type="submit" id="btnSubmit">Save Changes</button>
                                 </div>
                             </form>
 
@@ -142,6 +142,14 @@
         window.location.href=url;
 
         @endif
+
+
+
+        $('.btn_update_polieces').on('click', function() {
+        $(".btn_update_polieces").prop("disabled", true);
+        $(".btn_update_polieces").html("Please wait...");
+        $('#newHiringForm').submit();
+        });
 
     </script>
 

@@ -41,7 +41,8 @@
                             <li class="submenu">
                                 <a href="#"> <span> HRM</span> <span class="menu-arrow"></span></a>
                                 <ul>
-                                    <li><a href="{{ url('/departments') }}">Department/Designation</a></li>
+                                    <li><a href="{{ url('/departments') }}">Department</a></li>
+                                    <li><a href="{{ url('/designation') }}">Designation</a></li>
                                     <li><a href="{{ url('/grades') }}">Grades</a></li>
                                     <li><a href="{{ url('/employees') }}">Add Employee</a></li>
 

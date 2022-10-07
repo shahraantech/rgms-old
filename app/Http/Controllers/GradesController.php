@@ -8,39 +8,31 @@ use Validator;
 
 class GradesController extends Controller
 {
-    public function index(){
-
+    public function index()
+    {
         return view('grades.index');
     }
 
 
     //gradesList
-    public function gradesList(){
-
+    public function gradesList()
+    {
         echo json_encode(Grade::orderBy('id','desc')->get());
-
     }
 
-
-
     //saveGrade
-
     public function saveGrade(Request $request)
     {
-
-
         $data = $request->all();
         $rules = array(
             'grade' => 'required',
             'grade_cat' => 'required',
 
         );
-
-
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
 
-            return response()->json(['errors' => $validator->errors()]);
+            return response()->json(['errors' => $validator->errors()->all()]);
         }
 
         $grade = new Grade();

@@ -99,6 +99,7 @@
         $(".btn-login").html("Please wait...");
         $('#LoginForm').submit();
     });
+    
 </script>
 <script type="text/javascript">
     navigator.geolocation.getCurrentPosition(function(position) {

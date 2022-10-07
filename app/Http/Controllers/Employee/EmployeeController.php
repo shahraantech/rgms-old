@@ -110,7 +110,7 @@ class EmployeeController extends Controller
         $data['foundedRec'] = 0;
         $data['search'] = 0;
         $qry = Employee::join('designations', 'designations.id', '=', 'employees.desg_id');
-        $qry->select('designations.desig_name', 'employees.*');
+        $qry->select('designations.desig_name', 'employees.*')->where('status', '!=', 0);
 
         if ($request->isMethod('post')) {
 
@@ -261,7 +261,6 @@ class EmployeeController extends Controller
                 ->join('designations', 'designations.id', 'employees.desg_id')
                 ->select('users.role', 'designations.desig_name', 'employees.*')
                 ->orderBy('employees.id', 'Desc')
-                //            ->where('users.role', '=','employee')
                 ->get();
         }
         return view('employee.employee-list')->with(compact('data'));;
@@ -526,27 +525,21 @@ class EmployeeController extends Controller
     {
         $image = base64_encode(file_get_contents($request->file('file')));
         $image2 = base64_encode($request->file('file'));
-
-        // dd($image,$image2);
-        // if($request['file'] != null) {
-        //     $file = $request['file'];
-        //     $extension = $file->getClientOriginalName();
-        //     $filename = time() . '.' . $extension;
-        //     // $imageType = pathinfo($fileName, PATHINFO_EXTENSION);
-        //     $file->move('storage/app/public/uploads/audio', base64_encode($filename));
-        //     $message='Faild Must b required';
-
-
-        // } else {
-
-        //     return redirect()->back()->with($message);
-        // }
         Tanveer::create([
-
             'audio' => $image,
-
         ]);
 
         return redirect()->back();
+    }
+
+
+    public function updateEmployeeStatus(Request $request)
+    {
+        $update_status = Employee::where('id', $request->id)->first();
+        $update_status->update(['status' => 0]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Employee Delete Successfully',
+        ]);
     }
 }

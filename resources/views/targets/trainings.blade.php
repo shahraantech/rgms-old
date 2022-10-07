@@ -267,7 +267,7 @@
                             <img id="loader" class="center" height="60px" width="90px" src=public/assets/img/loader/loader.gif style="display: none" />
                         </center>
                         <div class="submit-section">
-                            <button class="btn btn-primary submit-btn" type="submit" id="btnSubmit">Submit</button>
+                            <button class="btn btn-primary submit-btn" type="submit" id="btnSubmit">Save</button>
                         </div>
                     </form>
 
@@ -386,7 +386,7 @@
         $('#trainingForm').unbind().on('submit', function(e) {
             e.preventDefault();
             $("#btnSubmit").attr("disabled", true);
-            $('#btnSubmit').text('....');
+            $('#btnSubmit').text('Saving...');
 
             var formData = $('#trainingForm').serialize();
 
@@ -398,11 +398,6 @@
                 data: formData,
                 async: false,
                 dataType: 'json',
-                beforeSend: function() {
-
-
-                    $('#loader').show();
-                },
                 success: function(data) {
 
 
@@ -412,6 +407,7 @@
                         $('.close').click();
                         toastr.success('Record save successfully');
                         window.location.reload();
+                        $('#btnSubmit').text('Save');
                     }
 
 
@@ -419,12 +415,11 @@
 
                 error: function() {
                     toastr.error('something went wrong');
-
+                    $('#btnSubmit').text('Save');
                 },
                 complete: function() {
                     $("#btnSubmit").attr("disabled", false);
-                    $('#loader').hide();
-
+                    $('#btnSubmit').text('Save');
                 },
 
             });

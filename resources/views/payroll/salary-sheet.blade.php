@@ -42,11 +42,11 @@
                 <div class="card-header">
 
                     <div class="col-auto float-left mr-auto">
-                        <form action="{{ url('salary-sheet') }}" method="post">
+                        <form action="{{ url('salary-sheet') }}" method="post" id="salarySheetForm">
                             @csrf
                             <div class="row" style="display: flex">
 
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
 
                                         <select name="company_id" class="form-control selectpicker" data-container="body"
@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <select name="month" class="form-control">
                                             <option value="" selected disabled>Month</option>
@@ -95,9 +95,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-1">
-                                    <div class="form-group ml-2" style="margin-top:1px">
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+                                <div class="col-md-3">
+                                    <div class="form-group" style="margin-top:1px">
+                                        <button type="submit" class="btn btn-primary sheet_search"><i class="fa fa-search"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +119,8 @@
                                 <tr>
                                     <th colspan="16">
                                         <h5 class="text-white mt-2 salary">SALARY SHEET OF
-                                            {{ empty($data['company_name']) ? '' : strtoupper($data['company_name']) }} STAFF
+                                            {{ empty($data['company_name']) ? '' : strtoupper($data['company_name']) }}
+                                            STAFF
                                             FOR THE MONTH OF {{ date('M Y') }}</h5>
                                     </th>
                                 </tr>
@@ -161,185 +162,176 @@
                                         @endphp
 
 
-                                            <tr>
-                                                <td colspan="16" class="font-weight-bold text-center">{{ $dept->departments }}
-                                                </td>
-                                            </tr>
-                                            @foreach ($emp as $emp)
-                                                @php
+                                        <tr>
+                                            <td colspan="16" class="font-weight-bold text-center">{{ $dept->departments }}
+                                            </td>
+                                        </tr>
+                                        @foreach ($emp as $emp)
+                                            @php
                                                 $c++;
+                                                
+                                            @endphp
 
 
+                                            <?php
+                                            $attendace1 = App\Models\Attendance::where('emp_id', $emp->id)
+                                                ->where('status', '1')
+                                                ->where('attendance_month', $month)
+                                                ->count();
+                                            $attendace2 = App\Models\Attendance::where('emp_id', $emp->id)
+                                                ->where('status', '2')
+                                                ->where('attendance_month', $month)
+                                                ->count();
+                                            
+                                            $attendace = App\Models\Attendance::where('emp_id', $emp->id)
+                                                ->where('status', '3')
+                                                ->where('attendance_month', $month)
+                                                ->count();
+                                            
+                                            $weekly = $month . '-' . $data['year'];
+                                            
+                                            $totalSundaysOfThisMonth = getNumberOfDays(1, $date = $weekly, $NameOfDay = 'sunday');
+                                            
+                                            //
+                                            //  echo $total_work_days;
+                                            //  echo  'total_work_days'.$total_work_days;
+                                            $total_work_days = $attendace + $attendace2 + $attendace1;
+                                            
+                                            $salary = $emp->gross_salary / 30;
+                                            //  echo 'sel'.$salary;
+                                            //    $dasy=\Carbon\Carbon::createFromFormat('Y-m-d',$month)->format('d-m-Y');
+                                            //  echo 'days'.$month;
+                                            $emp_created = $emp->created_at;
+                                            $d = new DateTime('first day of this month');
+                                            // echo $emp_created->format('jS, F Y');
+                                            $total_salary = (int) $salary * (int) $total_work_days;
+                                            $newonee = App\Models\Attendance::where('attendance_date', '>=', '1')
+                                                ->where('attendance_date', '<=', '31')
+                                                ->where('emp_id', $emp->id)
+                                                ->where('attendance_month', $month)
+                                                ->get();
+                                            
+                                            // echo  'Name '.$emp->name.'dayof month'.$totalSundaysOfThisMonth.' Total works days'.$total_work_days.' Total_salry'.$total_salary."<br>";
+                                            
+                                            // echo  $emp->name;
+                                            
+                                            ?>
+
+
+                                            <tr>
+                                                <td>{{ $c }}</td>
+                                                <td>{{ $emp->name }}</td>
+                                                <td>{{ $emp->getDesignation['desig_name'] }}</td>
+                                                <td>{{ $emp->gross_salary }}</td>
+                                                <td>30</td>
+
+
+                                                @php
+                                                    $month = $data['month'];
+                                                    $year = $data['year'];
                                                 @endphp
 
 
-<?php
-                                $attendace1 = App\Models\Attendance::where('emp_id', $emp->id)->where('status','1')->where('attendance_month',$month)->count();
-                                $attendace2 = App\Models\Attendance::where('emp_id', $emp->id)->where('status','2')->where('attendance_month',$month)->count();
-
-                                $attendace = App\Models\Attendance::where('emp_id', $emp->id)->where('status','3')->where('attendance_month',$month)->count();
-
-                                $weekly=$month.'-'.$data['year'];
-
-$totalSundaysOfThisMonth = getNumberOfDays(1, $date = $weekly, $NameOfDay = 'sunday');
-
-//
-//  echo $total_work_days;
-//  echo  'total_work_days'.$total_work_days;
-$total_work_days= $attendace+$attendace2+$attendace1;
-
- $salary=$emp->gross_salary/30;
-//  echo 'sel'.$salary;
-//    $dasy=\Carbon\Carbon::createFromFormat('Y-m-d',$month)->format('d-m-Y');
-//  echo 'days'.$month;
-$emp_created=$emp->created_at;
-$d = new DateTime('first day of this month');
-    // echo $emp_created->format('jS, F Y');
-$total_salary= ((int)$salary * (int)$total_work_days);
-$newonee = App\Models\Attendance::where('attendance_date','>=','1')->where('attendance_date','<=','31')->where('emp_id', $emp->id)->where('attendance_month',$month)->get();
-
-// echo  'Name '.$emp->name.'dayof month'.$totalSundaysOfThisMonth.' Total works days'.$total_work_days.' Total_salry'.$total_salary."<br>";
-
-// echo  $emp->name;
-
-                                ?>
-
-
-                                                <tr>
-                                                    <td>{{ $c }}</td>
-                                                    <td>{{ $emp->name }}</td>
-                                                    <td>{{ $emp->getDesignation['desig_name'] }}</td>
-                                                    <td>{{ $emp->gross_salary }}</td>
-                                                    <td>30</td>
-
-
+                                                <td>
                                                     @php
-                                                        $month = $data['month'];
-                                                        $year = $data['year'];
+                                                        $empSal = countEmpSalaryForViews($emp_id = $emp->id, $month = $month, $year = date('Y'));
+                                                        $subTotal = $subTotal + $empSal['netSal'];
                                                     @endphp
-
-
-                                                    <td>
-                                                        @php
-                                                            $empSal = countEmpSalaryForViews($emp_id = $emp->id, $month = $month, $year = date('Y'));
-                                                            $subTotal = $subTotal + $empSal['netSal'];
-                                                      @endphp
-                                                      <?php
-                                                      $count1=0;
-                                                      $count2=0;
-                                                      $count3=0;
-                                                      $count4=0;
-                                                      $count5=0;
-
-                                                     ?>
-                                                     <?php
-
-
-                                                     $days = getSundays(2022,$month);
-                                                     print_r($days);
-
-
-
-
-
-
-                                                     ?>
-                                                        @foreach ($newonee as  $value)
-
-
+                                                    <?php
+                                                    $count1 = 0;
+                                                    $count2 = 0;
+                                                    $count3 = 0;
+                                                    $count4 = 0;
+                                                    $count5 = 0;
+                                                    
+                                                    ?>
+                                                    <?php
+                                                    
+                                                    $days = getSundays(2022, $month);
+                                                    print_r($days);
+                                                    
+                                                    ?>
+                                                    @foreach ($newonee as $value)
                                                         <?php
-                                                        $sdfnewonedata=$value->attendance_date."<br>";
-                                                    //    echo $days[0].$days[1].$days[2].$days[3].$days[4];
+                                                        $sdfnewonedata = $value->attendance_date . '<br>';
+                                                        //    echo $days[0].$days[1].$days[2].$days[3].$days[4];
                                                         ?>
 
-                                                        @if( $sdfnewonedata >=1 && $sdfnewonedata <=$days[0])
-                                                      <?php   $count1=1; ?>
-
+                                                        @if ($sdfnewonedata >= 1 && $sdfnewonedata <= $days[0])
+                                                            <?php $count1 = 1; ?>
                                                         @endif
 
-                                                        @if( $sdfnewonedata >=$days[0] && $sdfnewonedata <=$days[1])
-                                                        <?php   $count2=1; ?>
+                                                        @if ($sdfnewonedata >= $days[0] && $sdfnewonedata <= $days[1])
+                                                            <?php $count2 = 1; ?>
+                                                        @endif
 
-                                                          @endif
-
-                                                        @if( $sdfnewonedata >=$days[1] && $sdfnewonedata <=$days[2])
-                                                        <?php   $count3=1; ?>
-
-
+                                                        @if ($sdfnewonedata >= $days[1] && $sdfnewonedata <= $days[2])
+                                                            <?php $count3 = 1; ?>
                                                         @endif
 
 
 
-                                                        @if( $sdfnewonedata >=$days[2] && $sdfnewonedata <=$days[3])
-                                                        <?php   $count4=1; ?>
-
-
+                                                        @if ($sdfnewonedata >= $days[2] && $sdfnewonedata <= $days[3])
+                                                            <?php $count4 = 1; ?>
                                                         @endif
 
-                                                        @if( $sdfnewonedata <=$days[3] && $sdfnewonedata <=$days[4])
-                                                        <?php   $count5=1; ?>
-
-
+                                                        @if ($sdfnewonedata <= $days[3] && $sdfnewonedata <= $days[4])
+                                                            <?php $count5 = 1; ?>
                                                         @endif
+                                                    @endforeach
 
+                                                    {{ $total_work_days + $count1 + $count2 + $count3 + $count4 + $count5 }}
 
-                                                        @endforeach
+                                                </td>
+                                                <td> {{ $empSal['allowance'] }}</td>
+                                                <td>-</td>
+                                                <td> {{ $empSal['netSal'] }}</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
 
-                                                        {{ $total_work_days+$count1+$count2+$count3+$count4+$count5 }}
-
-                                                    </td>
-                                                    <td> {{ $empSal['allowance'] }}</td>
-                                                    <td>-</td>
-                                                    <td> {{ $empSal['netSal'] }}</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-
-                                                    <td>
-                                                        @if (isset($daysm))
-                                                        <?php echo $daysm; ?>
-                                                        @foreach ($newonee as  $value)
-                                                        <?php echo $value->attendance_date; ?>
-
-                                                        @endforeach
-                                                        @if($daysm >=15 && $daysm <=30)
-
-                                                        @php
-                                                         $salarynew=$emp->gross_salary/30;
-                                                        $total_work_daysn=(int)(4*$salarynew);
-
-                                                         $total_salary_new= ((int)$salary * (int)$total_work_days+$total_work_daysn);
-                                                        @endphp
-                                                          {{ $total_salary_new }}
-
-                                                        @else
-                                                        @php
-
-                                                        $salarynew=$emp->gross_salary/30;
-                                                        $total_work_daysn=(int)(2*$salarynew);
-                                                         $total_salary_new= ((int)$salary * (int)$total_work_days+2);
-                                                        @endphp
-                                                        {{ $total_salary_new }}
-                                                        @endif
-                                                        @endif
-
-                                                    </td>
-                                                    <td>{{ $emp->bank_ac_no }}</td>
-                                                    {{-- <td> {{ $total_salary }}</td> --}}
-                                                    <td colspan="5"></td>
-
-                                                </tr>
-                                            @endforeach
-
-
-                                            <tr>
                                                 <td>
-                                                    <div class="float-right"> <strong>Sub Total:</strong></div>
+                                                    @if (isset($daysm))
+                                                        <?php echo $daysm; ?>
+                                                        @foreach ($newonee as $value)
+                                                            <?php echo $value->attendance_date; ?>
+                                                        @endforeach
+                                                        @if ($daysm >= 15 && $daysm <= 30)
+                                                            @php
+                                                                $salarynew = $emp->gross_salary / 30;
+                                                                $total_work_daysn = (int) (4 * $salarynew);
+                                                                
+                                                                $total_salary_new = (int) $salary * (int) $total_work_days + $total_work_daysn;
+                                                            @endphp
+                                                            {{ $total_salary_new }}
+                                                        @else
+                                                            @php
+                                                                
+                                                                $salarynew = $emp->gross_salary / 30;
+                                                                $total_work_daysn = (int) (2 * $salarynew);
+                                                                $total_salary_new = (int) $salary * (int) $total_work_days + 2;
+                                                            @endphp
+                                                            {{ $total_salary_new }}
+                                                        @endif
+                                                    @endif
+
                                                 </td>
-                                                <td colspan="14">
-                                                    <div class="float-right"> <strong>{{ $subTotal }}</strong></div>
-                                                </td>
+                                                <td>{{ $emp->bank_ac_no }}</td>
+                                                {{-- <td> {{ $total_salary }}</td> --}}
+                                                <td colspan="5"></td>
+
                                             </tr>
+                                        @endforeach
+
+
+                                        <tr>
+                                            <td>
+                                                <div class="float-right"> <strong>Sub Total:</strong></div>
+                                            </td>
+                                            <td colspan="14">
+                                                <div class="float-right"> <strong>{{ $subTotal }}</strong></div>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 @endisset
                             </tbody>
@@ -353,6 +345,13 @@ $newonee = App\Models\Attendance::where('attendance_date','>=','1')->where('atte
 
                 $('#printBtn').on('click', function() {
                     $.print("#tablePrint");
+                });
+
+
+                $('.sheet_search').on('click', function() {
+                    $(".sheet_search").prop("disabled", true);
+                    $(".sheet_search").html("Searching...");
+                    $('#salarySheetForm').submit();
                 });
 
             });

@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="col-auto float-right ml-auto">
-                        <a href="{{url('/create-policies')}}" class="btn add-btn" ><i class="fa fa-plus"></i>Create New Policies</a>
+                        <a href="{{url('/create-policies')}}" class="btn add-btn" ><i class="fa fa-plus"></i></a>
 
                 </div>
             </div>

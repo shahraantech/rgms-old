@@ -32,7 +32,8 @@
         #social_icons #social-links {
             float: left;
         }
-        #social_icons #social-links{
+
+        #social_icons #social-links {
             text-align: center !important;
         }
     </style>
@@ -54,8 +55,7 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="{{ url('recruitment/new/form') }}" class="btn add-btn"><i class="fa fa-plus"></i>Create
-                            Job</a>
+                        <a href="{{ url('recruitment/new/form') }}" class="btn add-btn"><i class="fa fa-plus"></i></a>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-3">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <button type="submit" class="btn btn-primary search_job"><i class="fa fa-search"></i></button>
                             </div>
 
                         </div>
@@ -333,26 +333,25 @@
 
             //ajax call for serach record
 
-            $('#searchForm').unbind().on('submit', function(e) {
+            $('#searchForm').on('submit', function(e) {
                 e.preventDefault();
 
-                var formData = $('#searchForm').serialize();
+                let formData = new FormData($('#searchForm')[0]);
 
 
                 $.ajax({
-
-                    type: 'ajax',
-                    method: 'post',
                     url: '{{ url('recruitment/new') }}',
+                    type: "POST",
                     data: formData,
-                    async: false,
-                    dataType: 'json',
-                    beforeSend: function() {
-                        $('.btn-submit').append(
-                            "<img class='img-loader' style='height: 25px;width: 30px' src=public/assets/img/loader/loader.gif />"
-                        ).button();
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('.search_job').text('Searching...');
+                        $(".search_job").prop("disabled", true);
+                    },
                     success: function(data) {
 
                         var html = '';
@@ -415,20 +414,16 @@
 
 
                         $('#showData').html(html);
+                        $('.search_job').html('<i class="fa fa-search"></i>');
+                        $(".search_job").prop("disabled", false);
 
                     },
 
                     error: function() {
                         toastr.error('something went wrong');
-
+                        $('.search_job').html('<i class="fa fa-search"></i>');
+                        $(".search_job").prop("disabled", false);
                     },
-
-                    complete: function() {
-                        $('.img-loader').remove();
-
-
-                    },
-
                 });
 
 
