@@ -32,6 +32,7 @@ use App\Http\Controllers\CallCenter\PlatformController;
 use App\Http\Controllers\CallCenter\RoleController;
 use App\Http\Controllers\CallCenter\TempratureController;
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuotationController;
 
 

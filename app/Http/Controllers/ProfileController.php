@@ -164,4 +164,14 @@ class ProfileController extends Controller
     {
         return $request->all();
     }
+
+    public function updateBankDetail(Request $request)
+    {
+        $bank = Employee::find($request->emp_id);
+        $bank->bank_id = $request->bank_id;
+        $bank->bank_ac_no = $request->bank_ac_no;
+        $bank->update();
+
+        return back()->with('success', 'Bank Detail Added Successfully');
+    }
 }

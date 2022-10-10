@@ -205,9 +205,9 @@
                                 '<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>' +
                                 '<div class="dropdown-menu dropdown-menu-right">' +
                                 '<a class="dropdown-item btnEditDept" href="#" data-toggle="modal" data-target="#edit_department" data="' +
-                                data[i].id + '"><i class="fa fa-pencil m-r-5n "></i> Edit</a>' +
+                                data[i].id + '"><i class="la la-pencil" style="font-size:20px;"></i></a>' +
                                 '<a class="dropdown-item btnDelete" href="#" data-toggle="modal" data-target="#delete_department" data="' +
-                                data[i].id + '"><i class="fa fa-trash-o m-r-5 "></i> Delete</a>' +
+                                data[i].id + '"><i class="la la-trash" style="font-size:20px;"></i></a>' +
                                 '</div>' +
                                 '</div>' +
                                 '</td>' +

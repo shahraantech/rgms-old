@@ -92,7 +92,7 @@
                                         @foreach ($data['company_leaves'] as $key => $comp_leave)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ $comp_leave->leaveType->laeve_type }}</td>
+                                                <td>{{ $comp_leave->leaveType->laeve_type ?? '' }}</td>
                                                 <td>{{ $comp_leave->company->name }}</td>
                                                 <td>{{ $comp_leave->leave_days }}</td>
                                                 <td>{{ $comp_leave->created_at }}</td>
@@ -123,13 +123,15 @@
                 </div>
 
 
-                
+
             </div>
 
 
             <!-- Tab Content -->
         </div>
         <!-- /Page Content -->
+
+
         <!-- Add Leave Type Modal -->
         <div id="add_leave_type" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -141,7 +143,6 @@
                         </button>
                     </div>
                     <div class="modal-body">
-
                         <form method="post" action="" id="LeaveTypeForm" class="needs-validation">
                             @csrf
                             <div class="form-group">
@@ -151,7 +152,7 @@
                             </div>
 
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn" type="submit">Submit</button>
+                                <button class="btn btn-primary submit-btn btn_leave_type" type="submit">Save</button>
                             </div>
                         </form>
                     </div>
@@ -254,44 +255,46 @@
                     <div class="modal-body">
                         <div class="container">
                             <form action="{{ url('add-company-leaves') }}" method="post" id="AddCompanyLeave"
-                            class="needs-validation" novalidat>
-                            @csrf
-                            <table class="table table-bordered mt-5 table-style">
-                                <div class="col-md-12">
-                                    <label for="">Company</label>
-                                    <select name="company_id" class="select" required>
-                                        <option value="" selected disabled>Choose Company</option>
-                                        @isset($data)
-                                            @foreach ($data['company'] as $comp)
-                                                <option value="{{ $comp->id }}">{{ $comp->name }}</option>
-                                            @endforeach
-                                        @endisset
-                                    </select>
-                                </div>
-                                <thead>
-                                    <tr>
-                                        <th>Leave Type <span class="text-danger">*</span></th>
-                                        <th>Days <span class="text-danger">*</span></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tblPurchase">
-                                    <tr>
-                                        <td>
-                                            <select name="laeve_type[]" class="form-control item-id" required>
-                                                <option value="">Choose Item</option>
-                                                @isset($data['leavetypes'])
-                                                    @foreach ($data['leavetypes'] as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->laeve_type }}</option>
-                                                    @endforeach
-                                                @endisset
-                                            </select>
-                                        </td>
-                                        <td><input type="number" class="form-control" name="leave_days[]" required></td>
-                                        <td><button type="button" class="btn-success" id="addNewRow"><i
-                                                    class="fa fa-plus"></i></button> </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                class="needs-validation" novalidat>
+                                @csrf
+                                <table class="table table-bordered mt-5 table-style">
+                                    <div class="col-md-12">
+                                        <label for="">Company</label>
+                                        <select name="company_id" class="select" required>
+                                            <option value="" selected disabled>Choose Company</option>
+                                            @isset($data)
+                                                @foreach ($data['company'] as $comp)
+                                                    <option value="{{ $comp->id }}">{{ $comp->name }}</option>
+                                                @endforeach
+                                            @endisset
+                                        </select>
+                                    </div>
+                                    <thead>
+                                        <tr>
+                                            <th>Leave Type <span class="text-danger">*</span></th>
+                                            <th>Days <span class="text-danger">*</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tblPurchase">
+                                        <tr>
+                                            <td>
+                                                <select name="laeve_type[]" class="form-control item-id" required>
+                                                    <option value="">Choose Item</option>
+                                                    @isset($data['leavetypes'])
+                                                        @foreach ($data['leavetypes'] as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->laeve_type }}
+                                                            </option>
+                                                        @endforeach
+                                                    @endisset
+                                                </select>
+                                            </td>
+                                            <td><input type="number" class="form-control" name="leave_days[]" required>
+                                            </td>
+                                            <td><button type="button" class="btn-success" id="addNewRow"><i
+                                                        class="fa fa-plus"></i></button> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -302,7 +305,7 @@
                 </div>
             </div>
         </div>
-         <!-- Add Comany Leave Modal -->
+        <!-- Add Comany Leave Modal -->
 
 
 
@@ -343,11 +346,11 @@
             $(document).ready(function() {
 
                 toastr.options.timeOut = 4000;
-                    @if (Session::has('error'))
-                        toastr.error('{{ Session::get('error') }}');
-                    @elseif(Session::has('success'))
-                        toastr.success('{{ Session::get('success') }}');
-                    @endif
+                @if (Session::has('error'))
+                    toastr.error('{{ Session::get('error') }}');
+                @elseif (Session::has('success'))
+                    toastr.success('{{ Session::get('success') }}');
+                @endif
 
                 // Denotes total number of rows
                 var rowIdx = 0;
@@ -453,9 +456,9 @@
                                     '<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>' +
                                     '<div class="dropdown-menu dropdown-menu-right">' +
                                     '<a class="dropdown-item btn_edit_leaveType" href="#" data-toggle="modal"  data="' +
-                                    data[i].id + '"><i class="fa fa-pencil m-r-5n "></i> Edit</a>' +
+                                    data[i].id + '"><i class="la la-pencil" style="font-size: 20px;"></i></a>' +
                                     '<a class="dropdown-item btn_delete_leaveType" href="#" " data="' +
-                                    data[i].id + '"><i class="fa fa-trash-o m-r-5 "></i> Delete</a>' +
+                                    data[i].id + '"><i class="la la-trash" style="font-size: 20px;"></i></a>' +
                                     '</div>' +
                                     '</div>' +
                                     '</td>' +
@@ -475,19 +478,25 @@
                 }
 
                 //Add LeaveType
+
                 $('#LeaveTypeForm').on('submit', function(e) {
                     e.preventDefault();
 
-                    var formData = $('#LeaveTypeForm').serialize();
+                    let formData = new FormData($('#LeaveTypeForm')[0]);
 
                     $.ajax({
-
-                        type: 'ajax',
-                        method: 'post',
+                        type: "POST",
                         url: '{{ url('leaves-settings') }}',
                         data: formData,
-                        async: false,
-                        dataType: 'json',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        contentType: false,
+                        processData: false,
+                        beforeSend: function() {
+                            $('.btn_leave_type').text('Saving...');
+                            $(".btn_leave_type").prop("disabled", true);
+                        },
                         success: function(data) {
 
                             if (data.success) {
@@ -495,12 +504,15 @@
                                 $('#LeaveTypeForm')[0].reset();
                                 toastr.success(data.success);
                                 getLeaveType();
+                                $('.btn_leave_type').text('Save');
+                                $(".btn_leave_type").prop("disabled", false);
                             }
                         },
 
                         error: function() {
                             toastr.error('something went wrong');
-
+                            $('.btn_leave_type').text('Save');
+                            $(".btn_leave_type").prop("disabled", false);
                         }
 
                     });
@@ -743,8 +755,8 @@
             $('.leave_save').on('click', function() {
                 $(".leave_save").prop("disabled", true);
                 $(".leave_save").html("Saving...");
-            $('#AddCompanyLeave').submit();
-        });
+                $('#AddCompanyLeave').submit();
+            });
         </script>
 
 

@@ -190,22 +190,41 @@
                         <div class="card-body">
 
                             <h3 class="card-title">Bank information
+                                <a href="#" class="edit-icon" data-toggle="modal" data-target="#bank_info"><i
+                                        class="fa fa-plus"></i>
+                                </a>
                             </h3>
-                            <ul class="personal-info">
-                                <li>
-                                    <div class="title">Bank name</div>
 
-                                    <div class="text">
-                                        {{ empty($data['employee']->bank_id) ? '' : 'Meezan Bank' }}</div>
-                                </li>
-                                <li>
-                                    <div class="title">Bank account No.</div>
-                                    <div class="text">
-                                        {{ empty($data['employee']->bank_ac_no) ? '' : $data['employee']->bank_ac_no }}
-                                    </div>
-                                </li>
+                            <div class="experience-box">
+                                <ul class="experience-list">
 
-                            </ul>
+                                    @isset($data['qualification'])
+                                        @foreach ($data['qualification'] as $edu)
+                                            <li>
+                                                <div class="experience-user">
+                                                    <div class="before-circle"></div>
+                                                </div>
+
+                                                <div class="experience-content">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="project-info-box">
+                                                                <p class="text-secondary"><b>Bank Name:</b>
+                                                                    {{ empty($data['employee']->bank_id) ? '' : 'Meezan Bank' }}</p>
+                                                                <p class="text-secondary"><b>Bank account No :</b>
+                                                                    {{ empty($data['employee']->bank_ac_no) ? '' : $data['employee']->bank_ac_no }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </li>
+                                        @endforeach
+                                    @endisset
+
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -416,6 +435,49 @@
 
     </div>
 
+
+    <!-- Bank Informations Modal -->
+    <div class="modal fade" id="bank_info" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Bank Informations </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('update-bank-detail') }}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="emp_id" value="{{ $data['employee'] ? $data['employee']->id : '' }}">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label>Bank Name <span class="text-danger"></span></label>
+                                <select class="form-control " name="bank_id" required>
+                                    <option value="1">Choose Bank</option>
+                                    <option value="2">HBL</option>
+                                    <option value="3">Bank Al Habib</option>
+                                    <option value="4">Meezan</option>
+                                    <option value="4">MCB</option>
+                                    <option value="4">Islami Bank</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label>Account# <span class="text-danger"></span></label>
+                                <input class="form-control" type="number" name="bank_ac_no" placeholder="Bank Ac number" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Bank Informations Modal -->
 
     <!-- Education Informations Modal -->
     <div class="modal fade bd-example-modal-lg" id="education_info" tabindex="-1" role="dialog"

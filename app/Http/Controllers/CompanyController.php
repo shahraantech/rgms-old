@@ -18,8 +18,6 @@ class CompanyController extends Controller
 
     public function index(Request $request)
     {
-
-
         if ($request->ajax() && $request->isMethod('get')) {
             return Company::all();
         }
@@ -245,8 +243,7 @@ class CompanyController extends Controller
     public function deleteCompanyBranches(Request $request)
     {
         $comp_branch = CompanyBranch::find($request->id);
-        if($comp_branch->delete())
-        {
+        if ($comp_branch->delete()) {
             return response()->json([
                 'status' => 200,
                 'message' => 'company branch deleted Successfully',

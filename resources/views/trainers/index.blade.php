@@ -303,10 +303,10 @@
                                 '<div class="dropdown-menu dropdown-menu-right">' +
                                 '<a href="#" class="dropdown-item btn_edit_trainer" data="' + data[i]
                                 .id +
-                                '" id="btn_edit_clients"><i class="fa fa-pencil m-r-5n "></i> Edit</a>' +
+                                '" id="btn_edit_clients"><i class="la la-pencil" style="font-size: 20px;"></i></a>' +
                                 '<a href="" class="dropdown-item btn_delete_trainer" data="' + data[i]
                                 .id +
-                                '" id="btn_delete_clients"><i class="fa fa-trash-o m-r-5 "></i> Delete</a>' +
+                                '" id="btn_delete_clients"><i class="la la-trash" style="font-size: 20px;"></i></a>' +
 
                                 '</tr>';
                         }

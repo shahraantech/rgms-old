@@ -86,8 +86,8 @@
                                                     <div class="dropdown dropdown-action">
                                                     <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="#" class="dropdown-item btn_edit_target" data="{{ $target->id }}"><i class="fa fa-pencil m-r-5n "></i> Edit</a>
-                                                    <a href="#" class="dropdown-item btn_delete_target" data="{{ $target->id }}"><i class="fa fa-trash-o m-r-5 "></i>Delete</a>
+                                                    <a href="#" class="dropdown-item btn_edit_target" data="{{ $target->id }}"><i class="la la-pencil" style="font-size: 20px;"></i></a>
+                                                    <a href="#" class="dropdown-item btn_delete_target" data="{{ $target->id }}"><i class="la la-trash" style="font-size: 20px;"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

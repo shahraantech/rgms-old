@@ -186,38 +186,6 @@
                                                     value="{{ $employeeData->doj }}">
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="form-group col-sm-6">
-                                                <label>Bank Name <span class="text-danger"></span></label>
-                                                <select class="select" name="bank_id" required>
-                                                    <option value="1" <?php
-                                                    if ($employeeData->bank_id == 1) {
-                                                        echo 'selected';
-                                                    }
-                                                    ?>>Choose Bank</option>
-                                                    <option value="2" <?php
-                                                    if ($employeeData->bank_id == 2) {
-                                                        echo 'selected';
-                                                    }
-                                                    ?>>HBL</option>
-                                                    <option value="3" <?php
-                                                    if ($employeeData->bank_id == 3) {
-                                                        echo 'selected';
-                                                    }
-                                                    ?>>Bank Al Habib</option>
-                                                    <option value="4" <?php
-                                                    if ($employeeData->bank_id == 4) {
-                                                        echo 'selected';
-                                                    }
-                                                    ?>>MCB</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label>Account# <span class="text-danger"></span></label>
-                                                <input class="form-control" type="number" name="bank_ac_no" required
-                                                    placeholder="Bank Ac number" value="{{ $employeeData->bank_ac_no }}">
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             @endforeach

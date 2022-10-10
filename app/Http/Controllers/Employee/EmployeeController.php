@@ -218,8 +218,6 @@ class EmployeeController extends Controller
             $emp->cnic = $request->cnic;
             $emp->phone = $request->phone;
             $emp->grade = $request->grade;
-            $emp->bank_id = $request->bank_id;
-            $emp->bank_ac_no = $request->bank_ac_no;
             $emp->marital_status = $request->marital_status;
             $emp->nationality = $request->nationality;
             $emp->gross_salary = $request->salary;
@@ -302,8 +300,6 @@ class EmployeeController extends Controller
         $emp->cnic = $request->cnic;
         $emp->phone = $request->phone;
         $emp->grade = $request->grade;
-        $emp->bank_id = $request->bank_id;
-        $emp->bank_ac_no = $request->bank_ac_no;
         $emp->marital_status = $request->marital_status;
         $emp->nationality = $request->nationality;
         $emp->gross_salary = $request->salary;

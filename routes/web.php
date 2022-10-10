@@ -44,6 +44,8 @@ Route::group(['middleware' =>['auth']], function () {
     Route::post('store-experience', [ProfileController::class, 'storeExperience']);
     Route::post('store-certification', [ProfileController::class, 'storeCertification']);
 
+    Route::post('update-bank-detail', [ProfileController::class, 'updateBankDetail']);
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 

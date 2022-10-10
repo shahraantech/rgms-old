@@ -47,7 +47,7 @@
                             </div>
 
                             <div class="col-md-5">
-                                <div class="form-group form-focus select-focus">
+                                <div class="form-group select-focus">
                                     <select  class="select floating emp_id" id="showEmployee" name="emp_id" required>
                                         <option value="">Select Employee</option>
 
