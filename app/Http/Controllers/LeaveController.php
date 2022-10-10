@@ -290,6 +290,12 @@ class LeaveController extends Controller
 
     public function offWeekStore(Request $request)
     {
+        $request->validate([
+            'company_id' => 'required',
+            'emp_id' => 'required',
+            'day_off' => 'required',
+        ]);
+
         if (!EmpWeekOff::where('emp_id', $request->emp_id)->orWhere('day_off', $request->day_off)->first()) {
             $size = count($request->emp_id);
             for ($i = 0; $i < $size; $i++) {

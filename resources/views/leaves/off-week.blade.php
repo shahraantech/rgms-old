@@ -93,18 +93,24 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form action="{{ url('off-week-store') }}" method="POST" class="needs-validation" novalidat
+                        <form action="{{ url('off-week-store') }}" method="POST" class="needs-validation" novalidate
                             style="margin: 15px" id="week_off_day_form">
                             @csrf
                             <table class="table table-bordered mt-5 table-style">
 
                                 <label for="">Company</label>
-                                <select name="company_id" class="form-control company_id" required>
+                                <select name="company_id" class="select company_id" required>
                                     <option value="" selected disabled>Choose Company</option>
                                     @foreach ($company as $comp)
                                         <option value="{{ $comp->id }}">{{ $comp->name }}</option>
                                     @endforeach
                                 </select>
+                                <div class="invalid-feedback">
+                                    Please Choose Company.
+                                </div>
+                                @error('company_id')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
 
                                 <thead>
                                     <tr>
@@ -121,6 +127,12 @@
                                                 <option value="">Choose employee</option>
 
                                             </select>
+                                            <div class="invalid-feedback">
+                                                Please Choose employee.
+                                            </div>
+                                            @error('emp_id')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </td>
                                         <td>
                                             <select name="day_off[]" class="form-control item-id" required>
@@ -133,6 +145,12 @@
                                                 <option value="Saturday">Saturday</option>
                                                 <option value="Sunday">Sunday</option>
                                             </select>
+                                            <div class="invalid-feedback">
+                                                Please Choose days.
+                                            </div>
+                                            @error('day_off')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </td>
 
                                         <td><button type="button" class="btn-success" id="addNewRow"><i
@@ -141,10 +159,12 @@
                                 </tbody>
 
                             </table>
+
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary week_save">Save</button>
+                        <button type="button" class="btn btn-primary week_save">Save</button>
                     </div>
                     </form>
                 </div>
@@ -167,7 +187,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form action="{{ url('update-off-week') }}" method="POST" class="needs-validation" novalidat
+                        <form action="{{ url('update-off-week') }}" method="POST" class="needs-validation" novalidate
                             id="update_week_off_day_form">
                             <input type="hidden" name="week_id">
                             @csrf
@@ -213,11 +233,6 @@
     </select>
 
     <!-- /Page Content -->
-
-
-
-
-
     <script type="text/javascript">
         $(function() {
             $('#addNewRow').on('click', function() {
@@ -237,6 +252,9 @@
                         <option value="">Choose employee</option>
 
                     </select>
+                    <div class="invalid-feedback">
+                        Please Choose employee.
+                    </div>
                 </td>
                 <td>
                     <select name="day_off[]" class="form-control item-id" required>
@@ -249,6 +267,9 @@
                         <option value="Saturday">Saturday</option>
                         <option value="Sunday">Sunday</option>
                     </select>
+                    <div class="invalid-feedback">
+                        Please Choose days.
+                    </div>
                 </td>
                 <td style="color:red;cursor: pointer" class="delete-row" title="Remove"><i class="fa fa-trash"></i>
                 </td>
@@ -266,7 +287,7 @@
             toastr.options.timeOut = 4000;
             @if (Session::has('error'))
                 toastr.error('{{ Session::get('error') }}');
-            @elseif(Session::has('success'))
+            @elseif (Session::has('success'))
                 toastr.success('{{ Session::get('success') }}');
             @endif
 

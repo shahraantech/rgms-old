@@ -144,18 +144,6 @@
 
                         <form method="post" action="" id="LeaveTypeForm" class="needs-validation">
                             @csrf
-                            {{--  --}}
-                            {{-- <div class="form-group"> --}}
-                            {{-- <label for="">Company</label> --}}
-                            {{-- <select name="company_id" class="form-control" required> --}}
-                            {{-- <option value="" selected disabled>Choose Company</option> --}}
-                            {{-- @isset($data) --}}
-                            {{-- @foreach ($data['company'] as $comp) --}}
-                            {{-- <option value="{{ $comp->id }}">{{ $comp->name }}</option> --}}
-                            {{-- @endforeach --}}
-                            {{-- @endisset --}}
-                            {{-- </select> --}}
-                            {{-- </div> --}}
                             <div class="form-group">
                                 <label>Leave Type <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" name="laeve_type" required
