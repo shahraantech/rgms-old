@@ -58,23 +58,24 @@
         <!-- /Page Content -->
 
 
+        <!-- Save Trainer Modal -->
         <div id="add_trainer" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add New Trainer</h5>
+                        <h5 class="modal-title">Edit Trainer</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" action="{{ url('trainers') }}" id="trainerForm" class="needs-validation"
-                            novalidate>
-                            @csrf
+                        <form method="POST" action="" id="trainerForm" class="needs-validation" novalidate>
+
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label class="col-form-label">First Name <span class="text-danger">*</span></label>
+                                        <label class="col-form-label">First Name <span
+                                                class="text-danger">*</span></label>
                                         <input class="form-control" type="text" name="f_name" required>
                                     </div>
                                 </div>
@@ -132,6 +133,8 @@
             </div>
         </div>
 
+        <!-- Save Trainer Modal -->
+
 
         <!-- Edit Trainer Modal -->
         <div id="edit_trainer_modal" class="modal custom-modal fade" role="dialog">
@@ -146,7 +149,6 @@
                     <div class="modal-body">
                         <form method="POST" action="" id="EditTrainerForm" class="needs-validation" novalidate>
                             <input type="hidden" name="trainer_id">
-                            <!-- @csrf -->
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -186,14 +188,13 @@
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn upate_trainer" type="submit">Update</button>
+                                <button class="btn btn-primary submit-btn upate_trainer" type="submit">Save Changes</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- Edit Trainer Modal -->
 
     </div>
@@ -208,63 +209,10 @@
 
             getTrainersList();
 
-
-            //add trainer
-            $('#trainerForm').on('submit', function(e) {
-                e.preventDefault();
-
-                let formData = new FormData($('#trainerForm')[0]);
-
-
-                $.ajax({
-                    ,
-                    url: '{{ url('save-trainers') }}',
-                    type: "POST",
-                    data: formData,
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function() {
-                        $('.btn_train').text('Saving...');
-                        $(".btn_train").prop("disabled", true);
-                    },
-                    success: function(data) {
-
-                        if (data.success) {
-                            getTrainersList();
-                            $('#trainerForm')[0].reset();
-                            $('.close').click();
-                            toastr.success('Record save successfully');
-                            $('.btn_train').text('Save');
-                            $(".btn_train").prop("disabled", false);
-
-                        }
-                        if (data.error) {
-                            $('.close').click();
-                            toastr.error(data.error);
-                            $('.btn_train').text('Save');
-                            $(".btn_train").prop("disabled", false);
-                        }
-
-
-                    },
-
-                    error: function() {
-                        toastr.error('something went wrong');
-                        $('.btn_train').text('Save');
-                        $(".btn_train").prop("disabled", false);
-                    }
-                });
-            });
-
-
             function getTrainersList() {
 
 
                 $.ajax({
-
                     url: '{{ url('/trainersList') }}',
                     type: 'get',
                     async: false,
@@ -322,6 +270,55 @@
                 });
             }
 
+
+            //add trainer
+            $('#trainerForm').on('submit', function(e) {
+                e.preventDefault();
+
+                let formData = new FormData($('#trainerForm')[0]);
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('save-trainers') }}",
+                    data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('.btn_train').text('Saving...');
+                        $(".btn_train").prop("disabled", true);
+                    },
+                    success: function(response) {
+
+                        if (response.status == 200) {
+                            toastr.success(response.message);
+                            $('.btn_train').text('Save');
+                            $(".btn_train").prop("disabled", false);
+                            $("#add_trainer").modal('hide');
+                            $('#trainerForm').find('input').val("");
+                            getTrainersList();
+                        }
+
+                        if (response.errors) {
+                            $('.btn_train').text('Save');
+                            $(".btn_train").prop("disabled", false);
+                            toastr.error(response.errors);
+                        }
+                    },
+                    error: function() {
+                        $('.btn_train').text('Save');
+                        $(".btn_train").prop("disabled", false);
+                        toastr.error('something went wrong');
+                    },
+                });
+
+            });
+
+
+
+
             //Edit trainer
             $('#trainerTable').on('click', '.btn_edit_trainer', function(e) {
                 e.preventDefault();
@@ -369,7 +366,7 @@
             //Update trainer
             $('.upate_trainer').on('click', function(e) {
                 e.preventDefault();
-                $('.upate_trainer').text('Updating...');
+                $('.upate_trainer').text('Saving...');
 
                 let EditFormData = new FormData($('#EditTrainerForm')[0]);
 
@@ -388,14 +385,14 @@
                         if (response.status == 200) {
                             $("#edit_trainer_modal").modal('hide');
                             $('#EditTrainerForm').find('input').val("");
-                            $('.upate_trainer').text('Update');
+                            $('.upate_trainer').text('Save Changes');
                             toastr.success(response.message);
                             getTrainersList();
                         }
                     },
                     error: function() {
                         toastr.error('something went wrong');
-                        $('.upate_trainer').text('Update');
+                        $('.upate_trainer').text('Save Changes');
                     }
                 });
 

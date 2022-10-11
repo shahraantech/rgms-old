@@ -32,10 +32,7 @@ class TargetController extends Controller
 
     public function index(Request  $request)
     {
-
-
         if ($request->isMethod('post')) {
-
 
             $data = $request->all();
             $rules = array(
@@ -71,7 +68,6 @@ class TargetController extends Controller
                 $team->target_in_numbers = $request->target_number;
                 $team->from = $request->from_date;
                 $team->to = $request->to_date;
-
                 $team->save();
             }
             return response()->json(['success' => 'Target created successfully'], 200);

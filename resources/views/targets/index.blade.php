@@ -8,15 +8,17 @@
                 -webkit-appearance: none;
                 margin: 0;
             }
+
             /* Firefox */
             input[type=number] {
                 -moz-appearance: textfield;
             }
+
             /* .target-img{
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            } */
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                } */
         </style>
         <!-- Page Content -->
         <div class="content container-fluid">
@@ -26,12 +28,13 @@
                     <div class="col">
                         <h3 class="page-title">Targets</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Targets</li>
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_leave" title="Add New Target"><i class="fa fa-plus"></i></a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_leave"
+                            title="Add New Target"><i class="fa fa-plus"></i></a>
                     </div>
                 </div>
             </div>
@@ -43,55 +46,59 @@
                             <div class="table-responsive">
                                 <table class="table table-striped mb-0 target-table" id="datatable">
                                     <thead>
-                                    <tr>
-                                        <th style="width: 30px;">#</th>
-                                        <th>Name</th>
-                                        <th></th>
-                                        <th>Target</th>
-                                        <th>From </th>
-                                        <th>To </th>
-                                        <th>Action </th>
-                                    </tr>
+                                        <tr>
+                                            <th style="width: 30px;">#</th>
+                                            <th>Name</th>
+                                            <th></th>
+                                            <th>Target</th>
+                                            <th>From </th>
+                                            <th>To </th>
+                                            <th>Action </th>
+                                        </tr>
                                     </thead>
 
 
                                     <tbody>
-                                    @php $c=0; @endphp
-                                    @isset($data['targets'])
-                                        @foreach ($data['targets'] as $target)
-                                            @php $c++; @endphp
-                                            <tr>
+                                        @php $c=0; @endphp
+                                        @isset($data['targets'])
+                                            @foreach ($data['targets'] as $target)
+                                                @php $c++; @endphp
+                                                <tr>
 
-                                                <td>{{ $c }}</td>
-
-
-
-                                                <td>
-                                                    @php
-                                                        ($target->agent_id)?$account_id=$target->agent_id:$account_id=$target->manager_id;
-                                                        ($target->agent_id)?$type='Source':$type='Manager';
+                                                    <td>{{ $c }}</td>
+                                                    <td>
+                                                        @php($target->agent_id)?$account_id=$target->agent_id:$account_id=$target->manager_id;
+                                                        ($target->agent_id)
+                                                        ?$type='Source':$type='Manager';
                                                         $emp = App\Models\Employee::find($account_id);
 
                                                         if ($emp) {
                                                         echo '<span class="badge bg-inverse-success">' . $emp->name. '</span>';
                                                         }
 
-                                                    @endphp
-                                                </td>
-                                                <td>{{ $type }}</td>
-                                                <td>{{ $target->target_in_numbers }} {{ strtoupper($target->target_type) }}'s</td>
-                                                <td>{{ $target->from }}</td>
-                                                <td>{{ $target->to }}</td>
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="#" class="dropdown-item btn_edit_target" data="{{ $target->id }}"><i class="la la-pencil" style="font-size: 20px;"></i></a>
-                                                    <a href="#" class="dropdown-item btn_delete_target" data="{{ $target->id }}"><i class="la la-trash" style="font-size: 20px;"></i></a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endisset
+                                                        @endphp
+                                                    </td>
+                                                    <td>{{ $type }}</td>
+                                                    <td>{{ $target->target_in_numbers }}
+                                                        {{ strtoupper($target->target_type) }}'s</td>
+                                                    <td>{{ $target->from }}</td>
+                                                    <td>{{ $target->to }}</td>
+                                                    <td class="text-right">
+                                                        <div class="dropdown dropdown-action">
+                                                            <a href="#" class="action-icon dropdown-toggle"
+                                                                data-toggle="dropdown" aria-expanded="false"><i
+                                                                    class="material-icons">more_vert</i></a>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                                <a href="#" class="dropdown-item btn_edit_target"
+                                                                    data="{{ $target->id }}"><i class="la la-pencil"
+                                                                        style="font-size: 20px;"></i></a>
+                                                                <a href="#" class="dropdown-item btn_delete_target"
+                                                                    data="{{ $target->id }}"><i class="la la-trash"
+                                                                        style="font-size: 20px;"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endisset
 
                                     </tbody>
                                 </table>
@@ -115,23 +122,25 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" id="targetForm" action="{{url('targets')}}" class="needs-validation" novalidate>
+                        <form method="post" id="targetForm" action="{{ url('targets') }}" class="needs-validation"
+                            novalidate>
                             @csrf
                             <div class="row">
                                 <div class="form-group col-sm-6">
                                     <select name="to_allocate" class="form-control selectpicker" data-container="body"
-                                            data-live-search="true">
+                                        data-live-search="true">
                                         <option value="">Choose One</option>
                                         <option value="1">Manager</option>
                                         <option value="2">Source</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-sm-6 manager_section" style="display: none">
-                                    <select name="manager_id" class="form-control selectpicker" data-container="body" data-live-search="true">
+                                    <select name="manager_id" class="form-control selectpicker" data-container="body"
+                                        data-live-search="true">
                                         <option value="">Choose Manager</option>
                                         @isset($data)
                                             @foreach ($data['manager'] as $manager)
-                                                <option value="{{$manager->leader_id}}">{{$manager->name}}</option>
+                                                <option value="{{ $manager->leader_id }}">{{ $manager->name }}</option>
                                             @endforeach
                                         @endisset
                                     </select>
@@ -140,11 +149,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-6 csr_section" style="display: none">
-                                    <select name="agent_id" class="form-control selectpicker" data-container="body" data-live-search="true">
+                                    <select name="agent_id" class="form-control selectpicker" data-container="body"
+                                        data-live-search="true">
                                         <option value="">Choose Agent</option>
                                         @isset($data)
                                             @foreach ($data['employee'] as $emp)
-                                                <option value="{{$emp->id}}">{{$emp->name}}</option>
+                                                <option value="{{ $emp->id }}">{{ $emp->name }}</option>
                                             @endforeach
                                         @endisset
                                     </select>
@@ -162,7 +172,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <input class="form-control" type="number" name="target_number" placeholder="Number of Sale or Meetings">
+                                    <input class="form-control" type="number" name="target_number"
+                                        placeholder="Number of Sale or Meetings">
                                 </div>
                             </div>
                             <div class="row">
@@ -217,7 +228,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <input class="form-control" type="number" name="target_number" placeholder="Number of Sale or Meetings">
+                                    <input class="form-control" type="number" name="target_number"
+                                        placeholder="Number of Sale or Meetings">
                                 </div>
                             </div>
                             <div class="row">
@@ -276,14 +288,14 @@
             });
 
             //company_id dependent dropdown for all employees
-            $('select[name=to_allocate]').change(function(){
-                var to_allocate=$('select[name=to_allocate]').val();
+            $('select[name=to_allocate]').change(function() {
+                var to_allocate = $('select[name=to_allocate]').val();
 
-                if(to_allocate==1) {
+                if (to_allocate == 1) {
 
                     $(".manager_section").css("display", "block");
                     $(".csr_section").css("display", "none");
-                }else{
+                } else {
                     $(".manager_section").css("display", "none");
                     $(".csr_section").css("display", "block");
                 }
@@ -291,14 +303,15 @@
             });
 
 
-            $('#targetForm').unbind().on('submit', function(e) {
-                e.preventDefault();
-                var formData = $('#targetForm').serialize();
-                $.ajax({
 
-                    type: 'ajax',
-                    method: 'post',
-                    url: '{{url("targets")}}',
+            $('#targetForm').on('submit', function(e) {
+                e.preventDefault();
+
+                let formData = new FormData($('#targetForm')[0]);
+
+                $.ajax({
+                    type: "POST",
+                    url: '{{ url('targets') }}',
                     data: formData,
                     async: false,
                     dataType: 'json',
@@ -348,8 +361,8 @@
                                     `<option value="sale" ${data.target.target_type == 'sale' ? 'selected' : ''}>Sale</option>`,
                                     `<option value="meeting" ${data.target.target_type == 'meeting' ? 'selected' : ''}>Meeting</option>`,
                                 )
-                            });
-                        },
+                        });
+                    },
 
                     error: function() {
 
