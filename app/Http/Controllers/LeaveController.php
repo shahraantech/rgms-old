@@ -166,7 +166,7 @@ class LeaveController extends Controller
             $data = $qry->get();
             return response()->json($data);
         }
-        
+
         $data['totalRequest'] = Leave::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
         $data['approvedRequest'] = Leave::where('leave_status', 'APPROVED')->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
         $data['pendingRequest'] = Leave::where('leave_status', 'PENDING')->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
@@ -197,9 +197,9 @@ class LeaveController extends Controller
                 $attYear = date('Y', strtotime($start_date));
                 $chekAttMarkOrNot = Attendance::chekEmpAttMarkOrNot($reqLeave->emp_id, $attDate, $attMonth, $attYear);
                 if ($chekAttMarkOrNot) {
-                    $att = Attendance::updateEmpAttendanceSingle($reqLeave->emp_id, 3, $attDate, $attMonth, $attYear,$leave->leave_type);
+                    $att = Attendance::updateEmpAttendanceSingle($reqLeave->emp_id, 3, $attDate, $attMonth, $attYear, $leave->leave_type);
                 } else {
-                    $att = Attendance::markEmpAttendanceSingle($reqLeave->emp_id, 3, $attDate, $attMonth, $attYear,$leave->leave_type);
+                    $att = Attendance::markEmpAttendanceSingle($reqLeave->emp_id, 3, $attDate, $attMonth, $attYear, $leave->leave_type);
                 }
                 $start_date = date("Y-m-d", strtotime("+1 days", strtotime($start_date)));
             }
@@ -223,7 +223,8 @@ class LeaveController extends Controller
     //leavesSettings
     public function leavesSettings(Request $request)
     {
-        if ($request->isMethod('post')) {
+        if ($request->isMethod('post')) 
+        {
             $leavetype = new LeaveType();
             $leavetype->company_id = 0; // $request->company_id;
             $leavetype->laeve_type = $request->laeve_type;
@@ -290,11 +291,6 @@ class LeaveController extends Controller
 
     public function offWeekStore(Request $request)
     {
-        $request->validate([
-            'company_id' => 'required',
-            'emp_id' => 'required',
-            'day_off' => 'required',
-        ]);
 
         if (!EmpWeekOff::where('emp_id', $request->emp_id)->orWhere('day_off', $request->day_off)->first()) {
             $size = count($request->emp_id);

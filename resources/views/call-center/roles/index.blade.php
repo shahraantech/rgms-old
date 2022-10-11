@@ -66,9 +66,6 @@
                                         <label> Role Name <span class="text-danger">*</span></label>
                                         <input type="text" name="role" class="form-control" placeholder="Role Name"
                                             required>
-                                        <div class="invalid-feedback">
-                                            Please enter role .
-                                        </div>
                                     </div>
                                 </div>
 
@@ -88,15 +85,36 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 
     <script>
         $(document).ready(function() {
-            getRoles();
 
+
+            $('#LeadForm').validate({
+
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+
+            getRoles();
 
 
             $('#LeadForm').on('submit', function(e) {
                 e.preventDefault();
+
+                var $form = $(this);
+                // check if the input is valid
+                if (!$form.validate().form()) return false;
 
                 let formData = new FormData($('#LeadForm')[0]);
 

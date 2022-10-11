@@ -36,8 +36,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-body">
-                        <form method="post" action="" id="addCompanyForm" class="needs-validation" novalidate
-                            enctype="multipart/form-data">
+                        <form method="post" action="javascript:void(0)" id="addCompanyForm" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
@@ -45,9 +44,7 @@
                                         <label>Company Name<span class="text-danger">*</span></label>
                                         <input class="form-control" type="text" name="company_name"
                                             placeholder="Company Name" required>
-                                        <div class="invalid-feedback">
-                                            Please Enter Company Name.
-                                        </div>
+                                        
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -55,9 +52,7 @@
                                         <label>Working Hrs<span class="text-danger">*</span></label>
                                         <input class="form-control" type="number" name="working_days"
                                             placeholder="Working Hrs" required>
-                                        <div class="invalid-feedback">
-                                            Please Enter Working Hrs.
-                                        </div>
+                                        
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -65,9 +60,7 @@
                                         <label>Monthly Leaves<span class="text-danger">*</span></label>
                                         <input class="form-control" type="number" name="allow_holidays"
                                             placeholder="Monthly Leaves" required>
-                                        <div class="invalid-feedback">
-                                            Please Enter Monthly Leaves.
-                                        </div>
+                                       
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -86,9 +79,7 @@
                                         <label>Company Favicon <span class="text-danger">*</span></label>
                                         <input class="form-control" type="file" name="favicon" id="favicon" required
                                             onchange="favPriviewFunction();">
-                                        <div class="invalid-feedback">
-                                            Please Enter Company Favicon.
-                                        </div>
+                                        
                                     </div>
                                 </div>
 
@@ -110,9 +101,7 @@
                                         <label>Company Logo <span class="text-danger">*</span></label>
                                         <input class="form-control" type="file" name="file" id="logo" required
                                             onchange="previewFile(this);">
-                                        <div class="invalid-feedback">
-                                            Please Enter Comapny Logo.
-                                        </div>
+                                       
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -137,6 +126,7 @@
         <!-- /Add Department Modal -->
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script>
         function favPriviewFunction() {
 
@@ -170,10 +160,30 @@
     <script>
         $(document).ready(function() {
 
+            $('#addCompanyForm').validate({
+
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+
+
 
             // save company
             $('#addCompanyForm').unbind().on('submit', function(e) {
                 e.preventDefault();
+
+                var $form = $(this);
+                // check if the input is valid
+                if (!$form.validate().form()) return false;
 
                 var formData = new FormData(this);
 
@@ -219,7 +229,6 @@
                         }
 
                     },
-
                     error: function() {
                         toastr.error('something went wrong');
                         $('.btn-company').text('Save');

@@ -44,7 +44,7 @@ class TargetController extends Controller
 
             $validator = Validator::make($data, $rules);
             if ($validator->fails()) {
-                return response()->json(['errors' => $validator->errors()]);
+                return response()->json(['errors' => $validator->errors()->all()]);
             }
 
 

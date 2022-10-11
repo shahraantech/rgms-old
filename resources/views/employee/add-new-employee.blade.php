@@ -243,7 +243,7 @@
                             <div class="row">
                                 <div class="form-group col-sm-12">
                                     <label>Image<span class="text-danger">*</span></label>
-                                    <input type="file" name="file" class="form-control" onchange="previewFile(this);">
+                                    <input type="file" name="file" class="form-control" onchange="previewFile(this);" required>
                                 </div>
                                 <div class="col-sm-12" style="visibility: hidden" id="imagePreviewDiv">
                                     <div class="form-group">

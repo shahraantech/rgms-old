@@ -15,10 +15,10 @@
             }
 
             /* .target-img{
-                width: 35px;
-                height: 35px;
-                border-radius: 50%;
-                } */
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                    } */
         </style>
         <!-- Page Content -->
         <div class="content container-fluid">
@@ -66,8 +66,10 @@
                                                 <tr>
 
                                                     <td>{{ $c }}</td>
+
                                                     <td>
-                                                        @php($target->agent_id)?$account_id=$target->agent_id:$account_id=$target->manager_id;
+                                                        @php
+                                                        ($target->agent_id)?$account_id=$target->agent_id:$account_id=$target->manager_id;
                                                         ($target->agent_id)
                                                         ?$type='Source':$type='Manager';
                                                         $emp = App\Models\Employee::find($account_id);
@@ -122,13 +124,12 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" id="targetForm" action="{{ url('targets') }}" class="needs-validation"
-                            novalidate>
+                        <form method="post" id="targetForm" action="{{ url('targets') }}">
                             @csrf
                             <div class="row">
                                 <div class="form-group col-sm-6">
                                     <select name="to_allocate" class="form-control selectpicker" data-container="body"
-                                        data-live-search="true">
+                                        data-live-search="true" required>
                                         <option value="">Choose One</option>
                                         <option value="1">Manager</option>
                                         <option value="2">Source</option>
@@ -136,7 +137,7 @@
                                 </div>
                                 <div class="form-group col-sm-6 manager_section" style="display: none">
                                     <select name="manager_id" class="form-control selectpicker" data-container="body"
-                                        data-live-search="true">
+                                        data-live-search="true" required>
                                         <option value="">Choose Manager</option>
                                         @isset($data)
                                             @foreach ($data['manager'] as $manager)
@@ -144,13 +145,11 @@
                                             @endforeach
                                         @endisset
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Please choose agent.
-                                    </div>
+
                                 </div>
                                 <div class="form-group col-sm-6 csr_section" style="display: none">
                                     <select name="agent_id" class="form-control selectpicker" data-container="body"
-                                        data-live-search="true">
+                                        data-live-search="true" required>
                                         <option value="">Choose Agent</option>
                                         @isset($data)
                                             @foreach ($data['employee'] as $emp)
@@ -158,14 +157,12 @@
                                             @endforeach
                                         @endisset
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Please choose agent.
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-sm-6">
-                                    <select name="target_type" class="form-control ">
+                                    <select name="target_type" class="form-control" required>
                                         <option value="">Target Type</option>
                                         <option value="sale">Sale</option>
                                         <option value="meeting">Meetings</option>
@@ -173,7 +170,7 @@
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <input class="form-control" type="number" name="target_number"
-                                        placeholder="Number of Sale or Meetings">
+                                        placeholder="Number of Sale or Meetings" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -197,7 +194,8 @@
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn" type="submit" id="btnSubmit">Save</button>
+                                <button class="btn btn-primary submit-btn btn_target_save" type="submit"
+                                    id="btnSubmit">Save</button>
                             </div>
                         </form>
                     </div>
@@ -247,7 +245,8 @@
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn update-target" type="submit">Update</button>
+                                <button class="btn btn-primary submit-btn update-target" type="submit">Save
+                                    Changes</button>
                             </div>
                         </form>
                     </div>
@@ -261,10 +260,26 @@
 
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <!-- CDN for Sweet Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type='text/javascript'>
         $(document).ready(function() {
+
+            $('#targetForm').validate({
+
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
 
 
             $('input[name=to_date]').change(function() {
@@ -307,24 +322,48 @@
             $('#targetForm').on('submit', function(e) {
                 e.preventDefault();
 
+                var $form = $(this);
+                // check if the input is valid
+                if (!$form.validate().form()) return false;
+
                 let formData = new FormData($('#targetForm')[0]);
 
                 $.ajax({
                     type: "POST",
                     url: '{{ url('targets') }}',
                     data: formData,
-                    async: false,
-                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('.btn_target_save').text('Saving...');
+                        $(".btn_target_save").prop("disabled", true);
+                    },
                     success: function(data) {
                         if (data.success) {
                             $('#targetForm')[0].reset();
+                            $('#add_leave').modal('hide');
                             toastr.success(data.success);
-                            window.location.reload();
+                            $('.btn_target_save').text('Save');
+                            $(".btn_target_save").prop("disabled", false);
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 1000);
+                        }
+
+                        if (data.errors) {
+                            toastr.error(data.errors);
+                            $('.btn_target_save').text('Save');
+                            $(".btn_target_save").prop("disabled", false);
                         }
                     },
 
                     error: function() {
                         toastr.error('something went wrong');
+                        $('.btn_target_save').text('Save');
+                        $(".btn_target_save").prop("disabled", false);
                     }
                 });
             });
@@ -391,7 +430,7 @@
                     processData: false,
                     dataType: "json",
                     beforeSend: function() {
-                        $('.update-target').text('Updating...');
+                        $('.update-target').text('Saving...');
                         $(".update-target").prop("disabled", true);
                     },
                     success: function(response) {
@@ -399,7 +438,7 @@
                         if (response.status == 200) {
                             $('#edit_target_modal').modal('hide');
                             $('#editTargetForm').find('input').val("");
-                            $('.update-target').text('Update');
+                            $('.update-target').text('Save Changes');
                             $(".update-target").prop("disabled", false);
                             toastr.success(response.message);
                             setTimeout(() => {
@@ -409,7 +448,7 @@
                     },
                     error: function() {
                         toastr.error('something went wrong');
-                        $('.update-target').text('Update');
+                        $('.update-target').text('Save Changes');
                         $(".update-target").prop("disabled", false);
                     }
                 });

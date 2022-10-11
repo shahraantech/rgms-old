@@ -170,13 +170,29 @@
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function() {
+
+            $('#timeForm').validate({
+
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+
+
             getTimes();
 
             function getTimes() {
-
-
                 $.ajax({
 
                     url: '{{ url('/get-times') }}',
@@ -206,9 +222,11 @@
                                 '<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>' +
                                 '<div class="dropdown-menu dropdown-menu-right">' +
                                 '<a class="dropdown-item btnEditDept" href="#" data-toggle="modal" data-target="#edit_department" data="' +
-                                data[i].id + '"><i class="la la-pencil" style="font-size:20px;"></i></a>' +
+                                data[i].id +
+                                '"><i class="la la-pencil" style="font-size:20px;"></i></a>' +
                                 '<a class="dropdown-item btnDelete" href="#" data-toggle="modal" data-target="#delete_department" data="' +
-                                data[i].id + '"><i class="la la-trash" style="font-size:20px;"></i></a>' +
+                                data[i].id +
+                                '"><i class="la la-trash" style="font-size:20px;"></i></a>' +
                                 '</div>' +
                                 '</div>' +
                                 '</td>' +
@@ -226,7 +244,6 @@
 
                 });
             }
-
 
             //btnEditDept
             $('.btnEditDept').on('click', function() {
@@ -263,7 +280,6 @@
 
 
             //btnUpdateDept
-
             $('.btn-update').on('click', function(e) {
                 e.preventDefault();
 
@@ -349,6 +365,10 @@
 
             $('#timeForm').on('submit', function(e) {
                 e.preventDefault();
+
+                var $form = $(this);
+                // check if the input is valid
+                if (!$form.validate().form()) return false;
 
                 let formData = new FormData($('#timeForm')[0]);
 

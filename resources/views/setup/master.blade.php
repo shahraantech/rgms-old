@@ -124,6 +124,7 @@
         <script src="{{asset('public/assets/js/jquery-ui.min.js')}}"></script>
         {{-- <script src="{{asset('public/assets/js/fullcalendar.min.js')}}"></script>
         <script src="{{asset('public/assets/js/jquery.fullcalendar.js')}}"></script> --}}
+        
         <script>
             $(document).ready(function() {
 
