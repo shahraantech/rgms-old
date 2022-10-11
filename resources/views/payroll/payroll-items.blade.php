@@ -150,7 +150,7 @@
                             <textarea name="desc" cols="10" rows="3" class="form-control" placeholder="Description" required></textarea>
                         </div>
                         <div class="submit-section">
-                            <button class="btn btn-primary submit-btn" type="submit">Save</button>
+                            <button class="btn btn-primary submit-btn btn_add_alunce" type="submit">Save</button>
                         </div>
                     </form>
                 </div>
@@ -349,7 +349,7 @@
                                 class="form-control" required>
                         </div>
                         <div class="submit-section">
-                            <button class="btn btn-primary submit-btn">Save</button>
+                            <button class="btn btn-primary submit-btn btn_asin">Save</button>
                         </div>
                     </form>
                 </div>
@@ -701,25 +701,26 @@
             };
 
             //Add Allowance
-            $('#allowanceForm').unbind().on('submit', function(e) {
+            $('#allowanceForm').on('submit', function(e) {
                 e.preventDefault();
-
                 var $form = $(this);
                 // check if the input is valid
                 if (!$form.validate().form()) return false;
 
-                var formData = $('#allowanceForm').serialize();
+                let formData = new FormData($('#allowanceForm')[0]);
 
                 $.ajax({
-
-                    type: 'ajax',
-                    method: 'post',
+                    type: "POST",
                     url: '{{ url('payroll-items') }}',
                     data: formData,
-                    async: false,
-                    dataType: 'json',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('.btn_add_alunce').text('Saving...');
+                        $(".btn_add_alunce").prop("disabled", true);
                     },
                     success: function(data) {
 
@@ -729,14 +730,17 @@
                             $('#allowanceForm')[0].reset();
                             $('.close').click();
                             toastr.success(data.success);
-                            // window.location.reload();
+                            $('.btn_add_alunce').text('Save');
+                            $(".btn_add_alunce").prop("disabled", false);
+                            window.location.reload();
                         }
 
                     },
 
                     error: function() {
                         toastr.error('something went wrong');
-
+                        $('.btn_add_alunce').text('Save');
+                        $(".btn_add_alunce").prop("disabled", false);
                     }
 
                 });
@@ -842,25 +846,29 @@
 
             });
 
-            $('#empAllowanceForms').unbind().on('submit', function(e) {
-                e.preventDefault();
 
+
+            $('#empAllowanceForms').on('submit', function(e) {
+                e.preventDefault();
                 var $form = $(this);
                 // check if the input is valid
                 if (!$form.validate().form()) return false;
 
-                var formData = $('#empAllowanceForms').serialize();
+                let formData = new FormData($('#empAllowanceForms')[0]);
 
                 $.ajax({
 
-                    type: 'ajax',
-                    method: 'post',
+                    type: "POST",
                     url: '{{ url('payroll-items') }}',
                     data: formData,
-                    async: false,
-                    dataType: 'json',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('.btn_asin').text('Saving...');
+                        $(".btn_asin").prop("disabled", true);
                     },
                     success: function(data) {
                         if (data.success) {
@@ -868,12 +876,16 @@
                             $('#empAllowanceForms')[0].reset();
                             $('.close').click();
                             toastr.success(data.success);
+                            $('.btn_asin').text('Save');
+                            $(".btn_asin").prop("disabled", false);
                             window.location.reload();
                         }
                     },
 
                     error: function() {
                         toastr.error('something went wrong');
+                        $('.btn_asin').text('Save');
+                        $(".btn_asin").prop("disabled", false);
                     }
 
                 });
