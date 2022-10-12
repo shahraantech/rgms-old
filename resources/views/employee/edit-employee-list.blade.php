@@ -411,14 +411,16 @@
                                                     class="mt-4" width="50" alt="">
                                             </div>
                                         </div>
+                                        
+                                    </div>
+                                @endforeach
+                            @endisset
+                            
                                         <div class="row mt-4">
                                             <div class="text-center w-100">
                                                 <button class="btn add-btn" type="submit">Save Changes</button>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
-                            @endisset
                         </div>
                     </form>
                 </div>
