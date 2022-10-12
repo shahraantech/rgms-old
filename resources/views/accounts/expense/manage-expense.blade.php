@@ -47,7 +47,7 @@
                             <div class="col-md-3">
                             <div class="form-group">
                                 <label>Date <span class="text-danger">*</span></label>
-                                <input class="form-control" type="date" name="exp_date">
+                                <input class="form-control" type="date" name="exp_date" required>
                                 <span class="balance-error"></span>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                             <div class="col-md-3 cash-section" style="display: none">
                                 <div class="form-group">
                                     <label for="">Account</label>
-                                    <select name="company_account_id" id="" class="form-control ac-bank">
+                                    <select name="company_account_id" id="" class="form-control ac-bank inpCash">
                                         <option value="">Pay To Account</option>
                                         @isset($data['accounts'])
                                             @foreach($data['accounts'] as $accounts)
@@ -89,7 +89,7 @@
                             <div class="col-sm-3 bank_section" style="display:none">
                                 <div class="form-group">
                                     <option value="">Banks</option>
-                                    <select name="bank_id" id="" class="form-control ac-bank">
+                                    <select name="bank_id" id="" class="form-control ac-bank inpBank">
                                         <option value="">Choose Bank</option>
                                         @isset($data['banks'])
                                             @foreach($data['banks'] as $bank)
@@ -139,7 +139,7 @@
                                     <td>
 
                                             <select name="exp_head_id[]" class="form-control selectpicker" data-container="body"
-                                                    data-live-search="true">
+                                                    data-live-search="true" required>
                                             <option value="">Choose Head</option>
                                             @isset($data['level4'])
                                                 @foreach($data['level4'] as $head)
@@ -193,7 +193,7 @@
                 <tr>
                     <td>
                         <select name="exp_head_id[]" class="form-control " data-container="body"
-                                data-live-search="true">
+                                data-live-search="true" required>
                             <option value="">Choose Head</option>
                             @isset($data['level4'])
                                 @foreach($data['level4'] as $head)
@@ -238,6 +238,7 @@
                             $('#btnSubmit').text('loading...');
                         },
                         success: function(data) {
+                         console.log(data);
                             if(data.success) {
                                 toastr.success('Expense added successfully');
                                 $('#expenseForm')[0].reset();
@@ -259,8 +260,6 @@
                     });
 
                 });
-
-
                 // Denotes total number of rows
                 var rowIdx = 0;
                 // jQuery button click event to remove a row.
@@ -296,8 +295,6 @@
                     // Decreasing total number of rows by 1.
                     rowIdx--;
                 });
-
-
                 //count ttoal Amount
                 $('#tblPurchase').on('keyup','.amount', function() {
                     grandTotal();
@@ -350,18 +347,21 @@
                         }
                     });
                 });
-
-// payment mode
+                // payment mode
                 $('select[name=trans_mode]').change(function(){
                     var trans_mode=$('select[name=trans_mode]').val();
 
                     if(trans_mode=='bank'){
                         $(".bank_section").css("display", "block");
                         $(".cash-section").css("display", "none");
+                        $(".inpBank").prop('required',true);
+                        $(".inpCash").prop('required',false);
                     }
                     if(trans_mode=='cash'){
                         $(".bank_section").css("display", "none");
                         $(".cash-section").css("display", "block");
+                        $(".inpBank").prop('required',false);
+                        $(".inpCash").prop('required',true);
                     }
 
                 });

@@ -10,6 +10,8 @@ class Employee extends Model
 {
     use HasFactory;
 
+    public $fillable = ['status'];
+
       public function employee()
     {
         return $this->belongsTo(Employee::class, 'id','desg_id');

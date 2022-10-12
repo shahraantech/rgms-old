@@ -20,22 +20,19 @@ class Departments extends Controller
     //save-department
     public function saveDepartment(Request $request)
     {
-
-
         $data = $request->all();
         $rules = array(
             'company_id' => 'required',
             'dept_name' => 'required',
-
         );
 
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
 
-            return response()->json(['errors' => $validator->errors()]);
+            return response()->json(['errors' => $validator->errors()->all()]);
         }
 
-        if (Department::where('departments', $request->dept_name)->first()){
+        if (Department::where('departments', $request->dept_name)->first()) {
             return response()->json(['errors' => 'This dept already exit'], 200);
         }
 
@@ -45,9 +42,7 @@ class Departments extends Controller
         if ($dept->save()) {
             return response()->json(['success' => 'Record save successfully'], 200);
         }
-
-
-}
+    }
 
     //getDepartment
     public function getDepartment()
@@ -56,7 +51,7 @@ class Departments extends Controller
         $qry =  $qry->with(['getCompanyName' => function ($query) {
             $query->select('id', 'name');
         }]);
-        $qry = $qry->orderBy('id','DESC')->get();
+        $qry = $qry->orderBy('id', 'DESC')->get();
         echo json_encode($qry);
     }
 
@@ -70,9 +65,6 @@ class Departments extends Controller
             'dept' => $dept,
         ]);
     }
-
-
-
 
     public  function updateDepartment(Request $request)
     {

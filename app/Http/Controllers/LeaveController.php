@@ -166,6 +166,7 @@ class LeaveController extends Controller
             $data = $qry->get();
             return response()->json($data);
         }
+        
         $data['totalRequest'] = Leave::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
         $data['approvedRequest'] = Leave::where('leave_status', 'APPROVED')->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
         $data['pendingRequest'] = Leave::where('leave_status', 'PENDING')->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->count();
@@ -289,6 +290,12 @@ class LeaveController extends Controller
 
     public function offWeekStore(Request $request)
     {
+        $request->validate([
+            'company_id' => 'required',
+            'emp_id' => 'required',
+            'day_off' => 'required',
+        ]);
+
         if (!EmpWeekOff::where('emp_id', $request->emp_id)->orWhere('day_off', $request->day_off)->first()) {
             $size = count($request->emp_id);
             for ($i = 0; $i < $size; $i++) {

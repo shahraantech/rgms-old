@@ -190,14 +190,14 @@
                                                             ->where('lead_id', $row->leads['id'])
                                                             ->first();
                                                         if ($agent) {
-                                                            echo '<span class="badge bg-inverse-info">' . $agent->agent['name'] . '</span></br>';
-                                                        } else {
+                                                            echo '<span class="badge bg-inverse-info">' . $agent->agent['name'].'</span></br>';
+                                                        }
+                                                        else {
                                                             echo '<span class="badge bg-inverse-danger">Open</span>';
                                                         }
                                                     @endphp
                                                 </td>
                                             @endif
-
                                             <td class="text-right">
 
                                                 <div class="dropdown dropdown-action">
@@ -848,6 +848,7 @@
                     },
                     success: function(data) {
                         console.log(data);
+                        getData();
                         if (data.success) {
                             $('.close').click();
                             $('#inboundLeadForm')[0].reset();

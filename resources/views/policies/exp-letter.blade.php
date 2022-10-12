@@ -57,8 +57,7 @@
                             </div>
 
                             <div class="col-md-2">
-                                {{-- <a href="" class="btn btn-primary btn-block">Print</a> --}}
-                                <button class="btn btn-primary btn-block" type="submit" id="btnPrint"><i class="fa fa-print" aria-hidden="true"></i></button>
+                                <button class="btn btn-primary btn-block btn_exp_letter" type="submit" id="btnPrint"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </div>
 
                         </div>
@@ -164,6 +163,7 @@
 
                     var url = "{{ url('/letter-create') }}" + '/' + emp_id;
                     window.location.href = url;
+                    $('.btn_exp_letter').text('Searching...');
                 }
 
 

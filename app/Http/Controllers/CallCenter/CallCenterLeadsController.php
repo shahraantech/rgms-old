@@ -38,7 +38,7 @@ use function PHPUnit\Framework\returnArgument;
 class CallCenterLeadsController extends Controller
 {
     protected $userId;
-    protected $companyID;
+
 
     public function __construct()
     {
@@ -48,8 +48,6 @@ class CallCenterLeadsController extends Controller
                 return redirect('/login');
             }
             $this->userId = \Auth::user()->account_id; // you can access user id here
-            $res = Employee::find($this->userId);
-            $this->companyID = $res->company_id;
             return $next($request);
         });
     }
@@ -86,7 +84,7 @@ class CallCenterLeadsController extends Controller
         $data = $request->all();
         $rules = array(
             'name' => 'required',
-            'contact' => 'required',
+            'contact' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'source_id' => 'required',
         );
         $validator = Validator::make($data, $rules);
@@ -194,7 +192,7 @@ class CallCenterLeadsController extends Controller
 
         //        (Auth::user()->role_id!=8)?$qry=$qry->where('created_at', '>=', Carbon::today()->subDays(3)):'';
 
-        $data['leadsMarketing'] = $qry->orderBy('id', 'DESC')->paginate(200);
+        $data['leadsMarketing'] = $qry->orderBy('id', 'DESC')->paginate(50);
         $data['manager'] = Lead::getManagers();
 
         return view('call-center.leads.leads-list')->with(compact('data'));
@@ -215,39 +213,6 @@ class CallCenterLeadsController extends Controller
 
         return view('call-center.leads.leads-list')->with(compact('data'));
     }
-
-
-    public function leadsListOld(Request $request)
-    {
-
-        $qry = LeadsMarketing::query();
-        $qry = $qry->with('cityname', 'platformname');
-
-        if ($request->isMethod('post')) {
-
-            $qry->when($request->city_id, function ($query, $city_id) {
-                return $query->where('city_id', $city_id);
-            });
-            $qry->when($request->date, function ($query, $date) {
-                return $query->whereDate('date', $date);
-            });
-
-            $qry->when($request->name, function ($query, $name) {
-                return $query->where('name', 'like', '%' . $name . '%');
-            });
-        }
-
-
-        $data['platforms'] = SocialPlatform::all();
-        $data['city'] = City::all();
-        $data['temp'] = Temprature::all();
-        $data['company'] = Company::all();
-        $data['employee'] = Employee::where('status', 1)->orderBy('id', 'DESC')->get();
-        $data['leadsMarketing'] = $qry->orderByDesc('id')->paginate(200);
-        return view('call-center.leads.leads-list')->with(compact('data'));
-    }
-
-
     //inbound outbound leads list
     public function inOutBoundleadsList($type)
     {
@@ -255,12 +220,11 @@ class CallCenterLeadsController extends Controller
         $qry = LeadsMarketing::query();
         $qry = $qry->with('cityname', 'platformname');
 
-
         $data['platforms'] = SocialPlatform::all();
         $data['city'] = City::all();
         $data['temp'] = Temprature::all();
         $data['company'] = Company::all();
-        $data['atl'] = Employee::where('company_id', $this->companyID)->get();
+        $data['atl'] = getCSR();
         $data['employee'] = Employee::where('status', 1)->orderBy('id', 'DESC')->get();
         $data['manager'] = Lead::join('employees', 'employees.id', 'leads.leader_id')->select('leads.leader_id', 'employees.name')->get();
 
@@ -323,12 +287,10 @@ class CallCenterLeadsController extends Controller
 
         return view('call-center.leads.allocated-leads')->with(compact('data'));
     }
-
     //managerAllocatedLeads
 
     public function managerAllocatedLeads(Request $request)
     {
-
         $qry = LeadsMarketing::query();
         $qry = $qry->with('cityname', 'platformname');
         $qry = $qry->where('manager_id', '>', 0);
@@ -336,12 +298,10 @@ class CallCenterLeadsController extends Controller
 
 
         if ($request->isMethod('post')) {
-
             $request->all();
             $qry->when($request->city_id, function ($query, $city_id) {
                 return $query->where('city_id', $city_id);
             });
-
             $qry->when($request->lead_id, function ($query, $lead_id) {
                 return $query->where('id', $lead_id);
             });
@@ -354,7 +314,6 @@ class CallCenterLeadsController extends Controller
                 return $query->where('manager_id', $manager_id);
             });
         }
-
         $data['temp'] = Temprature::all();
         $data['city'] = City::all();
         $data['platforms'] = SocialPlatform::all();
@@ -368,12 +327,6 @@ class CallCenterLeadsController extends Controller
         return view('call-center.leads.manager-allocated-leads')->with(compact('data'));
     }
 
-    public function getOpenLeads()
-    {
-        $data = LeadsMarketing::getOpenLeads('counting');
-        return $data;
-    }
-
 
     //Edit Leeds
     public function editLeeds(Request $request)
@@ -384,9 +337,6 @@ class CallCenterLeadsController extends Controller
         $data['company'] = Company::all();
         return view('call-center.leads.leads-edit', compact('data'));
     }
-    //Edit Leeds
-
-
     // Update Leeds
     public function updateLeeds(Request $request)
     {
@@ -417,13 +367,6 @@ class CallCenterLeadsController extends Controller
         }
     }
 
-    // Delete Leeds
-
-
-    public function importExportView()
-    {
-        return view('import');
-    }
 
 
     public function importLeads(Request $request)
@@ -445,7 +388,6 @@ class CallCenterLeadsController extends Controller
     }
 
     //exportLeads
-
     public function exportLeads()
     {
         return Excel::download(new LeadsMarketingExport, 'leads.xlsx');
@@ -580,8 +522,6 @@ class CallCenterLeadsController extends Controller
     }
 
     //save meetings
-
-
     public function saveMeetings(Request $request)
     {
 
@@ -727,17 +667,14 @@ class CallCenterLeadsController extends Controller
 
     //saveLeadsStatus
 
-    public function saveLeadsStatus(Request $request)
+    public function saveLeadRemarks(Request $request)
     {
-
         if ($request->isMethod('post')) {
-
             $data = $request->all();
             $rules = array(
                 'temp_id' => 'required',
                 'comments' => 'required',
                 'follow_date' => 'required|date|after:yesterday'
-
             );
 
             $validator = Validator::make($data, $rules);
@@ -781,6 +718,7 @@ class CallCenterLeadsController extends Controller
             $app->follow_time = ($request->time) ? $request->time : '';
             $app->lead_type = ($request->lead_type) ? 1 : 0;
             $app->dead_reason = ($request->dead_reason) ? $request->dead_reason : 0;
+            $app->guard ='web';
 
             if ($app->save()) {
                 if ($appLeadFind == 1) {

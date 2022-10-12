@@ -99,7 +99,7 @@
                                         placeholder="Search Employee Name">
                                 </div>
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-search"><i
                                             class="fa fa-search"></i></button>
@@ -110,6 +110,8 @@
                 </div>
             </div>
             <!-- Search Filter -->
+
+
             <div class="card">
                 <div class="card-body">
                     <div class="row mt-3">
@@ -206,17 +208,20 @@
                     }
                 });
             }
+
             //ajax call for serach record
             $('#searchForm').on('submit', function(e) {
                 e.preventDefault();
-                var formData = $('#searchForm').serialize();
+                // var formData = $('#searchForm').serialize();
+                let formData = new FormData($('#searchForm')[0]);
+
                 $.ajax({
                     type: 'ajax',
                     method: 'post',
                     url: '{{ url('leaves-request') }}',
                     data: formData,
-                    async: false,
-                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
                     beforeSend: function() {
                         $(".btn-search").prop("disabled", true);
                         $(".btn-search").html("please wait...");

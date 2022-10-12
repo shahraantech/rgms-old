@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61ad51f6-c89c-418f-938f-7b568a8d5486" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/rgms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rgms.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Accounts/AccountsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Accounts/AccountsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/accounts/accounts/accounts-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/accounts/accounts/accounts-list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/accounts/bank/bank-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/accounts/bank/bank-list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/setup/super-admin-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/setup/super-admin-sidebar.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,6 +159,9 @@
       <path value="$PROJECT_DIR$/vendor/facade/ignition-contracts" />
       <path value="$PROJECT_DIR$/vendor/codebyray/laravel-review-rateable" />
       <path value="$PROJECT_DIR$/vendor/jorenvanhocht/laravel-share" />
+      <path value="$PROJECT_DIR$/vendor/stripe/stripe-php" />
+      <path value="$PROJECT_DIR$/vendor/srmklive/paypal" />
+      <path value="$PROJECT_DIR$/vendor/paypal/rest-api-sdk-php" />
     </include_path>
   </component>
   <component name="ProjectId" id="2EkPI9tPhxx80l4Y0q34H6LauiF" />
@@ -173,17 +170,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/rgms&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/xampp/htdocs/multi-rgms",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
@@ -217,7 +214,13 @@
       <workItem from="1664515612993" duration="25943000" />
       <workItem from="1664775819046" duration="25102000" />
       <workItem from="1664860549495" duration="16808000" />
-      <workItem from="1664946833230" duration="1819000" />
+      <workItem from="1664946833230" duration="23414000" />
+      <workItem from="1664977280603" duration="2474000" />
+      <workItem from="1665034229094" duration="20614000" />
+      <workItem from="1665120017797" duration="5637000" />
+      <workItem from="1665145682730" duration="6340000" />
+      <workItem from="1665205587719" duration="150000" />
+      <workItem from="1665382007812" duration="3801000" />
     </task>
     <servers />
   </component>
@@ -240,7 +243,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/ExpensesController.php</url>
-          <line>307</line>
+          <line>302</line>
           <properties>
             <option name="className" value="\App\Http\Controllers\ExpensesController" />
             <option name="methodName" value="expenseSummary" />
@@ -294,16 +297,25 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php</url>
-          <line>455</line>
+          <line>397</line>
           <properties>
             <option name="className" value="\App\Http\Controllers\CallCenter\CallCenterLeadsController" />
             <option name="methodName" value="deleteLeads" />
           </properties>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php</url>
+          <line>331</line>
+          <properties>
+            <option name="className" value="\App\Http\Controllers\CallCenter\CallCenterLeadsController" />
+            <option name="methodName" value="editLeeds" />
+          </properties>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/accounts/printer/print-expense-summary.blade.php</url>
-          <line>103</line>
+          <line>96</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -363,7 +375,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/call-center/leads/my-leads.blade.php</url>
-          <line>1042</line>
+          <line>1043</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -378,8 +390,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/hr/designations/index.blade.php</url>
-          <line>179</line>
+          <line>175</line>
           <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/accounts/coa/coa-level.blade.php</url>
+          <line>38</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

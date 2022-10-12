@@ -28,7 +28,7 @@
 		<!-- Search Filter -->
 		<div class="card">
 			<div class="card-body">
-				<form action="{{url('salary')}}" method="post">
+				<form action="{{url('salary')}}" method="post" id="salary_form">
 					@csrf
 					<div class="row filter-row">
 						<input type="hidden" name="search" value="1">
@@ -74,7 +74,7 @@
 							</div>
 						</div>
 						<div class="col-md-3">
-							<button type="submit" class="btn btn-success btn-block"> Search </button>
+							<button type="submit" class="btn btn-primary btn-block search_filter"><i class="fa fa-search"></i></button>
 						</div>
 					</div>
 				</form>
@@ -87,7 +87,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="table-responsive">
-							<table class="table table-striped table-responsive" id="datatable">
+							<table class="table table-striped table-responsive" id="salaryTable">
 								<thead>
 									<tr>
 										<th>#</th>
@@ -100,7 +100,7 @@
 										<th class="text-right">Action</th>
 									</tr>
 								</thead>
-								<tbody id="salaryTable">
+								<tbody>
 									@php $c=0; @endphp
 									@isset($collection)
 									@foreach($collection as $emp)
@@ -219,9 +219,14 @@
 
 		});
 
+		$('.search_filter').on('click', function() {
+        $(".search_filter").prop("disabled", true);
+        $(".search_filter").html("Searching...");
+        $('#salary_form').submit();
+    });
 
 		//Datatables
-		$('#datatable').DataTable();
+		$('#salaryTable').DataTable();
 	});
 </script>
 @endsection

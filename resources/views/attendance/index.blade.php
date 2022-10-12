@@ -56,9 +56,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <form action="{{url('attendance')}}" method="get">
+                    <form action="{{url('attendance')}}" method="get" id="search_att_form">
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-8">
                                 <div class="form-group">
                                     <select name="company_id" class="form-control selectpicker" data-container="body" data-live-search="true">
                                         <option value="" selected disabled>Choose Company</option>
@@ -70,9 +70,9 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary"> <i class="fa fa-search"></i> </button>
+                                    <button type="submit" class="btn btn-primary btn_search_company"> <i class="fa fa-search"></i> </button>
                                 </div>
                             </div>
 
@@ -87,7 +87,7 @@
                     <form action="{{url('attendance')}}" method="post">
                         @csrf
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-block"> Mark </button>
+                            <button type="submit" class="btn btn-primary btn-block"> Mark </button>
                         </div>
 
 
@@ -175,5 +175,13 @@
             }
         });
     }
+
+
+
+    $('.btn_search_company').on('click', function() {
+        $(".btn_search_company").prop("disabled", true);
+        $(".btn_search_company").html("Please wait...");
+        $('#search_att_form').submit();
+    });
 </script>
 @endsection

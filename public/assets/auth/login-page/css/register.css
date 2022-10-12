@@ -1,0 +1,158 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #F9F9F9 !important;
+}
+
+#login{
+	margin-top: 10rem;
+    position: relative;
+    right: 0 !important;
+
+}
+#contant{
+	margin-top: 9rem !important;
+}
+#contant h1{
+	font-weight: 600; 
+	font-size: 5rem;
+	color: #0069D9;
+	font-family: 'Montserrat', sans-serif;
+}
+#contant h2{ 
+	font-size: 1rem;
+	font-weight: 500;
+	font-family: 'Montserrat', sans-serif;
+}
+#contant p{ 
+	font-size: 2.5rem;
+	font-weight: 500;
+	margin: 0 !important;
+	font-family: 'Montserrat', sans-serif;
+}
+
+
+.my-login-page .card {
+	border-color: transparent;
+	box-shadow: 0 4px 8px rgba(0,0,0,.05);
+}
+
+.my-login-page .card {
+	padding: 10px;
+}
+
+.my-login-page .card .card-title {
+	margin-bottom: 30px;
+}
+
+.my-login-page .form-control {
+	border-width: 2.3px;
+}
+
+.my-login-page .form-group label {
+	width: 100%;
+}
+
+.btn-block {
+	padding: .8rem 10rem !important;
+}
+.footer {
+	margin: 40px 0;
+	color: #888;
+	text-align: center;
+    position: relative !important;
+    bottom: 1% !important;
+}
+
+
+@media screen and (max-width:1400px){
+    #login{
+        margin-top: 5rem;
+    }
+    #contant{
+        margin: 4rem 0 0 0 !important;
+    }
+	#contant h1{
+		font-weight: 600;
+        font-size: 4rem;
+	}
+	#contant h2{ 
+		font-size: .8rem;
+	}
+	#contant p{ 
+		font-size: 2rem;
+	}
+	
+}
+
+@media screen and (max-width:995px){
+	#login{
+		margin-top: 1rem;
+	}
+    #contant{
+        margin: 1rem auto 0 !important;
+    }
+	#contant h1{
+		font-weight: 600; 
+		font-size: 3.3rem;
+	}
+	#contant h2{ 
+		font-size: .6rem;
+		padding-left: 0;
+	}
+	#contant p{ 
+		font-size: 1.3rem;
+		margin: 0 !important;
+	}
+	
+}
+@media screen and (max-width:768px){
+	#login{
+		margin-top: 1rem !important;
+	}
+	#contant h1{
+		font-weight: 600; 
+		font-size: 3.4rem;
+	}
+	#contant h2{ 
+		font-size: .6rem;
+	}
+	#contant p{ 
+		font-size: 1.3rem;
+	}
+	
+}
+
+@media screen and (max-width: 425px) {
+    #contant{
+        text-align: center;
+    }
+	#contant h1{
+		font-weight: 600; 
+		font-size: 3rem;
+	}
+	#contant h2{ 
+		font-size: .6rem;
+		padding-left: 0;
+	}
+	#contant p{ 
+		font-size: 1rem;
+	}
+	#login{
+		margin: 0px;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	#contant h1{ 
+		font-size: 2rem;
+	}
+	#contant h2{ 
+		font-size: .5rem;
+	}
+	#contant p{ 
+		font-size: 1rem;
+		/* margin: 0 !important; */
+	}
+}
+
