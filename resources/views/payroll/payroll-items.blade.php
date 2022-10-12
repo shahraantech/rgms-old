@@ -703,6 +703,7 @@
             //Add Allowance
             $('#allowanceForm').on('submit', function(e) {
                 e.preventDefault();
+                
                 var $form = $(this);
                 // check if the input is valid
                 if (!$form.validate().form()) return false;

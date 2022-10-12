@@ -18,24 +18,15 @@ class ResignationController extends Controller
     {
         return view('resignation.index');
     }
-
-
-
     //saveResignation
-
     public function saveResignation(Request $request)
     {
-
-
         $data = $request->all();
         $rules = array(
             'notice_date' => 'required',
             'resign_date' => 'required',
             'reason' => 'required',
-
         );
-
-
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
 

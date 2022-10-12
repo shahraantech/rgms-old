@@ -172,8 +172,6 @@
                                         Ticket</span></a> </li>
                             <li> <a href="{{ url('my-expenses') }}"><i class="la la-user-secret"></i>
                                     <span>Expenses</span></a> </li>
-                            <li> <a href="{{ url('call-recording') }}"><i class="la la-user-secret"></i> <span>Call
-                                        Recordings</span></a> </li>
 
                             <li class="submenu">
                                 <a href="#"><i class="la la-edit"></i> <span>Learning/Development</span> <span

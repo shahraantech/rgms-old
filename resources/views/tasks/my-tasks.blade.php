@@ -119,7 +119,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="needs-validation" novalidate action="{{ url('save-task-progress') }}" method="POST">
+                    <form action="{{ url('save-task-progress') }}" method="POST" id="progressForm">
                         @csrf
                         <div class="row">
 
@@ -174,9 +174,24 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function() {
 
+            $('#progressForm').validate({
+
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
 
 
             taskList();
@@ -226,95 +241,100 @@
                 });
             }
 
-            $(".task-hover").mouseover(function(){
+            $(".task-hover").mouseover(function() {
                 var task_id = $(this).attr("data");
 
 
                 $.ajax({
 
-                    url: '{{url("/getMySingleTask")}}',
+                    url: '{{ url('/getMySingleTask') }}',
                     type: 'get',
                     async: false,
                     dataType: 'json',
-                    data:{task_id:task_id},
+                    data: {
+                        task_id: task_id
+                    },
                     beforeSend: function() {
                         $('#loader').show();
                     },
 
-                    success: function(data)
-                    {
+                    success: function(data) {
 
                         var html = '';
                         var i;
-                        var c=0;
-                        var status='';
-                        for(i=0; i<data.length; i++){
+                        var c = 0;
+                        var status = '';
+                        for (i = 0; i < data.length; i++) {
                             c++;
-var taskStatus='';
-                            (data[i].status==1)? status="text-success": status="text-danger";
-                            if(data[i].status==1){
-                                taskStatus='COMPLETE';
+                            var taskStatus = '';
+                            (data[i].status == 1) ? status = "text-success": status =
+                                "text-danger";
+                            if (data[i].status == 1) {
+                                taskStatus = 'COMPLETE';
                             }
-                            if(data[i].status==2){
-                                taskStatus='OPEN';
+                            if (data[i].status == 2) {
+                                taskStatus = 'OPEN';
                             }
-                            if(data[i].status==0){
-                                taskStatus='PENDING';
+                            if (data[i].status == 0) {
+                                taskStatus = 'PENDING';
                             }
 
 
-                            html +=' <div class="chats">'+
-                                '<h4>'+data[i].task+'</h4>'+
-                                '<div class="task-header">'+
-                                ' <div class="assignee-info">'+
-                                ' <a href="#" data-toggle="modal" data-target="#assignee">'+
+                            html += ' <div class="chats">' +
+                                '<h4>' + data[i].task + '</h4>' +
+                                '<div class="task-header">' +
+                                ' <div class="assignee-info">' +
+                                ' <a href="#" data-toggle="modal" data-target="#assignee">' +
 
-                                ' <div class="">'+
+                                ' <div class="">' +
 
-                                '  <img alt="" class="target-img" src="{{asset("storage/app/public/uploads/staff-images/")}}/'+data[i].image+'">'+
-                                ' </div>'+
-                                ' <div class="assigned-info">'+
-                                '   <div class="task-head-title">Assigned To</div>'+
-                                '<div class="task-assignee">'+data[i].name+'</div>'+
-                                '</div>'+
-                                ' </a>'+
-                                ' <span class="remove-icon">'+
-                                '<i class="fa fa-close"></i>'+
-                                '</span>'+
-                                '</div>'+
-                                '<div class="task-due-date">'+
-                                ' <a href="#" data-toggle="modal" data-target="#assignee">'+
-                                '<div class="due-icon">'+
-                                '<span>'+
-                                '<i class="material-icons">date_range</i>'+
-                                '</span>'+
-                                ' </div>'+
-                                '<div class="due-info">'+
-                                '<div class="task-head-title">Due Date</div>'+
-                                '<div class="due-date">'+data[i].end_date+'</div>'+
-                                '</div>'+
-                                '</a>'+
-                                ' <span class="remove-icon">'+
-                                '<i class="fa fa-close"></i>'+
-                                '</span>'+
-                                '</div>'+
-                                ' </div>'+
-                                ' <hr class="task-line">'+
-                                '<div class="task-desc">'+
-                                ' <div class="task-desc-icon">'+
-                                '<i class="material-icons">subject</i>'+
-                                '</div>'+
-                                ' <div class="task-textarea">'+
+                                '  <img alt="" class="target-img" src="{{ asset('storage/app/public/uploads/staff-images/') }}/' +
+                                data[i].image + '">' +
+                                ' </div>' +
+                                ' <div class="assigned-info">' +
+                                '   <div class="task-head-title">Assigned To</div>' +
+                                '<div class="task-assignee">' + data[i].name + '</div>' +
+                                '</div>' +
+                                ' </a>' +
+                                ' <span class="remove-icon">' +
+                                '<i class="fa fa-close"></i>' +
+                                '</span>' +
+                                '</div>' +
+                                '<div class="task-due-date">' +
+                                ' <a href="#" data-toggle="modal" data-target="#assignee">' +
+                                '<div class="due-icon">' +
+                                '<span>' +
+                                '<i class="material-icons">date_range</i>' +
+                                '</span>' +
+                                ' </div>' +
+                                '<div class="due-info">' +
+                                '<div class="task-head-title">Due Date</div>' +
+                                '<div class="due-date">' + data[i].end_date + '</div>' +
+                                '</div>' +
+                                '</a>' +
+                                ' <span class="remove-icon">' +
+                                '<i class="fa fa-close"></i>' +
+                                '</span>' +
+                                '</div>' +
+                                ' </div>' +
+                                ' <hr class="task-line">' +
+                                '<div class="task-desc">' +
+                                ' <div class="task-desc-icon">' +
+                                '<i class="material-icons">subject</i>' +
+                                '</div>' +
+                                ' <div class="task-textarea">' +
 
-                                '<p class="text-muted">'+data[i].desc+' </p>'+
+                                '<p class="text-muted">' + data[i].desc + ' </p>' +
 
-                                '</div>'+
+                                '</div>' +
                                 ' </div>';
 
                             // '<a class="task-complete-btn btnMark text-success" id="task_complete" href="javascript:void(0);" taskId="'+data[i].id+'" >'+
                             //     '<i class="material-icons">check</i> Mark Complete    </a>' +
-                            var status= '<a class="task-complete-btn btnMark '+status+'" id="task_complete" href="javascript:void(0);" style="margin-left:30px" data="'+data[i].id+'">'+
-                                '<i class="material-icons"></i> '+taskStatus+' </a>';
+                            var status = '<a class="task-complete-btn btnMark ' + status +
+                                '" id="task_complete" href="javascript:void(0);" style="margin-left:30px" data="' +
+                                data[i].id + '">' +
+                                '<i class="material-icons"></i> ' + taskStatus + ' </a>';
 
                         }
 
@@ -322,8 +342,7 @@ var taskStatus='';
                         $('#chatBoxSection').html(html);
 
                     },
-                    error:function()
-                    {
+                    error: function() {
                         toastr.error('something went wrong');
                     },
 
@@ -421,18 +440,17 @@ var taskStatus='';
 
 
     <script>
-        @if(count($errors) > 0)
+        @if (count($errors) > 0)
 
-        @foreach($errors-> all() as $error)
+            @foreach ($errors->all() as $error)
 
-        toastr.error("{{ $error }}");
-        @endforeach
+                toastr.error("{{ $error }}");
+            @endforeach
         @endif
 
 
-        @if(Session::has('success'))
-        toastr.success("Productivity added successfully!");
-
+        @if (Session::has('success'))
+            toastr.success("Productivity added successfully!");
         @endif
     </script>
 
