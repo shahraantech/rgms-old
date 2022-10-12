@@ -1326,6 +1326,33 @@ class CallCenterLeadsController extends Controller
         return view('call-center.reports.leads-analysis');
 
     }
+    //emp-leads-analysis
+
+    public function empLeadsAnalysis(Request $request)
+    {
+
+        return $res=AssignedLeads::with('lastLead')->get();
+        $data['analysis'] = collect([]);
+         $csr=getCSR();
+         $start_date=date('Y-m-d');
+         $end_date=date('Y-m-d');
+
+        foreach ($csr as $csr) {
+            $array = array(
+                'agent' => $csr->name,
+                'totalLeads' => LeadsMarketing::getEmpTotalLeads($csr->id, $start_date, $end_date, 1),
+                'calls' => LeadsMarketing::getEmpTotalLeads($csr->id, $start_date, $end_date, 2),
+                'not_approach' => LeadsMarketing::getEmpTotalLeads($csr->id, $start_date, $end_date, 3),
+                'visit' => 50,
+                'sale' => 50,
+                'dead' => 50,
+            );
+            $data['analysis']->push($array);
+        }
+        return $data['analysis'];
+        return view('call-center.reports.emp-leads-analysis');
+
+    }
 
     //salesReport
     public function salesReport(Request $request)

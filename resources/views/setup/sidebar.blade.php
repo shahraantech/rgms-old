@@ -506,6 +506,7 @@
                             <li><a href="{{ url('sales-report') }}">Sales Report</a></li>
                             <li><a href="{{ url('dead-lead-report') }}">Dead Lead Report</a></li>
                             <li><a href="{{ url('calls-qa-report') }}">Calls QA Report</a></li>
+                            <li><a href="{{ url('emp-leads-analysis') }}">Emp Leads Analysis</a></li>
                         </ul>
                     </li>
                     <li class="submenu">

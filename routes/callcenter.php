@@ -78,6 +78,7 @@ Route::any('saveMeetings', [CallCenterLeadsController::class, 'saveMeetings']);
     Route::any('manager-no-of-leads', [CallCenterLeadsController::class, 'managerNoOfLeads']);
     Route::any('leads-response', [CallCenterLeadsController::class, 'leadsResponse']);
     Route::any('leads-analysis', [CallCenterLeadsController::class, 'leadsAnalysis']);
+    Route::any('emp-leads-analysis', [CallCenterLeadsController::class, 'empLeadsAnalysis']);
     Route::any('sales-report', [CallCenterLeadsController::class, 'salesReport']);
     Route::any('get-sale-report', [CallCenterLeadsController::class, 'getSalesReport']);
     Route::any('dead-lead-report', [CallCenterLeadsController::class, 'deadLeadReport']);

@@ -39,6 +39,7 @@ class LeadsMarketing extends Model
         return $this->belongsTo(SocialPlatform::class, 'platform_id', 'id');
     }
 
+
 //    protected $casts = [
 //        'created_at' => 'datetime:d M Y',
 //    ];
@@ -125,9 +126,7 @@ class LeadsMarketing extends Model
         }
             return $temp;
         }
-
         //getAllSales
-
     public static function getAllSales($request)
     {
         $qry=ApprochedLeads::query();
@@ -150,8 +149,6 @@ class LeadsMarketing extends Model
         $qry=$qry->OrderBy('id','DESC')->get();
         return $qry;
     }
-
-
     public static function getDeadLeads($request)
     {
         $qry=ApprochedLeads::query();
@@ -174,13 +171,27 @@ class LeadsMarketing extends Model
         $qry=$qry->OrderBy('id','DESC')->get();
         return $qry;
     }
-
-
-
     public static function countLeadFollowUps($lead_id)
     {
         $qry=ApprochedLeads::query();
         $qry= $qry->where('lead_id',$lead_id);
+        $qry=$qry->count();
+        return $qry;
+    }
+
+
+
+    public static function getEmpTotalLeads($agentId,$start_date,$endDate,$type)
+    {
+        //use 1 for total leads
+        //use 2 for calls
+        //use 3 notapproaches
+        $qry=AssignedLeads::query();
+        $qry= $qry->where('agent_id',$agentId);
+        ($type==2)?$qry= $qry->where('status',1):'';
+        ($type==3)?$qry= $qry->where('status',0):'';
+        $qry=$qry->whereDate('created_at', '>=', $start_date);
+        $qry = $qry->whereDate('created_at', '<=', $endDate);
         $qry=$qry->count();
         return $qry;
     }

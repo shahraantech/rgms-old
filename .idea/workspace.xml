@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61ad51f6-c89c-418f-938f-7b568a8d5486" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/employee/edit-employee-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/employee/edit-employee-list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rgms.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/AssignedLeads.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/AssignedLeads.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/LeadsMarketing.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LeadsMarketing.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/setup/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/setup/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/callcenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/callcenter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,17 +176,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/multi-rgms&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/xampp/htdocs/rgms",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
@@ -223,6 +228,7 @@
       <workItem from="1665205587719" duration="150000" />
       <workItem from="1665382007812" duration="3801000" />
       <workItem from="1665482115780" duration="599000" />
+      <workItem from="1665579339309" duration="3382000" />
     </task>
     <servers />
   </component>
@@ -290,7 +296,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Models/LeadsMarketing.php</url>
-          <line>68</line>
+          <line>69</line>
           <properties>
             <option name="className" value="\App\Models\LeadsMarketing" />
             <option name="methodName" value="getLeadsInfo" />
@@ -314,6 +320,15 @@
             <option name="methodName" value="editLeeds" />
           </properties>
           <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Models/LeadsMarketing.php</url>
+          <line>115</line>
+          <properties>
+            <option name="className" value="\App\Models\LeadsMarketing" />
+            <option name="methodName" value="countLeadsTempForStat" />
+          </properties>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/accounts/printer/print-expense-summary.blade.php</url>
@@ -372,7 +387,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/call-center/dashboard.blade.php</url>
-          <line>435</line>
+          <line>450</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -382,7 +397,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/call-center/dashboard.blade.php</url>
-          <line>559</line>
+          <line>578</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
