@@ -1,4 +1,0 @@
-[2022-10-12 17:41:48] local.ERROR: Cannot redeclare getEmployeeAcordigToDesignation() (previously declared in C:\xampp\htdocs\rgms\app\helpers.php:37) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getEmployeeAcordigToDesignation() (previously declared in C:\\xampp\\htdocs\gms\\app\\helpers.php:37) at C:\\xampp\\htdocs\gms\\app\\helpers.php:37)
-[stacktrace]
-#0 {main}
-"} 
