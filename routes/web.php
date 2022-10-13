@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\Auth\RegisterController;
 
 
 
@@ -129,5 +130,12 @@ Route::get('verify-account/{id}', [UserController::class, 'verifyAccount']);
 
 Route::post('full-calender/action', [CalendarController::class, 'action']);
 
+<<<<<<< HEAD
 Route::get('alterTableName', [TestController::class, 'alterTableName']);
 Route::post('signup', [UserController::class, 'signup']);
+=======
+Route::get('alterTableName',[TestController::class, 'alterTableName']);
+Route::post('signup',[RegisterController::class, 'signup']);
+
+
+>>>>>>> 53d4fe1ee98f3af0a353b9309e308856fc7128ea

@@ -76,7 +76,9 @@ class LeadsController extends Controller
             $al=AssignedLeads::where('lead_id',$lead->id)->where('agent_id',$emp_id)->first();
             if($al){
                 $data=array(
+                 
                     'lead_id'=>$al->lead_id,
+                    'name'=>$lead->name,
                     'emp_id'=>$al->agent_id
                 );
                 $response = createAPIResponce($is_error = false, $code = 200, $message = 'data  found', $data);

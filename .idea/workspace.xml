@@ -3,12 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="61ad51f6-c89c-418f-938f-7b568a8d5486" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Company.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Company.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/auth/login-page/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/auth/login-page/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ApprochedLeads.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ApprochedLeads.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/AssignedLeads.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/AssignedLeads.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/call-center/reports/emp-leads-analysis.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/call-center/reports/emp-leads-analysis.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,17 +175,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/rgms&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/xampp/htdocs/rgms",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
@@ -222,7 +221,15 @@
       <workItem from="1664860549495" duration="16808000" />
       <workItem from="1664946833230" duration="23414000" />
       <workItem from="1664977280603" duration="2474000" />
-      <workItem from="1665034229094" duration="18004000" />
+      <workItem from="1665034229094" duration="20614000" />
+      <workItem from="1665120017797" duration="5637000" />
+      <workItem from="1665145682730" duration="6340000" />
+      <workItem from="1665205587719" duration="150000" />
+      <workItem from="1665382007812" duration="3801000" />
+      <workItem from="1665482115780" duration="599000" />
+      <workItem from="1665579339309" duration="3978000" />
+      <workItem from="1665596753397" duration="30000" />
+      <workItem from="1665639137093" duration="5545000" />
     </task>
     <servers />
   </component>
@@ -245,7 +252,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/ExpensesController.php</url>
-          <line>307</line>
+          <line>302</line>
           <properties>
             <option name="className" value="\App\Http\Controllers\ExpensesController" />
             <option name="methodName" value="expenseSummary" />
@@ -290,7 +297,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Models/LeadsMarketing.php</url>
-          <line>68</line>
+          <line>69</line>
           <properties>
             <option name="className" value="\App\Models\LeadsMarketing" />
             <option name="methodName" value="getLeadsInfo" />
@@ -299,7 +306,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php</url>
-          <line>409</line>
+          <line>394</line>
           <properties>
             <option name="className" value="\App\Http\Controllers\CallCenter\CallCenterLeadsController" />
             <option name="methodName" value="deleteLeads" />
@@ -308,16 +315,34 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php</url>
-          <line>343</line>
+          <line>328</line>
           <properties>
             <option name="className" value="\App\Http\Controllers\CallCenter\CallCenterLeadsController" />
             <option name="methodName" value="editLeeds" />
           </properties>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Models/LeadsMarketing.php</url>
+          <line>115</line>
+          <properties>
+            <option name="className" value="\App\Models\LeadsMarketing" />
+            <option name="methodName" value="countLeadsTempForStat" />
+          </properties>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Models/ApprochedLeads.php</url>
+          <line>80</line>
+          <properties>
+            <option name="className" value="\App\Models\ApprochedLeads" />
+            <option name="methodName" value="getEmpOverDueLeads" />
+          </properties>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/accounts/printer/print-expense-summary.blade.php</url>
-          <line>103</line>
+          <line>96</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -372,17 +397,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/call-center/dashboard.blade.php</url>
-          <line>435</line>
+          <line>450</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/call-center/leads/my-leads.blade.php</url>
-          <line>1042</line>
+          <line>1043</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/call-center/dashboard.blade.php</url>
-          <line>559</line>
+          <line>578</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -392,8 +417,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/hr/designations/index.blade.php</url>
-          <line>179</line>
+          <line>175</line>
           <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/accounts/coa/coa-level.blade.php</url>
+          <line>38</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

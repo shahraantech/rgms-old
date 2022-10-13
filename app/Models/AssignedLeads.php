@@ -17,6 +17,7 @@ class AssignedLeads extends Model
         return $this->belongsTo(LeadsMarketing::class, 'lead_id', 'id')->select(['id', 'name', 'contact', 'city_id', 'lead_type', 'interest']);
     }
 
+
     public function agent()
     {
         return $this->belongsTo(Employee::class, 'agent_id', 'id')->select(['id', 'name']);

@@ -3,20 +3,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="{{ asset('public/assets/chart-assets/canvas.js') }}"></script>
 
-    <link rel="stylesheet" href="{{ asset('public/assets/chart-assets/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('public/assets/chart-assets/font-awesome.min.css') }}">
 
     <!-- Page Wrapper -->
     <div class="page-wrapper">
         <!-- Page Content -->
         <div class="content container-fluid">
-            <div class="row mt-4" >
+            <div class="row mt-4">
                 <div class="col-3" style="padding-right: 0px;padding-left: 7px">
                     <div class="card bg-gradient-blue">
                         <div style="font-size: 1.2rem;" class="card-body text-center text-white ">
                             <span class="card-tital">Leads</span><br>
                             <span class="counter">{{ $data['totalLeads'] }}</span>
                             <hr>
-                            <span class="mb-0 pt-3 text-white">This Month <span class="counter">{{$data['thisMonthLeads']}}</span></span>
+                            <span class="mb-0 pt-3 text-white">This Month <span
+                                    class="counter">{{ $data['thisMonthLeads'] }}</span></span>
                         </div>
                     </div>
                 </div>
@@ -26,7 +27,8 @@
                             <span class="card-tital">Response Queries</span><br>
                             <span class="counter">{{ $data['responceQueries'] }}</span>
                             <hr>
-                            <span class="mb-0 pt-3 text-white">This Month <span class="counter">{{ $data['thisMonthResponceQueirs'] }}</span></span>
+                            <span class="mb-0 pt-3 text-white">This Month <span
+                                    class="counter">{{ $data['thisMonthResponceQueirs'] }}</span></span>
                         </div>
                     </div>
                 </div>
@@ -36,7 +38,8 @@
                             <span class="card-tital">Meetings</span><br>
                             <span class="counter">{{ $data['doneMeetings'] }}</span>
                             <hr>
-                            <span class="mb-0 pt-3 text-white">This Month <span class="counter">{{ $data['doneMeetingsThisMonth'] }}</span></span>
+                            <span class="mb-0 pt-3 text-white">This Month <span
+                                    class="counter">{{ $data['doneMeetingsThisMonth'] }}</span></span>
                         </div>
                     </div>
                 </div>
@@ -46,13 +49,14 @@
                             <span class="card-tital">Sales</span><br>
                             <span class="counter">{{ $data['sales'] }}</span>
                             <hr>
-                            <span class="mb-0 pt-3 text-white">This Month <span class="counter">{{ $data['salesThisMonth'] }}</span></span>
+                            <span class="mb-0 pt-3 text-white">This Month <span
+                                    class="counter">{{ $data['salesThisMonth'] }}</span></span>
                         </div>
                     </div>
                 </div>
             </div>
             <style>
-                .custom-form{
+                .custom-form {
                     width: 22%;
                     height: 10px;
                     padding: 12px 20px;
@@ -62,9 +66,11 @@
                     background-color: #f8f8f8;
                     resize: none;
                 }
-                .custom-form:focus{
-                    border-color:lightskyblue;
+
+                .custom-form:focus {
+                    border-color: lightskyblue;
                 }
+
                 .custom-select {
                     width: 22%;
                     padding: 1px 20px;
@@ -75,16 +81,17 @@
                     height: 25px;
 
                 }
-                .custom-select:focus{
-                    border-color:lightskyblue;
+
+                .custom-select:focus {
+                    border-color: lightskyblue;
                 }
             </style>
             <div class="row">
 
                 <div class="col-md-12">
-{{--                    <span class="text-center">Leads Analysis</span>--}}
+                    {{--                    <span class="text-center">Leads Analysis</span> --}}
                     <form action="">
-                        <input type="text" class="date_range custom-form" name="date_range"/>
+                        <input type="text" class="date_range custom-form" name="date_range" />
                         <select name="platform_id" id="" class="custom-select" style="margin-bottom: 10px">
                             <option value="">Social PlatForm</option>
                             @isset($data)
@@ -122,8 +129,10 @@
                         <div class="card-body">
 
                             <div class="row mb-3">
-                                <div class="col-md-4"><h4 class="card-title mt-2">Leads</h4></div>
-{{--                                <div class="col-md-8"><input type="text" class="form-control" name="daterange" /></div>--}}
+                                <div class="col-md-4">
+                                    <h4 class="card-title mt-2">Leads</h4>
+                                </div>
+                                {{--                                <div class="col-md-8"><input type="text" class="form-control" name="daterange" /></div> --}}
                             </div>
 
 
@@ -158,24 +167,24 @@
                                 <p>
                                     <a href="{{ url('leads-params') . '/' . encrypt(1) . '/' . encrypt('admin') }}"><i
                                             class="fa fa-dot-circle-o text-success mr-2"></i>Today Follow Up <span
-                                            class="float-right counter">{{$data['todayFollowUpsLeads']}}</span></a>
+                                            class="float-right counter">{{ $data['todayFollowUpsLeads'] }}</span></a>
                                 </p>
 
                                 <p><a href="{{ url('leads-params') . '/' . encrypt(2) . '/' . encrypt('admin') }}"><i
                                             class="fa fa-dot-circle-o text-purple  mr-2"></i>Tomorrow Follow Up <span
-                                            class="float-right counter">{{ $data['tomorrowLeads']}}</span></a></p>
+                                            class="float-right counter">{{ $data['tomorrowLeads'] }}</span></a></p>
 
                                 <p><a href="{{ url('leads-params') . '/' . encrypt(3) . '/' . encrypt('admin') }}"><i
                                             class="fa fa-dot-circle-o text-danger mr-2"></i>Not Approached Leads <span
-                                            class="float-right counter">{{ $data['notApproachedLeads']}}</span></a>
+                                            class="float-right counter">{{ $data['notApproachedLeads'] }}</span></a>
                                 </p>
                                 <p><a href="{{ url('leads-params') . '/' . encrypt(4) . '/' . encrypt('admin') }}"><i
                                             class="fa fa-dot-circle-o text-info mr-2"></i>Over Due Leads <span
                                             class="float-right counter">{{ $data['overDueLeads'] }}</span></a></p>
 
-{{--                                <p><a href="{{ url('leads-params') . '/' . encrypt(7) . '/' . encrypt('admin') }}"><i--}}
-{{--                                            class="fa fa-dot-circle-o text-primary mr-2"></i>Open Leads <span--}}
-{{--                                            class="float-right" id="open-lead-section"></span></a></p>--}}
+                                {{--                                <p><a href="{{ url('leads-params') . '/' . encrypt(7) . '/' . encrypt('admin') }}"><i --}}
+                                {{--                                            class="fa fa-dot-circle-o text-primary mr-2"></i>Open Leads <span --}}
+                                {{--                                            class="float-right" id="open-lead-section"></span></a></p> --}}
                             </div>
                         </div>
                     </div>
@@ -197,13 +206,13 @@
                                     @endphp
                                     @foreach ($temp as $temp)
                                         @php
-                                            $appLeads = App\Models\ApprochedLeads::getTempratureWiseLeads($temp->id,'counting','admin',NULL);
+                                            $appLeads = App\Models\ApprochedLeads::getTempratureWiseLeads($temp->id, 'counting', 'admin', null);
                                         @endphp
                                         <a
                                             href="{{ url('leads-temp-wise/admin') . '/' . ($temp->id . '/' . $temp->temp) }}">
                                             <i class="fa fa-dot-circle-o text-success mr-2"></i>{{ $temp->temp }}
 
-                                            <span class="float-right counter">{{ $appLeads}}</span></a>
+                                            <span class="float-right counter">{{ $appLeads }}</span></a>
                                 </p>
                                 @endforeach
 
@@ -216,8 +225,10 @@
                     <div class="card flex-fill">
                         <div class="card-body">
                             <div class="row mb-3">
-                                <div class="col-md-4"><h4 class="card-title mt-2">Calls</h4></div>
-{{--                                <div class="col-md-8"><input type="text" class="form-control" name="daterange" /></div>--}}
+                                <div class="col-md-4">
+                                    <h4 class="card-title mt-2">Calls</h4>
+                                </div>
+                                {{--                                <div class="col-md-8"><input type="text" class="form-control" name="daterange" /></div> --}}
                             </div>
 
                             <div class="statistics">
@@ -239,7 +250,7 @@
 
                             <div>
                                 <p><i class="fa fa-dot-circle-o text-purple mr-2"></i>Connected <span
-                                        class="float-right counter" >{{ $data['connected'] }}</span></p>
+                                        class="float-right counter">{{ $data['connected'] }}</span></p>
                                 <p><i class="fa fa-dot-circle-o text-warning mr-2"></i>Connected <small>This month</small>
                                     <span class="float-right counter">{{ $data['thisMonthConnected'] }}</span>
                                 </p>
@@ -262,7 +273,9 @@
                     <div class="card flex-fill dash-statistics">
                         <div class="card-body">
                             <div class="row mb-3">
-                                <div class="col-md-6"><h5 class="card-title mt-2">Sale Targets <small>(Team)</small></h5></div>
+                                <div class="col-md-6">
+                                    <h5 class="card-title mt-2">Sale Targets <small>(Team)</small></h5>
+                                </div>
 
                             </div>
                             <div class="stats-list">
@@ -302,8 +315,10 @@
                     <div class="card flex-fill dash-statistics">
                         <div class="card-body">
                             <div class="row mb-3">
-                                <div class="col-md-6"><h5 class="card-title mt-2">Sale Targets <small>(individual)</small></h5></div>
-{{--                                <div class="col-md-6"><input type="text" class="form-control" name="daterange" /></div>--}}
+                                <div class="col-md-6">
+                                    <h5 class="card-title mt-2">Sale Targets <small>(individual)</small></h5>
+                                </div>
+                                {{--                                <div class="col-md-6"><input type="text" class="form-control" name="daterange" /></div> --}}
                             </div>
                             <div class="stats-list">
 
@@ -311,20 +326,18 @@
                                     @foreach ($data['getIndividualSaleTeam'] as $teamTarget)
                                         @php
 
-                                            $totalAcheive=0;
-                                                $target=$teamTarget->target_in_numbers;
+                                            $totalAcheive = 0;
+                                            $target = $teamTarget->target_in_numbers;
 
-                                                       $memberAcheive=getSalesManTargetAcheive($teamTarget->id,'sale');
-                                                       $totalAcheive=$totalAcheive+$memberAcheive;
+                                            $memberAcheive = getSalesManTargetAcheive($teamTarget->id, 'sale');
+                                            $totalAcheive = $totalAcheive + $memberAcheive;
 
-                                                    $pers=($totalAcheive *100)/$target;
-                                                    $bg='warning';
-                                                    ($pers<50)?$bg='danger':'';
-                                                    ($pers>50 && $pers<70)?$bg='info':'';
-                                                    ($pers>70 && $pers<80)?$bg='primary':'';
-                                                    ($pers>80)?$bg='success':'';
-
-
+                                            $pers = ($totalAcheive * 100) / $target;
+                                            $bg = 'warning';
+                                            $pers < 50 ? ($bg = 'danger') : '';
+                                            $pers > 50 && $pers < 70 ? ($bg = 'info') : '';
+                                            $pers > 70 && $pers < 80 ? ($bg = 'primary') : '';
+                                            $pers > 80 ? ($bg = 'success') : '';
                                         @endphp
                                         <div class="stats-info">
                                             <p>{{ $teamTarget->name }} ({{ $pers }})%
@@ -350,8 +363,10 @@
                     <div class="card flex-fill dash-statistics">
                         <div class="card-body">
                             <div class="row mb-3">
-                                <div class="col-md-6"><h5 class="card-title mt-2">Meeting Targets <small>(Team)</small></h5></div>
-{{--                                <div class="col-md-6"><input type="text" class="form-control" name="daterange" /></div>--}}
+                                <div class="col-md-6">
+                                    <h5 class="card-title mt-2">Meeting Targets <small>(Team)</small></h5>
+                                </div>
+                                {{--                                <div class="col-md-6"><input type="text" class="form-control" name="daterange" /></div> --}}
                             </div>
 
                             <div class="stats-list">
@@ -390,8 +405,10 @@
                     <div class="card flex-fill dash-statistics">
                         <div class="card-body">
                             <div class="row mb-3">
-                                <div class="col-md-6"><h5 class="card-title mt-2">Meeting Targets <small>(individual)</small></h5></div>
-{{--                                <div class="col-md-6"><input type="text" class="form-control" name="daterange" /></div>--}}
+                                <div class="col-md-6">
+                                    <h5 class="card-title mt-2">Meeting Targets <small>(individual)</small></h5>
+                                </div>
+                                {{--                                <div class="col-md-6"><input type="text" class="form-control" name="daterange" /></div> --}}
                             </div>
 
                             <div class="stats-list">
@@ -400,18 +417,16 @@
                                     @foreach ($data['getIndividualMeetingTeam'] as $meetingTeam)
                                         @php
 
-                                            $totalAcheive=0;
-                                                $target=$meetingTeam->target_in_numbers;
-                                                   $totalAcheive= getSalesManTargetAcheive($meetingTeam->id,'meeting');
+                                            $totalAcheive = 0;
+                                            $target = $meetingTeam->target_in_numbers;
+                                            $totalAcheive = getSalesManTargetAcheive($meetingTeam->id, 'meeting');
 
-                                                    $pers=($totalAcheive *100)/$target;
-                                                    $bg='warning';
-                                                    ($pers<50)?$bg='danger':'';
-                                                    ($pers>50 && $pers<70)?$bg='info':'';
-                                                    ($pers>70 && $pers<80)?$bg='primary':'';
-                                                    ($pers>80)?$bg='success':'';
-
-
+                                            $pers = ($totalAcheive * 100) / $target;
+                                            $bg = 'warning';
+                                            $pers < 50 ? ($bg = 'danger') : '';
+                                            $pers > 50 && $pers < 70 ? ($bg = 'info') : '';
+                                            $pers > 70 && $pers < 80 ? ($bg = 'primary') : '';
+                                            $pers > 80 ? ($bg = 'success') : '';
                                         @endphp
                                         <div class="stats-info">
                                             <p>{{ $meetingTeam->name }} ({{ round($pers, 1) }})%
@@ -462,8 +477,8 @@
 
 
 
-        <!-- /Page Content -->
-    </div>
+            <!-- /Page Content -->
+        </div>
 
     </div>
 
@@ -472,14 +487,17 @@
         $(document).ready(function() {
             getInBoundValues();
             getOutBoundValues();
-            LeadsAnalysisPieChart(0,0);
-            LeadsAnalysisBarChart(0,0);
+            LeadsAnalysisPieChart(0, 0);
+            LeadsAnalysisBarChart(0, 0);
+
             function getInBoundValues() {
 
                 $.ajax({
                     type: 'ajax',
                     method: 'get',
-                    data: {lead_type: 'inbound' },
+                    data: {
+                        lead_type: 'inbound'
+                    },
                     url: '{{ url('getLeadsAcordingSocilaPlatforms') }}',
                     success: function(data) {
                         var platforms = [];
@@ -513,6 +531,7 @@
                     },
                 });
             }
+
             function getOutBoundValues() {
 
                 $.ajax({
@@ -557,22 +576,32 @@
                     },
                 });
             }
-            function LeadsAnalysisPieChart(platform_id,date_range) {
+
+            function LeadsAnalysisPieChart(platform_id, date_range) {
 
                 $.ajax({
                     type: 'ajax',
                     method: 'get',
-                    data: {platform_id:platform_id,date_range:date_range},
+                    data: {
+                        platform_id: platform_id,
+                        date_range: date_range
+                    },
                     url: '{{ url('leads-analysis') }}',
                     success: function(data) {
-                        var barColors = ["#C7A183","#F6D0E8","#83D475","#df1b1b"];
-                        new Chart("leadsAnalysisPieChart", {
+                        var barColors = ["#C7A183", "#F6D0E8", "#83D475", "#df1b1b"];
+                        if (window.bar != undefined) {
+                            window.pie.destroy();
+                        }
+                        window.pie = new Chart('leadsAnalysisPieChart', {
                             type: "pie",
                             data: {
-                                labels: ['Calls','Visit','Sale','Dead'],
+                                labels: ['Calls', 'Visit', 'Sale', 'Dead'],
                                 datasets: [{
                                     backgroundColor: barColors,
-                                    data: [data.platFormsCallsPerc,data.platFormsVistsPerc,data.platFormsSalePerc,data.platFormDeadPerc],
+                                    data: [data.platFormsCallsPerc, data
+                                        .platFormsVistsPerc, data.platFormsSalePerc,
+                                        data.platFormDeadPerc
+                                    ],
                                 }],
                             },
                             options: {
@@ -580,6 +609,7 @@
                                     display: true,
                                 },
                             }
+
                         });
                     },
 
@@ -587,27 +617,42 @@
                 });
 
             }
-            function LeadsAnalysisBarChart(platform_id,date_range) {
+
+            function LeadsAnalysisBarChart(platform_id, date_range) {
+
                 $.ajax({
                     type: 'ajax',
                     method: 'get',
-                    data: {platform_id:platform_id,date_range:date_range},
+                    data: {
+                        platform_id: platform_id,
+                        date_range: date_range
+                    },
                     url: '{{ url('leads-analysis') }}',
                     success: function(data) {
-                        var barColors = [data.platFormColor,"#C7A183","#F6D0E8","#83D475","#df1b1b"];
-                        new Chart("leadsAnalysisBarChart", {
+                        var barColors = [data.platFormColor, "#C7A183", "#F6D0E8", "#83D475",
+                            "#df1b1b"
+                        ];
+
+                        if (window.bar != undefined)
+                            window.bar.destroy();
+                        window.bar = new Chart('leadsAnalysisBarChart', {
                             type: "bar",
                             data: {
-                                labels: [data.platFormName,'Calls','Visit','Sale','Dead'],
+                                labels: [data.platFormName, 'Calls', 'Visit', 'Sale', 'Dead'],
                                 indexLabel: "{name}",
                                 datasets: [{
                                     backgroundColor: barColors,
-                                    data: [data.platformTotalLeads,data.platFormsCalls,data.platFormsVists,data.platFormsSale,data.platFormsDead],
+                                    data: [data.platformTotalLeads, data.platFormsCalls,
+                                        data.platFormsVists, data.platFormsSale,
+                                        data.platFormsDead
+                                    ],
                                 }],
 
                             },
                             options: {
-                                legend: { display: false},
+                                legend: {
+                                    display: false
+                                },
                             }
                         });
                     },
@@ -619,28 +664,28 @@
 
 
             $('select[name=platform_id]').change(function() {
-                var platform_id=$('select[name=platform_id]').val();
-                var date_range=$('input[name=date_range]').val();
+                var platform_id = $('select[name=platform_id]').val();
+                var date_range = $('input[name=date_range]').val();
 
-                LeadsAnalysisPieChart(platform_id,date_range);
-                LeadsAnalysisBarChart(platform_id,date_range);
+                LeadsAnalysisPieChart(platform_id, date_range);
+                LeadsAnalysisBarChart(platform_id, date_range);
             });
 
             $('input[name=date_range]').change(function() {
-                var date_range=$('input[name=date_range]').val();
+                var date_range = $('input[name=date_range]').val();
 
-                LeadsAnalysisPieChart(0,date_range);
-                LeadsAnalysisBarChart(0,date_range);
+                LeadsAnalysisPieChart(0, date_range);
+                LeadsAnalysisBarChart(0, date_range);
             });
 
-            $(document).ready(function () {
-                $('.counter').each(function () {
+            $(document).ready(function() {
+                $('.counter').each(function() {
                     $(this).prop('counter', 0).animate({
                         counter: $(this).text()
                     }, {
                         duration: 3000,
                         easing: 'swing',
-                        step: function (now) {
+                        step: function(now) {
                             $(this).text(Math.ceil(now));
                         }
                     });
