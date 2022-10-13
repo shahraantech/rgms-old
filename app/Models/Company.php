@@ -20,13 +20,15 @@ class Company extends Model
     //saveCompany
     public static function saveCompany($request)
     {
-    $com=new Company();
+        $com=new Company();
         $com->name=$request->company_name;
         $com->working_days=26;
-        $com->allow_holidays=26;
-        $com->lat=26;
-        $com->lang=26;
-        $com->address=$request->country_name;
+        $com->allow_holidays=1;
+        $com->lat=$request->lat;
+        $com->lang=$request->long;
+        $com->address=$request->address;
+        $com->save();
+       return $com;
     }
 
     public static function getCompanyName($company_id)

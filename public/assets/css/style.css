@@ -537,7 +537,7 @@ table.dataTable thead > tr > td.sorting {
 .btn-primary.active,
 .btn-primary:active,
 .open > .dropdown-toggle.btn-primary {
-	background-color: #f10e1d;
+	background-color: #2eaafa;
 	border: 1px solid #f10e1d;
 }
 .btn-primary.active.focus,

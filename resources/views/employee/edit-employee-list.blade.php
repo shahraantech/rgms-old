@@ -342,6 +342,7 @@
                                                 placeholder="Organization" required
                                                 value="{{ $exp->organization ?? '' }}">
                                         </div>
+
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-sm-6">
@@ -378,13 +379,18 @@
                                     </div>
                                 </div>
                             @endforeach
-                            <div class="card-footer">
-                                <div class="row mt-4">
-                                    <div class="text-center w-100">
-                                        <button class="btn add-btn" type="submit">Save Changes</button>
+
+                                        
                                     </div>
-                                </div>
-                            </div>
+                                @endforeach
+                            @endisset
+                            
+                                        <div class="row mt-4">
+                                            <div class="text-center w-100">
+                                                <button class="btn add-btn" type="submit">Save Changes</button>
+                                            </div>
+                                        </div>
+
                         </div>
                     </form>
                 </div>

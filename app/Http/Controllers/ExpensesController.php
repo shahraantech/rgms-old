@@ -245,7 +245,6 @@ class ExpensesController extends Controller
 
             $validator = \Illuminate\Support\Facades\Validator::make($data, $rules);
             if ($validator->fails()) {
-
                 return response()->json(['errors' => $validator->errors()]);
             }
 
@@ -268,34 +267,30 @@ class ExpensesController extends Controller
             if($request->hasFile('file')){
                 $attachement = base64_encode(file_get_contents($request->file('file')));
             }
-
+            $res='';
             if ($input['remarks'] != '') {
                 for ($c = 0; $c < count($input['remarks']); $c++) {
                     if ($input['amount'][$c]) {
-
                         $location_id=Employee::getEmpBranchId();
-
                         $trans_id = saveTransaction(0, $mode = 'expense', $file_id = NULL, $against = NULL, $location_id, $input['amount'][$c], $input['remarks'][$c], $exp_date, $trans_type = 'expense','',$attachement);
-
                         if($request->trans_mode=='cash') {
                             // save ledger for credits company ac
                             $acHead = Account::getAccountHeadId($comAcId);
                             saveLedger($trans_id->id, $acHead['lHeadId'], $comAcId, $ac_type = 'company-account', $ledger_type = 'cr', $input['amount'][$c],0, $acHead['coa_level']);
                         }
-
                         if($request->trans_mode=='bank') {
                             // save ledger for credits Banks
                             $data = Account::getBankHeadId($request->bank_id);
                             saveLedger($trans_id->id, $data['lHeadId'], $request->bank_id, $ac_type = 'bank', $ledger_type = 'cr', $input['amount'][$c],0, $data['coa_level']);
                         }
                         // save ledger for debits
-                        saveLedger($trans_id->id, $input['exp_head_id'][$c], $companyAcId = NULL, $ac_type = 'company-head', $ledger_type = 'dr', $input['amount'][$c], 0,4);
-
-
+                        $res=saveLedger($trans_id->id, $input['exp_head_id'][$c], $companyAcId = NULL, $ac_type = 'company-head', $ledger_type = 'dr', $input['amount'][$c], 0,4);
                     }
                 }
             }
-            return response()->json(['success' => 'Expense Added Successfully'], 200);
+            if($res) {
+                return response()->json(['success' => 'Expense Added Successfully'], 200);
+            }
         }
         $data['l1Head'] = Level_1::getLevel1();
          $data['level4'] = Level_1::getLevel4();
@@ -326,6 +321,8 @@ class ExpensesController extends Controller
          $data['balance']=Ledger::countAccountsBalance('company-account',$account_id);
          $data['exp']=Transaction::getExpenseTransaction($fromDate,$toDate);
          $data['account_id']=$account_id;
+         $data['from']=$fromDate;
+         $data['to']=$toDate;
         return view('accounts.printer.print-expense-summary')->with(compact('data'));
     }
     public  function editExpenseSummary(Request $request)

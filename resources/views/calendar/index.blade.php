@@ -398,6 +398,7 @@
                     // console.log(puriety);
 
                     let purietysds = $('select[name="up_cat_id"]').val(pur);
+                    
                     var t = $('.title').val(newnn);
                     var desss = $('.decription').val(des);
                     var descnew = desss.val();

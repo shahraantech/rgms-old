@@ -516,12 +516,19 @@ function getNotApproachedLeads($sender)
 
 function getOverDueLeads($sender)
 {
-
-    $qry = ApprochedLeads::with('leads', 'leads.cityname');
-    ($sender != 'admin') ? $qry = $qry->where('agent_id', Auth::user()->account_id) : '';
-    $qry = $qry->whereDate('followup_date', '<', Carbon::today());
-    $qry = $qry->where('status', 0);
-    $qry = $qry->where('lead_type', 0);
+    $qry = ApprochedLeads::Query();
+    $qry =$qry->with('leads', 'leads.cityname');
+    $qry =$qry->join('assigned_leads', 'assigned_leads.lead_id','=','approched_leads.lead_id');
+    ($sender != 'admin') ? $qry = $qry->where('assigned_leads.agent_id', Auth::user()->account_id) : '';
+    $qry = $qry->whereDate('approched_leads.followup_date', '<', Carbon::today());
+    $qry = $qry->where('approched_leads.status', 0);
+    $qry = $qry->where('approched_leads.lead_type', 0);
+    $qry=$qry->where(
+        function($query) {
+            return $query
+                ->where('approched_leads.temp_id','!=',9)
+                ->where('approched_leads.temp_id','!=',10);
+        });
     $qry = $qry->paginate(10);
     return  $qry;
 }
@@ -540,6 +547,7 @@ function saveLedger($transaction_id, $coaHeadId, $account_id, $ac_type, $ledger_
     $ledger->current_balance = $current_balance;
     $ledger->date = $date;
     $ledger->save();
+    return $ledger;
 }
 
 
@@ -746,8 +754,6 @@ function responsedLeads($start_date, $end_date)
 //get csr
 function getCSR()
 {
-
-
     $res = User::select('account_id as id', 'name')
         ->where('status', 1)
         ->where('role_id', 4)

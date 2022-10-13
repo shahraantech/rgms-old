@@ -848,6 +848,7 @@
                     },
                     success: function(data) {
                         console.log(data);
+                        getData();
                         if (data.success) {
                             $('.close').click();
                             $('#inboundLeadForm')[0].reset();

@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class ApprochedLeads extends Model
@@ -80,10 +81,17 @@ class ApprochedLeads extends Model
     public static function getEmpOverDueLeads($agent_id,$purpose)
     {
         $qry= ApprochedLeads::Query();
-        $qry=$qry->whereDate('followup_date', '<', Carbon::today());
-        $qry=$qry->where('agent_id',$agent_id);
-        $qry=$qry->where('status', 0);
-        $qry=$qry->where('lead_type', 0)->with('leads','leads.cityname');
+        $qry =$qry->join('assigned_leads', 'assigned_leads.lead_id','=','approched_leads.lead_id');
+        $qry=$qry->whereDate('approched_leads.followup_date', '<', Carbon::today());
+        $qry=$qry->where('assigned_leads.agent_id',$agent_id);
+        $qry=$qry->where('approched_leads.status', 0);
+        $qry=$qry->where(
+        function($query) {
+            return $query
+                ->where('approched_leads.temp_id','!=',9)
+                ->where('approched_leads.temp_id','!=',10);
+        });
+        $qry=$qry->where('approched_leads.lead_type', 0)->with('leads','leads.cityname');
         ($purpose=='counting')? $qry=$qry->count():$qry=$qry->paginate(20);
         return $qry;
     }
@@ -97,8 +105,19 @@ class ApprochedLeads extends Model
     }
 
     public static function chekTodayApproch($lead_id){
-
        return $res= ApprochedLeads::whereDate('created_at',date('Y-m-d'))->where('lead_id',$lead_id)->first();
+    }
+
+    public static function getLeadsStatusEmpWise(){
+        $qry=ApprochedLeads::query();
+        $qry=$qry->join('leads_marketings', 'leads_marketings.id', 'approched_leads.lead_id');
+        $qry=$qry->where(
+                function($query) {
+                    return $query
+                        ->where('approched_leads.id')->latest();
+                });
+            $qry=$qry->get();
+            return $qry;
     }
 
 

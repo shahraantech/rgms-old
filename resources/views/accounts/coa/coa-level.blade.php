@@ -15,34 +15,30 @@
         </select>
 
     </div>
-
     <div class="form-group col-sm-3 l2-section" style="display: none">
         <label>Level2 <span class="text-danger">*</span></label>
-        <select class=" form-control " name="l2headId" id="l2Dropdown" >
+        <select class="form-control inpL2" name="l2headId" id="l2Dropdown">
             <option value="">Choose Head</option>
         </select>
 
     </div>
-
     <div class="form-group col-sm-2 l3-section" style="display: none">
         <label>Level3 <span class="text-danger">*</span></label>
-        <select class=" form-control " name="l3headId" id="l3Dropdown"  >
+        <select class="form-control inpL3" name="l3headId" id="l3Dropdown"  >
             <option value="">Choose Head</option>
         </select>
 
     </div>
-
     <div class="form-group col-sm-2 l4-section" style="display: none">
         <label>Level4 <span class="text-danger">*</span></label>
-        <select class=" form-control " name="l4headId" id="l4Dropdown"  >
+        <select class="form-control inpL4" name="l4headId" id="l4Dropdown"  >
             <option value="">Choose Head</option>
         </select>
 
     </div>
-
     <div class="form-group col-sm-2 l5-section" style="display: none">
         <label>Level5 <span class="text-danger">*</span></label>
-        <select class=" form-control " name="l5headId" id="l5Dropdown"  >
+        <select class="form-control inpL5" name="l5headId" id="l5Dropdown"  >
             <option value="">Choose Head</option>
         </select>
 
@@ -66,6 +62,8 @@
                 dataType: 'json',
                 success: function(data) {
                     if (data.length > 0) {
+                        $(".inpL2").prop('required',true);
+
                         $(".l2-section").css("display", "block");
                         var html = '<option value="">Choose Head</option>';
                         var i;
@@ -103,6 +101,8 @@
                 dataType: 'json',
                 success: function(data) {
                     if (data.length > 0) {
+
+                        $(".inpL3").prop('required',true);
                         $(".l3-section").css("display", "block");
                         var html = '<option value="">Choose Head</option>';
                         var i;
@@ -139,6 +139,7 @@
                 dataType: 'json',
                 success: function(data) {
                     if (data.length > 0) {
+                        $(".inpL4").prop('required',true);
                         $(".l4-section").css("display", "block");
                         var html = '<option value="">Choose Head</option>';
                         var i;
@@ -177,6 +178,7 @@
                 dataType: 'json',
                 success: function(data) {
                     if (data.length > 0) {
+                        $(".inpL5").prop('required',true);
                         $(".l5-section").css("display", "block");
                         var html = '<option value="">Choose Head</option>';
                         var i;

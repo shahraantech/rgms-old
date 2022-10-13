@@ -3,6 +3,10 @@ body{
     padding: 0;
     background-color: #F9F9F9 !important;
 }
+.btn-new-primary {
+    background: linear-gradient(to right bottom, #2eaafa, #0a8be5, #006dce, #0e4eb4, #1f2f98);
+	border: 1px solid #2EAAFA;
+}
 
 #login{
 	margin-top: 10rem;
