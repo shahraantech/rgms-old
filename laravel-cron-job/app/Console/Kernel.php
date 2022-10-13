@@ -8,17 +8,6 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel
 {
     /**
-     * The Artisan commands provided by your application.
-     *
-     * @var array
-     */
-    protected $commands = [
-        Commands\AutoAttendece::class,
-        //  Commands\LeadCron::class,
-        //  Commands\UpdateProbPeriodCron::class,
-    ];
-
-    /**
      * Define the application's command schedule.
      *
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
@@ -26,8 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('auto:attend')->everyMinute();
-        // $schedule->command('auto:attend')->everyMinute();
+        // $schedule->command('inspire')->hourly();
     }
 
     /**
@@ -37,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__ . '/Commands');
+        $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
     }
