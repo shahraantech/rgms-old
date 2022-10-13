@@ -47,7 +47,9 @@
                                             <td>{{ $c }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td><span class="badge bg-inverse-primary">{{ $user->rolename['role'] }}</span></td>
+                                            <td><span
+                                                    class="badge bg-inverse-primary">{{ $user->rolename['role'] ?? '' }}</span>
+                                            </td>
                                             <td>
                                                 @if ($user->status == 1)
                                                     <span class="badge bg-inverse-success">Active</span>
@@ -96,8 +98,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="{{ url('create-user') }}" id="userForm" class="needs-validation"
-                                novalidate>
+                            <form method="post" action="{{ url('create-user') }}" id="userForm">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
@@ -111,9 +112,6 @@
                                                     @endforeach
                                                 @endisset
                                             </select>
-                                            <div class="invalid-feedback">
-                                                Please choose company name.
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -122,9 +120,6 @@
                                             <select name="emp_id" class="form-control " id="showEmployee" required>
                                                 <option value="">Choose Agent</option>
                                             </select>
-                                            <div class="invalid-feedback">
-                                                Please choose Employee .
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -133,9 +128,6 @@
                                     <input class="form-control" type="email" name="email" placeholder="User Name"
                                         required>
                                     <input type="hidden" name="name">
-                                    <div class="invalid-feedback">
-                                        Please enter user name.
-                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Password <span class="text-danger">*</span></label>
@@ -158,9 +150,6 @@
                                                     @endforeach
                                                 @endisset
                                             </select>
-                                            <div class="invalid-feedback">
-                                                Please choose Role .
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 module_section" style="display: none">
@@ -245,8 +234,24 @@
             <!-- /Add Department Modal -->
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
         <script>
             $(document).ready(function() {
+
+                $('#userForm').validate({
+
+                    errorElement: 'span',
+                    errorPlacement: function(error, element) {
+                        error.addClass('invalid-feedback');
+                        element.closest('.form-group').append(error);
+                    },
+                    highlight: function(element, errorClass, validClass) {
+                        $(element).addClass('is-invalid');
+                    },
+                    unhighlight: function(element, errorClass, validClass) {
+                        $(element).removeClass('is-invalid');
+                    }
+                });
 
                 //roleTable
                 //btn-change-role
@@ -383,11 +388,12 @@
                 });
 
 
-
-
-
                 $('#userForm').on('submit', function(e) {
                     e.preventDefault();
+
+                    var $form = $(this);
+                    // check if the input is valid
+                    if (!$form.validate().form()) return false;
 
                     let formData = new FormData($('#userForm')[0]);
 

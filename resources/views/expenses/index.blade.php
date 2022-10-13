@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary expence_serach">Search</button>
+                                    <button type="submit" class="btn btn-primary expence_serach"><i class="fa fa-search"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -255,13 +255,13 @@
                         }
 
                         $('#showExpense').html(html);
-                        $('.expence_serach').text('Search');
+                        $('.expence_serach').html('<i class="fa fa-search"></i>');
                         $(".expence_serach").prop("disabled", false);
-
                     },
                     error: function() {
                         toastr.error('something went wrong');
-
+                        $('.expence_serach').html('<i class="fa fa-search"></i>');
+                        $(".expence_serach").prop("disabled", false);
                     },
                 });
             });

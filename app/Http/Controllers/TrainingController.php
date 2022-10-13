@@ -59,7 +59,7 @@ class TrainingController extends Controller
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
 
-            return response()->json(['errors' => $validator->errors()]);
+            return response()->json(['errors' => $validator->errors()->all()]);
         }
         //
         if ($request->ajax()) {
@@ -83,12 +83,6 @@ class TrainingController extends Controller
 
     public function editTrainings(Request $request)
     {
-//        return $res = Training::join('trainers','trainers.id','trainings.trainer')
-//            ->join('employees','employees.id','trainings.emp_id')
-//            ->select('employees.name','trainers.f_name','trainings.*')
-//            ->get();
-
-
         $data['training'] = Training::find($request->id);
         $data['tran'] = Trainer::all();
         $data['employee'] = Employee::all();
@@ -108,7 +102,7 @@ class TrainingController extends Controller
         $train->status = $request->status;
         if ($train->save()) {
 
-            return response()->json(['success' =>'Record updated successfully']);
+            return response()->json(['success' => 'Record updated successfully']);
         }
     }
 

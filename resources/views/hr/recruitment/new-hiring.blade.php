@@ -69,49 +69,44 @@
                         <div class="row filter-row">
 
                             <div class="col-sm-6 col-md-3">
-                                <div class="form-group form-focus">
+                                <div class="form-group">
+                                    <label class="focus-label">Job Title</label>
                                     <select class="select floating" name="job_title">
-                                        <option value="">-</option>
+                                        <option value="">Select</option>
                                         @isset($data['title'])
                                             @foreach ($data['title'] as $title)
                                                 <option value="{{ $title->id }}">{{ $title->desig_name }}</option>
                                             @endforeach
                                         @endisset
-
-
                                     </select>
-                                    <label class="focus-label">Job Title</label>
                                 </div>
                             </div>
 
 
                             <div class="col-sm-6 col-md-3">
-                                <div class="form-group form-focus select-focus">
+                                <div class="form-group select-focus">
+                                    <label class="focus-label">Job Type</label>
                                     <select class="select floating" name="job_type">
-                                        <option value="">-</option>
+                                        <option value="">Select</option>
                                         <option value="Part Time">Part Time</option>
                                         <option value="Full Time">Full Time</option>
-
-
                                     </select>
-                                    <label class="focus-label">Job Type</label>
+                                    
                                 </div>
                             </div>
 
                             <div class="col-sm-6 col-md-3">
-                                <div class="form-group form-focus select-focus">
+                                <div class="form-group select-focus">
+                                    <label class="focus-label">Job Status</label>
                                     <select class="select floating" name="status">
-                                        <option value="">-</option>
+                                        <option value="">Select</option>
                                         <option value="open">OPEN</option>
                                         <option value="close">CLOSE</option>
-
-
                                     </select>
-                                    <label class="focus-label">Job Status</label>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-3">
-                                <button type="submit" class="btn btn-primary search_job"><i class="fa fa-search"></i></button>
+                                <button type="submit" class="btn btn-primary search_job mt-4"><i class="fa fa-search"></i></button>
                             </div>
 
                         </div>
@@ -244,9 +239,9 @@
                                 '<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>' +
                                 '<div class="dropdown-menu dropdown-menu-right">' +
                                 '<a class="dropdown-item btnEdit" href="{{ url('edit-recruitment/') }}/' +
-                                data[i].id + '"><i class="fa fa-pencil m-r-5"></i> Edit</a>' +
+                                data[i].id + '"><i class="la la-pencil" style="font-size: 20px;"></i></a>' +
                                 '<a class="dropdown-item btn-delete" href="#"   data="' + data[i].id +
-                                '"><i class="fa fa-trash-o m-r-5"></i> Delete</a>' +
+                                '"><i class="la la-trash" style="font-size: 20px;"></i></a>' +
                                 '</div>' +
                                 '</div>' +
                                 '</td>' +
@@ -255,9 +250,6 @@
                                 '<div class="dropdown dropdown-action">' +
                                 '<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>' +
                                 '<div class="dropdown-menu dropdown-menu-right">' +
-                                // '<a class="dropdown-item" href="https://www.facebook.com/sharer.php?u=https://crm.alphabuzzco.com/job/list" target="_blank" title="share to facebook"><img src="{{ asset('public/assets/img/logo/socail-icon/fb.png') }}" /></a>' +
-                                // '<a class="dropdown-item" href="https://www.twitter.com/share?text=text&url=https://crm.alphabuzzco.com/job/list" title="share to Twitter" target="_blank"><img src="{{ asset('public/assets/img/logo/socail-icon/twitter.png') }}" /></a>' +
-                                // '<a class="dropdown-item " href="https://api.whatsapp.com/send?phone=&text=<?php urlencode('Testing'); ?> https://crm.alphabuzzco.comjob/list" target="_blank" title="share to Whatsapp"><img src="{{ asset('public/assets/img/logo/socail-icon/whatsapp.png') }}" /> </a>' +
                                 '<div id="social_icons"  target="_blank">{!! $data['shareButtons'] !!}</div>' +
                                 '</div>' +
                                 '</div>' +

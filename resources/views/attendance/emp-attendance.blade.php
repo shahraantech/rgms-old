@@ -190,7 +190,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-3">
-                                <div class="form-group form-focus select-focus">
+                                <div class="form-group select-focus">
                                     <select class="select floating" name="month">
                                         <option value="">Choose Month</option>
                                         <option value="1">Jan</option>
@@ -210,7 +210,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-3">
-                                <div class="form-group form-focus select-focus">
+                                <div class="form-group select-focus">
                                     <select class="select floating" name="year">
                                         <option value="">Choose Year</option>
                                         <option value="2030">2030</option>

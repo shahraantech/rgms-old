@@ -336,7 +336,6 @@
 
                 let formData = new FormData($('#newHiringForm')[0]);
 
-
                 $.ajax({
 
                     type: "POST",

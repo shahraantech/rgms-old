@@ -43,7 +43,7 @@ class TargetController extends Controller
 
             $validator = Validator::make($data, $rules);
             if ($validator->fails()) {
-                return response()->json(['errors' => $validator->errors()]);
+                return response()->json(['errors' => $validator->errors()->all()]);
             }
             $target = new Target();
             $target->manager_id = ($request->manager_id) ? $request->manager_id : '';
@@ -64,7 +64,6 @@ class TargetController extends Controller
                 $team->target_in_numbers = $request->target_number;
                 $team->from = $request->from_date;
                 $team->to = $request->to_date;
-
                 $team->save();
             }
             return response()->json(['success' => 'Target created successfully'], 200);

@@ -117,7 +117,7 @@
                             <td  colspan="3"><div class="float-right"> <strong>{{number_format($data['balance'],2)}}</strong></td>
                         </tr>
                         <tr>
-                            <td>PREPARED BY : {{Auth::user()->name}}</td>
+                            <td>PREPARED BY : {{Auth::user()->name ?? ''}}</td>
                             <td>CHECKED BY</td>
                             <td>APPROVED BY</td>
                             <td>ACKNOWLEDGEMENT</td>

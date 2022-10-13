@@ -46,10 +46,7 @@ class HelpDeskController extends Controller
             'subject' => 'required',
             'priority' => 'required',
             'desc' => 'required',
-
         );
-
-
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
 
@@ -66,8 +63,6 @@ class HelpDeskController extends Controller
 
         if ($ticket->save()) {
             return response()->json(['success' => 'Record save successfully'], 200);
-
-
         }
     }
 

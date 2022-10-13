@@ -131,7 +131,7 @@
                         @csrf
                         <div class="row filter-row">
                             <div class="col-md-3 col-sm-4">
-                                <div class="form-group form-focus">
+                                <div class="form-group">
                                     <select class="select p-3" name="company_id">
                                         <option value="">Choose Comapny</option>
                                         @isset($data['company'])
@@ -144,7 +144,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-4">
-                                <div class="form-group form-focus">
+                                <div class="form-group">
 
                                     <select class="livesearch form-control p-3" name="emp_id">
                                         <option value="">Choose Employee</option>
@@ -153,7 +153,7 @@
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-4">
-                                <div class="form-group form-focus select-focus">
+                                <div class="form-group select-focus">
                                     <select class="select floating" name="status">
                                         <option value=""> -- Status -- </option>
                                         <option value="complete"> Complete </option>
@@ -167,7 +167,7 @@
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-4">
-                                <div class="form-group form-focus select-focus">
+                                <div class="form-group select-focus">
                                     <select class="select floating" name="periorty">
                                         <option value=""> -- Priority -- </option>
                                         <option value="high"> High </option>

@@ -486,7 +486,6 @@ class PayrollController extends Controller
                 return $query->where('id', $dept_id);
             });
             $data['depts'] = $qry->get();
-            
         }
 
         $data['companies'] = Company::all();

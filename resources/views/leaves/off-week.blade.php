@@ -93,13 +93,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form action="{{ url('off-week-store') }}" method="POST" class="needs-validation" novalidate
-                            style="margin: 15px" id="week_off_day_form">
+                        <form action="{{ url('off-week-store') }}" method="POST" style="margin: 15px"
+                            id="week_off_day_form">
                             @csrf
                             <table class="table table-bordered mt-5 table-style">
 
                                 <label for="">Company</label>
-                                <select name="company_id" class="select company_id" required>
+                                <select name="company_id" class="form-control company_id" required>
                                     <option value="" selected disabled>Choose Company</option>
                                     @foreach ($company as $comp)
                                         <option value="{{ $comp->id }}">{{ $comp->name }}</option>
@@ -130,9 +130,6 @@
                                             <div class="invalid-feedback">
                                                 Please Choose employee.
                                             </div>
-                                            @error('emp_id')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
                                         </td>
                                         <td>
                                             <select name="day_off[]" class="form-control item-id" required>
@@ -148,9 +145,6 @@
                                             <div class="invalid-feedback">
                                                 Please Choose days.
                                             </div>
-                                            @error('day_off')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
                                         </td>
 
                                         <td><button type="button" class="btn-success" id="addNewRow"><i
@@ -164,7 +158,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary week_save">Save</button>
+                        <button type="submit" class="btn btn-primary week_save">Save</button>
                     </div>
                     </form>
                 </div>
@@ -279,10 +273,27 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <!-- CDN for Sweet Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
+
+
+            $('#week_off_day_form').validate({
+
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
 
             toastr.options.timeOut = 4000;
             @if (Session::has('error'))
@@ -476,14 +487,6 @@
 
         });
 
-
-
-
-        $('.week_save').on('click', function() {
-            $(".week_save").prop("disabled", true);
-            $(".week_save").html("Saving...");
-            $('#week_off_day_form').submit();
-        });
 
         $('.week_update').on('click', function() {
             $(".week_update").prop("disabled", true);

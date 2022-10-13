@@ -58,14 +58,12 @@ class TrainerController extends Controller
             'l_name' => 'required',
             'email' => 'required',
             'contact' => 'required',
-
-
         );
 
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
 
-            return response()->json(['errors' => $validator->errors()]);
+            return response()->json(['errors' => $validator->errors()->all()]);
         }
 
         if ($request->ajax()) {
@@ -77,14 +75,21 @@ class TrainerController extends Controller
                 $train->email = $request->email;
                 $train->contact = $request->contact;
                 $train->status = $request->status;
-                $trainerId = $train->save();
-                if ($trainerId) {
+                $res = $train->save();
+
+                if ($res) {
+
+                    return response()->json([
+                        'status' => 200,
+                        'message' => 'Record save successfully',
+                    ]);
 
                     Event::dispatch(new SaveTrainerInUserEvent($request));
-                    return response()->json(['success' => 'Record save successfully'], 200);
                 }
             } else {
-                return response()->json(['error' => 'Trainer already exist'], 200);
+                return response()->json([
+                    'errors' => 'Trainer already exist',
+                ]);
             }
         }
     }

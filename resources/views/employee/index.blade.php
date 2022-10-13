@@ -129,7 +129,7 @@
                     @foreach ($data['employee'] as $emp)
                         <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
 
-                            <div class="profile-widget" >
+                            <div class="profile-widget">
                                 <div class="profile-img">
                                     <a href="{{ url('user-profile/') . '/' . encrypt($emp->id) }}">
                                         <img src="{{ asset('storage/app/public/uploads/staff-images/') . '/' . $emp->image }}"
@@ -141,9 +141,9 @@
                                         aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="{{ url('edit-employee/' . encrypt($emp->id)) }}"
-                                            data="{{ $emp->id }}"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            data="{{ $emp->id }}"><i class="la la-pencil" style="font-size:20px;"></i></a>
                                         <a class="dropdown-item change_status" href="#" data="{{ $emp->id }}"><i
-                                                class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                class="la la-trash" style="font-size:20px;"></i></a>
                                     </div>
                                 </div>
                                 <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a
