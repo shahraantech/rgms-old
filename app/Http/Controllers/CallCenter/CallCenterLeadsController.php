@@ -250,22 +250,19 @@ class CallCenterLeadsController extends Controller
         $qry = AssignedLeads::query();
         $data['tempId'] = 0;
         $qry = $qry->with('leads', 'leads.cityname', 'agent');
+
         if ($request->isMethod('get')) {
 
             if ($request->temp_id and $request->agent_id) {
                 $data['tempId'] = $request->temp_id;
 
                 $tempQry = ApprochedLeads::Query();
-
-
                 $tempQry->when($request->agent_id, function ($query, $agent_id) {
                     return $query->where('agent_id', $agent_id);
                 });
-
                 $tempQry->when($request->temp_id, function ($query, $temp_id) {
                     return $query->where('temp_id', $temp_id);
                 });
-
                 $tempQry = $tempQry->groupBy('lead_id');
                 $data['leadsMarketing'] = $tempQry->paginate(100);
                 return view('call-center.leads.allocated-leads')->with(compact('data'));
@@ -1331,7 +1328,6 @@ class CallCenterLeadsController extends Controller
     public function empLeadsAnalysis(Request $request)
     {
 
-        return $res=AssignedLeads::with('lastLead')->get();
         $data['analysis'] = collect([]);
          $csr=getCSR();
          $start_date=date('Y-m-d');
@@ -1349,8 +1345,8 @@ class CallCenterLeadsController extends Controller
             );
             $data['analysis']->push($array);
         }
-        return $data['analysis'];
-        return view('call-center.reports.emp-leads-analysis');
+         $data['analysis'];
+        return view('call-center.reports.emp-leads-analysis')->with(compact('data'));
 
     }
 

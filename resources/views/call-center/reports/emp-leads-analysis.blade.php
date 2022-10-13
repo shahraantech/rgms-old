@@ -66,17 +66,20 @@
                                 <th>Dead</th>
                             </tr>
                     <tbody>
+                            @isset($data)
+                                @foreach ($data['analysis'] as $analysis)
                             <tr>
                             <td>1</td>
-                            <td>Shugufta</td>
-                            <td>50</td>
-                            <td>50</td>
-                            <td>45</td>
-                            <td>30</td>
-                            <td>5</td>
-                            <td>5</td>
+                            <td>{{$analysis['agent']}}</td>
+                            <td>{{$analysis['totalLeads']}}</td>
+                            <td>{{$analysis['calls']}}</td>
+                            <td>{{$analysis['not_approach']}}</td>
+                            <td>{{$analysis['visit']}}</td>
+                            <td>{{$analysis['sale']}}</td>
+                            <td>{{$analysis['dead']}}</td>
                             </tr>
-
+                                @endforeach
+                            @endisset
                             </tbody>
                         </table>
                     </div>

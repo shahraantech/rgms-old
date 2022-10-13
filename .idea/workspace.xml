@@ -4,10 +4,9 @@
     <list default="true" id="61ad51f6-c89c-418f-938f-7b568a8d5486" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ApprochedLeads.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ApprochedLeads.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/AssignedLeads.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/AssignedLeads.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LeadsMarketing.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LeadsMarketing.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/setup/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/setup/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/callcenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/callcenter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/call-center/reports/emp-leads-analysis.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/call-center/reports/emp-leads-analysis.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -228,7 +227,9 @@
       <workItem from="1665205587719" duration="150000" />
       <workItem from="1665382007812" duration="3801000" />
       <workItem from="1665482115780" duration="599000" />
-      <workItem from="1665579339309" duration="3382000" />
+      <workItem from="1665579339309" duration="3978000" />
+      <workItem from="1665596753397" duration="30000" />
+      <workItem from="1665639137093" duration="5545000" />
     </task>
     <servers />
   </component>
@@ -305,7 +306,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php</url>
-          <line>397</line>
+          <line>394</line>
           <properties>
             <option name="className" value="\App\Http\Controllers\CallCenter\CallCenterLeadsController" />
             <option name="methodName" value="deleteLeads" />
@@ -314,7 +315,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php</url>
-          <line>331</line>
+          <line>328</line>
           <properties>
             <option name="className" value="\App\Http\Controllers\CallCenter\CallCenterLeadsController" />
             <option name="methodName" value="editLeeds" />
@@ -329,6 +330,15 @@
             <option name="methodName" value="countLeadsTempForStat" />
           </properties>
           <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Models/ApprochedLeads.php</url>
+          <line>80</line>
+          <properties>
+            <option name="className" value="\App\Models\ApprochedLeads" />
+            <option name="methodName" value="getEmpOverDueLeads" />
+          </properties>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/accounts/printer/print-expense-summary.blade.php</url>

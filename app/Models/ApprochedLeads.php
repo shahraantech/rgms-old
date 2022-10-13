@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class ApprochedLeads extends Model
@@ -104,8 +105,19 @@ class ApprochedLeads extends Model
     }
 
     public static function chekTodayApproch($lead_id){
-
        return $res= ApprochedLeads::whereDate('created_at',date('Y-m-d'))->where('lead_id',$lead_id)->first();
+    }
+
+    public static function getLeadsStatusEmpWise(){
+        $qry=ApprochedLeads::query();
+        $qry=$qry->join('leads_marketings', 'leads_marketings.id', 'approched_leads.lead_id');
+        $qry=$qry->where(
+                function($query) {
+                    return $query
+                        ->where('approched_leads.id')->latest();
+                });
+            $qry=$qry->get();
+            return $qry;
     }
 
 
