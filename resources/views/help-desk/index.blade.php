@@ -259,7 +259,7 @@
                             </div>
                         </div>
                         <div class="submit-section">
-                            <button class="btn btn-primary submit-btn update_ticket" type="submit">Update</button>
+                            <button class="btn btn-primary submit-btn update_ticket" type="submit">Save Changes</button>
                         </div>
                     </form>
                 </div>
@@ -403,6 +403,7 @@
             //edit data
             $('#ticketTable').on('click', '.btn_edit_ticket', function() {
 
+                $('select[name="priority"]').empty();
 
                 var id = $(this).attr('data');
 
@@ -448,7 +449,7 @@
             //update data
             $('.update_ticket').on('click', function(e) {
                 e.preventDefault();
-                $('.update_ticket').text('Updating...');
+                $('.update_ticket').text('Saving...');
 
                 let EditFormData = new FormData($('#EditTicketForm')[0]);
 
@@ -467,14 +468,14 @@
                         if (response.status == 200) {
                             $("#edit_ticket_modal").modal('hide');
                             $('#EditTicketForm').find('input').val("");
-                            $('.update_ticket').text('Update');
+                            $('.update_ticket').text('Save Changes');
                             toastr.success(response.message);
                             getTickets();
                         }
                     },
                     error: function() {
                         toastr.error('something went wrong');
-                        $('.update_ticket').text('Update');
+                        $('.update_ticket').text('Save Changes');
                     }
                 });
 

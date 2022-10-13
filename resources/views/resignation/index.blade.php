@@ -66,7 +66,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" id="resigForm" class="needs-validation" novalidate>
+                        <form method="post" id="resigForm">
                             @csrf
                             <div class="form-group">
                                 <label>Notice Date <span class="text-danger">*</span></label>
@@ -93,8 +93,6 @@
             </div>
         </div>
         <!-- /Add Resignation Modal -->
-
-
 
 
         <!-- Edit Resignation Modal -->
@@ -128,7 +126,7 @@
                                 <textarea class="form-control" rows="4" name="reason"></textarea>
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn update_resig">Update</button>
+                                <button class="btn btn-primary submit-btn update_resig">Save Changes</button>
                             </div>
                         </form>
                     </div>
@@ -152,7 +150,7 @@
         $(document).ready(function() {
 
             $('#resigForm').validate({
-
+                onfocusout: false,
                 errorElement: 'span',
                 errorPlacement: function(error, element) {
                     error.addClass('invalid-feedback');
@@ -210,9 +208,9 @@
                                 '<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>' +
                                 '<div class="dropdown-menu dropdown-menu-right">' +
                                 '<a class="dropdown-item btn_edit_reg" href="#" data-toggle="modal"  data="' +
-                                data[i].id + '"><i class="fa fa-pencil m-r-5n "></i> Edit</a>' +
+                                data[i].id + '"><i class="la la-pencil" style="font-size:20px;"></i></a>' +
                                 '<a class="dropdown-item btn_delete_reg" href="#" " data="' + data[i]
-                                .id + '"><i class="fa fa-trash-o m-r-5 "></i> Delete</a>' +
+                                .id + '"><i class="la la-trash" style="font-size:20px;"></i></a>' +
                                 '</div>' +
                                 '</div>' +
                                 '</td>' +
@@ -230,9 +228,8 @@
                 });
             }
 
+            
             //ajax call for save Record.
-
-
             $('#resigForm').on('submit', function(e) {
                 e.preventDefault();
 
@@ -319,7 +316,7 @@
             //Update registration
             $('.update_resig').on('click', function(e) {
                 e.preventDefault();
-                $('.update_resig').text('Updating...');
+                $('.update_resig').text('Saving...');
 
                 let EditFormData = new FormData($('#EditRegisterationForm')[0]);
 
@@ -338,14 +335,14 @@
                         if (response.status == 200) {
                             $("#edit_resignation_modal").modal('hide');
                             $('#EditRegisterationForm').find('input').val("");
-                            $('.update_resig').text('Update');
+                            $('.update_resig').text('Save Changes');
                             toastr.success(response.message);
                             getResignation();
                         }
                     },
                     error: function() {
                         toastr.error('something went wrong');
-                        $('.update_resig').text('Update');
+                        $('.update_resig').text('Save Changes');
                     }
                 });
 

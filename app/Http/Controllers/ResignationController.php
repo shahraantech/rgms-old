@@ -89,7 +89,6 @@ class ResignationController extends Controller
             ->join('designations', 'designations.id', '=', 'employees.desg_id')
             ->select('designations.desig_name', 'employees.*', 'resignations.*')
             ->orderBy('employees.id', 'Desc')
-            ->where('emp_id', Auth::user()->account_id)
             ->get();
 
         echo json_encode($data);

@@ -329,6 +329,8 @@
 
 
             });
+
+
             // script for delete data
             $('.card').on('click', '.btn_project_delete', function(e) {
                 e.preventDefault();
