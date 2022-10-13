@@ -32,10 +32,10 @@ use App\Http\Controllers\PayPalController;
 Auth::routes(['verify' => true]);
 
 
-Route::group(['middleware' =>['auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/my-profile', [ProfileController::class, 'index'])->middleware('auth');
     // change password
-    Route::post('change-password',  [ProfileController::class,'changePassword']);
+    Route::post('change-password',  [ProfileController::class, 'changePassword']);
 
     Route::get('/user-profile/{id}', [ProfileController::class, 'userProfile']);
 
@@ -67,14 +67,13 @@ Route::group(['middleware' =>['auth']], function () {
     Route::get('edit-targets', [TargetController::class, 'editTargets']);
     Route::post('update-targets', [TargetController::class, 'updateTargets']);
     Route::get('delete-targets', [TargetController::class, 'deleteTargets']);
+
+
+    
     Route::get('tanveer', [AttendanceController::class, 'tanveer']);
 
-    // Route::get('/edit-targets/{id}', [TargetController::class, 'editTargets']);
-    // Route::post('/update-targets/{id}', [TargetController::class, 'updateTargets']);
-    // Route::get('/delete-targets/{id}', [TargetController::class, 'deleteTargets']);
 
-
-// get designation
+    // get designation
     Route::any('/getDesignations', [DesignationController::class, 'getDesignations']);
     // getEmployeeBaseDesignation
     Route::any('/getEmployeeBaseDesignation', [OnboardingController::class, 'getEmployeeBaseDesignation']);
@@ -102,19 +101,17 @@ Route::group(['middleware' =>['auth']], function () {
     Route::get('/paypal', function () {
 
         return view('paypal');
-
     });
 
-//paypal-call
+    //paypal-call
 
-    Route::post('paypal', [PaypalController::class,'paypal']);
-    Route::post('paypal-call', [PaypalController::class,'index'])->name('paypal_call');
-    Route::any('paypal-return', [PaypalController::class,'paypalReturn'])->name('paypal_return');
-    Route::any('paypal-cancel', [PaypalController::class,'paypalCancel'])->name('paypal_cancel');
-
+    Route::post('paypal', [PaypalController::class, 'paypal']);
+    Route::post('paypal-call', [PaypalController::class, 'index'])->name('paypal_call');
+    Route::any('paypal-return', [PaypalController::class, 'paypalReturn'])->name('paypal_return');
+    Route::any('paypal-cancel', [PaypalController::class, 'paypalCancel'])->name('paypal_cancel');
 });
 
-Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class, 'logout']);
+Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 Route::get('/job/list', [JobsController::class, 'jobList']);
 Route::get('/job/view/{id}', [JobsController::class, 'jobView']);
 Route::post('/apply-job', [JobsController::class, 'applyJob']);
@@ -127,12 +124,10 @@ Route::any('role-permissions', [RoleController::class, 'rolePermissions']);
 Route::any('test-permissions', [RoleController::class, 'testPermissions']);
 
 Route::get('calender', [CalendarController::class, 'index']);
-Route::get('verify-account/{id}',[UserController::class, 'verifyAccount']);
+Route::get('verify-account/{id}', [UserController::class, 'verifyAccount']);
 
 
 Route::post('full-calender/action', [CalendarController::class, 'action']);
 
-Route::get('alterTableName',[TestController::class, 'alterTableName']);
-Route::post('signup',[UserController::class, 'signup']);
-
-
+Route::get('alterTableName', [TestController::class, 'alterTableName']);
+Route::post('signup', [UserController::class, 'signup']);

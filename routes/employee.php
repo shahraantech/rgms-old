@@ -89,7 +89,7 @@ Route::group(['middleware' => ['auth', 'can:isEmployee']], function () {
 
     Route::get('/getMySingleTask', [TasksController::class, 'getMySingleTask']);
 
-    Route::get('/update-project-status', [TasksController::class, 'updateProjectStatus']);
+    Route::get('/updatee-project-status', [TasksController::class, 'updateProjectStatus']);
     Route::get('/update-task-status', [TasksController::class, 'updateTaskStatus']);
     Route::post('/save-task-progress', [TasksController::class, 'saveTaskProgress']);
     Route::get('/project-details/{id}', [TasksController::class, 'projectDetails']);
