@@ -96,8 +96,6 @@ Route::group(['middleware' => ['auth', 'can:isAccountant']], function () {
 
     //stock route
     Route::get('stock', [StockController::class, 'index']);
-
-
     Route::get('stock-raw-material', [StockController::class, 'stockRawMaterial']);
 
     //category
@@ -120,6 +118,7 @@ Route::group(['middleware' => ['auth', 'can:isAccountant']], function () {
     Route::any('loss-profit-report', [ReportsController::class, 'lossProfitReport']);
     Route::any('coa-report', [ReportsController::class, 'coaReport']);
     Route::any('monthly-profit-loss-report', [ReportsController::class, 'monthlyProfitLossReport']);
+    Route::any('weekly-expense-report', [ReportsController::class, 'weeklyExpReport']);
 
     Route::any('payments', [PaymentsController::class, 'payments']);
     Route::any('receipt', [PaymentsController::class, 'receipt']);

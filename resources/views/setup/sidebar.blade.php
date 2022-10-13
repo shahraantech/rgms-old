@@ -364,6 +364,7 @@
                             <li><a href="{{url('commission-report')}}">Commission Report</a></li>
                             <li><a href="{{ url('/loss-profit-report') }}">Loss & Profit Reports </a></li>
                             <li><a href="{{ url('/balance-sheet/1/1') }}">Balance Sheet</a></li>
+                            <li><a href="{{ url('weekly-expense-report') }}">Weekly Exp Report</a></li>
 
 
                         </ul>
