@@ -67,16 +67,16 @@
                             </tr>
                     <tbody>
                             @isset($data)
-                                @foreach ($data['analysis'] as $analysis)
+                                @foreach ($data['analysis'] as $key=>$analysis)
                             <tr>
-                            <td>1</td>
+                            <td>{{$key++}}</td>
                             <td>{{$analysis['agent']}}</td>
-                            <td>{{$analysis['totalLeads']}}</td>
-                            <td>{{$analysis['calls']}}</td>
-                            <td>{{$analysis['not_approach']}}</td>
-                            <td>{{$analysis['visit']}}</td>
-                            <td>{{$analysis['sale']}}</td>
-                            <td>{{$analysis['dead']}}</td>
+                            <td>{{($analysis['totalLeads'] > 0)?$analysis['totalLeads'] :'-'}}</td>
+                            <td>{{($analysis['calls'] > 0)?$analysis['calls'] :'-'}}</td>
+                            <td>{{($analysis['not_approach'] > 0)?$analysis['not_approach'] :'-'}}</td>
+                            <td>{{($analysis['visit'] > 0)?$analysis['visit'] :'-'}}</td>
+                            <td>{{($analysis['sale'] > 0)?$analysis['sale'] :'-'}}</td>
+                            <td>{{($analysis['dead'] > 0)?$analysis['dead'] :'-'}}</td>
                             </tr>
                                 @endforeach
                             @endisset
