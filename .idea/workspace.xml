@@ -3,13 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="61ad51f6-c89c-418f-938f-7b568a8d5486" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Accounts/ReportsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Accounts/ReportsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ApprochedLeads.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ApprochedLeads.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/setup/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/setup/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/accountant.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/accountant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/cache/config.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/cache/routes-v7.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/call-center/reports/emp-leads-analysis.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/call-center/reports/emp-leads-analysis.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +228,7 @@
       <workItem from="1665482115780" duration="599000" />
       <workItem from="1665579339309" duration="3978000" />
       <workItem from="1665596753397" duration="30000" />
-      <workItem from="1665639137093" duration="18825000" />
+      <workItem from="1665639137093" duration="20834000" />
     </task>
     <servers />
   </component>

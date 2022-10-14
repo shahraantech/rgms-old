@@ -1327,8 +1327,6 @@ class CallCenterLeadsController extends Controller
 
     public function empLeadsAnalysis(Request $request)
     {
-
-
         $data['analysis'] = collect([]);
          $csr=getCSR();
          $start_date=date('Y-m-d');
