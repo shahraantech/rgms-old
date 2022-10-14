@@ -7,6 +7,7 @@ use App\Models\Commission;
 use App\Models\Employee;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
+use App\Models\Ledger;
 use App\Models\Level_1;
 use App\Models\Level_2;
 use App\Models\Level_3;
@@ -14,9 +15,11 @@ use App\Models\Level_4;
 use App\Models\Level_5;
 use App\Models\Purchase;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ReportsController extends Controller
 {
@@ -214,6 +217,22 @@ class ReportsController extends Controller
         };
 
         return view('accounts.reports.monthly-loss-profit-report')->with(compact('data'));
+    }
+
+    //weeklyExpReport
+
+    public function weeklyExpReport(Request $request)
+    {
+
+
+         $res=User::select(DB::raw("(COUNT(*)) as count"),DB::raw("DAYNAME(created_at) as dayname"))
+            ->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+            ->whereYear('created_at', date('Y'))
+            ->groupBy('dayname')
+            ->get();
+        ;
+
+        return view('accounts.reports.weekly-exp-report');
     }
 
     //balance sheet

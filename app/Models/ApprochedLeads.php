@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ApprochedLeads extends Model
 {
@@ -118,6 +119,35 @@ class ApprochedLeads extends Model
                 });
             $qry=$qry->get();
             return $qry;
+    }
+
+    public static function getLeadsStatAcordingTemp($agent_id,$temp_id,$start_date,$end_date){
+        $qry= ApprochedLeads::Query();
+        $qry=$qry->select('approched_leads.id','approched_leads.created_at','approched_leads.lead_id', 'approched_leads.temp_id',
+            DB::raw('MAX(approched_leads.id) as maxId'));
+        $qry=$qry->leftJoin('assigned_leads as al', function ($join) {
+            $join->on('approched_leads.lead_id', '=', 'al.lead_id');
+        });
+        $qry=$qry->where('approched_leads.temp_id',$temp_id);
+        $qry=$qry->whereDate('al.created_at','>=',$start_date);
+        $qry=$qry->whereDate('al.created_at','<=',$end_date);
+        $qry=$qry->where('al.agent_id',$agent_id);
+        $qry=$qry->groupBy('lead_id');
+        $result=$qry->get();
+        if($result->count() ==0){
+            return 0;
+        }
+        $i=0;
+        foreach($result as $data)
+        {
+            $i++;
+            $qry2= ApprochedLeads::Query();
+            $qry2=$qry2-> select('id','lead_id','temp_id','created_at');
+            $qry2=$qry2->where('id',$data->maxId);
+            $datanew=$qry2->get();
+
+        }
+        return $i;
     }
 
 
