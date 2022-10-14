@@ -53,7 +53,7 @@ class AutoAttendece extends Command
                 $att->attendance_date = $attDay = date('d', strtotime(date('Y-m-d')));
                 $att->attendance_month = date('m', strtotime(date('Y-m-d')));
                 $att->attendance_year = date('Y', strtotime(date('Y-m-d')));
-                $att->marked_by = 'auto';
+                $att->marked_by = 'admin';
                 $att->guard = 'web';
                 $att->save();
                 \Log::info('Attendance Successfully');
