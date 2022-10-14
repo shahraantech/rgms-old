@@ -1271,7 +1271,8 @@ class CallCenterLeadsController extends Controller
     //leadsAnalysis
     public function leadsAnalysis(Request $request)
     {
-         $start_date = \Carbon\Carbon::today()->subDays(7);
+
+         $start_date=date('Y-m-d');
          $end_date=date('Y-m-d');
 
         if($request->date_range){
@@ -1287,7 +1288,11 @@ class CallCenterLeadsController extends Controller
         $platFormDeadPerc = 0;
 
 
+
         ($request->platform_id) ? $platform_id = $request->platform_id : $platform_id = 0;
+
+
+
           $totalLeads = LeadsMarketing::getAllLeads(1,$start_date,$end_date);
          $socialPlatform = SocialPlatform::find($platform_id);
          $platformTotalLeads = LeadsMarketing::getLeadsSocialPlatformWise($platform_id, 1, $start_date,$end_date);

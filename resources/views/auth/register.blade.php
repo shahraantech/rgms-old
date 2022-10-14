@@ -81,11 +81,16 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group mt-3 mb-3">
                             <button type="submit" class="btn btn-primary form-control" style="background: linear-gradient(to right bottom, #2eaafa, #0a8be5, #006dce, #0e4eb4, #1f2f98);
 	border: 1px solid #2EAAFA;">
                                 Register
                             </button>
+                        </div>
+
+                        <div class="mt-4 text-center">
+                            Don't have an account? <a href="{{url('register')}}">Create One</a>
                         </div>
                     </form>
                 </div>

@@ -122,32 +122,18 @@ class ApprochedLeads extends Model
     }
 
     public static function getLeadsStatAcordingTemp($agent_id,$temp_id,$start_date,$end_date){
-        $qry= ApprochedLeads::Query();
-        $qry=$qry->select('approched_leads.id','approched_leads.created_at','approched_leads.lead_id', 'approched_leads.temp_id',
-            DB::raw('MAX(approched_leads.id) as maxId'));
-        $qry=$qry->leftJoin('assigned_leads as al', function ($join) {
-            $join->on('approched_leads.lead_id', '=', 'al.lead_id');
-        });
-        $qry=$qry->where('approched_leads.temp_id',$temp_id);
+
+        $qry=AssignedLeads::query();
+        $qry=$qry->join('approched_leads as al', 'al.lead_id', 'assigned_leads.lead_id');
+        $qry=$qry->select('al.id');
+        $qry=$qry->where('al.temp_id',$temp_id);
         $qry=$qry->whereDate('al.created_at','>=',$start_date);
         $qry=$qry->whereDate('al.created_at','<=',$end_date);
         $qry=$qry->where('al.agent_id',$agent_id);
-        $qry=$qry->groupBy('lead_id');
-        $result=$qry->get();
-        if($result->count() ==0){
-            return 0;
-        }
-        $i=0;
-        foreach($result as $data)
-        {
-            $i++;
-            $qry2= ApprochedLeads::Query();
-            $qry2=$qry2-> select('id','lead_id','temp_id','created_at');
-            $qry2=$qry2->where('id',$data->maxId);
-            $datanew=$qry2->get();
-
-        }
-        return $i;
+        $qry=$qry->whereIn('al.id', function($query) {
+            $query->selectRaw('max(id)')->from('approched_leads')->groupBy('lead_id');
+        });
+        return $qry=$qry->count();
     }
 
 

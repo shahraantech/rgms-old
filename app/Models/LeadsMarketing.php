@@ -104,6 +104,18 @@ class LeadsMarketing extends Model
 
     public static function getLeadsStats($platformId,$temp_id,$qryForCall,$start_date,$end_date)
     {
+        //yeh code use krna ha
+//        $qry = ApprochedLeads::Query();
+//        $qry = $qry->join('leads_marketings', 'leads_marketings.id', 'approched_leads.lead_id');
+//        $qry = $qry->whereDate('leads_marketings.created_at', '>=', $start_date);
+//        $qry = $qry->whereDate('leads_marketings.created_at', '<=', $end_date);
+//        ($platformId > 0)?$qry = $qry->where('leads_marketings.platform_id', $platformId):'';
+//        ($qryForCall == 1) ? $qry = $qry->where('approched_leads.is_connected', 1)->distinct('lead_id')->count():'';
+//        ($qryForCall != 1) ?  $qry = $qry->whereIn('approched_leads.id', function ($query) {
+//            $query->selectRaw('max(id)')->from('approched_leads')->groupBy('lead_id');
+//        })->count() : '';
+//        return $qry;
+
         $qry = ApprochedLeads::Query();
         $qry = $qry->join('leads_marketings', 'leads_marketings.id', 'approched_leads.lead_id');
         ($platformId > 0)?$qry = $qry->where('leads_marketings.platform_id', $platformId):'';

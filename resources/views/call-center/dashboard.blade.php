@@ -91,9 +91,9 @@
                 <div class="col-md-12">
                     {{--                    <span class="text-center">Leads Analysis</span> --}}
                     <form action="">
-                        <input type="text" class="date_range custom-form" name="date_range" />
+                        <input type="text" class="date_range custom-form date-range" name="date_range" />
                         <select name="platform_id" id="" class="custom-select" style="margin-bottom: 10px">
-                            <option value="">Social PlatForm</option>
+                            <option value="">All PlatForms</option>
                             @isset($data)
                                 @foreach ($data['socialPlatforms'] as $platform)
                                     <option value="{{ $platform->id }}">{{ $platform->platform }}</option>
@@ -524,7 +524,7 @@
                                 },
                                 title: {
                                     display: true,
-                                    text: "The A Team Leads"
+                                    text: "Outbound Leads"
                                 }
                             }
                         });
@@ -569,7 +569,7 @@
                                 },
                                 title: {
                                     display: true,
-                                    text: "The A Team Call Center Leads"
+                                    text: "Outbound Leads"
                                 }
                             }
                         });
@@ -669,13 +669,6 @@
 
                 LeadsAnalysisPieChart(platform_id, date_range);
                 LeadsAnalysisBarChart(platform_id, date_range);
-            });
-
-            $('input[name=date_range]').change(function() {
-                var date_range = $('input[name=date_range]').val();
-
-                LeadsAnalysisPieChart(0, date_range);
-                LeadsAnalysisBarChart(0, date_range);
             });
 
             $(document).ready(function() {
