@@ -373,11 +373,8 @@
                 let formData = new FormData($('#timeForm')[0]);
 
                 $.ajax({
-
                     type: "POST",
-                    method: 'post',
                     url: '{{ url('save-times') }}',
-                    data: formData,
                     data: formData,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -42,7 +42,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <form method="post" id="ReceiptForm" class="needs-validation" novalidate action="{{url('receipt')}}" enctype="multipart/form-data">
+                    <form method="post" id="ReceiptForm" action="{{url('receipt')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
 
@@ -129,7 +129,7 @@
                             <div class="col-sm-3 payment-mode" style="display:none">
                                 <div class="form-group">
                                     <label>Payment Mode</label>
-                                    <select name="payment_mode" id="" class="form-control">
+                                    <select name="payment_mode" id="" class="form-control" required>
                                         <option value="">Choose One</option>
                                         <option value="1">Online</option>
                                         <option value="2">Cheque</option>
@@ -141,13 +141,13 @@
                             <div class="col-sm-3 cheque-section" style="display:none">
                                 <div class="form-group">
                                     <label>Cheque#</label>
-                                    <input type="text" class="form-control" name="cheque_no" placeholder="Cheque Number">
+                                    <input type="text" class="form-control" name="cheque_no" placeholder="Cheque Number" required>
                                 </div>
                             </div>
                             <div class="col-sm-3 cheque-section" style="display:none">
                                 <div class="form-group">
                                     <label>Cheque Status</label>
-                                    <select name="cheque_status" id="" class="form-control">
+                                    <select name="cheque_status" id="" class="form-control" required>
                                         <option value="">Choose One</option>
                                         <option value="1">Clear</option>
                                         <option value="2">Deposited</option>
@@ -159,15 +159,14 @@
                             <div class="col-sm-3 cheque-section" style="display:none">
                                 <div class="form-group">
                                     <label>Attachment</label>
-
-                                    <input type="file" id="pic" class="form-control"  name="file">
+                                    <input type="file" id="pic" class="form-control"  name="file" required>
                                 </div>
                             </div>
 
                             <div class="col-sm-3 bank_section" style="display:none">
                                 <div class="form-group">
                                     <label>Bank</label>
-                                    <select name="bank_id" id="" class="form-control">
+                                    <select name="bank_id" id="" class="form-control" required>
                                         <option value="">Choose Bank</option>
                                         @isset($data['banks'])
                                             @foreach($data['banks'] as $bank)
@@ -184,7 +183,7 @@
                             <div class="col-sm-4 cash_section" style="display:none">
                                 <div class="form-group">
                                     <label>Receive To</label>
-                                    <select name="company_account_id" id="" class="form-control">
+                                    <select name="company_account_id" id="" class="form-control" required>
                                         <option value="">Choose Account</option>
                                         @isset($data['accounts'])
                                             @foreach($data['accounts'] as $accounts)
@@ -423,8 +422,40 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script type='text/javascript'>
         $(document).ready(function (){
+
+            $('#ReceiptForm').validate({
+
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+                });
+
+
+                $('#ReceiptForm').validate({
+
+                    errorElement: 'span',
+                    errorPlacement: function(error, element) {
+                        error.addClass('invalid-feedback');
+                        element.closest('.form-group').append(error);
+                    },
+                    highlight: function(element, errorClass, validClass) {
+                        $(element).addClass('is-invalid');
+                    },
+                    unhighlight: function(element, errorClass, validClass) {
+                        $(element).removeClass('is-invalid');
+                    }
+                    });
 
             $('select[name=ac_type]').change(function(){
                 var ac_type=$('select[name=ac_type]').val();
@@ -542,8 +573,10 @@
 
             $("#btnSaveANDPrint").click(function(e){
                 e.preventDefault();
+                var $form = $('#ReceiptForm')
+                // check if the input is valid
+                if (!$form.validate().form()) return false;
                 var formData= $('#ReceiptForm').serialize();
-
                 $.ajax({
                     type: 'ajax',
                     method: 'post',
@@ -563,7 +596,6 @@
                     },
                     error: function() {
                         toastr.error('something went wrong');
-
                     }
 
                 });
@@ -575,6 +607,10 @@
 //recept form
         $('#ReceiptForm').unbind().on('submit', function(e) {
          e.preventDefault();
+
+            var $form = $(this);
+            // check if the input is valid
+            if (!$form.validate().form()) return false;
 
             var formData = new FormData(this);
             let file = $('#pic')[0];
@@ -589,11 +625,6 @@
             contentType: false,
             processData: false,
             dataType: 'json',
-             beforeSend: function() {
-                 $(".btn-submit").prop("disabled", true);
-                 $(".btn-submit").html("please wait...");
-
-             },
              success: function(data) {
              if(data) {
                  $('#ReceiptForm')[0].reset();

@@ -46,7 +46,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <form method="post" id="PaymentsForm" class="needs-validation" novalidate action="{{url('payments')}}" enctype="multipart/form-data">
+                    <form method="post" id="PaymentsForm" action="{{url('payments')}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row">
@@ -57,9 +57,6 @@
                                         <option value="vendors">Vendor</option>
                                         <option value="clients">Customer</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Please choose account type.
-                                    </div>
                                 </div>
 
                             </div>
@@ -69,9 +66,6 @@
                                     <select class="select" name="ac_id" required id="showAccounts" class="form-control">
                                         <option value="">Choose Account</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Please choose account.
-                                    </div>
                                 </div>
                             </div>
 
@@ -91,13 +85,10 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <select class="select" name="trans_mode" required>
-                                        <option value="">Transaction Mode</option>
+                                        <option value="" selected disabled>Transaction Mode</option>
                                         <option value="cash">Cash</option>
                                         <option value="bank">Bank</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Please choose transaction mode.
-                                    </div>
                                 </div>
                             </div>
 
@@ -105,7 +96,7 @@
                             <div class="col-sm-4 payment-mode" style="display:none">
                                 <div class="form-group">
 
-                                    <select name="payment_mode" id="" class="form-control">
+                                    <select name="payment_mode" id="" class="form-control" required>
                                         <option value="">Payment Mode</option>
                                         <option value="1">Online</option>
                                         <option value="2">Cheque</option>
@@ -122,7 +113,7 @@
                             </div>
                             <div class="col-sm-4 cheque-section" style="display:none">
                                 <div class="form-group">
-                                    <select name="cheque_status" id="" class="form-control">
+                                    <select name="cheque_status" id="" class="form-control" required>
                                         <option value="">Cheque Status</option>
                                         <option value="1">Clear</option>
                                         <option value="3">Bounced</option>
@@ -137,7 +128,7 @@
 
                             <div class="col-sm-4 bank_section" style="display:none">
                                 <div class="form-group">
-                                    <select name="bank_id" id="" class="form-control ac-bank">
+                                    <select name="bank_id" id="" class="form-control ac-bank" required>
                                         <option value="">Choose Bank</option>
                                         @isset($data['banks'])
                                             @foreach($data['banks'] as $bank)
@@ -154,7 +145,7 @@
                             <div class="col-sm-4 cash_section" style="display:none">
                                 <div class="form-group">
 
-                                    <select name="company_account_id" id="" class="form-control ac-bank">
+                                    <select name="company_account_id" id="" class="form-control ac-bank" required>
                                         <option value="">Pay To Account</option>
                                         @isset($data['accounts'])
                                             @foreach($data['accounts'] as $accounts)
@@ -403,9 +394,25 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 
     <script type='text/javascript'>
         $(document).ready(function (){
+
+            $('#PaymentsForm').validate({
+
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+                });
 
             $('select[name=ac_type]').change(function(){
                 var ac_type=$('select[name=ac_type]').val();
@@ -494,6 +501,9 @@
 
                 $('#PaymentsForm').unbind().on('submit', function(e) {
                     e.preventDefault();
+                    var $form = $(this);
+                // check if the input is valid
+                if (!$form.validate().form()) return false;
                 var formData = new FormData(this);
                 let file = $('#pic')[0];
                 formData.append('file', file.files[0]);
@@ -507,11 +517,6 @@
                     contentType: false,
                     processData: false,
                     dataType: 'json',
-                    beforeSend: function() {
-                        $(".btn-submit").prop("disabled", true);
-                        $(".btn-submit").html("please wait...");
-
-                    },
                     success: function(data) {
                         if(data) {
                             $('#PaymentsForm')[0].reset();

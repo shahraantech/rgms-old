@@ -40,7 +40,7 @@ class AccountsController extends Controller
 
             $validator = Validator::make($data, $rules);
             if ($validator->fails()) {
-                return response()->json(['errors' => 'Missing some fields']);
+                return response()->json(['errors' => $validator->errors()->all()]);
             }
 
             $data=Level_1::chekCoaLevel($request);
