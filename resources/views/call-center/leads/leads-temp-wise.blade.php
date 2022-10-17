@@ -93,7 +93,7 @@
                         </div>
                     </div>
             @endif
-            <!-- Search Filter -->
+
                 <div class="card">
                     <div class="card-body">
                         <table class="table table-striped table-hover data-table" >
@@ -199,10 +199,12 @@
                             </tbody>
                         </table>
                     </div>
+                    </div>
                 </div>
             </div>
-            <!-- /Page Content -->
+
         </div>
+
         <!-- Add Department Modal -->
         <div id="add_lead_status" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -311,9 +313,8 @@
                         </form>
                     </div>
                 </div>
+                </div>
             </div>
-        </div>
-
 
         <!-- Edit Lead Status -->
         <div id="edit_lead_status" class="modal custom-modal fade" role="dialog">
@@ -380,7 +381,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Add Inbound Leads -->
         <div id="add_department" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -528,7 +528,7 @@
             </div>
         </div>
         <!-- /Add Department Modal -->
-    </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
         $(document).ready(function() {

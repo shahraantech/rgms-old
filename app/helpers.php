@@ -752,14 +752,20 @@ function responsedLeads($start_date, $end_date)
 }
 
 //get csr
-function getCSR()
+function getCSR($csr_id=NULL)
 {
-    $res = User::select('account_id as id', 'name')
-        ->where('status', 1)
-        ->where('role_id', 4)
-        ->orWhere('role_id', 7)
-        ->orderBy('id', 'DESC')->get();
-    return $res;
+    $qry = User::Query();
+    $qry=$qry->select('account_id as id', 'name');
+    ($csr_id)?$qry=$qry->where('account_id',$csr_id):'';
+    $qry=$qry->where('status', 1);
+    $qry=$qry->where(
+    function($query) {
+        return $query
+            ->where('role_id', 4)
+            ->orWhere('role_id', 7);
+    });
+       $qry=$qry->orderBy('id', 'DESC')->get();
+    return $qry;
 }
 
 function saveTransLedgerUpDateBalnc($coa_head_id,$coa_level,$amount,$inv_id,$narration,$date,$customerVendorId,$ac_type,$transType,$mode){

@@ -454,9 +454,9 @@
                         <div class="col-md-6 text-center">
                             <div class="card">
                                 <div class="card-body">
-                                    <a href="{{ url('inOutBoundleadsList') . '/' . encrypt(1) }}">
-                                        <h3 class="card-title">Inbound</h3>
-                                    </a>
+{{--                                    <a href="{{ url('inOutBoundleadsList') . '/' . encrypt(1) }}">--}}
+{{--                                        <h3 class="card-title">Inbound</h3>--}}
+{{--                                    </a>--}}
                                     <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
                                 </div>
                             </div>
@@ -464,9 +464,9 @@
                         <div class="col-md-6 text-center">
                             <div class="card">
                                 <div class="card-body">
-                                    <a href="{{ url('inOutBoundleadsList') . '/' . encrypt(2) }}">
-                                        <h3 class="card-title">Outbound</h3>
-                                    </a>
+{{--                                    <a href="{{ url('inOutBoundleadsList') . '/' . encrypt(2) }}">--}}
+{{--                                        <h3 class="card-title">Outbound</h3>--}}
+{{--                                    </a>--}}
                                     <canvas id="outBoundChart" style="width:100%;max-width:600px"></canvas>
                                 </div>
                             </div>
@@ -502,13 +502,15 @@
                     success: function(data) {
                         var platforms = [];
                         var noOfVal = [];
+                        var  platformsColor= [];
                         for (i = 0; i < data.length; i++) {
                             platforms.push(data[i].platform);
                             noOfVal.push(data[i].total);
+                            platformsColor.push(data[i].color_code);
                         }
                         var xValues = platforms;
                         var yValues = noOfVal
-                        var barColors = ["#3b5998", "#E1306C", "#25D366", "#800000"];
+                        var barColors = platformsColor;
                         new Chart("myChart", {
                             type: "bar",
                             data: {
@@ -545,14 +547,16 @@
 
                         var platforms = [];
                         var noOfVal = [];
+                        var platformsColor = [];
                         for (i = 0; i < data.length; i++) {
                             platforms.push(data[i].platform);
                             noOfVal.push(data[i].total);
+                            platformsColor.push(data[i].color_code);
                         }
 
                         var xValues = platforms;
                         var yValues = noOfVal
-                        var barColors = ["#3b5998", "#E1306C", "#25D366", "#800000"];
+                        var barColors = platformsColor;
 
                         new Chart("outBoundChart", {
                             type: "bar",
@@ -588,7 +592,7 @@
                     },
                     url: '{{ url('leads-analysis') }}',
                     success: function(data) {
-                        var barColors = ["#C7A183", "#F6D0E8", "#83D475", "#df1b1b"];
+                        var barColors = ["#C7A183", "#F6D0E8", "#83D475", "#d9534f"];
                         if (window.bar != undefined) {
                             window.pie.destroy();
                         }
@@ -630,7 +634,7 @@
                     url: '{{ url('leads-analysis') }}',
                     success: function(data) {
                         var barColors = [data.platFormColor, "#C7A183", "#F6D0E8", "#83D475",
-                            "#df1b1b"
+                            "#d9534f"
                         ];
 
                         if (window.bar != undefined)

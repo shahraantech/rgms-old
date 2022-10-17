@@ -22,7 +22,7 @@
                 <!-- Search Filter -->
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{url('manager-no-of-leads')}}" id="searchForm">
+                        <form method="post" action="{{url('emp-leads-analysis')}}" id="searchForm">
                             <input type="hidden" name="search" value="1">
                             @csrf
                             <div class="row">
@@ -31,6 +31,11 @@
                                         <select name="csr_id" class="form-control selectpicker" data-container="body"
                                                 data-live-search="true">
                                             <option value="" selected >Choose Platforms</option>
+                                            @isset($data['csr'])
+                                                @foreach ($data['csr'] as $csr)
+                                            <option value="{{$csr->id}}">{{$csr->name}}</option>
+                                                @endforeach
+                                            @endisset
                                         </select>
                                     </div>
                                 </div>
@@ -69,7 +74,7 @@
                             @isset($data)
                                 @foreach ($data['analysis'] as $key=>$analysis)
                             <tr>
-                            <td>{{$key++}}</td>
+                            <td>{{$key+1}}</td>
                             <td>{{$analysis['agent']}}</td>
                             <td>{{($analysis['totalLeads'] > 0)?$analysis['totalLeads'] :'-'}}</td>
                             <td>{{($analysis['calls'] > 0)?$analysis['calls'] :'-'}}</td>

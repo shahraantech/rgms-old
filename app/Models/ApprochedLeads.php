@@ -48,7 +48,7 @@ class ApprochedLeads extends Model
         $qry = ApprochedLeads::Query();
         $qry = $qry->select('lead_id')->distinct('lead_id');
         ($receiver!='admin')?$qry = $qry->where('agent_id',$agent_id):'';
-        ($receiver=='admin')?$qry = $qry->where('created_at', '>=', Carbon::today()->subDays(3)):$qry = $qry->whereDate('created_at', date('Y-m-d'));
+        ($receiver=='admin')?$qry = $qry->where('created_at', '>=', Carbon::today()):$qry = $qry->whereDate('created_at', date('Y-m-d'));
         $qry = $qry->get();
 
 

@@ -194,22 +194,22 @@
                                             <td>
                                                 {{ $market->platformname->platform ? $market->platformname->platform : '' }}
                                             </td>
-{{--                                            --}}
-{{--                                            <td>--}}
-{{--                                                @php--}}
-{{--                                                 ($market->lead_type=='Inbound')? $className='success': $className='primary';--}}
-{{--                                                $lead = App\Models\ApprochedLeads::with('temp')--}}
-{{--                                                ->where('lead_id', $market->id)--}}
-{{--                                                ->first();--}}
-{{--                                                if ($lead) {--}}
-{{--                                                echo '<span class="badge bg-inverse-warning">' . $lead->temp['temp'] . '</span>';--}}
-{{--                                                } else {--}}
-{{--                                                echo '<span class="badge bg-inverse-danger">Open</span>';--}}
-{{--                                                }--}}
-{{--                                                @endphp--}}
-{{--                                            </td>--}}
 
-                                            <td><span class="badge bg-inverse-{{$className}}">{{$market->lead_type}}</span></td>
+                                            <td>
+                                                @php
+                                                 ($market->lead_type=='Inbound')? $className='success': $className='primary';
+                                                $lead = App\Models\ApprochedLeads::with('temp')
+                                                ->where('lead_id', $market->id)
+                                                ->first();
+                                                if ($lead) {
+                                                echo '<span class="badge bg-inverse-warning">' . $lead->temp['temp'] . '</span>';
+                                                } else {
+                                                echo '<span class="badge bg-inverse-danger">Open</span>';
+                                                }
+                                                @endphp
+                                            </td>
+
+{{--                                            <td><span class="badge bg-inverse-{{$className}}">{{$market->lead_type}}</span></td>--}}
                                             <td>{{ substr($market->interest,10)}}</td>
 
                                         </tr>
@@ -231,8 +231,10 @@
                     </div>
                 </div>
             </div>
+        </div>
             <!-- /Page Content -->
         </div>
+
         <!-- Add Department Modal -->
         <div id="add_department" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -451,7 +453,10 @@
             </div>
         </div>
         <!-- /Page Wrapper -->
-    </div>
+
+
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <script>
@@ -719,10 +724,7 @@
         toastr.success("CSV File Required!");
         @endif
     </script>
-
-
     @include('call-center.general.dont-copy');
-
-@endsection
+    @endsection
 
 

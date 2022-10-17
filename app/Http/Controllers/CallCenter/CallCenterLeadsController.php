@@ -1051,7 +1051,7 @@ class CallCenterLeadsController extends Controller
     public function getLeadsAcordingSocilaPlatforms(Request $request)
     {
 
-        return $res = SocialPlatform::select('social_platforms.platform', DB::raw("count(leads_marketings.id) as total"))
+        return $res = SocialPlatform::select('social_platforms.platform','social_platforms.color_code', DB::raw("count(leads_marketings.id) as total"))
             ->leftJoin('leads_marketings', 'leads_marketings.platform_id', '=', 'social_platforms.id')
             ->where('leads_marketings.lead_type', $request->lead_type)
             ->groupBy('leads_marketings.platform_id')
@@ -1294,16 +1294,16 @@ class CallCenterLeadsController extends Controller
 
 
           $totalLeads = LeadsMarketing::getAllLeads(1,$start_date,$end_date);
-         $socialPlatform = SocialPlatform::find($platform_id);
-         $platformTotalLeads = LeadsMarketing::getLeadsSocialPlatformWise($platform_id, 1, $start_date,$end_date);
+          $socialPlatform = SocialPlatform::find($platform_id);
+          $platformTotalLeads = LeadsMarketing::getLeadsSocialPlatformWise($platform_id, 1, $start_date,$end_date);
          ($platformTotalLeads > 0) ? $platformPercLeads = round(($platformTotalLeads * 100) / $totalLeads, 2) : '';
          $platFormsCalls = LeadsMarketing::getLeadsStats($platform_id, 0, 1, $start_date,$end_date);
         ($platFormsCalls > 0) ? $platFormsCallsPerc = round(($platFormsCalls * 100) / $platformTotalLeads, 2) : '';
          $platFormVisits = LeadsMarketing::getLeadsStats($platform_id, 6, 0, $start_date,$end_date);
         ($platFormVisits > 0) ? $platFormVisitsPerc = round(($platFormVisits * 100) / $platformTotalLeads, 2) : '';
-        $platFormSale = LeadsMarketing::getLeadsStats($platform_id, 9, 0, $start_date,$end_date);
+         $platFormSale = LeadsMarketing::getLeadsStats($platform_id, 9, 0, $start_date,$end_date);
         ($platFormSale > 0) ? $platFormSalePerc = round(($platFormSale * 100) / $platformTotalLeads, 2) : '';
-        $platFormDead = LeadsMarketing::getLeadsStats($platform_id, 10, 0, $start_date,$end_date);
+         $platFormDead = LeadsMarketing::getLeadsStats($platform_id, 10, 0, $start_date,$end_date);
         ($platFormDead > 0) ? $platFormDeadPerc = round(($platFormDead * 100) / $platformTotalLeads, 2) : '';
 
         $array = array(
@@ -1334,8 +1334,18 @@ class CallCenterLeadsController extends Controller
     {
         $data['analysis'] = collect([]);
          $csr=getCSR();
-         $start_date=date('Y-m-d');
-         $end_date=date('Y-m-d');
+         $data['csr']=$csr;
+        $start_date=date('Y-m-d');
+        $end_date=date('Y-m-d');
+         if($request->isMethod('post')){
+
+             $dateArr = explode("-", $request->date_range);
+             $start_date =date('Y-m-d', strtotime($dateArr[0]));
+             $end_date =date('Y-m-d', strtotime($dateArr[1]));
+             $csr=getCSR($request->csr_id);
+
+         }
+
         foreach ($csr as $csr) {
             $array = array(
                 'agent' => $csr->name,

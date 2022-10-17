@@ -710,7 +710,7 @@ table.dataTable thead > tr > td.sorting {
 	box-shadow: unset;
 }
 .dropdown-item.active, .dropdown-item:active {
-	background-color: #252D50;
+	background-color: linear-gradient(to right bottom, #2eaafa, #0a8be5, #006dce, #0e4eb4, #1f2f98);
 }
 .list-group-item {
 	border: 1px solid #e3e3e3;
