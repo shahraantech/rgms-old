@@ -234,7 +234,7 @@ class ExpensesController extends Controller
     //manageExpense
     public  function manageExpense(Request $request)
     {
-        if ( $request->isMethod('post')) {
+        if ($request->isMethod('post')) {
 
             $data = $request->all();
             $input = $request->all();
@@ -251,94 +251,93 @@ class ExpensesController extends Controller
             $comAcId = $request->company_account_id;
             $exp_date = $request->exp_date;
 
-            if($request->trans_mode=='cash') {
-            $availBalance=Ledger::countAccountsBalance('company-account',$comAcId);
-            if($availBalance < $request->grand_total){
-            return response()->json(['error' => 'Insufficient Balance'], 200);
-         }
-            }
-            if($request->trans_mode=='bank') {
-                $availBalance=Ledger::countAccountsBalance('bank',$request->bank_id);
-                if($availBalance < $request->grand_total){
+            if ($request->trans_mode == 'cash') {
+                $availBalance = Ledger::countAccountsBalance('company-account', $comAcId);
+                if ($availBalance < $request->grand_total) {
                     return response()->json(['error' => 'Insufficient Balance'], 200);
                 }
             }
-            $attachement='';
-            if($request->hasFile('file')){
+            if ($request->trans_mode == 'bank') {
+                $availBalance = Ledger::countAccountsBalance('bank', $request->bank_id);
+                if ($availBalance < $request->grand_total) {
+                    return response()->json(['error' => 'Insufficient Balance'], 200);
+                }
+            }
+            $attachement = '';
+            if ($request->hasFile('file')) {
                 $attachement = base64_encode(file_get_contents($request->file('file')));
             }
-            $res='';
+            $res = '';
             if ($input['remarks'] != '') {
                 for ($c = 0; $c < count($input['remarks']); $c++) {
                     if ($input['amount'][$c]) {
-                        $location_id=Employee::getEmpBranchId();
-                        $trans_id = saveTransaction(0, $mode = 'expense', $file_id = NULL, $against = NULL, $location_id, $input['amount'][$c], $input['remarks'][$c], $exp_date, $trans_type = 'expense','',$attachement);
-                        if($request->trans_mode=='cash') {
+                        $location_id = Employee::getEmpBranchId();
+                        $trans_id = saveTransaction(0, $mode = 'expense', $file_id = NULL, $against = NULL, $location_id, $input['amount'][$c], $input['remarks'][$c], $exp_date, $trans_type = 'expense', '', $attachement);
+                        if ($request->trans_mode == 'cash') {
                             // save ledger for credits company ac
                             $acHead = Account::getAccountHeadId($comAcId);
-                            saveLedger($trans_id->id, $acHead['lHeadId'], $comAcId, $ac_type = 'company-account', $ledger_type = 'cr', $input['amount'][$c],0, $acHead['coa_level']);
+                            saveLedger($trans_id->id, $acHead['lHeadId'], $comAcId, $ac_type = 'company-account', $ledger_type = 'cr', $input['amount'][$c], 0, $acHead['coa_level']);
                         }
-                        if($request->trans_mode=='bank') {
+                        if ($request->trans_mode == 'bank') {
                             // save ledger for credits Banks
                             $data = Account::getBankHeadId($request->bank_id);
-                            saveLedger($trans_id->id, $data['lHeadId'], $request->bank_id, $ac_type = 'bank', $ledger_type = 'cr', $input['amount'][$c],0, $data['coa_level']);
+                            saveLedger($trans_id->id, $data['lHeadId'], $request->bank_id, $ac_type = 'bank', $ledger_type = 'cr', $input['amount'][$c], 0, $data['coa_level']);
                         }
                         // save ledger for debits
-                        $res=saveLedger($trans_id->id, $input['exp_head_id'][$c], $companyAcId = NULL, $ac_type = 'company-head', $ledger_type = 'dr', $input['amount'][$c], 0,4);
+                        $res = saveLedger($trans_id->id, $input['exp_head_id'][$c], $companyAcId = NULL, $ac_type = 'company-head', $ledger_type = 'dr', $input['amount'][$c], 0, 4);
                     }
                 }
             }
-            if($res) {
+            if ($res) {
                 return response()->json(['success' => 'Expense Added Successfully'], 200);
             }
         }
         $data['l1Head'] = Level_1::getLevel1();
-         $data['level4'] = Level_1::getLevel4();
+        $data['level4'] = Level_1::getLevel4();
         $data['accounts'] = Account::getAccounts();
-        $data['banks']=BankBranch::getBankBranches();
+        $data['banks'] = BankBranch::getBankBranches();
 
         return view('accounts.expense.manage-expense')->with(compact('data'));
     }
     //expenseSummary
     public  function expenseSummary(Request $request)
     {
-        $fromDate=date('Y-m-d');
-        $toDate=date('Y-m-d');
+        $fromDate = date('Y-m-d');
+        $toDate = date('Y-m-d');
 
-     if($request->isMethod('post')){
-       $fromDate=$request->from_date;
-        $toDate=$request->to_date;
-         }
+        if ($request->isMethod('post')) {
+            $fromDate = $request->from_date;
+            $toDate = $request->to_date;
+        }
 
-         $data['exp']=Transaction::getExpenseTransaction($fromDate,$toDate);
-         $data['from_date']=$fromDate;
-         $data['to_date']=$toDate;
+        $data['exp'] = Transaction::getExpenseTransaction($fromDate, $toDate);
+        $data['from_date'] = $fromDate;
+        $data['to_date'] = $toDate;
         return view('accounts.expense.expense-summary')->with(compact('data'));
     }
     //printExpenseSummary
-    public  function printExpenseSummary($fromDate,$toDate,$account_id)
+    public  function printExpenseSummary($fromDate, $toDate, $account_id)
     {
-         $data['balance']=Ledger::countAccountsBalance('company-account',$account_id);
-         $data['exp']=Transaction::getExpenseTransaction($fromDate,$toDate);
-         $data['account_id']=$account_id;
-         $data['from']=$fromDate;
-         $data['to']=$toDate;
+        $data['balance'] = Ledger::countAccountsBalance('company-account', $account_id);
+        $data['exp'] = Transaction::getExpenseTransaction($fromDate, $toDate);
+        $data['account_id'] = $account_id;
+        $data['from'] = $fromDate;
+        $data['to'] = $toDate;
         return view('accounts.printer.print-expense-summary')->with(compact('data'));
     }
     public  function editExpenseSummary(Request $request)
     {
 
-        $trans_id=$request->id;
-        $qry =Transaction::query();
-        $qry =$qry->join('ledgers','transactions.id','ledgers.transaction_id');
-        $qry=$qry->select('ledgers.amount','transactions.desc','transactions.date','ledgers.coa_level','coa_head_id','transactions.id');
-        $qry=$qry->where('transactions.id',$trans_id);
-        $qry=$qry->where('ledgers.ac_type','company-head');
-        $data['exp']=$qry->first();
+        $trans_id = $request->id;
+        $qry = Transaction::query();
+        $qry = $qry->join('ledgers', 'transactions.id', 'ledgers.transaction_id');
+        $qry = $qry->select('ledgers.amount', 'transactions.desc', 'transactions.date', 'ledgers.coa_level', 'coa_head_id', 'transactions.id');
+        $qry = $qry->where('transactions.id', $trans_id);
+        $qry = $qry->where('ledgers.ac_type', 'company-head');
+        $data['exp'] = $qry->first();
 
-        $data['exp_head']=Level_4::all();
+        $data['exp_head'] = Level_4::all();
         return $data;
-
     }
     //expnse head list
     public function expenseList(Request $request)
@@ -398,35 +397,32 @@ class ExpensesController extends Controller
             return response()->json(['error' => $validator->errors()]);
         }
 
-        $transId=$request->hidden_trans_id;
-        $amount=$request->edit_amount;
-            $tran=Transaction::find($transId);
-            $tran->amount=$amount;
-            $tran->desc=$request->edit_remarks;
-            $tran->date=$request->edit_date;
-            if($request->hasFile('file')){
-             $tran->attachement=base64_encode(file_get_contents($request->file('file')));
-            }
+        $transId = $request->hidden_trans_id;
+        $amount = $request->edit_amount;
+        $tran = Transaction::find($transId);
+        $tran->amount = $amount;
+        $tran->desc = $request->edit_remarks;
+        $tran->date = $request->edit_date;
+        if ($request->hasFile('file')) {
+            $tran->attachement = base64_encode(file_get_contents($request->file('file')));
+        }
 
-           if( $tran->save()){
-               $led=Ledger::where('transaction_id',$transId)->where('ac_type','company-account')->orWhere('ac_type','bank')->first();
-               $led->amount=$amount;
-               $led->save();
+        if ($tran->save()) {
+            $led = Ledger::where('transaction_id', $transId)->where('ac_type', 'company-account')->orWhere('ac_type', 'bank')->first();
+            $led->amount = $amount;
+            $led->save();
 
-               $le=Ledger::where('transaction_id',$transId)->where('ac_type','company-head')->first();
-               $le->amount=$amount;
-               $le->coa_head_id=$request->edit_exp_head_id;
-               $le->save();
+            $le = Ledger::where('transaction_id', $transId)->where('ac_type', 'company-head')->first();
+            $le->amount = $amount;
+            $le->coa_head_id = $request->edit_exp_head_id;
+            $le->save();
 
-               return response()->json(['success' => 'Record updated successfully'], 200);
-           }
+            return response()->json(['success' => 'Record updated successfully'], 200);
+        }
     }
 
     public function Chart()
     {
         return view('accounts.expense.chart');
     }
-
-
-
 }

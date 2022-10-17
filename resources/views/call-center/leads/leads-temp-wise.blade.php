@@ -96,7 +96,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <table class="table table-striped table-hover data-table" >
+                        <table class="table table-striped table-responsive table-hover data-table">
                             <thead>
                             <tr>
                                 <th>#</th>
