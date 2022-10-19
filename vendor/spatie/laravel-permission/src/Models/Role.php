@@ -22,8 +22,6 @@ class Role extends Model implements RoleContract
 
     public function __construct(array $attributes = [])
     {
-        $attributes['guard_name'] = $attributes['guard_name'] ?? config('auth.defaults.guard');
-
         parent::__construct($attributes);
 
         $this->guarded[] = $this->primaryKey;
@@ -193,6 +191,6 @@ class Role extends Model implements RoleContract
             throw GuardDoesNotMatch::create($permission->guard_name, $this->getGuardNames());
         }
 
-        return $this->permissions->contains('id', $permission->id);
+        return $this->permissions->contains($permission->getKeyName(), $permission->getKey());
     }
 }

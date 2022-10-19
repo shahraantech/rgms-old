@@ -70,7 +70,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('delete-targets', [TargetController::class, 'deleteTargets']);
 
 
-    
+
     Route::get('tanveer', [AttendanceController::class, 'tanveer']);
 
 
@@ -134,5 +134,17 @@ Route::get('alterTableName', [TestController::class, 'alterTableName']);
 Route::post('signup', [UserController::class, 'signup']);
 Route::get('alterTableName',[TestController::class, 'alterTableName']);
 Route::post('signup',[RegisterController::class, 'signup']);
+
+
+use App\Events\RealTimeMessage;
+
+
+Route::get('send-notification', function () {
+    event(new RealTimeMessage('start with 786'));
+});
+
+Route::get('notification', function () {
+    return  view('welcome');
+});
 
 

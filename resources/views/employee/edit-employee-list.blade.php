@@ -380,10 +380,10 @@
                                 </div>
                             @endforeach
 
-                                        
+                          
                                     </div>
-                                @endforeach
-                            @endisset
+                              
+                          
                             
                                         <div class="row mt-4">
                                             <div class="text-center w-100">

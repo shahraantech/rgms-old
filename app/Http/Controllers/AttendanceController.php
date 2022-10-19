@@ -381,7 +381,7 @@ class AttendanceController extends Controller
 
     public function dailyAttReport(Request $request)
     {
-        if ($request->ajax()) {
+        if ($request->isMethod('post')) {
             ($request->company_id) ? $company_id = $request->company_id : $company_id = '';
             ($request->date_range) ? $search_date = $request->date_range : $search_date = Carbon::now();
 
