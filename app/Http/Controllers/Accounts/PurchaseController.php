@@ -8,9 +8,11 @@ use App\Models\CoaMapping;
 use App\Models\Employee;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
+use App\Models\Ledger;
 use App\Models\Level_1;
 use App\Models\Product;
 use App\Models\Society;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\Vendor;
 use App\Models\Purchase;
@@ -116,8 +118,8 @@ class PurchaseController extends Controller
                         if ($input['reg_no'][$c]) {
                             //reg no with alpha bets
 
-                            $alphabet =Purchase::getAlphaBetOfRegNo($input['reg_no'][$c]);
-                            $digits= Purchase::getRegNoDigits($input['reg_no'][$c]);
+                             $alphabet =Purchase::getAlphaBetOfRegNo($input['reg_no'][$c]);
+                             $digits= Purchase::getRegNoDigits($input['reg_no'][$c]);
 
                             for ($q = 0; $q < $input['qty'][$c]; $q++) {
                                 $digitsInc=$digits+$q;
@@ -201,6 +203,21 @@ class PurchaseController extends Controller
             return response()->json([
                 'success' => 'purchase deleted successfully',
             ]);
+        }
+    }
+
+    //deleteInvoice
+    public function deleteInvoice($inv_id)
+    {
+        $inv=Invoice::find($inv_id);
+        if($inv) {
+            $inv->delete();
+
+        $pur=Purchase::where('inv_no',$inv_id)->delete();
+        $transId=Transaction::where('inv_id',$inv_id)->first();
+        $trans=Transaction::where('inv_id',$inv_id)->delete();
+        $led=Ledger::where('transaction_id',$transId->id)->delete();
+        return Redirect::back()->withSuccess(['success', 'Record deleted successfully']);
         }
     }
 

@@ -140,7 +140,9 @@ use App\Events\RealTimeMessage;
 
 
 Route::get('send-notification', function () {
-    event(new RealTimeMessage('start with 786'));
+      $keyword="Hello world";//request("message");
+    event(new RealTimeMessage($keyword));
+
 });
 
 Route::get('notification', function () {

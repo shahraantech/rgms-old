@@ -11,16 +11,15 @@
     <p id="notify"></p>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script>
-    alert(123);
+
     document.addEventListener("DOMContentLoaded", function(event) {
         Echo.channel('events')
             .listen('RealTimeMessage', (e) => {
-                console.log('abc');
-                let notify = document.getElementById('notify');
-                notify.innerHTML =e.message;
+              alert("hello world");
+                // let notify = document.getElementById('notify');
+                // notify.innerHTML =e.message;
 
             });
     });

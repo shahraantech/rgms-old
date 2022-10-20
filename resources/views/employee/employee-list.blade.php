@@ -1,14 +1,8 @@
 @extends('setup.master')
 
 @section('content')
-
-
-
     <div class="main-wrapper">
-
-
         <!-- /Sidebar -->
-
         <!-- Page Wrapper -->
         <div class="page-wrapper">
 
@@ -177,15 +171,12 @@
 
         </div>
         <!-- /Page Wrapper -->
-
     </div>
     <!-- /Main Wrapper -->
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <script>
         $(document).ready(function() {
-
             //status update
             $('#empTabele').on('click', '.change_status', function() {
 

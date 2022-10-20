@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth', 'can:isAccountant']], function () {
     Route::get('view-purchase-edit', [PurchaseController::class, 'viewPurchaseEdit']);
     Route::get('view-purchase-update', [PurchaseController::class, 'viewPurchaseUpdate']);
     Route::get('view-purchase-delete/{id}', [PurchaseController::class, 'viewPurchaseDelete']);
+    Route::get('delete-invoice/{id}', [PurchaseController::class, 'deleteInvoice']);
 
 
     //sale routes

@@ -39,7 +39,7 @@
                                 <select class="livesearch form-control p-3" name="vendor_id" required>
                                     <option value="">Choose One</option>
                                 </select>
-                                
+
                             </div>
 
 
@@ -67,7 +67,7 @@
                             <div class="form-group col-sm-8">
                                 <label>Remarks <span class="text-danger">*</span></label>
                                 <input type="text" name="comments" placeholder="Remarks" class="form-control" required>
-                                
+
                             </div>
 
                         </div>

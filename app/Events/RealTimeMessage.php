@@ -18,6 +18,7 @@ class RealTimeMessage implements ShouldBroadcast
     public function __construct($message)
     {
         $this->message = $message;
+//        dd( $this->message);
     }
 
     public function broadcastOn(): Channel

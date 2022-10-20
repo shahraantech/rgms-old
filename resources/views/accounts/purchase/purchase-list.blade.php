@@ -87,6 +87,7 @@
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a href="{{url('purchase-delivery-note').'/'.encrypt($p->id)}}" title="Delivery Notes" class="dropdown-item"><i class="fa fa-print"></i></a>
                                                 <a href="{{url('view-purchase').'/'.$p->id}}" title="view details" class="dropdown-item"><i class="fa fa-eye"></i></a>
+                                                <a href="{{url('delete-invoice').'/'.$p->id}}" title="Delete" class="dropdown-item"><i class="fa fa-trash"></i></a>
 
 
                                             </div>
@@ -116,5 +117,25 @@
                 });
 
             });
+        </script>
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+
+        <script>
+            @if(count($errors) > 0)
+
+            @foreach($errors-> all() as $error)
+
+            toastr.error("{{ $error }}");
+            @endforeach
+            @endif
+
+
+            @if(Session::has('success'))
+            toastr.success("Record deleted successfully!");
+
+            @endif
         </script>
 @endsection

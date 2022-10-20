@@ -17,7 +17,8 @@ class Purchase extends Model
         return $digits;
     }
     public static function getAlphaBetOfRegNo($reg_no){
-       return $res= trim($reg_no, " 1..9");
+        return $result = preg_replace("/[^A-Z]+/", "", $reg_no);
+//       return $res= trim($reg_no, "1..9");
     }
 
     public static function getStock($inv_type=NULL){
@@ -54,3 +55,5 @@ class Purchase extends Model
         return $this->belongsTo(Product::class,  'item_id','id');
     }
 }
+
+
