@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 //leads Dashboard
 Route::any('getleads',[LeadsController::class,'getleads']);
-
+Route::any('search-contact', [LeadsController::class, 'searchContact']);
 Route::any('get-lead-detail', [LeadsController::class, 'getLeadDetail']);
 Route::any('update-leads-remarks', [LeadsController::class, 'updateLeadsStatus']);
 Route::any('getleadsWithParams',[LeadsController::class,'getleadsWithParams']);

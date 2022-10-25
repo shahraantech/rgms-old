@@ -51,7 +51,7 @@
                                 <input type="text" class="form-control" value="INV-{{(empty($data['inv_no'])?1:$data['inv_no'])}}" readonly>
                             </div>
                             <div class="col-md-2">
-                                <input type="date" name="sale_date" class="form-control">
+                                <input type="date" name="sale_date" class="form-control" required>
                             </div>
 
                             <div class="col-md-4">
@@ -89,7 +89,7 @@
 
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Remarks" name="comments">
+                                <input type="text" class="form-control" placeholder="Remarks" name="comments" required>
                             </div>
 
                         </div>
@@ -280,6 +280,7 @@
         });
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script type='text/javascript'>
         $(document).ready(function (){
 
@@ -500,6 +501,9 @@
             //purchase form submit
             $('#purchaseForm').unbind().on('submit', function(e) {
                 e.preventDefault();
+                var $form = $(this);
+                // check if the input is valid
+                if (!$form.validate().form()) return false;
                 var formData = $('#purchaseForm').serialize();
                 $.ajax({
                     type: 'ajax',
@@ -508,6 +512,9 @@
                     data: formData,
                     async: false,
                     dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
                     beforeSend: function() {
                         $(".btn-submit").prop("disabled", true);
                         $(".btn-submit").html("please wait...");

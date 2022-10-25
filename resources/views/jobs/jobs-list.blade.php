@@ -56,7 +56,7 @@
 
         <!-- Header Title -->
         <div class="page-title-box float-left">
-            <h3>The A Team </h3>
+            <h3>RGMD</h3>
         </div>
 
 

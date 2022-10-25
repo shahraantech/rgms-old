@@ -42,13 +42,12 @@ class DesignationController extends Controller
         $data = $request->all();
         $rules = array(
             'desig_name' => 'required',
-
         );
 
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
 
-            return response()->json(['errors' => $validator->errors()]);
+            return response()->json(['errors' => $validator->errors()->all()]);
         }
 
         if(Designation::where('desig_name',$request->desig_name)->first()){

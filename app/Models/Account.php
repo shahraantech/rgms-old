@@ -18,8 +18,11 @@ class Account extends Model
 
     public static function getAccounts(){
 
-       //return  Account::where('auth_id',Auth::id())->orderBy('id', 'DESC')->get();
-       return  Account::orderBy('id', 'DESC')->get();
+       $qry=  Account::Query();
+        (Auth::user()->role !='accounts')?$qry=$qry->where('auth_id',Auth::id()):'';
+       $qry=$qry->orderBy('id', 'DESC');
+        $qry=$qry->get();
+    return $qry;
     }
 
     public static function getAccountHeadId($ac_id){
@@ -29,11 +32,8 @@ class Account extends Model
         $data['lHeadId']=$res->ac_head_id;
         return $data;
     }
-
-
     public static function getBankHeadId($bank_id)
     {
-
         $res = BankBranch::find($bank_id);
         if ($res) {
             $data['coa_level'] = $res->level_no;
@@ -41,7 +41,6 @@ class Account extends Model
             return $data;
         }
     }
-
 
     public static function getAcNameAcordingAcType($ac_id,$ac_type,$level_no=NULL){
      if($ac_type=='clients'){

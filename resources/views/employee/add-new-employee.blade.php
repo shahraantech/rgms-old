@@ -239,29 +239,13 @@
                                     <div class="cal-"> <input class="form-control " type="date" name="doj" required></div>
                                 </div>
                             </div>
+
                             <div class="row">
-                                <div class="form-group col-sm-6">
-                                    <label>Bank Name <span class="text-danger"></span></label>
-                                    <select class="form-control " name="bank_id">
-                                        <option value="1">Choose Bank</option>
-                                        <option value="2">HBL</option>
-                                        <option value="3">Bank Al Habib</option>
-                                        <option value="4">Meezan</option>
-                                        <option value="4">MCB</option>
-                                        <option value="4">Islami Bank</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label>Account# <span class="text-danger"></span></label>
-                                    <input class="form-control" type="number" name="bank_ac_no" placeholder="Bank Ac number">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-sm-6">
+                                <div class="form-group col-sm-12">
                                     <label>Image<span class="text-danger">*</span></label>
-                                    <input type="file" name="file" class="form-control" onchange="previewFile(this);">
+                                    <input type="file" name="file" class="form-control" onchange="previewFile(this);" required>
                                 </div>
-                                <div class="col-sm-6" style="visibility: hidden" id="imagePreviewDiv">
+                                <div class="col-sm-12" style="visibility: hidden" id="imagePreviewDiv">
                                     <div class="form-group">
                                         <img id="previewImg" style="height: 150px" width="150px;" class="img img-thumbnail">
                                     </div>

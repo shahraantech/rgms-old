@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Applicant;
 use App\Models\ApprochedLeads;
 use App\Models\AssignedLeads;
 use App\Models\Attendance;
@@ -109,32 +110,22 @@ class HomeController extends Controller
 
         if (Auth::user()->role=='admin') {
             $data['employees']=Employee::where('status',1)->get();
-            $data['trainers']=Trainer::where('status',1)->get();
-            $data['projects']=Project::get();
 
-            $data['recentEmployee']=Employee::where('created_at','>=',Carbon::now()->subdays(15))->get();
-            $data['expenses']=Expense::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->sum('expense_amount');
             $data['tickets']=Ticket::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get();
-            $data['jobs']=Recruitment::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get();
+            $data['cvBank']=Applicant::where('status','!=','new')->count();
+            $data['jobs']=Recruitment::where('last_date','>=',date('Y-m-d'))->where('last_date','<=',date('Y-m-d'))->count();
             $data['leaves']=Leave::whereDate('created_at', Carbon::today())->get();
             $data['pendingLeaves']=Leave::where('leave_status','pending')->whereDate('created_at', Carbon::today())->get();
             $data['approvedLeaves']=Leave::where('leave_status','approved')->whereDate('created_at', Carbon::today())->get();
             $data['tickets']=Ticket::whereDate('created_at', Carbon::today());
-//            $data['pendingTickets']=Ticket::whereDate('created_at', Carbon::today())->get();
-          $data['close']=Ticket::where('status','complete')->whereDate('created_at', Carbon::today())->get();
+            $data['pendingTickets']=Ticket::whereDate('created_at', Carbon::today())->get();
+             $data['close']=Ticket::where('status','complete')->whereDate('created_at', Carbon::today())->get();
 
-
-            $data['tasks']=Tasks::where('status','!=','Complete')->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get();
-            $data['overDueTasks']=Tasks::where('status','!=','Complete')->whereDate('end_date', '>', Carbon::now())->get();
-
-
-                $data['absents']=Attendance::join('employees','employees.id','attendances.emp_id')
+                 $data['absents']=Attendance::join('employees','employees.id','attendances.emp_id')
                     ->where('attendances.status',0)
                     ->whereDate('attendances.created_at', Carbon::today())
                         ->select('employees.name','employees.image','attendances.*')
                     ->get();
-
-
             return view('dashboard')->with(compact('data'));
         }
         return view('errors.410');

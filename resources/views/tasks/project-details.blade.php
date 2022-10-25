@@ -48,9 +48,6 @@
                                                     <ul id="task-list" class="task-lis taskListSection">
 
                                                     </ul>
-
-
-
                                                 </div>
 
                                             </div>
@@ -207,8 +204,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" class="needs-validation" novalidate action="{{ url('save-tasks') }}"
-                        id="taskForm">
+                    <form method="post" action="{{ url('save-tasks') }}" id="taskForm">
                         @csrf
                         <div class="row">
                             <input type="hidden" name="hidden_project_id" value="{{ $data['project_id'] }}" class>
@@ -265,7 +261,7 @@
 
 
                         <div class="submit-section">
-                            <button class="btn btn-primary submit-btn">Save</button>
+                            <button class="btn btn-primary submit-btn btn_save_task">Save</button>
                         </div>
                     </form>
                 </div>
@@ -344,7 +340,7 @@
 
 
                         <div class="submit-section">
-                            <button class="btn btn-primary submit-btn update_task">Update</button>
+                            <button class="btn btn-primary submit-btn update_task">Save Changes</button>
                         </div>
                     </form>
                 </div>
@@ -359,10 +355,26 @@
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <!-- CDN for Sweet Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
+
+            $('#taskForm').validate({
+
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
 
             toastr.options.timeOut = 3000;
             @if (Session::has('error'))
@@ -430,23 +442,35 @@
                 });
             }
 
-            $('#taskForm').unbind().on('submit', function(e) {
+
+            $('#taskForm').on('submit', function(e) {
                 e.preventDefault();
 
-                var formData = $('#taskForm').serialize();
+                var $form = $(this);
+                // check if the input is valid
+                if (!$form.validate().form()) return false;
+
+                let formData = new FormData($('#taskForm')[0]);
 
 
                 $.ajax({
-
-                    type: 'ajax',
-                    method: 'post',
+                    type: "POST",
                     url: '{{ url('save-tasks') }}',
                     data: formData,
-                    async: false,
-                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('.btn_save_task').text('Saving...');
+                        $(".btn_save_task").prop("disabled", true);
+                    },
                     success: function(data) {
 
                         if (data.success) {
+                            $('.btn_save_task').text('Save');
+                            $(".btn_save_task").prop("disabled", false);
                             taskList();
                             $('#taskForm')[0].reset();
                             $('.close').click();
@@ -455,6 +479,8 @@
 
                         if (data.error) {
                             toastr.success(data.error);
+                            $('.btn_save_task').text('Save');
+                            $(".btn_save_task").prop("disabled", false);
                         }
 
 
@@ -462,7 +488,8 @@
 
                     error: function() {
                         toastr.error('something went wrong');
-
+                        $('.btn_save_task').text('Save');
+                        $(".btn_save_task").prop("disabled", false);
                     }
 
                 });
@@ -553,7 +580,7 @@
             //Update Data with ajax call
             $('.update_task').on('click', function(e) {
                 e.preventDefault();
-                $('.update_task').text('Updating...');
+                $('.update_task').text('Saving...');
 
                 let EditFormData = new FormData($('#EditTaskForm')[0]);
 
@@ -573,14 +600,14 @@
                         if (response.status == 200) {
                             $("#edit_task_modal").modal('hide');
                             $('#EditTaskForm').find('input').val("");
-                            $('.update_task').text('Update');
+                            $('.update_task').text('Save Changes');
                             toastr.success(response.message);
                             taskList();
                         }
                     },
                     error: function() {
                         toastr.error('something went wrong');
-                        $('.update_task').text('Update');
+                        $('.update_task').text('Save Changes');
                     }
                 });
 

@@ -40,30 +40,27 @@ class HourlyUpdate extends Command
      */
     public function handle()
     {
-        $employee = Employee::get();
-        $current_date = date('Y-m-d');
-        // dd(date('Y-d-m'));
-        foreach ($employee as $val) {
-            $attt = Attendance::where('emp_id', $val->id)
-                ->where('date', $current_date)->first();
-            // echo $attt;
-            if (isset($attt)) {
-                // $today=new Attendance();
+        // \Log::info('Good');
 
-                $this->info('Attendance Already');
-            } else {
-                $att = new Attendance();
-                $att->emp_id = $val->id;
-                $att->status = '0';
-                $att->date = date('Y-m-d');
-                $att->attendance_date = $attDay = date('d', strtotime(date('Y-m-d')));
-                $att->attendance_month = date('m', strtotime(date('Y-m-d')));
-                $att->attendance_year = date('Y', strtotime(date('Y-m-d')));
-                $att->marked_by = 'admin';
-                $att->guard = 'web';
-                $att->save();
-                $this->info('Attendance Successfully Add');
-            }
-        }
+        // $employee = Employee::get();
+        // $current_date = date('Y-m-d');
+        // foreach ($employee as $val) {
+        //     $attt = Attendance::where('emp_id', $val->id)->where('date', $current_date)->first();
+        //     if (isset($attt)) {
+        //         \Log::info('Attendance Already');
+        //     } else {
+        //         $att = new Attendance();
+        //         $att->emp_id = $val->id;
+        //         $att->status = '0';
+        //         $att->date = date('Y-m-d');
+        //         $att->attendance_date = $attDay = date('d', strtotime(date('Y-m-d')));
+        //         $att->attendance_month = date('m', strtotime(date('Y-m-d')));
+        //         $att->attendance_year = date('Y', strtotime(date('Y-m-d')));
+        //         $att->marked_by = 'admin';
+        //         $att->guard = 'web';
+        //         $att->save();
+        //         \Log::info('Attendance Successfully');
+        //     }
+        // }
     }
 }

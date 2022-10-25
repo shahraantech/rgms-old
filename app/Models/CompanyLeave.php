@@ -11,14 +11,15 @@ class CompanyLeave extends Model
 
     public function leaveType()
     {
-        return $this->belongsTo(LeaveType::class, 'leave_type_id','id');
+        return $this->belongsTo(LeaveType::class, 'leave_type_id', 'id');
     }
 
     public function company()
     {
-        return $this->belongsTo(Company::class, 'company_id','id');
+        return $this->belongsTo(Company::class, 'company_id', 'id');
     }
-     public static function  getCompanyLeaves(){
-         return $res=CompanyLeave::sum('leave_days');
-     }
+    public static function getCompanyLeaves()
+    {
+        return $res = CompanyLeave::sum('leave_days');
+    }
 }

@@ -13,9 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-         Commands\LeadCron::class,
+        Commands\AutoAttendece::class,
+        //  Commands\LeadCron::class,
         //  Commands\UpdateProbPeriodCron::class,
-        //  Commands\HourlyUpdate::class,
     ];
 
     /**
@@ -24,14 +24,10 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
-     protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule)
     {
-        $schedule->command('mail:send')->everyMinute();
-        // $schedule->command('mail:send')->everyMinute();
-        // $schedule->command('probabition:cron')->everyMinute();
-        
-        // $schedule->command('daily:update') ->everyMinute();
-
+        $schedule->command('auto:attend')->everyMinute();
+        // $schedule->command('auto:attend')->everyMinute();
     }
 
     /**
@@ -41,7 +37,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

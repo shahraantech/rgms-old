@@ -1,6 +1,10 @@
 @extends('setup.master')
 @section('content')
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
     <div class="page-wrapper">
 
@@ -186,22 +190,41 @@
                         <div class="card-body">
 
                             <h3 class="card-title">Bank information
+                                <a href="#" class="edit-icon" data-toggle="modal" data-target="#bank_info"><i
+                                        class="fa fa-plus"></i>
+                                </a>
                             </h3>
-                            <ul class="personal-info">
-                                <li>
-                                    <div class="title">Bank name</div>
 
-                                    <div class="text">
-                                        {{ empty($data['employee']->bank_id) ? '' : 'Meezan Bank' }}</div>
-                                </li>
-                                <li>
-                                    <div class="title">Bank account No.</div>
-                                    <div class="text">
-                                        {{ empty($data['employee']->bank_ac_no) ? '' : $data['employee']->bank_ac_no }}
-                                    </div>
-                                </li>
+                            <div class="experience-box">
+                                <ul class="experience-list">
 
-                            </ul>
+                                    @isset($data['qualification'])
+                                        @foreach ($data['qualification'] as $edu)
+                                            <li>
+                                                <div class="experience-user">
+                                                    <div class="before-circle"></div>
+                                                </div>
+
+                                                <div class="experience-content">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="project-info-box">
+                                                                <p class="text-secondary"><b>Bank Name:</b>
+                                                                    {{ empty($data['employee']->bank_id) ? '' : 'Meezan Bank' }}</p>
+                                                                <p class="text-secondary"><b>Bank account No :</b>
+                                                                    {{ empty($data['employee']->bank_ac_no) ? '' : $data['employee']->bank_ac_no }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </li>
+                                        @endforeach
+                                    @endisset
+
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -227,19 +250,48 @@
                                                 <div class="experience-user">
                                                     <div class="before-circle"></div>
                                                 </div>
+
                                                 <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <a href="#/"
-                                                            class="name">{{ empty($edu->institute) ? '' : $edu->institute }}</a>
-                                                        <div>
-                                                            {{ empty($edu->qualification) ? '' : $edu->qualification }}
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="project-info-box">
+                                                                <p class="text-secondary"><b>Institute:</b>
+                                                                    {{ empty($edu->institute) ? '' : $edu->institute }}</p>
+                                                                <p class="text-secondary"><b>Qualification:</b>
+                                                                    {{ empty($edu->qualification) ? '' : $edu->qualification }}
+                                                                </p>
+                                                                <p class="text-secondary"><b>From:</b>
+                                                                    {{ empty($edu->from) ? '' : date('Y', strtotime($edu->from)) }}
+                                                                </p>
+                                                                <p class="text-secondary"><b>To:</b>
+                                                                    {{ empty($edu->to) ? '' : date('Y', strtotime($edu->to)) }}
+                                                                </p>
+                                                                <p class="text-secondary"><b>CGPA:</b>
+                                                                    {{ empty($edu->cgpa) ? '' : $edu->cgpa }}</p>
+                                                            </div>
                                                         </div>
-                                                        <span
-                                                            class="time">{{ empty($edu->from) ? '' : date('Y', strtotime($edu->from)) }}
-                                                            -
-                                                            {{ empty($edu->to) ? '' : date('Y', strtotime($edu->to)) }}</span>
+
+                                                        @if ($edu->attachment != '')
+                                                            <div class="col-md-6 text-center">
+                                                                <div class="project-info-box">
+                                                                    <p class="text-secondary"><b>Attachment</b></p>
+                                                                    <a
+                                                                        href="{{ asset('storage/app/public/uploads/education/' . $edu->attachment ?? '') }}">
+                                                                        <img src="{{ asset('storage/app/public/uploads/education/' . $edu->attachment ?? '') }}"
+                                                                            width="50%" class="img-fluid" alt=""
+                                                                            style="border-radius: 5px;"><br>
+                                                                    </a>
+                                                                    <a href="{{ asset('storage/app/public/uploads/education/' . $edu->attachment ?? '') }}"
+                                                                        class="btn btn-primary btn-sm mt-3" download><i
+                                                                            class="fa fa-cloud-download"
+                                                                            aria-hidden="true"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+
                                                     </div>
                                                 </div>
+
                                             </li>
                                         @endforeach
                                     @endisset
@@ -268,20 +320,51 @@
                                                 <div class="experience-user">
                                                     <div class="before-circle"></div>
                                                 </div>
+
                                                 <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <a href="#/"
-                                                            class="name">{{ empty($exp->position) ? '' : $exp->position }}</a>
-                                                        <?php
-                                                        
-                                                        $diff = abs(strtotime($exp->start_date) - strtotime($exp->end_date));
-                                                        
-                                                        $years = floor($diff / (365 * 60 * 60 * 24));
-                                                        $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
-                                                        $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
-                                                        ?>
-                                                        <span class="time">{{ $years . '-' . $months . '-' . $days }}
-                                                        </span>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="project-info-box">
+                                                                <p class="text-secondary"><b>Position:</b>
+                                                                    {{ empty($exp->position) ? '' : $exp->position }}</p>
+
+                                                                <?php
+                                                                
+                                                                $diff = abs(strtotime($exp->start_date) - strtotime($exp->end_date));
+                                                                
+                                                                $years = floor($diff / (365 * 60 * 60 * 24));
+                                                                $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+                                                                $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+                                                                ?>
+
+                                                                <p class="text-secondary"><b>Experience:</b>
+                                                                    {{ $years . '-' . $months . '-' . $days }}
+                                                                </p>
+                                                                <p class="text-secondary"><b>Organization:</b>
+                                                                    {{ empty($exp->organization) ? '' : $exp->organization }}
+                                                                </p>
+
+                                                            </div>
+                                                        </div>
+
+                                                        @if ($exp->attachment != '')
+                                                            <div class="col-md-6 text-center">
+                                                                <div class="project-info-box">
+                                                                    <p class="text-secondary"><b>Attachment</b></p>
+                                                                    <a
+                                                                        href="{{ asset('storage/app/public/uploads/experience/' . $exp->attachment ?? '') }}">
+                                                                        <img src="{{ asset('storage/app/public/uploads/experience/' . $exp->attachment ?? '') }}"
+                                                                            width="50%" class="img-fluid" alt=""
+                                                                            style="border-radius: 5px;"><br>
+                                                                    </a>
+                                                                    <a href="{{ asset('storage/app/public/uploads/experience/' . $exp->attachment ?? '') }}"
+                                                                        class="btn btn-primary btn-sm mt-3" download><i
+                                                                            class="fa fa-cloud-download"
+                                                                            aria-hidden="true"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+
                                                     </div>
                                                 </div>
                                             </li>
@@ -292,6 +375,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <div class="row">
@@ -305,22 +389,37 @@
                                 @endif
                             </h3>
                             @isset($data['certifications'])
-                                <ul class="personal-info">
-                                    <li>
-                                        <div class="title">Course Titile</div>
-
-                                        <div class="text">
-                                            {{ empty($data['certifications']->course_title) ? '' : $data['certifications']->course_title }}
+                                <div class="experience-content">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="project-info-box">
+                                                <p class="text-secondary"><b>Course Title:</b>
+                                                    {{ empty($data['certifications']->course_title) ? '' : $data['certifications']->course_title }}
+                                                </p>
+                                                <p class="text-secondary"><b>Duration Period:</b>
+                                                    {{ empty($data['certifications']->duration_period) ? '' : $data['certifications']->duration_period }}
+                                                </p>
+                                            </div>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <div class="title">Durations</div>
-                                        <div class="text">
-                                            {{ empty($data['certifications']->duration_period) ? '' : $data['certifications']->duration_period }}
-                                        </div>
-                                    </li>
 
-                                </ul>
+                                        @if ($data['certifications']->attachment != '')
+                                            <div class="col-md-6 text-center">
+                                                <div class="project-info-box">
+                                                    <p class="text-secondary"><b>Attachment</b></p>
+                                                    <a
+                                                        href="{{ asset('storage/app/public/uploads/certification/' . $data['certifications']->attachment ?? '') }}">
+                                                        <img src="{{ asset('storage/app/public/uploads/certification/' . $data['certifications']->attachment ?? '') }}"
+                                                            width="30%" class="img-fluid" alt=""
+                                                            style="border-radius: 5px;"><br>
+                                                    </a>
+                                                    <a href="{{ asset('storage/app/public/uploads/certification/' . $data['certifications']->attachment ?? '') }}"
+                                                        class="btn btn-primary btn-sm mt-3" download><i
+                                                            class="fa fa-cloud-download" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             @endisset
                         </div>
                     </div>
@@ -336,6 +435,49 @@
 
     </div>
 
+
+    <!-- Bank Informations Modal -->
+    <div class="modal fade" id="bank_info" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Bank Informations </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('update-bank-detail') }}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="emp_id" value="{{ $data['employee'] ? $data['employee']->id : '' }}">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label>Bank Name <span class="text-danger"></span></label>
+                                <select class="form-control " name="bank_id" required>
+                                    <option value="1">Choose Bank</option>
+                                    <option value="2">HBL</option>
+                                    <option value="3">Bank Al Habib</option>
+                                    <option value="4">Meezan</option>
+                                    <option value="4">MCB</option>
+                                    <option value="4">Islami Bank</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label>Account# <span class="text-danger"></span></label>
+                                <input class="form-control" type="number" name="bank_ac_no" placeholder="Bank Ac number" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Bank Informations Modal -->
 
     <!-- Education Informations Modal -->
     <div class="modal fade bd-example-modal-lg" id="education_info" tabindex="-1" role="dialog"

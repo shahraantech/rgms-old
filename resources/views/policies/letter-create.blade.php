@@ -32,7 +32,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card" id="tablePrint">
+                    <div class="card" id="tablePrint" contenteditable="true">
                         <div class="card-body">
                             <h4 class="text-center">Employee Experience Certificate <br>
                                <span>{{$data['companyName']?$data['companyName']:''}}</span> <br>

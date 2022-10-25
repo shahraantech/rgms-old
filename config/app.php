@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'RGMS'),
 
     /*
     |--------------------------------------------------------------------------
@@ -161,6 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -171,7 +172,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
@@ -233,7 +234,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-
+        'Share' => Jorenvh\Share\ShareFacade::class,
     ],
 
 ];

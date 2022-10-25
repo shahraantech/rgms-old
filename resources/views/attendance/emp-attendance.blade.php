@@ -50,7 +50,8 @@
                                     <div class="col-md-6 col-6 text-center">
                                         <div class="stats-box">
                                             <p>Break</p>
-                                            <h6>{{ empty($data['times']->break_time) ? '' : $data['times']->break_time }}</h6>
+                                            <h6>{{ empty($data['times']->break_time) ? '' : $data['times']->break_time }}
+                                            </h6>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-6 text-center">
@@ -178,7 +179,7 @@
             <!-- Search Filter -->
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ url('emp-attendance') }}" method="post">
+                    <form action="{{ url('emp-attendance') }}" method="post" id="att_form">
                         @csrf
                         <div class="row filter-row">
 
@@ -189,7 +190,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-3">
-                                <div class="form-group form-focus select-focus">
+                                <div class="form-group select-focus">
                                     <select class="select floating" name="month">
                                         <option value="">Choose Month</option>
                                         <option value="1">Jan</option>
@@ -209,7 +210,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-3">
-                                <div class="form-group form-focus select-focus">
+                                <div class="form-group select-focus">
                                     <select class="select floating" name="year">
                                         <option value="">Choose Year</option>
                                         <option value="2030">2030</option>
@@ -227,7 +228,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-3">
-                                <button type="submit" class="btn btn-primary"> <i class="fa fa-search"></i></button>
+                                <button type="submit" class="btn btn-primary btn_att_search"> <i class="fa fa-search"></i></button>
                             </div>
 
                         </div>
@@ -398,6 +399,13 @@
 
                 });
             }
+
+
+            $('.btn_att_search').on('click', function() {
+                $(".btn_att_search").prop("disabled", true);
+                $(".btn_att_search").html("Please wait...");
+                $('#att_form').submit();
+            });
 
 
             //Datatables

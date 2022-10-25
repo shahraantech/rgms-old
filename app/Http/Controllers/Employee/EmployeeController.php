@@ -33,6 +33,7 @@ use Illuminate\Support\Str;
 use App\Events\AccountVerifyEvent;
 use App\Models\CompanyBranch;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 
 class EmployeeController extends Controller
@@ -71,14 +72,14 @@ class EmployeeController extends Controller
         $data['tasks'] = Tasks::where('status', '!=', 'Complete')->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->get();
         $data['overDueTasks'] = Tasks::where('status', '!=', 'Complete')->whereDate('end_date', '>', Carbon::now())->get();
         $data['totalLeads'] = AssignedLeads::getEmpTotalLeads($this->userId);
-          $data['thisMonthLeads'] = AssignedLeads::getEmpThisMonthLeads($this->userId);
-        $data['newLeads'] = AssignedLeads::getEmpNewLeads($this->userId,'counting');
-        $data['todayLeads'] =todayFollowupLeads('agent','count',$this->userId);
+        $data['thisMonthLeads'] = AssignedLeads::getEmpThisMonthLeads($this->userId);
+        $data['newLeads'] = AssignedLeads::getEmpNewLeads($this->userId, 'counting');
+        $data['todayLeads'] = todayFollowupLeads('agent', 'count', $this->userId);
 
 
         $data['assigend'] = AssignedLeads::where('status', 0)->where('agent_id', $this->userId)->get();
-        $data['overDate'] = ApprochedLeads::getEmpOverDueLeads($this->userId,'counting');
-        $data['tomorrowLeads'] =tommrowFollowupLeads($this->userId,'counting');
+        $data['overDate'] = ApprochedLeads::getEmpOverDueLeads($this->userId, 'counting');
+        $data['tomorrowLeads'] = tommrowFollowupLeads($this->userId, 'counting');
         $data['notApproachedLeads'] = AssignedLeads::getEmpNotApproachesLeads($this->userId);
 
 
@@ -91,11 +92,12 @@ class EmployeeController extends Controller
             )->count();
 
 
-        $data['myTotalLeads'] = LeadsMarketing::where('user_id',\Illuminate\Support\Facades\Auth::id())->get();
-         $data['myThisWeekLeads'] = LeadsMarketing::where('user_id',\Illuminate\Support\Facades\Auth::id())->whereBetween('created_at',
+        $data['myTotalLeads'] = LeadsMarketing::where('user_id', \Illuminate\Support\Facades\Auth::id())->get();
+        $data['myThisWeekLeads'] = LeadsMarketing::where('user_id', \Illuminate\Support\Facades\Auth::id())->whereBetween(
+            'created_at',
             [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]
         )->get();
-        $data['myThisMonthLeads'] = LeadsMarketing::where('user_id',\Illuminate\Support\Facades\Auth::id())->whereMonth('created_at', Carbon::now()->month)->get();
+        $data['myThisMonthLeads'] = LeadsMarketing::where('user_id', \Illuminate\Support\Facades\Auth::id())->whereMonth('created_at', Carbon::now()->month)->get();
 
         $data['temp'] = Temprature::all();
         return view('employee.employee-dashboard')->with(compact('data'));
@@ -105,10 +107,10 @@ class EmployeeController extends Controller
 
     public function index(Request $request)
     {
-        $data['foundedRec']=0;
-        $data['search']=0;
+        $data['foundedRec'] = 0;
+        $data['search'] = 0;
         $qry = Employee::join('designations', 'designations.id', '=', 'employees.desg_id');
-        $qry->select('designations.desig_name', 'employees.*');
+        $qry->select('designations.desig_name', 'employees.*')->where('status', '!=', 0);
 
         if ($request->isMethod('post')) {
 
@@ -135,16 +137,16 @@ class EmployeeController extends Controller
                 return $query->where('employees.grade', $grade_id);
             });
 
-             $data['foundedRec']=$qry->count();
-            $data['search']=1;
+            $data['foundedRec'] = $qry->count();
+            $data['search'] = 1;
         }
 
         $qry->orderBy('employees.id', 'Desc');
         $data['employee'] = $qry->paginate(16);
 
 
-         $data['dept'] = Department::getAllDept();
-         $data['grade'] = Grade::getAllGrades();
+        $data['dept'] = Department::getAllDept();
+        $data['grade'] = Grade::getAllGrades();
         $data['designation'] = Designation::getDesignation();
         $data['company'] = Company::getAllCompanies();
         return view('employee.index')->with(compact('data'));
@@ -216,8 +218,6 @@ class EmployeeController extends Controller
             $emp->cnic = $request->cnic;
             $emp->phone = $request->phone;
             $emp->grade = $request->grade;
-            $emp->bank_id = $request->bank_id;
-            $emp->bank_ac_no = $request->bank_ac_no;
             $emp->marital_status = $request->marital_status;
             $emp->nationality = $request->nationality;
             $emp->gross_salary = $request->salary;
@@ -259,7 +259,6 @@ class EmployeeController extends Controller
                 ->join('designations', 'designations.id', 'employees.desg_id')
                 ->select('users.role', 'designations.desig_name', 'employees.*')
                 ->orderBy('employees.id', 'Desc')
-                //            ->where('users.role', '=','employee')
                 ->get();
         }
         return view('employee.employee-list')->with(compact('data'));;
@@ -301,8 +300,6 @@ class EmployeeController extends Controller
         $emp->cnic = $request->cnic;
         $emp->phone = $request->phone;
         $emp->grade = $request->grade;
-        $emp->bank_id = $request->bank_id;
-        $emp->bank_ac_no = $request->bank_ac_no;
         $emp->marital_status = $request->marital_status;
         $emp->nationality = $request->nationality;
         $emp->gross_salary = $request->salary;
@@ -310,16 +307,6 @@ class EmployeeController extends Controller
         $emp->location_id = $request->location_id;
         $emp->prob_period = $request->prob;
         if ($emp->save()) {
-
-
-            // users table updates
-//            $user = User::where('account_id', $request->hidden_emp_id)->first();
-//            $user->name = $name;
-//            $user->email = $request->email;
-          //  $user->save();
-
-
-            //update(['name' => $request->name, 'email' => $request->email]);
 
             if ($request->qualification) {
                 //qualification Information
@@ -329,6 +316,18 @@ class EmployeeController extends Controller
                 $qua->from = $request->from;
                 $qua->to = $request->to;
                 $qua->cgpa = $request->cgpa;
+
+                if ($request->hasFile('attachment_edu')) {
+                    $path = 'storage/app/public/uploads/education/' . $qua->attachment;
+                    if (File::exists($path)) {
+                        File::delete($path);
+                    }
+                    $file = $request->file('attachment_edu');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = time() . '.' . $extension;
+                    $file->move('storage/app/public/uploads/education/', $filename);
+                    $qua->attachment = $filename;
+                }
                 $qua->save();
             }
 
@@ -338,6 +337,19 @@ class EmployeeController extends Controller
                 $cer->course_title = ($request->course_title) ? $request->course_title : '';
                 $cer->orgnazations = ($request->exp_organization) ? $request->exp_organization : '';
                 $cer->duration_period = ($request->period) ? $request->period : '';
+
+                if ($request->hasFile('attachment_cer')) {
+                    $path = 'storage/app/public/uploads/certification/' . $cer->attachment;
+                    if (File::exists($path)) {
+                        File::delete($path);
+                    }
+                    $file = $request->file('attachment_cer');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = time() . '.' . $extension;
+                    $file->move('storage/app/public/uploads/certification/', $filename);
+                    $cer->attachment = $filename;
+                }
+
                 $cer->save();
             }
 
@@ -353,6 +365,19 @@ class EmployeeController extends Controller
                 $exp->end_date = $request->end_date;
                 $exp->annual_duration = $request->annual_duartion;
                 $exp->exp = $request->relevent_exp;
+
+                if ($request->hasFile('attachment_exp')) {
+                    $path = 'storage/app/public/uploads/experience/' . $exp->attachment;
+                    if (File::exists($path)) {
+                        File::delete($path);
+                    }
+                    $file = $request->file('attachment_exp');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = time() . '.' . $extension;
+                    $file->move('storage/app/public/uploads/experience/', $filename);
+                    $exp->attachment = $filename;
+                }
+
                 $exp->save();
             }
 
@@ -483,39 +508,34 @@ class EmployeeController extends Controller
 
 
 
-    public function audioupload(){
+    public function audioupload()
+    {
 
-      $audio=  Tanveer::get();
-        return view('employee.audioupload',get_defined_vars());
+        $audio =  Tanveer::get();
+        return view('employee.audioupload', get_defined_vars());
     }
 
 
 
-    public function addaudioupload(Request $request){
+    public function addaudioupload(Request $request)
+    {
         $image = base64_encode(file_get_contents($request->file('file')));
         $image2 = base64_encode($request->file('file'));
-
-// dd($image,$image2);
-        // if($request['file'] != null) {
-        //     $file = $request['file'];
-        //     $extension = $file->getClientOriginalName();
-        //     $filename = time() . '.' . $extension;
-        //     // $imageType = pathinfo($fileName, PATHINFO_EXTENSION);
-        //     $file->move('storage/app/public/uploads/audio', base64_encode($filename));
-        //     $message='Faild Must b required';
-
-
-        // } else {
-
-        //     return redirect()->back()->with($message);
-        // }
         Tanveer::create([
-
             'audio' => $image,
-
         ]);
 
         return redirect()->back();
+    }
 
+
+    public function updateEmployeeStatus(Request $request)
+    {
+        $update_status = Employee::where('id', $request->id)->first();
+        $update_status->update(['status' => 0]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Employee Delete Successfully',
+        ]);
     }
 }

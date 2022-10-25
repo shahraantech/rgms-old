@@ -2,21 +2,14 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <meta name="description" content="Smarthr - Bootstrap Admin Template">
-    <meta name="keywords"
-        content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
-    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
-    <meta name="robots" content="noindex, nofollow">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>RGMS</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/assets/img/logo/favicon.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/assets/img/logo/fav.png')}}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('public/assets/css/bootstrap.min.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('public/assets/css/accounts-style.csss') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/accounts-style.css') }}">
     <!-- Fontawesome CSS -->
     <link rel="stylesheet" href="{{ asset('public/assets/css/font-awesome.min.css') }}">
     <!-- Lineawesome CSS -->
@@ -45,7 +38,7 @@
 
     <link rel="stylesheet" href="{{ asset('public/assets/select/bootstrap-select.css') }}">
     <!-- Calendar CSS -->
-    <link rel="stylesheet" href="{{asset('public/assets/css/fullcalendar.min.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('public/assets/css/fullcalendar.min.css')}}"> --}}
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -122,8 +115,9 @@
         <!-- Calendar JS -->
         <script src="{{asset('public/assets/js/moment.min.js')}}"></script>
         <script src="{{asset('public/assets/js/jquery-ui.min.js')}}"></script>
-        <script src="{{asset('public/assets/js/fullcalendar.min.js')}}"></script>
-        <script src="{{asset('public/assets/js/jquery.fullcalendar.js')}}"></script>
+        {{-- <script src="{{asset('public/assets/js/fullcalendar.min.js')}}"></script>
+        <script src="{{asset('public/assets/js/jquery.fullcalendar.js')}}"></script> --}}
+
         <script>
             $(document).ready(function() {
 

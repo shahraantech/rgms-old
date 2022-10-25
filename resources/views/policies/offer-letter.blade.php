@@ -43,7 +43,7 @@
                             </div>
 
                             <div class="col-md-5">
-                                <div class="form-group form-focus select-focus">
+                                <div class="form-group select-focus">
                                     <select class="select floating emp_id" id="showEmployee" name="emp_id" required>
                                         <option value="">Select Employee</option>
 
@@ -54,8 +54,8 @@
 
                             <div class="col-md-2">
                                 {{-- <a href="" class="btn btn-primary btn-block">Print</a> --}}
-                                <button class="btn btn-primary btn-block" type="submit" id="btnPrint"><i
-                                        class="fa fa-print" aria-hidden="true"></i></button>
+                                <button class="btn btn-primary btn-block btn_offer_letter" type="submit" id="btnPrint"><i
+                                        class="fa fa-search" aria-hidden="true"></i></button>
                             </div>
 
                         </div>
@@ -133,6 +133,8 @@
 
             $('#letterForm').unbind().on('submit', function(e) {
                 e.preventDefault();
+
+    
                 var desig_id = $('select[name=designation]').val();
                 var emp_id = $('select[name=emp_id]').val();
 
@@ -162,6 +164,7 @@
 
                     var url = "{{ url('/offer-letter-create') }}" + '/' + emp_id;
                     window.location.href = url;
+                    $('.btn_offer_letter').text('Searching...');
                 }
 
 

@@ -11,12 +11,13 @@
                         <div class="col">
                             <h3 class="page-title bold-heading">Roles</h3>
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
                                 <li class="breadcrumb-item active">Roles List</li>
                             </ul>
                         </div>
                         <div class="col-auto float-right ml-auto">
-                            <a href="#" class="btn add-btn"  data-toggle="modal" data-target="#add_department" title="Add New Leads Temperature"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                            <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_department"
+                                title="Add New Leads Temperature"><i class="fa fa-plus" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -25,14 +26,14 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <table class="table table-striped table-hover data-table" >
+                        <table class="table table-striped table-hover data-table">
                             <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Role</th>
-                                <th>Date</th>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Role</th>
+                                    <th>Date</th>
 
-                            </tr>
+                                </tr>
                             </thead>
                             <tbody id="leadsTable">
 
@@ -56,16 +57,15 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" action="{{url('roles')}}" id="LeadForm" class="needs-validation" novalidate>
+                        <form method="post" action="{{ url('roles') }}" id="LeadForm" class="needs-validation"
+                            novalidate>
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label> Role Name <span class="text-danger">*</span></label>
-                                        <input type="text" name="role" class="form-control" placeholder="Role Name">
-                                        <div class="invalid-feedback">
-                                            Please enter role .
-                                        </div>
+                                        <input type="text" name="role" class="form-control" placeholder="Role Name"
+                                            required>
                                     </div>
                                 </div>
 
@@ -85,27 +85,52 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 
     <script>
         $(document).ready(function() {
+
+
+            $('#LeadForm').validate({
+
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+
             getRoles();
 
-            $('#LeadForm').unbind().on('submit', function(e) {
+
+            $('#LeadForm').on('submit', function(e) {
                 e.preventDefault();
-                var formData = $('#LeadForm').serialize();
+
+                var $form = $(this);
+                // check if the input is valid
+                if (!$form.validate().form()) return false;
+
+                let formData = new FormData($('#LeadForm')[0]);
+
                 $.ajax({
 
-                    type: 'ajax',
-                    method: 'post',
-                    url: '{{url("roles")}}',
+                    type: "POST",
+                    url: '{{ url('roles') }}',
                     data: formData,
-                    async: false,
-                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    contentType: false,
+                    processData: false,
                     beforeSend: function() {
-
                         $("#btnSubmit").prop("disabled", true);
-                        $("#btnSubmit").html("loading...");
-
+                        $("#btnSubmit").html("Saving...");
                     },
                     success: function(data) {
 
@@ -114,20 +139,24 @@
                             $('.close').click();
                             $('#LeadForm')[0].reset();
                             toastr.success(data.success);
-
+                            $("#btnSubmit").prop("disabled", false);
+                            $("#btnSubmit").html("Save");
                         }
                         if (data.errors) {
                             toastr.error(data.errors);
+                            $("#btnSubmit").prop("disabled", false);
+                            $("#btnSubmit").html("Save");
                         }
                     },
 
-                    complete : function(data){
-                        $("#btnSubmit").html("Save");
+                    complete: function(data) {
                         $("#btnSubmit").prop("disabled", false);
+                        $("#btnSubmit").html("Save");
                     },
                     error: function() {
                         toastr.error('something went wrong');
-
+                        $("#btnSubmit").prop("disabled", false);
+                        $("#btnSubmit").html("Save");
                     },
 
                 });
@@ -140,7 +169,7 @@
 
                 $.ajax({
 
-                    url: '{{url("/roles-list")}}',
+                    url: '{{ url('/roles-list') }}',
                     type: 'get',
                     async: false,
                     dataType: 'json',
@@ -157,11 +186,11 @@
 
                             c++;
 
-                            html += '<tr>'+
+                            html += '<tr>' +
 
-                                '<td>'+c+'</td>' +
-                                '<td>'+data[i].role+'</td>' +
-                                '<td>'+data[i].created_at+'</td>' +
+                                '<td>' + c + '</td>' +
+                                '<td>' + data[i].role + '</td>' +
+                                '<td>' + data[i].created_at + '</td>' +
 
 
                                 '</tr>';
@@ -181,6 +210,4 @@
 
         });
     </script>
-
-
 @endsection

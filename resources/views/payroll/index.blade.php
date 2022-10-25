@@ -28,18 +28,21 @@
 		<!-- Search Filter -->
 		<div class="card">
 			<div class="card-body">
-				<form action="{{url('salary')}}" method="post">
+				<form action="{{url('salary')}}" method="post" id="salary_form">
 					@csrf
 					<div class="row filter-row">
 						<input type="hidden" name="search" value="1">
 						<div class="col-md-3">
-							<div class="form-group form-focus">
-								<select class="livesearch form-control p-3" name="emp_id" required></select>
+							<div class="form-group">
 								<label class="focus-label">Employee Name</label>
+								<select class="livesearch form-control p-3" name="emp_id" required>
+									<option value="" selected disabled>--Select--</option>
+								</select>
 							</div>
 						</div>
 						<div class="col-md-3">
-							<div class="form-group form-focus select-focus">
+							<div class="form-group select-focus">
+								<label class="focus-label">Month</label>
 								<select class="select floating" name="month" required>
 									<option value=""> -- Select -- </option>
 									<option value="1">Jan</option>
@@ -56,11 +59,11 @@
 									<option value="12">Dec</option>
 
 								</select>
-								<label class="focus-label">Month</label>
 							</div>
 						</div>
 						<div class="col-md-3">
-							<div class="form-group form-focus select-focus">
+							<div class="form-group select-focus">
+								<label class="focus-label">Year</label>
 								<select class="select floating" name="year" required>
 									<option value=""> -- Select -- </option>
 									<option value="2021"> 2021 </option>
@@ -68,13 +71,11 @@
 									<option value="2023"> 2023 </option>
 									<option value="2024"> 2024 </option>
 									<option value="2025"> 2025 </option>
-
 								</select>
-								<label class="focus-label">Year</label>
 							</div>
 						</div>
 						<div class="col-md-3">
-							<button type="submit" class="btn btn-success btn-block"> Search </button>
+							<button type="submit" class="btn btn-primary btn-block search_filter mt-4"><i class="fa fa-search"></i></button>
 						</div>
 					</div>
 				</form>
@@ -87,7 +88,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="table-responsive">
-							<table class="table table-striped table-responsive" id="datatable">
+							<table class="table table-striped table-responsive" id="salaryTable">
 								<thead>
 									<tr>
 										<th>#</th>
@@ -100,7 +101,7 @@
 										<th class="text-right">Action</th>
 									</tr>
 								</thead>
-								<tbody id="salaryTable">
+								<tbody>
 									@php $c=0; @endphp
 									@isset($collection)
 									@foreach($collection as $emp)
@@ -219,9 +220,14 @@
 
 		});
 
+		$('.search_filter').on('click', function() {
+        $(".search_filter").prop("disabled", true);
+        $(".search_filter").html("Searching...");
+        $('#salary_form').submit();
+    });
 
 		//Datatables
-		$('#datatable').DataTable();
+		$('#salaryTable').DataTable();
 	});
 </script>
 @endsection

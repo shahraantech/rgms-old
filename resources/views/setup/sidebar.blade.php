@@ -41,7 +41,8 @@
                             <li class="submenu">
                                 <a href="#"> <span> HRM</span> <span class="menu-arrow"></span></a>
                                 <ul>
-                                    <li><a href="{{ url('/departments') }}">Department/Designation</a></li>
+                                    <li><a href="{{ url('/departments') }}">Department</a></li>
+                                    <li><a href="{{ url('/designation') }}">Designation</a></li>
                                     <li><a href="{{ url('/grades') }}">Grades</a></li>
                                     <li><a href="{{ url('/employees') }}">Add Employee</a></li>
 
@@ -171,8 +172,6 @@
                                         Ticket</span></a> </li>
                             <li> <a href="{{ url('my-expenses') }}"><i class="la la-user-secret"></i>
                                     <span>Expenses</span></a> </li>
-                            <li> <a href="{{ url('call-recording') }}"><i class="la la-user-secret"></i> <span>Call
-                                        Recordings</span></a> </li>
 
                             <li class="submenu">
                                 <a href="#"><i class="la la-edit"></i> <span>Learning/Development</span> <span
@@ -365,6 +364,7 @@
                             <li><a href="{{url('commission-report')}}">Commission Report</a></li>
                             <li><a href="{{ url('/loss-profit-report') }}">Loss & Profit Reports </a></li>
                             <li><a href="{{ url('/balance-sheet/1/1') }}">Balance Sheet</a></li>
+                            <li><a href="{{ url('weekly-expense-report') }}">Weekly Exp Report</a></li>
 
 
                         </ul>
@@ -385,48 +385,48 @@
 
                     <li> <a href="{{ url('/') }}"> <span>Dashboard</span></a> </li>
 
-                    <li class="submenu">
-                        <a href="#"><i class="la la-user"></i> <span> Social Media </span> <span
-                                class="menu-arrow"></span></a>
-                        <ul>
-                            <li class="submenu">
-                                <a href="#"> <span>Posts</span> <span class="menu-arrow"></span></a>
-                                <ul>
-                                    <li> <a href="{{ url('posts') }}"> <span>Posts</span></a> </li>
-                                </ul>
-                            </li>
-                            <li class="submenu">
-                                <a href="#"> <span>Campaigns</span> <span class="menu-arrow"></span></a>
-                                <ul>
-                                    <li> <a href="#"> <span>Social Media Campaign</span></a> </li>
-                                    <li> <a href="sms"> <span>SMS Campaign</span></a> </li>
-                                    <li> <a href="email"> <span>Email Campaign</span></a> </li>
-                                    <li> <a href="{{ url('email-attachment') }}"> <span>Random Email Campaign</span></a> </li>
-                                </ul>
-                            </li>
-                            <li class="submenu">
-                                <a href="#"> <span>Response</span> <span class="menu-arrow"></span></a>
-                                <ul>
-                                    <li> <a href="#"> <span>Posts Response</span></a> </li>
-                                </ul>
-                            </li>
+{{--                    <li class="submenu">--}}
+{{--                        <a href="#"><i class="la la-user"></i> <span> Social Media </span> <span--}}
+{{--                                class="menu-arrow"></span></a>--}}
+{{--                        <ul>--}}
+{{--                            <li class="submenu">--}}
+{{--                                <a href="#"> <span>Posts</span> <span class="menu-arrow"></span></a>--}}
+{{--                                <ul>--}}
+{{--                                    <li> <a href="{{ url('posts') }}"> <span>Posts</span></a> </li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li class="submenu">--}}
+{{--                                <a href="#"> <span>Campaigns</span> <span class="menu-arrow"></span></a>--}}
+{{--                                <ul>--}}
+{{--                                    <li> <a href="#"> <span>Social Media Campaign</span></a> </li>--}}
+{{--                                    <li> <a href="sms"> <span>SMS Campaign</span></a> </li>--}}
+{{--                                    <li> <a href="email"> <span>Email Campaign</span></a> </li>--}}
+{{--                                    <li> <a href="{{ url('email-attachment') }}"> <span>Random Email Campaign</span></a> </li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li class="submenu">--}}
+{{--                                <a href="#"> <span>Response</span> <span class="menu-arrow"></span></a>--}}
+{{--                                <ul>--}}
+{{--                                    <li> <a href="#"> <span>Posts Response</span></a> </li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
 
-                            <li class="submenu">
-                                <a href="#"><i class="la la-user"></i> <span>Chat</span> <span
-                                        class="menu-arrow"></span></a>
-                                <ul>
-                                    <li class="submenu">
-                                        <a href="#"> <span>Chat</span> <span class="menu-arrow"></span></a>
-                                        <ul>
-                                            <li> <a href="{{ url('chat') }}"> <span>Chat</span></a> </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+{{--                            <li class="submenu">--}}
+{{--                                <a href="#"><i class="la la-user"></i> <span>Chat</span> <span--}}
+{{--                                        class="menu-arrow"></span></a>--}}
+{{--                                <ul>--}}
+{{--                                    <li class="submenu">--}}
+{{--                                        <a href="#"> <span>Chat</span> <span class="menu-arrow"></span></a>--}}
+{{--                                        <ul>--}}
+{{--                                            <li> <a href="{{ url('chat') }}"> <span>Chat</span></a> </li>--}}
+{{--                                        </ul>--}}
+{{--                                    </li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
                     <li class="submenu">
-                        <a href="#"><i class="la la-user"></i> <span>Projects & Targets</span> <span
+                        <a href="#"><i class="la la-tasks"></i> <span>Projects & Targets</span> <span
                                 class="menu-arrow"></span></a>
                         <ul>
                             <li class="submenu">
@@ -453,7 +453,7 @@
                         </ul>
                     </li>
                     <li class="submenu">
-                        <a href="#"><i class="la la-user"></i> <span>Leads Management</span> <span
+                        <a href="#"><i class="fa fa-bullhorn"></i> <span>Leads Management</span> <span
                                 class="menu-arrow"></span></a>
                         <ul>
                             {{-- <li> <a href="{{url('leads')}}"> <span>Create Leads</span></a>  </li> --}}
@@ -466,7 +466,7 @@
                         </ul>
                     </li>
                     <li class="submenu">
-                        <a href="#"><i class="la la-user"></i> <span>Meetings & Sales</span> <span
+                        <a href="#"><i class="la la-meetup"></i> <span>Meetings & Sales</span> <span
                                 class="menu-arrow"></span></a>
                         <ul>
                             <li> <a href="{{ url('walkin-customer') }}"> <span>Customer Form</span></a> </li>
@@ -478,7 +478,7 @@
                         </ul>
                     </li>
                         <li class="submenu">
-                            <a href="#"><i class="la la-user"></i> <span>Customer Survey</span> <span
+                            <a href="#"><i class="la la-users"></i> <span>Customer Survey</span> <span
                                     class="menu-arrow"></span></a>
                             <ul>
                                 <li> <a href="{{ url('create-survey') }}"> <span>Create Survey</span></a> </li>
@@ -494,7 +494,7 @@
                         </ul>
                     </li>
                     <li class="submenu">
-                        <a href="#"><i class="la la-edit"></i> <span>Reports</span> <span
+                        <a href="#"><i class="la la-file"></i> <span>Reports</span> <span
                                 class="menu-arrow"></span></a>
                         <ul style="display: none;">
 
@@ -505,6 +505,7 @@
                             <li><a href="{{ url('sales-report') }}">Sales Report</a></li>
                             <li><a href="{{ url('dead-lead-report') }}">Dead Lead Report</a></li>
                             <li><a href="{{ url('calls-qa-report') }}">Calls QA Report</a></li>
+                            <li><a href="{{ url('emp-leads-analysis') }}">Emp Leads Analysis</a></li>
                         </ul>
                     </li>
                     <li class="submenu">
@@ -520,7 +521,7 @@
                         </ul>
                     </li>
                     <li class="submenu">
-                        <a href="#"><i class="fa fa-user"></i> <span>House Keeping</span> <span
+                        <a href="#"><i class="fa fa-gear"></i> <span>House Keeping</span> <span
                                 class="menu-arrow"></span></a>
                         <ul style="display: none;">
                             <li><a href="{{ url('/leads-settings') }}">Leads Settings</a></li>

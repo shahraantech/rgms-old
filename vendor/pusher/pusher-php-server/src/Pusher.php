@@ -3,7 +3,6 @@
 namespace Pusher;
 
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -19,7 +18,7 @@ class Pusher implements LoggerAwareInterface, PusherInterface
     /**
      * @var string Version
      */
-    public static $VERSION = '7.0.2';
+    public static $VERSION = '7.0.0';
 
     /**
      * @var null|PusherCrypto
@@ -433,14 +432,10 @@ class Pusher implements LoggerAwareInterface, PusherInterface
     {
         $request = $this->make_request($channels, $event, $data, $params, $already_encoded);
 
-        try {
-            $response = $this->client->send($request, [
-                'http_errors' => false,
-                'base_uri' => $this->channels_url_prefix()
-            ]);
-        } catch (ConnectException $e) {
-            throw new ApiErrorException($e->getMessage());
-        }
+        $response = $this->client->send($request, [
+            'http_errors' => false,
+            'base_uri' => $this->channels_url_prefix()
+        ]);
 
         $status = $response->getStatusCode();
 
@@ -497,8 +492,6 @@ class Pusher implements LoggerAwareInterface, PusherInterface
             }
 
             return $result;
-        }, function (ConnectException $e) {
-            throw new ApiErrorException($e->getMessage());
         });
 
         return $promise;
@@ -579,14 +572,10 @@ class Pusher implements LoggerAwareInterface, PusherInterface
     {
         $request = $this->make_batch_request($batch, $already_encoded);
 
-        try {
-            $response = $this->client->send($request, [
-                'http_errors' => false,
-                'base_uri' => $this->channels_url_prefix()
-            ]);
-        } catch (ConnectException $e) {
-            throw new ApiErrorException($e->getMessage());
-        }
+        $response = $this->client->send($request, [
+            'http_errors' => false,
+            'base_uri' => $this->channels_url_prefix()
+        ]);
 
         $status = $response->getStatusCode();
 
@@ -639,8 +628,6 @@ class Pusher implements LoggerAwareInterface, PusherInterface
             }
 
             return $result;
-        }, function (ConnectException $e) {
-            throw new ApiErrorException($e->getMessage());
         });
 
         return $promise;
@@ -850,7 +837,7 @@ class Pusher implements LoggerAwareInterface, PusherInterface
      */
     public function presence_auth(string $channel, string $socket_id, string $user_id, $user_info = null): string
     {
-        return $this->presenceAuth($channel, $socket_id, $user_id, $user_info);
+        return $this->presence_auth($channel, $socket_id, $user_id, $user_info);
     }
 
     /**

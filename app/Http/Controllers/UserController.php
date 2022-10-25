@@ -7,12 +7,11 @@ use App\Models\Department;
 use Google\Service\Directory\Users;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-
-
     //index
     public function index(Request $request)
     {
@@ -24,18 +23,14 @@ class UserController extends Controller
             $qry->when($request->company_id, function($query, $company_id) {
                 return $query->where('employees.company_id', $company_id);
             });
-
             $qry->when($request->desg_id, function($query, $desg_id) {
                 return $query->where('employees.desg_id', $desg_id);
             });
-
             $qry->when($request->name, function($query, $name) {
                 return $query->where('employees.name', $name);
             });
-
             $data = $qry->get();
             return response()->json($data);
-
         }
         $data['company'] = Company::all();
         $data['department'] = Department::all();
@@ -44,7 +39,6 @@ class UserController extends Controller
     //udpate user role
     public  function changeRole(Request $request)
     {
-
         $user = User::find($request->id);
         $user->role = $request->value;
         if ($user->save()) {
@@ -86,6 +80,4 @@ class UserController extends Controller
             return response()->json(['success'=>'Status updated successfully'],200);
         }
     }
-
-   
 }

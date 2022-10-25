@@ -32,6 +32,7 @@ use App\Http\Controllers\CallCenter\PlatformController;
 use App\Http\Controllers\CallCenter\RoleController;
 use App\Http\Controllers\CallCenter\TempratureController;
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuotationController;
 
 
@@ -79,6 +80,9 @@ Route::group(['middleware' => ['auth', 'can:isAdmin']], function () {
 
 
     Route::any('/employees', [EmployeeController::class, 'index']);
+
+    Route::get('update-employee-status', [EmployeeController::class, 'updateEmployeeStatus']);
+
     Route::any('/employees-list', [EmployeeController::class, 'employeeList']);
     Route::get('/new-employee', [EmployeeController::class, 'newEmployee']);
     Route::post('/new-employee', [EmployeeController::class, 'saveNewEmployee']);
@@ -90,7 +94,7 @@ Route::group(['middleware' => ['auth', 'can:isAdmin']], function () {
     Route::post('/save-desig', [DesignationController::class, 'saveDesig']);
     Route::get('/delete-designation', [DesignationController::class, 'deleteDesignation']);
     Route::get('/edit-designation', [DesignationController::class, 'editDesignation']);
-    Route::get('/update-desig', [DesignationController::class, 'updateDesignation']);
+    Route::post('/update-desig', [DesignationController::class, 'updateDesignation']);
 
 
     Route::get('/policies', [OnboardingController::class, 'index']);
@@ -166,7 +170,7 @@ Route::group(['middleware' => ['auth', 'can:isAdmin']], function () {
 
     Route::get('/trainers', [TrainerController::class, 'index']);
     Route::get('/trainersList', [TrainerController::class, 'trainersList']);
-    Route::post('/trainers', [TrainerController::class, 'saveTrainers']);
+    Route::post('/save-trainers', [TrainerController::class, 'saveTrainers']);
     Route::get('/edit-trainers', [TrainerController::class, 'editTrainers']);
     Route::post('/update-trainers', [TrainerController::class, 'updateTrainers']);
     Route::get('/delete-trainers/{id}', [TrainerController::class, 'deleteTrainers']);

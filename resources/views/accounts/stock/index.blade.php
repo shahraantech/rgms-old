@@ -65,7 +65,7 @@
                                 @endphp
                                 <tr>
                                     <td>{{$c}}</td>
-                                    <td>{{$stock->products['p_name']}}</td>
+                                    <td>{{$stock->products['item']}}-{{$stock->reg_no}}</td>
                                     <td>{{$stock->products['unit']}}</td>
                                     <td>{{$stock->qty}}</td>
                                     <td>{{$stock->avl_qty}}</td>

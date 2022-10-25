@@ -51,7 +51,7 @@
                                     @php $grandTotal=$grandTotal + $p->pur_price; @endphp
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $p->products->item }}</td>
+                                        <td>{{ $p->products->item }}-{{ $p->reg_no}}</td>
                                         <td>{{ $p->qty }}</td>
                                         <td>{{number_format($p->pur_price,2)}}</td>
                                         <td>{{number_format($p->sale_price,2)}}</td>

@@ -22,6 +22,9 @@ use App\Http\Controllers\CallCenter\CallCenterLeadsController;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\Auth\RegisterController;
 
 
 
@@ -30,10 +33,10 @@ use App\Http\Controllers\CalendarController;
 Auth::routes(['verify' => true]);
 
 
-Route::group(['middleware' =>['auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/my-profile', [ProfileController::class, 'index'])->middleware('auth');
     // change password
-    Route::post('change-password',  [ProfileController::class,'changePassword']);
+    Route::post('change-password',  [ProfileController::class, 'changePassword']);
 
     Route::get('/user-profile/{id}', [ProfileController::class, 'userProfile']);
 
@@ -42,12 +45,14 @@ Route::group(['middleware' =>['auth']], function () {
     Route::post('store-experience', [ProfileController::class, 'storeExperience']);
     Route::post('store-certification', [ProfileController::class, 'storeCertification']);
 
+    Route::post('update-bank-detail', [ProfileController::class, 'updateBankDetail']);
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
     Route::get('/edit-employee/{id}', [EmployeeController::class, 'editEmployee']);
-    Route::post('/update-employee', [EmployeeController::class, 'updateEmployee']);
 
+    Route::post('/update-employee', [EmployeeController::class, 'updateEmployee']);
 
 
     Route::get('get-vendors-name', [VendorsController::class, 'getVendorsName']);
@@ -63,14 +68,13 @@ Route::group(['middleware' =>['auth']], function () {
     Route::get('edit-targets', [TargetController::class, 'editTargets']);
     Route::post('update-targets', [TargetController::class, 'updateTargets']);
     Route::get('delete-targets', [TargetController::class, 'deleteTargets']);
+
+
+
     Route::get('tanveer', [AttendanceController::class, 'tanveer']);
 
-    // Route::get('/edit-targets/{id}', [TargetController::class, 'editTargets']);
-    // Route::post('/update-targets/{id}', [TargetController::class, 'updateTargets']);
-    // Route::get('/delete-targets/{id}', [TargetController::class, 'deleteTargets']);
 
-
-// get designation
+    // get designation
     Route::any('/getDesignations', [DesignationController::class, 'getDesignations']);
     // getEmployeeBaseDesignation
     Route::any('/getEmployeeBaseDesignation', [OnboardingController::class, 'getEmployeeBaseDesignation']);
@@ -91,31 +95,58 @@ Route::group(['middleware' =>['auth']], function () {
 
     Route::any('getLeadsInfo', [CallCenterLeadsController::class, 'getLeadsInfo']);
 
+    //deleteable
+    Route::get('stripe', [StripePaymentController::class, 'stripe']);
+    Route::post('stripe', [StripePaymentController::class, 'stripePost'])->name('stripe.post');
+
+    Route::get('/paypal', function () {
+
+        return view('paypal');
+    });
+
+    //paypal-call
+
+    Route::post('paypal', [PaypalController::class, 'paypal']);
+    Route::post('paypal-call', [PaypalController::class, 'index'])->name('paypal_call');
+    Route::any('paypal-return', [PaypalController::class, 'paypalReturn'])->name('paypal_return');
+    Route::any('paypal-cancel', [PaypalController::class, 'paypalCancel'])->name('paypal_cancel');
 });
 
-
-
-
-
-Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class, 'logout']);
-
+Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 Route::get('/job/list', [JobsController::class, 'jobList']);
 Route::get('/job/view/{id}', [JobsController::class, 'jobView']);
-
 Route::post('/apply-job', [JobsController::class, 'applyJob']);
-Route::get('//check-job-applied', [JobsController::class, 'checkJobApplied']);
+Route::get('/check-job-applied', [JobsController::class, 'checkJobApplied']);
 Route::get('/ajax-autocomplete-search', [HelperController::class, 'ajaxEmpAutoSearch'])->middleware('auth');
 //Project Routes End Here
-
 Route::any('roles', [RoleController::class, 'index']);
 Route::get('roles-list', [RoleController::class, 'rolesList']);
 Route::any('role-permissions', [RoleController::class, 'rolePermissions']);
 Route::any('test-permissions', [RoleController::class, 'testPermissions']);
-Route::any('calender', [CalendarController::class, 'index']);
+
+Route::get('calender', [CalendarController::class, 'index']);
+Route::get('verify-account/{id}', [UserController::class, 'verifyAccount']);
 
 
+Route::post('full-calender/action', [CalendarController::class, 'action']);
+
+Route::get('alterTableName', [TestController::class, 'alterTableName']);
+Route::post('signup', [UserController::class, 'signup']);
+Route::get('alterTableName',[TestController::class, 'alterTableName']);
+Route::post('signup',[RegisterController::class, 'signup']);
 
 
-Route::get('verify-account/{id}',[UserController::class, 'verifyAccount']);
-Route::any('/test',[TestController::class, 'test']);
+use App\Events\RealTimeMessage;
+
+
+Route::get('send-notification', function () {
+      $keyword="Hello world";//request("message");
+    event(new RealTimeMessage($keyword));
+
+});
+
+Route::get('notification', function () {
+    return  view('welcome');
+});
+
 

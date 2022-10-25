@@ -8,15 +8,17 @@
                 -webkit-appearance: none;
                 margin: 0;
             }
+
             /* Firefox */
             input[type=number] {
                 -moz-appearance: textfield;
             }
+
             /* .target-img{
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            } */
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                    } */
         </style>
         <!-- Page Content -->
         <div class="content container-fluid">
@@ -26,12 +28,13 @@
                     <div class="col">
                         <h3 class="page-title">Targets</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Targets</li>
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_leave" title="Add New Target"><i class="fa fa-plus"></i></a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_leave"
+                            title="Add New Target"><i class="fa fa-plus"></i></a>
                     </div>
                 </div>
             </div>
@@ -43,55 +46,59 @@
                             <div class="table-responsive">
                                 <table class="table table-striped mb-0 target-table" id="datatable">
                                     <thead>
-                                    <tr>
-                                        <th style="width: 30px;">#</th>
-                                        <th>Name</th>
-                                        <th></th>
-                                        <th>Target</th>
-                                        <th>From </th>
-                                        <th>To </th>
-                                        <th>Action </th>
-                                    </tr>
+                                        <tr>
+                                            <th style="width: 30px;">#</th>
+                                            <th>Name</th>
+                                            <th></th>
+                                            <th>Target</th>
+                                            <th>From </th>
+                                            <th>To </th>
+                                            <th>Action </th>
+                                        </tr>
                                     </thead>
-
-
                                     <tbody>
-                                    @php $c=0; @endphp
-                                    @isset($data['targets'])
-                                        @foreach ($data['targets'] as $target)
-                                            @php $c++; @endphp
-                                            <tr>
+                                        @php $c=0; @endphp
+                                        @isset($data['targets'])
+                                            @foreach ($data['targets'] as $target)
+                                                @php $c++; @endphp
+                                                <tr>
 
-                                                <td>{{ $c }}</td>
+                                                    <td>{{ $c }}</td>
 
-
-
-                                                <td>
-                                                    @php
+                                                    <td>
+                                                        @php
                                                         ($target->agent_id)?$account_id=$target->agent_id:$account_id=$target->manager_id;
-                                                        ($target->agent_id)?$type='Source':$type='Manager';
+                                                        ($target->agent_id)
+                                                        ?$type='Source':$type='Manager';
                                                         $emp = App\Models\Employee::find($account_id);
 
                                                         if ($emp) {
                                                         echo '<span class="badge bg-inverse-success">' . $emp->name. '</span>';
                                                         }
 
-                                                    @endphp
-                                                </td>
-                                                <td>{{ $type }}</td>
-                                                <td>{{ $target->target_in_numbers }} {{ strtoupper($target->target_type) }}'s</td>
-                                                <td>{{ $target->from }}</td>
-                                                <td>{{ $target->to }}</td>
-                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="#" class="dropdown-item btn_edit_target" data="{{ $target->id }}"><i class="fa fa-pencil m-r-5n "></i> Edit</a>
-                                                    <a href="#" class="dropdown-item btn_delete_target" data="{{ $target->id }}"><i class="fa fa-trash-o m-r-5 "></i>Delete</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endisset
+                                                        @endphp
+                                                    </td>
+                                                    <td>{{ $type }}</td>
+                                                    <td>{{ $target->target_in_numbers }}
+                                                        {{ strtoupper($target->target_type) }}'s</td>
+                                                    <td>{{ $target->from }}</td>
+                                                    <td>{{ $target->to }}</td>
+                                                    <td class="text-right">
+                                                        <div class="dropdown dropdown-action">
+                                                            <a href="#" class="action-icon dropdown-toggle"
+                                                                data-toggle="dropdown" aria-expanded="false"><i
+                                                                    class="material-icons">more_vert</i></a>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                                <a href="#" class="dropdown-item btn_edit_target"
+                                                                    data="{{ $target->id }}"><i class="la la-pencil"
+                                                                        style="font-size: 20px;"></i></a>
+                                                                <a href="#" class="dropdown-item btn_delete_target"
+                                                                    data="{{ $target->id }}"><i class="la la-trash"
+                                                                        style="font-size: 20px;"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endisset
 
                                     </tbody>
                                 </table>
@@ -115,54 +122,53 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" id="targetForm" action="{{url('targets')}}" class="needs-validation" novalidate>
+                        <form method="post" id="targetForm" action="{{ url('targets') }}">
                             @csrf
                             <div class="row">
                                 <div class="form-group col-sm-6">
                                     <select name="to_allocate" class="form-control selectpicker" data-container="body"
-                                            data-live-search="true">
+                                        data-live-search="true" required>
                                         <option value="">Choose One</option>
                                         <option value="1">Manager</option>
                                         <option value="2">Source</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-sm-6 manager_section" style="display: none">
-                                    <select name="manager_id" class="form-control selectpicker" data-container="body" data-live-search="true">
+                                    <select name="manager_id" class="form-control selectpicker" data-container="body"
+                                        data-live-search="true" required>
                                         <option value="">Choose Manager</option>
                                         @isset($data)
                                             @foreach ($data['manager'] as $manager)
-                                                <option value="{{$manager->leader_id}}">{{$manager->name}}</option>
+                                                <option value="{{ $manager->leader_id }}">{{ $manager->name }}</option>
                                             @endforeach
                                         @endisset
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Please choose agent.
-                                    </div>
+
                                 </div>
                                 <div class="form-group col-sm-6 csr_section" style="display: none">
-                                    <select name="agent_id" class="form-control selectpicker" data-container="body" data-live-search="true">
+                                    <select name="agent_id" class="form-control selectpicker" data-container="body"
+                                        data-live-search="true" required>
                                         <option value="">Choose Agent</option>
                                         @isset($data)
                                             @foreach ($data['employee'] as $emp)
-                                                <option value="{{$emp->id}}">{{$emp->name}}</option>
+                                                <option value="{{ $emp->id }}">{{ $emp->name }}</option>
                                             @endforeach
                                         @endisset
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Please choose agent.
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-sm-6">
-                                    <select name="target_type" class="form-control ">
+                                    <select name="target_type" class="form-control" required>
                                         <option value="">Target Type</option>
                                         <option value="sale">Sale</option>
                                         <option value="meeting">Meetings</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <input class="form-control" type="number" name="target_number" placeholder="Number of Sale or Meetings">
+                                    <input class="form-control" type="number" name="target_number"
+                                        placeholder="Number of Sale or Meetings" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -186,7 +192,8 @@
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn" type="submit" id="btnSubmit">Save</button>
+                                <button class="btn btn-primary submit-btn btn_target_save" type="submit"
+                                    id="btnSubmit">Save</button>
                             </div>
                         </form>
                     </div>
@@ -217,7 +224,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <input class="form-control" type="number" name="target_number" placeholder="Number of Sale or Meetings">
+                                    <input class="form-control" type="number" name="target_number"
+                                        placeholder="Number of Sale or Meetings">
                                 </div>
                             </div>
                             <div class="row">
@@ -235,7 +243,8 @@
                                 </div>
                             </div>
                             <div class="submit-section">
-                                <button class="btn btn-primary submit-btn update-target" type="submit">Update</button>
+                                <button class="btn btn-primary submit-btn update-target" type="submit">Save
+                                    Changes</button>
                             </div>
                         </form>
                     </div>
@@ -249,10 +258,26 @@
 
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <!-- CDN for Sweet Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type='text/javascript'>
         $(document).ready(function() {
+
+            $('#targetForm').validate({
+
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
 
 
             $('input[name=to_date]').change(function() {
@@ -276,14 +301,14 @@
             });
 
             //company_id dependent dropdown for all employees
-            $('select[name=to_allocate]').change(function(){
-                var to_allocate=$('select[name=to_allocate]').val();
+            $('select[name=to_allocate]').change(function() {
+                var to_allocate = $('select[name=to_allocate]').val();
 
-                if(to_allocate==1) {
+                if (to_allocate == 1) {
 
                     $(".manager_section").css("display", "block");
                     $(".csr_section").css("display", "none");
-                }else{
+                } else {
                     $(".manager_section").css("display", "none");
                     $(".csr_section").css("display", "block");
                 }
@@ -291,27 +316,52 @@
             });
 
 
-            $('#targetForm').unbind().on('submit', function(e) {
-                e.preventDefault();
-                var formData = $('#targetForm').serialize();
-                $.ajax({
 
-                    type: 'ajax',
-                    method: 'post',
-                    url: '{{url("targets")}}',
+            $('#targetForm').on('submit', function(e) {
+                e.preventDefault();
+
+                var $form = $(this);
+                // check if the input is valid
+                if (!$form.validate().form()) return false;
+
+                let formData = new FormData($('#targetForm')[0]);
+
+                $.ajax({
+                    type: "POST",
+                    url: '{{ url('targets') }}',
                     data: formData,
-                    async: false,
-                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('.btn_target_save').text('Saving...');
+                        $(".btn_target_save").prop("disabled", true);
+                    },
                     success: function(data) {
                         if (data.success) {
                             $('#targetForm')[0].reset();
+                            $('#add_leave').modal('hide');
                             toastr.success(data.success);
-                            window.location.reload();
+                            $('.btn_target_save').text('Save');
+                            $(".btn_target_save").prop("disabled", false);
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 1000);
+                        }
+
+                        if (data.errors) {
+                            toastr.error(data.errors);
+                            $('.btn_target_save').text('Save');
+                            $(".btn_target_save").prop("disabled", false);
                         }
                     },
 
                     error: function() {
                         toastr.error('something went wrong');
+                        $('.btn_target_save').text('Save');
+                        $(".btn_target_save").prop("disabled", false);
                     }
                 });
             });
@@ -348,8 +398,8 @@
                                     `<option value="sale" ${data.target.target_type == 'sale' ? 'selected' : ''}>Sale</option>`,
                                     `<option value="meeting" ${data.target.target_type == 'meeting' ? 'selected' : ''}>Meeting</option>`,
                                 )
-                            });
-                        },
+                        });
+                    },
 
                     error: function() {
 
@@ -378,7 +428,7 @@
                     processData: false,
                     dataType: "json",
                     beforeSend: function() {
-                        $('.update-target').text('Updating...');
+                        $('.update-target').text('Saving...');
                         $(".update-target").prop("disabled", true);
                     },
                     success: function(response) {
@@ -386,7 +436,7 @@
                         if (response.status == 200) {
                             $('#edit_target_modal').modal('hide');
                             $('#editTargetForm').find('input').val("");
-                            $('.update-target').text('Update');
+                            $('.update-target').text('Save Changes');
                             $(".update-target").prop("disabled", false);
                             toastr.success(response.message);
                             setTimeout(() => {
@@ -396,7 +446,7 @@
                     },
                     error: function() {
                         toastr.error('something went wrong');
-                        $('.update-target').text('Update');
+                        $('.update-target').text('Save Changes');
                         $(".update-target").prop("disabled", false);
                     }
                 });

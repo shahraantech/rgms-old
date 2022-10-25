@@ -228,7 +228,6 @@ class AttendanceController extends Controller
         $data['workHours'] = '';
         $data['currentDiff'] = '';
         if ($request->search == 1) {
-
             $data['searchData'] = Attendance::where('emp_id', $this->userId)->get();
         }
 
@@ -326,7 +325,6 @@ class AttendanceController extends Controller
 
         if (!$res) {
             $leave_id = $request->leave_id;
-
             if ($request->mark_status == "leave") {
                 $from = date($request->hiiden_year . '-' . $request->hiiden_month . '-' . $request->hiiden_att_date);
                 $todate = $request->hiiden_att_date + 1;
@@ -383,7 +381,7 @@ class AttendanceController extends Controller
 
     public function dailyAttReport(Request $request)
     {
-        if ($request->ajax()) {
+        if ($request->isMethod('post')) {
             ($request->company_id) ? $company_id = $request->company_id : $company_id = '';
             ($request->date_range) ? $search_date = $request->date_range : $search_date = Carbon::now();
 
@@ -431,15 +429,12 @@ class AttendanceController extends Controller
     {
         $employee = Employee::get();
         $current_date = date('Y-m-d');
-        // dd(date('Y-d-m'));
         foreach ($employee as $val) {
-            $attt = Attendance::where('emp_id', $val->id)
-                ->where('date', $current_date)->first();
+            $attt = Attendance::where('emp_id', $val->id)->where('date', $current_date)->first();
             // echo $attt;
             if (isset($attt)) {
                 // $today=new Attendance();
-
-                reponse('Attendance Already ');
+                return 'Attendance Already';
             } else {
                 $att = new Attendance();
                 $att->emp_id = $val->id;
@@ -451,6 +446,7 @@ class AttendanceController extends Controller
                 $att->marked_by = 'admin';
                 $att->guard = 'web';
                 $att->save();
+                return 'Success';
             }
         }
     }
@@ -458,8 +454,7 @@ class AttendanceController extends Controller
     public function checkoutReport(Request $request)
     {
         $qry = Attendance::orderBy('date', 'ASC');
-        if($request->isMethod('post'))
-        {
+        if ($request->isMethod('post')) {
             $qry->when($request->emp_id, function ($query, $emp_id) {
                 return $query->where('emp_id', '=', $emp_id);
             });

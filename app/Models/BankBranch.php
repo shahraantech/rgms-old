@@ -16,8 +16,11 @@ class BankBranch extends Model
     }
 
     public static function getBankBranchBalance(){
-        $data=BankBranch::where('auth_id',Auth::id())->orderBy('id','desc')->get();
-        return $data;
+        $qry=BankBranch::Query();
+        (Auth::user()->role !='accounts')?$qry=$qry->where('auth_id',Auth::id()):'';
+        $qry=$qry->orderBy('id','desc');
+        $qry=$qry->get();
+        return $qry;
 
 
     }

@@ -194,22 +194,22 @@
                                             <td>
                                                 {{ $market->platformname->platform ? $market->platformname->platform : '' }}
                                             </td>
-{{--                                            --}}
-{{--                                            <td>--}}
-{{--                                                @php--}}
-{{--                                                 ($market->lead_type=='Inbound')? $className='success': $className='primary';--}}
-{{--                                                $lead = App\Models\ApprochedLeads::with('temp')--}}
-{{--                                                ->where('lead_id', $market->id)--}}
-{{--                                                ->first();--}}
-{{--                                                if ($lead) {--}}
-{{--                                                echo '<span class="badge bg-inverse-warning">' . $lead->temp['temp'] . '</span>';--}}
-{{--                                                } else {--}}
-{{--                                                echo '<span class="badge bg-inverse-danger">Open</span>';--}}
-{{--                                                }--}}
-{{--                                                @endphp--}}
-{{--                                            </td>--}}
 
-                                            <td><span class="badge bg-inverse-{{$className}}">{{$market->lead_type}}</span></td>
+                                            <td>
+                                                @php
+                                                 ($market->lead_type=='Inbound')? $className='success': $className='primary';
+                                                $lead = App\Models\ApprochedLeads::with('temp')
+                                                ->where('lead_id', $market->id)
+                                                ->first();
+                                                if ($lead) {
+                                                echo '<span class="badge bg-inverse-warning">' . $lead->temp['temp'] . '</span>';
+                                                } else {
+                                                echo '<span class="badge bg-inverse-danger">Open</span>';
+                                                }
+                                                @endphp
+                                            </td>
+
+{{--                                            <td><span class="badge bg-inverse-{{$className}}">{{$market->lead_type}}</span></td>--}}
                                             <td>{{ substr($market->interest,10)}}</td>
 
                                         </tr>
@@ -226,19 +226,21 @@
                                 </tbody>
                             </table>
                         @else
-                            <div class="alert alert-danger">Record Not FOund</div>
+                            <div class="alert alert-danger">Record not found!</div>
                         @endif
                     </div>
                 </div>
             </div>
+        </div>
             <!-- /Page Content -->
         </div>
+
         <!-- Add Department Modal -->
         <div id="add_department" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Lead</h5>
+                        <h5 class="modal-title">Create New Lead</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"
                                 id="modalDismiss">
                             <span aria-hidden="true">&times;</span>
@@ -269,7 +271,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Contact <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="number" name="contact" placeholder="Contact"
+                                        <input class="form-control" type="number" name="contact" placeholder="92-333-4636416"
                                                required>
                                         <div class="invalid-feedback">
                                             Please enter contact.
@@ -451,7 +453,10 @@
             </div>
         </div>
         <!-- /Page Wrapper -->
-    </div>
+
+
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <script>
@@ -719,10 +724,7 @@
         toastr.success("CSV File Required!");
         @endif
     </script>
-
-
     @include('call-center.general.dont-copy');
-
-@endsection
+    @endsection
 
 

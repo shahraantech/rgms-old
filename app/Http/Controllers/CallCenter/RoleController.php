@@ -49,7 +49,7 @@ class RoleController extends Controller
 
             $validator = Validator::make($data, $rules);
             if ($validator->fails()) {
-                return response()->json(['errors' => $validator->errors()]);
+                return response()->json(['errors' => $validator->errors()->all()]);
             }
             $role = new Role();
             $role->role = $request->role;
@@ -147,19 +147,19 @@ class RoleController extends Controller
 
             $validator = Validator::make($data, $rules);
             if ($validator->fails()) {
-                return response()->json(['errors' => $validator->errors()]);
+                return response()->json(['errors' => $validator->errors()->all()]);
             }
 
             // users create
             $chekUser = User::where('email', $request->email)->first();
             if (!$chekUser) {
 
-                $role='employee';
-                if($request->role_id==8){
-                    $role='super-admin';
+                $role = 'employee';
+                if ($request->role_id == 8) {
+                    $role = 'super-admin';
                 }
-                if($request->module){
-                    $role=$request->module;
+                if ($request->module) {
+                    $role = $request->module;
                 }
 
                 $user = User::create([
@@ -173,30 +173,30 @@ class RoleController extends Controller
 
                 ]);
             } else {
-                return response()->json(['errors' =>'User Already Exist']);
+                return response()->json(['errors' => 'User Already Exist']);
             }
             return response()->json(['success' => 'User created successfully'], 200);
         }
         $data['roles'] = Role::all();
         $data['company'] = Company::all();
-        $data['users'] = User::with('rolename')->orderBy('id','DESC')->get();
+        $data['users'] = User::with('rolename')->orderBy('id', 'DESC')->get();
         return view('call-center.roles.users')->with(compact('data'));
     }
     //updateUserRole
     public function updateUserRole(Request $request)
     {
-          $request->all();
+        $request->all();
         $user = User::find($request->change_user_id);
-        $role='employee';
-        if($request->change_role_id==8){
-            $role='super-admin';
+        $role = 'employee';
+        if ($request->change_role_id == 8) {
+            $role = 'super-admin';
         }
-        if($request->change_module){
-            $role=$request->change_module;
+        if ($request->change_module) {
+            $role = $request->change_module;
         }
 
 
-        $user->role =$role;
+        $user->role = $role;
         $user->role_id = $request->change_role_id;
         if ($user->save()) {
             return response()->json(['success' => 'Role update successfully'], 200);
@@ -208,7 +208,7 @@ class RoleController extends Controller
         $user = User::find($request->user_id);
         $user->status = $request->status;
         if ($user->save()) {
-            Employee::where('id',$user->account_id)->update(['status'=>$request->status]);
+            Employee::where('id', $user->account_id)->update(['status' => $request->status]);
             return response()->json(['success' => 'User Status updated successfully'], 200);
         }
     }

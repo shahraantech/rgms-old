@@ -32,11 +32,7 @@ class TargetController extends Controller
 
     public function index(Request  $request)
     {
-
-
         if ($request->isMethod('post')) {
-
-
             $data = $request->all();
             $rules = array(
                 'target_type' => 'required',
@@ -47,10 +43,8 @@ class TargetController extends Controller
 
             $validator = Validator::make($data, $rules);
             if ($validator->fails()) {
-                return response()->json(['errors' => $validator->errors()]);
+                return response()->json(['errors' => $validator->errors()->all()]);
             }
-
-
             $target = new Target();
             $target->manager_id = ($request->manager_id) ? $request->manager_id : '';
             $target->agent_id = ($request->agent_id) ? $request->agent_id : '';
@@ -61,7 +55,6 @@ class TargetController extends Controller
             $target->status = 0;
             $target->save();
 
-
             if ($request->to_allocate == 2) {
                 $team = new TeamTarget();
 
@@ -71,13 +64,12 @@ class TargetController extends Controller
                 $team->target_in_numbers = $request->target_number;
                 $team->from = $request->from_date;
                 $team->to = $request->to_date;
-
                 $team->save();
             }
             return response()->json(['success' => 'Target created successfully'], 200);
         }
 
-        $data['employee'] = Employee::where('status', 1)->select('id', 'name')->orderBy('id', 'DESC')->get();
+        $data['employee'] =getCSR();
         $data['manager'] = Lead::join('employees', 'employees.id', 'leads.leader_id')->select('leads.leader_id', 'employees.name')->get();
         $data['targets'] = Target::orderBy('id', 'desc')->get();
         return view('targets.index')->with(compact('data'));

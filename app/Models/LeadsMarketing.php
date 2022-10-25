@@ -39,6 +39,7 @@ class LeadsMarketing extends Model
         return $this->belongsTo(SocialPlatform::class, 'platform_id', 'id');
     }
 
+
 //    protected $casts = [
 //        'created_at' => 'datetime:d M Y',
 //    ];
@@ -76,13 +77,13 @@ class LeadsMarketing extends Model
     {
 
          $qry = LeadsMarketing::query();
-         $qry=$qry->orderby('id', 'DESC');
         if($purpose==1){
             $qry=$qry->whereDate('created_at', '>=', $startDate);
             $qry = $qry->whereDate('created_at', '<=', $endDate);
             $qry = $qry-> count();
         }
        else {
+           $qry=$qry->orderby('id', 'DESC');
            $qry = $qry->get();
        }
         return $qry;
@@ -93,9 +94,9 @@ class LeadsMarketing extends Model
     public static function getLeadsSocialPlatformWise($platformId, $isCounting,$start_date,$end_date)
     {
         $qry = LeadsMarketing::Query();
-        ($platformId > 0)?$qry = $qry->where('platform_id', $platformId):'';
             $qry = $qry->whereDate('created_at', '>=', $start_date);
             $qry = $qry->whereDate('created_at', '<=', $end_date);
+        ($platformId > 0)?$qry = $qry->where('platform_id', $platformId):'';
         //1 use for counting
         ($isCounting == 1) ? $qry = $qry->count() : $qry = $qry->get();
         return $qry;
@@ -103,31 +104,23 @@ class LeadsMarketing extends Model
 
     public static function getLeadsStats($platformId,$temp_id,$qryForCall,$start_date,$end_date)
     {
+
+        //yeh code use krna ha
         $qry = ApprochedLeads::Query();
         $qry = $qry->join('leads_marketings', 'leads_marketings.id', 'approched_leads.lead_id');
+        $qry = $qry->whereDate('leads_marketings.created_at', '>=', $start_date);
+        $qry = $qry->whereDate('leads_marketings.created_at', '<=', $end_date);
         ($platformId > 0)?$qry = $qry->where('leads_marketings.platform_id', $platformId):'';
-            $qry = $qry->whereDate('leads_marketings.created_at', '>=', $start_date);
-            $qry = $qry->whereDate('leads_marketings.created_at', '<=', $end_date);
         ($qryForCall == 1) ? $qry = $qry->where('approched_leads.is_connected', 1)->distinct('lead_id')->count():'';
-        ($qryForCall != 1) ? $qry = self::countLeadsTempForStat($qry->groupBy('approched_leads.lead_id')->get(), $temp_id) : '';
+        if($qryForCall != 1){
+            $qry =$qry->where('approched_leads.temp_id', $temp_id);
+            $qry = $qry->whereIn('approched_leads.id', function ($query) {
+                $query->selectRaw('max(id)')->from('approched_leads')->groupBy('lead_id');
+            })->count();
+        }
         return $qry;
     }
-    public static function countLeadsTempForStat($qry, $temp_id)
-    {
-         $temp = 0;
-        foreach ($qry as $leads) {
-            $res = ApprochedLeads::where('lead_id',$leads->id)->latest('id')->first();
-            if ($res) {
-                if ($res->temp_id == $temp_id) {
-                    $temp++;
-                }
-            }
-        }
-            return $temp;
-        }
-
         //getAllSales
-
     public static function getAllSales($request)
     {
         $qry=ApprochedLeads::query();
@@ -150,8 +143,6 @@ class LeadsMarketing extends Model
         $qry=$qry->OrderBy('id','DESC')->get();
         return $qry;
     }
-
-
     public static function getDeadLeads($request)
     {
         $qry=ApprochedLeads::query();
@@ -174,13 +165,27 @@ class LeadsMarketing extends Model
         $qry=$qry->OrderBy('id','DESC')->get();
         return $qry;
     }
-
-
-
     public static function countLeadFollowUps($lead_id)
     {
         $qry=ApprochedLeads::query();
         $qry= $qry->where('lead_id',$lead_id);
+        $qry=$qry->count();
+        return $qry;
+    }
+
+
+
+    public static function getEmpTotalLeads($agentId,$start_date,$endDate,$type)
+    {
+        //use 1 for total leads
+        //use 2 for calls
+        //use 3 notapproaches
+        $qry=AssignedLeads::query();
+        $qry= $qry->where('agent_id',$agentId);
+        ($type==2)?$qry= $qry->where('status',1):'';
+        ($type==3)?$qry= $qry->where('status',0):'';
+        $qry=$qry->whereDate('created_at', '>=', $start_date);
+        $qry = $qry->whereDate('created_at', '<=', $endDate);
         $qry=$qry->count();
         return $qry;
     }

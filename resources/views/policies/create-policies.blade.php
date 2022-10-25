@@ -70,7 +70,7 @@
 
 
                                 <div class="submit-section">
-                                    <button class="btn btn-primary submit-btn" type="submit" id="btnSubmit">Submit</button>
+                                    <button class="btn btn-primary submit-btn btn_polices" type="submit" id="btnSubmit">Save</button>
                                 </div>
                             </form>
 
@@ -108,8 +108,6 @@
 
 
 
-
-
     </script>
 
 
@@ -134,6 +132,14 @@
         toastr.success("Record save successfully!");
 
         @endif
+
+
+
+        $('.btn_polices').on('click', function() {
+        $(".btn_polices").prop("disabled", true);
+        $(".btn_polices").html("Please wait...");
+        $('#newHiringForm').submit();
+    });
 
     </script>
 

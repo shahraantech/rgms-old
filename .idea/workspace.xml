@@ -2,13 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61ad51f6-c89c-418f-938f-7b568a8d5486" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/rgms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rgms.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Accounts/AccountsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Accounts/AccountsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/accounts/accounts/accounts-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/accounts/accounts/accounts-list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/accounts/bank/bank-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/accounts/bank/bank-list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/setup/super-admin-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/setup/super-admin-sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Events/RealTimeMessage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/RealTimeMessage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Accounts/PurchaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Accounts/PurchaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Purchase.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Purchase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/accounts/purchase/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/accounts/purchase/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/accounts/purchase/purchase-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/accounts/purchase/purchase-list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/accounts/purchase/view-purchase.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/accounts/purchase/view-purchase.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/employee/employee-list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/employee/employee-list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/accountant.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/accountant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/composer.phar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/src/Pusher.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/src/Pusher.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/src/PusherCrypto.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/src/PusherCrypto.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +50,6 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
       <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
-      <path value="$PROJECT_DIR$/vendor/opis/closure" />
       <path value="$PROJECT_DIR$/vendor/sebastian/complexity" />
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/vendor/sebastian/version" />
@@ -54,12 +68,8 @@
       <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/vendor/phar-io/version" />
       <path value="$PROJECT_DIR$/vendor/composer" />
-      <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
-      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
       <path value="$PROJECT_DIR$/vendor/psr/log" />
-      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
       <path value="$PROJECT_DIR$/vendor/psr/cache" />
-      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/psr/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
@@ -98,12 +108,9 @@
       <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
       <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
       <path value="$PROJECT_DIR$/vendor/symfony/console" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
       <path value="$PROJECT_DIR$/vendor/paragonie/sodium_compat" />
-      <path value="$PROJECT_DIR$/vendor/paragonie/constant_time_encoding" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
       <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
       <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
@@ -121,18 +128,14 @@
       <path value="$PROJECT_DIR$/vendor/filp/whoops" />
       <path value="$PROJECT_DIR$/vendor/nette/schema" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
-      <path value="$PROJECT_DIR$/vendor/munafio/chatify" />
       <path value="$PROJECT_DIR$/vendor/facebook/graph-sdk" />
       <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
-      <path value="$PROJECT_DIR$/vendor/nunomaduro/collision" />
       <path value="$PROJECT_DIR$/vendor/graham-campbell/result-type" />
       <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
       <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
-      <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
       <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
       <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
       <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
-      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
       <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
       <path value="$PROJECT_DIR$/vendor/google/apiclient" />
       <path value="$PROJECT_DIR$/vendor/google/apiclient-services" />
@@ -148,7 +151,6 @@
       <path value="$PROJECT_DIR$/vendor/league/commonmark" />
       <path value="$PROJECT_DIR$/vendor/league/config" />
       <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
-      <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
       <path value="$PROJECT_DIR$/vendor/fruitcake/laravel-cors" />
       <path value="$PROJECT_DIR$/vendor/brick/math" />
       <path value="$PROJECT_DIR$/vendor/laravel/framework" />
@@ -156,15 +158,46 @@
       <path value="$PROJECT_DIR$/vendor/laravel/tinker" />
       <path value="$PROJECT_DIR$/vendor/laravel/sanctum" />
       <path value="$PROJECT_DIR$/vendor/laravel/sail" />
-      <path value="$PROJECT_DIR$/vendor/facade/ignition" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
       <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
       <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
       <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
-      <path value="$PROJECT_DIR$/vendor/facade/flare-client-php" />
       <path value="$PROJECT_DIR$/vendor/facade/ignition-contracts" />
       <path value="$PROJECT_DIR$/vendor/codebyray/laravel-review-rateable" />
       <path value="$PROJECT_DIR$/vendor/jorenvanhocht/laravel-share" />
+      <path value="$PROJECT_DIR$/vendor/stripe/stripe-php" />
+      <path value="$PROJECT_DIR$/vendor/srmklive/paypal" />
+      <path value="$PROJECT_DIR$/vendor/paypal/rest-api-sdk-php" />
+      <path value="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge" />
+      <path value="$PROJECT_DIR$/vendor/ringcentral/psr7" />
+      <path value="$PROJECT_DIR$/vendor/cboden/ratchet" />
+      <path value="$PROJECT_DIR$/vendor/ratchet/rfc6455" />
+      <path value="$PROJECT_DIR$/vendor/fig/http-message-util" />
+      <path value="$PROJECT_DIR$/vendor/react/cache" />
+      <path value="$PROJECT_DIR$/vendor/react/dns" />
+      <path value="$PROJECT_DIR$/vendor/react/event-loop" />
+      <path value="$PROJECT_DIR$/vendor/react/http" />
+      <path value="$PROJECT_DIR$/vendor/react/stream" />
+      <path value="$PROJECT_DIR$/vendor/evenement/evenement" />
+      <path value="$PROJECT_DIR$/vendor/react/promise" />
+      <path value="$PROJECT_DIR$/vendor/react/promise-stream" />
+      <path value="$PROJECT_DIR$/vendor/react/promise-timer" />
+      <path value="$PROJECT_DIR$/vendor/react/socket" />
+      <path value="$PROJECT_DIR$/vendor/beyondcode/laravel-websockets" />
+      <path value="$PROJECT_DIR$/vendor/symfony/mailer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/vendor/symfony/uid" />
+      <path value="$PROJECT_DIR$/vendor/fruitcake/php-cors" />
+      <path value="$PROJECT_DIR$/vendor/nunomaduro/termwind" />
+      <path value="$PROJECT_DIR$/vendor/spatie/flare-client-php" />
+      <path value="$PROJECT_DIR$/vendor/spatie/backtrace" />
+      <path value="$PROJECT_DIR$/vendor/spatie/ignition" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-ignition" />
+      <path value="$PROJECT_DIR$/vendor/munafio/chatify" />
+      <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/vendor/nunomaduro/collision" />
+      <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/constant_time_encoding" />
     </include_path>
   </component>
   <component name="ProjectId" id="2EkPI9tPhxx80l4Y0q34H6LauiF" />
@@ -173,17 +206,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/rgms&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/xampp/htdocs/rgms",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
@@ -217,7 +250,27 @@
       <workItem from="1664515612993" duration="25943000" />
       <workItem from="1664775819046" duration="25102000" />
       <workItem from="1664860549495" duration="16808000" />
-      <workItem from="1664946833230" duration="1819000" />
+      <workItem from="1664946833230" duration="23414000" />
+      <workItem from="1664977280603" duration="2474000" />
+      <workItem from="1665034229094" duration="20614000" />
+      <workItem from="1665120017797" duration="5637000" />
+      <workItem from="1665145682730" duration="6340000" />
+      <workItem from="1665205587719" duration="150000" />
+      <workItem from="1665382007812" duration="3801000" />
+      <workItem from="1665482115780" duration="599000" />
+      <workItem from="1665579339309" duration="3978000" />
+      <workItem from="1665596753397" duration="30000" />
+      <workItem from="1665639137093" duration="20834000" />
+      <workItem from="1665725806110" duration="25180000" />
+      <workItem from="1665772801266" duration="63000" />
+      <workItem from="1665992799869" duration="12481000" />
+      <workItem from="1666178638292" duration="1554000" />
+      <workItem from="1666180684913" duration="4908000" />
+      <workItem from="1666200661796" duration="42000" />
+      <workItem from="1666244145616" duration="387000" />
+      <workItem from="1666253800836" duration="1394000" />
+      <workItem from="1666265652680" duration="95000" />
+      <workItem from="1666266818746" duration="5917000" />
     </task>
     <servers />
   </component>
@@ -240,7 +293,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/ExpensesController.php</url>
-          <line>307</line>
+          <line>302</line>
           <properties>
             <option name="className" value="\App\Http\Controllers\ExpensesController" />
             <option name="methodName" value="expenseSummary" />
@@ -285,7 +338,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Models/LeadsMarketing.php</url>
-          <line>68</line>
+          <line>69</line>
           <properties>
             <option name="className" value="\App\Models\LeadsMarketing" />
             <option name="methodName" value="getLeadsInfo" />
@@ -294,26 +347,44 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php</url>
-          <line>455</line>
+          <line>394</line>
           <properties>
             <option name="className" value="\App\Http\Controllers\CallCenter\CallCenterLeadsController" />
             <option name="methodName" value="deleteLeads" />
           </properties>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterLeadsController.php</url>
+          <line>328</line>
+          <properties>
+            <option name="className" value="\App\Http\Controllers\CallCenter\CallCenterLeadsController" />
+            <option name="methodName" value="editLeeds" />
+          </properties>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Models/ApprochedLeads.php</url>
+          <line>81</line>
+          <properties>
+            <option name="className" value="\App\Models\ApprochedLeads" />
+            <option name="methodName" value="getEmpOverDueLeads" />
+          </properties>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/accounts/printer/print-expense-summary.blade.php</url>
-          <line>103</line>
+          <line>96</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/accounts/payments/payments.blade.php</url>
-          <line>409</line>
+          <line>416</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/accounts/payments/payments.blade.php</url>
-          <line>494</line>
+          <line>501</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -323,7 +394,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/accounts/payments/jv.blade.php</url>
-          <line>380</line>
+          <line>413</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -333,7 +404,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/accounts/sale/index.blade.php</url>
-          <line>178</line>
+          <line>182</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -358,18 +429,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/call-center/dashboard.blade.php</url>
-          <line>435</line>
+          <line>450</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/call-center/leads/my-leads.blade.php</url>
-          <line>1042</line>
+          <line>1043</line>
           <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/resources/views/call-center/dashboard.blade.php</url>
-          <line>559</line>
-          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/call-center/reports/sale-report.blade.php</url>
@@ -378,8 +444,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/hr/designations/index.blade.php</url>
-          <line>179</line>
+          <line>203</line>
           <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/accounts/coa/coa-level.blade.php</url>
+          <line>38</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/call-center/dashboard.blade.php</url>
+          <line>192</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/employee/employee-list.blade.php</url>
+          <line>6</line>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

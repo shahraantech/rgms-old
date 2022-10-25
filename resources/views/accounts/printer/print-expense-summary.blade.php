@@ -44,33 +44,24 @@
           crossorigin="anonymous" />
 
     <link rel="stylesheet" href="{{ asset('public/assets/select/bootstrap-select.css') }}">
-
     <style>
         table {
             border: 1px solid #000;
         }
-
         tr {
             border: 1px solid #000;
         }
-
         td {
             border: 1px solid #000 !important;
             font-weight: bold;
         }
     </style>
-
 </head>
-
 <body>
-
-
-
 <div class="container-fluid mt-4" id="printTable">
     <div class="card">
         <div class="card-body">
             <table class="table" id="printCard">
-
                 <tr>
                     <td class="text-center" colspan="5">
                         <h4>THE A TEAM</h4>
@@ -80,6 +71,8 @@
                         @endphp
                         <h5>{{$headName}}</h5>
                         <h6>Date:{{date('d-M-Y')}}</h6>
+                        <span>From:{{date('d-M-Y',strtotime(  $data['from']))}}</span>
+                        <span>To:{{date('d-M-Y',strtotime(  $data['to']))}}</span>
                     </td>
                 </tr>
 
@@ -124,7 +117,7 @@
                             <td  colspan="3"><div class="float-right"> <strong>{{number_format($data['balance'],2)}}</strong></td>
                         </tr>
                         <tr>
-                            <td>PREPARED BY : {{Auth::user()->name}}</td>
+                            <td>PREPARED BY : {{Auth::user()->name ?? ''}}</td>
                             <td>CHECKED BY</td>
                             <td>APPROVED BY</td>
                             <td>ACKNOWLEDGEMENT</td>

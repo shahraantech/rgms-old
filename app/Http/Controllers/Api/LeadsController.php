@@ -53,6 +53,48 @@ class LeadsController extends Controller
 
 
     }
+
+    //searchContact
+
+    public function searchContact(Request $request)
+    {
+
+        $data = $request->all();
+        $rules = array(
+            'contact' => 'required',
+            'emp_id' => 'required',
+        );
+        $validator = Validator::make($data, $rules);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()]);
+        }
+
+        $contact=$request->contact;
+        $emp_id=$request->emp_id;
+        $lead=LeadsMarketing::where('contact', 'LIKE', '%'.$contact.'%')->orWhere('contact',$contact)->first();
+        if($lead){
+            $al=AssignedLeads::where('lead_id',$lead->id)->where('agent_id',$emp_id)->first();
+            if($al){
+                $data=array(
+                 
+                    'lead_id'=>$al->lead_id,
+                    'name'=>$lead->name,
+                    'emp_id'=>$al->agent_id
+                );
+                $response = createAPIResponce($is_error = false, $code = 200, $message = 'data  found', $data);
+            }
+            else{
+                $response = createAPIResponce($is_error = true, $code = 404, $message = 'data not found', $data);
+            }
+        }
+        else{
+            $response = createAPIResponce($is_error = true, $code = 404, $message = 'data not  found', $data);
+        }
+
+        return response()->json($response);
+
+
+    }
     //todayActivity
     public function todayActivity(Request $request)
     {
@@ -257,7 +299,6 @@ class LeadsController extends Controller
             $file->move('storage/app/public/uploads/leedRecording/', $filename);
             $app->audio = $filename;
         }
-
         $app->lead_id = $lead_id;
         $app->agent_id = $emp_id;
         $app->temp_id = $temp_id;
@@ -267,6 +308,7 @@ class LeadsController extends Controller
         $app->followup_date = ($follow_date) ? $follow_date : '';
         $app->follow_time = ($time) ? $time : '';
         $app->lead_type = ($lead_type) ? 1 : 0;
+        $app->guard = 'app';
 
         if ($app->save()) {
             if($appLeadFind==1) {

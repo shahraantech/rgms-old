@@ -1,45 +1,28 @@
-
-@extends('layouts.app')
-@push('style')
-	<style type="text/css">
-		.my-active span{
-			background-color: #5cb85c !important;
-			color: white !important;
-			border-color: #5cb85c !important;
-		}
-	</style>
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-@endpush
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                
-                  <table class="table table-stripped">
-                  	<thead>
-                  		<tr>
-                  			<th>No</th>
-                  			<th>Name</th>
-                  			<th>Email</th>
-                  		</tr>
-                  	</thead>
-                  	<tbody>
-                  		@forelse($users as $user)
-                  		<tr>
-                  			<td>{{ $loop->index + 1 }}</td>
-                  			<td>{{ $user->name }}</td>
-                  			<td>{{ $user->email }}</td>
-                  		</tr>
-                  		@empty
-                  		<p>No user found!</p>
-                  		@endforelse
-                  	</tbody>
-                  </table>
-               {{ $users->links('vendor.pagination.custom') }}
-            </div>
-        </div>
-    </div>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Laravel</title>
+</head>
+<body class="antialiased">
+<div>
+    <p id="notify"></p>
 </div>
-@endsection
- 
+
+<script src="{{ asset('js/app.js') }}"></script>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+        Echo.channel('events')
+            .listen('RealTimeMessage', (e) => {
+              alert("hello world");
+                // let notify = document.getElementById('notify');
+                // notify.innerHTML =e.message;
+
+            });
+    });
+</script>
+</body>
+</html>

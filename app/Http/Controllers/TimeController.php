@@ -16,23 +16,17 @@ class TimeController extends Controller
     //saveTimes
     public function saveTimes(Request $request)
     {
-
-
         $data = $request->all();
         $rules = array(
             'login_time' => 'required',
             'break_time' => 'required',
             'short_leave_time' => 'required',
             'dept_time' => 'required',
-
-
         );
-
-
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
 
-            return response()->json(['errors' => $validator->errors()]);
+            return response()->json(['errors' => $validator->errors()->all()]);
         }
 
         if (Time::first()) {
@@ -46,7 +40,6 @@ class TimeController extends Controller
             if ($time->save()) {
                 return response()->json(['success' => 'Record save successfully'], 200);
             }
-
 
             $time = new Time;
             $time->login_time = $request->login_time;
